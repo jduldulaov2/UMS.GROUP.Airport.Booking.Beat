@@ -1371,6 +1371,124 @@
         }
       }
     },
+    "/api/RestaurantTables/CreateRestaurantTable": {
+      "post": {
+        "tags": [
+          "RestaurantTables"
+        ],
+        "operationId": "CreateRestaurantTable",
+        "requestBody": {
+          "x-name": "command",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateRestaurantTableCommand"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultOfCreateRestaurantTableCommandDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/RestaurantTables/UpdateRestaurantTable": {
+      "put": {
+        "tags": [
+          "RestaurantTables"
+        ],
+        "operationId": "UpdateRestaurantTable",
+        "requestBody": {
+          "x-name": "command",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateRestaurantTableCommand"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultOfUpdateRestaurantTableCommandDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/RestaurantTables/GetAllRestaurantTable": {
+      "get": {
+        "tags": [
+          "RestaurantTables"
+        ],
+        "operationId": "GetAllRestaurantTable",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetAllRestaurantTableQueryDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/RestaurantTables/GetAllRestaurantTableById": {
+      "get": {
+        "tags": [
+          "RestaurantTables"
+        ],
+        "operationId": "GetAllRestaurantTableById",
+        "parameters": [
+          {
+            "name": "UniqueId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultOfGetAllRestaurantTableByIdQueryDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/Users/AllUsersByName": {
       "get": {
         "tags": [
@@ -4429,6 +4547,204 @@
             "nullable": true
           },
           "restaurantName": {
+            "type": "string",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean",
+            "nullable": true
+          }
+        }
+      },
+      "ResultOfCreateRestaurantTableCommandDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/CreateRestaurantTableCommandDto"
+              }
+            ]
+          },
+          "message": {
+            "type": "string"
+          },
+          "resultType": {
+            "$ref": "#/components/schemas/ResultType"
+          }
+        }
+      },
+      "CreateRestaurantTableCommandDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdDate": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "CreateRestaurantTableCommand": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "tableName": {
+            "type": "string",
+            "nullable": true
+          },
+          "tableDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "tableLocation": {
+            "type": "string",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean",
+            "nullable": true
+          }
+        }
+      },
+      "ResultOfUpdateRestaurantTableCommandDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/UpdateRestaurantTableCommandDto"
+              }
+            ]
+          },
+          "message": {
+            "type": "string"
+          },
+          "resultType": {
+            "$ref": "#/components/schemas/ResultType"
+          }
+        }
+      },
+      "UpdateRestaurantTableCommandDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "updatedDate": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "UpdateRestaurantTableCommand": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "uniqueId": {
+            "type": "string",
+            "nullable": true
+          },
+          "tableName": {
+            "type": "string",
+            "nullable": true
+          },
+          "tableDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "tableLocation": {
+            "type": "string",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean",
+            "nullable": true
+          }
+        }
+      },
+      "GetAllRestaurantTableQueryDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "uniqueId": {
+            "type": "string",
+            "nullable": true
+          },
+          "tableName": {
+            "type": "string",
+            "nullable": true
+          },
+          "tableDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "tableLocation": {
+            "type": "string",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean",
+            "nullable": true
+          }
+        }
+      },
+      "ResultOfGetAllRestaurantTableByIdQueryDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/GetAllRestaurantTableByIdQueryDto"
+              }
+            ]
+          },
+          "message": {
+            "type": "string"
+          },
+          "resultType": {
+            "$ref": "#/components/schemas/ResultType"
+          }
+        }
+      },
+      "GetAllRestaurantTableByIdQueryDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "uniqueId": {
+            "type": "string",
+            "nullable": true
+          },
+          "tableName": {
+            "type": "string",
+            "nullable": true
+          },
+          "tableDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "tableLocation": {
             "type": "string",
             "nullable": true
           },

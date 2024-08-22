@@ -2626,6 +2626,236 @@ export class RestaurantBookingsClient implements IRestaurantBookingsClient {
     }
 }
 
+export interface IRestaurantTablesClient {
+    createRestaurantTable(command: CreateRestaurantTableCommand): Observable<ResultOfCreateRestaurantTableCommandDto>;
+    updateRestaurantTable(command: UpdateRestaurantTableCommand): Observable<ResultOfUpdateRestaurantTableCommandDto>;
+    getAllRestaurantTable(): Observable<GetAllRestaurantTableQueryDto[]>;
+    getAllRestaurantTableById(uniqueId: string | null | undefined): Observable<ResultOfGetAllRestaurantTableByIdQueryDto>;
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class RestaurantTablesClient implements IRestaurantTablesClient {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ?? "";
+    }
+
+    createRestaurantTable(command: CreateRestaurantTableCommand): Observable<ResultOfCreateRestaurantTableCommandDto> {
+        let url_ = this.baseUrl + "/api/RestaurantTables/CreateRestaurantTable";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(command);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processCreateRestaurantTable(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processCreateRestaurantTable(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<ResultOfCreateRestaurantTableCommandDto>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<ResultOfCreateRestaurantTableCommandDto>;
+        }));
+    }
+
+    protected processCreateRestaurantTable(response: HttpResponseBase): Observable<ResultOfCreateRestaurantTableCommandDto> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ResultOfCreateRestaurantTableCommandDto.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    updateRestaurantTable(command: UpdateRestaurantTableCommand): Observable<ResultOfUpdateRestaurantTableCommandDto> {
+        let url_ = this.baseUrl + "/api/RestaurantTables/UpdateRestaurantTable";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(command);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processUpdateRestaurantTable(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processUpdateRestaurantTable(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<ResultOfUpdateRestaurantTableCommandDto>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<ResultOfUpdateRestaurantTableCommandDto>;
+        }));
+    }
+
+    protected processUpdateRestaurantTable(response: HttpResponseBase): Observable<ResultOfUpdateRestaurantTableCommandDto> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ResultOfUpdateRestaurantTableCommandDto.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    getAllRestaurantTable(): Observable<GetAllRestaurantTableQueryDto[]> {
+        let url_ = this.baseUrl + "/api/RestaurantTables/GetAllRestaurantTable";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetAllRestaurantTable(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetAllRestaurantTable(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<GetAllRestaurantTableQueryDto[]>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<GetAllRestaurantTableQueryDto[]>;
+        }));
+    }
+
+    protected processGetAllRestaurantTable(response: HttpResponseBase): Observable<GetAllRestaurantTableQueryDto[]> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200!.push(GetAllRestaurantTableQueryDto.fromJS(item));
+            }
+            else {
+                result200 = <any>null;
+            }
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    getAllRestaurantTableById(uniqueId: string | null | undefined): Observable<ResultOfGetAllRestaurantTableByIdQueryDto> {
+        let url_ = this.baseUrl + "/api/RestaurantTables/GetAllRestaurantTableById?";
+        if (uniqueId !== undefined && uniqueId !== null)
+            url_ += "UniqueId=" + encodeURIComponent("" + uniqueId) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetAllRestaurantTableById(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetAllRestaurantTableById(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<ResultOfGetAllRestaurantTableByIdQueryDto>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<ResultOfGetAllRestaurantTableByIdQueryDto>;
+        }));
+    }
+
+    protected processGetAllRestaurantTableById(response: HttpResponseBase): Observable<ResultOfGetAllRestaurantTableByIdQueryDto> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ResultOfGetAllRestaurantTableByIdQueryDto.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+}
+
 export interface IUsersClient {
     allUsersByName(searchValue: string | null | undefined, pageNumber: number, pageSize: number): Observable<ResultOfUsersListDto>;
     getUserByID(id: string | null | undefined): Observable<ResultOfUserByIDDto>;
@@ -8065,6 +8295,430 @@ export interface IGetAllRestaurantBookingByIdQueryDto {
     orderID?: number | undefined;
     guestName?: string | undefined;
     restaurantName?: string | undefined;
+    isActive?: boolean | undefined;
+}
+
+export class ResultOfCreateRestaurantTableCommandDto implements IResultOfCreateRestaurantTableCommandDto {
+    data?: CreateRestaurantTableCommandDto | undefined;
+    message?: string;
+    resultType?: ResultType;
+
+    constructor(data?: IResultOfCreateRestaurantTableCommandDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.data = _data["data"] ? CreateRestaurantTableCommandDto.fromJS(_data["data"]) : <any>undefined;
+            this.message = _data["message"];
+            this.resultType = _data["resultType"];
+        }
+    }
+
+    static fromJS(data: any): ResultOfCreateRestaurantTableCommandDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new ResultOfCreateRestaurantTableCommandDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["data"] = this.data ? this.data.toJSON() : <any>undefined;
+        data["message"] = this.message;
+        data["resultType"] = this.resultType;
+        return data;
+    }
+}
+
+export interface IResultOfCreateRestaurantTableCommandDto {
+    data?: CreateRestaurantTableCommandDto | undefined;
+    message?: string;
+    resultType?: ResultType;
+}
+
+export class CreateRestaurantTableCommandDto implements ICreateRestaurantTableCommandDto {
+    id?: string | undefined;
+    createdDate?: Date;
+
+    constructor(data?: ICreateRestaurantTableCommandDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.createdDate = _data["createdDate"] ? new Date(_data["createdDate"].toString()) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): CreateRestaurantTableCommandDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new CreateRestaurantTableCommandDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["createdDate"] = this.createdDate ? this.createdDate.toISOString() : <any>undefined;
+        return data;
+    }
+}
+
+export interface ICreateRestaurantTableCommandDto {
+    id?: string | undefined;
+    createdDate?: Date;
+}
+
+export class CreateRestaurantTableCommand implements ICreateRestaurantTableCommand {
+    tableName?: string | undefined;
+    tableDescription?: string | undefined;
+    tableLocation?: string | undefined;
+    isActive?: boolean | undefined;
+
+    constructor(data?: ICreateRestaurantTableCommand) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.tableName = _data["tableName"];
+            this.tableDescription = _data["tableDescription"];
+            this.tableLocation = _data["tableLocation"];
+            this.isActive = _data["isActive"];
+        }
+    }
+
+    static fromJS(data: any): CreateRestaurantTableCommand {
+        data = typeof data === 'object' ? data : {};
+        let result = new CreateRestaurantTableCommand();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["tableName"] = this.tableName;
+        data["tableDescription"] = this.tableDescription;
+        data["tableLocation"] = this.tableLocation;
+        data["isActive"] = this.isActive;
+        return data;
+    }
+}
+
+export interface ICreateRestaurantTableCommand {
+    tableName?: string | undefined;
+    tableDescription?: string | undefined;
+    tableLocation?: string | undefined;
+    isActive?: boolean | undefined;
+}
+
+export class ResultOfUpdateRestaurantTableCommandDto implements IResultOfUpdateRestaurantTableCommandDto {
+    data?: UpdateRestaurantTableCommandDto | undefined;
+    message?: string;
+    resultType?: ResultType;
+
+    constructor(data?: IResultOfUpdateRestaurantTableCommandDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.data = _data["data"] ? UpdateRestaurantTableCommandDto.fromJS(_data["data"]) : <any>undefined;
+            this.message = _data["message"];
+            this.resultType = _data["resultType"];
+        }
+    }
+
+    static fromJS(data: any): ResultOfUpdateRestaurantTableCommandDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new ResultOfUpdateRestaurantTableCommandDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["data"] = this.data ? this.data.toJSON() : <any>undefined;
+        data["message"] = this.message;
+        data["resultType"] = this.resultType;
+        return data;
+    }
+}
+
+export interface IResultOfUpdateRestaurantTableCommandDto {
+    data?: UpdateRestaurantTableCommandDto | undefined;
+    message?: string;
+    resultType?: ResultType;
+}
+
+export class UpdateRestaurantTableCommandDto implements IUpdateRestaurantTableCommandDto {
+    id?: string | undefined;
+    updatedDate?: Date;
+
+    constructor(data?: IUpdateRestaurantTableCommandDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.updatedDate = _data["updatedDate"] ? new Date(_data["updatedDate"].toString()) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): UpdateRestaurantTableCommandDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new UpdateRestaurantTableCommandDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["updatedDate"] = this.updatedDate ? this.updatedDate.toISOString() : <any>undefined;
+        return data;
+    }
+}
+
+export interface IUpdateRestaurantTableCommandDto {
+    id?: string | undefined;
+    updatedDate?: Date;
+}
+
+export class UpdateRestaurantTableCommand implements IUpdateRestaurantTableCommand {
+    uniqueId?: string | undefined;
+    tableName?: string | undefined;
+    tableDescription?: string | undefined;
+    tableLocation?: string | undefined;
+    isActive?: boolean | undefined;
+
+    constructor(data?: IUpdateRestaurantTableCommand) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.uniqueId = _data["uniqueId"];
+            this.tableName = _data["tableName"];
+            this.tableDescription = _data["tableDescription"];
+            this.tableLocation = _data["tableLocation"];
+            this.isActive = _data["isActive"];
+        }
+    }
+
+    static fromJS(data: any): UpdateRestaurantTableCommand {
+        data = typeof data === 'object' ? data : {};
+        let result = new UpdateRestaurantTableCommand();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["uniqueId"] = this.uniqueId;
+        data["tableName"] = this.tableName;
+        data["tableDescription"] = this.tableDescription;
+        data["tableLocation"] = this.tableLocation;
+        data["isActive"] = this.isActive;
+        return data;
+    }
+}
+
+export interface IUpdateRestaurantTableCommand {
+    uniqueId?: string | undefined;
+    tableName?: string | undefined;
+    tableDescription?: string | undefined;
+    tableLocation?: string | undefined;
+    isActive?: boolean | undefined;
+}
+
+export class GetAllRestaurantTableQueryDto implements IGetAllRestaurantTableQueryDto {
+    id?: number | undefined;
+    uniqueId?: string | undefined;
+    tableName?: string | undefined;
+    tableDescription?: string | undefined;
+    tableLocation?: string | undefined;
+    isActive?: boolean | undefined;
+
+    constructor(data?: IGetAllRestaurantTableQueryDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.uniqueId = _data["uniqueId"];
+            this.tableName = _data["tableName"];
+            this.tableDescription = _data["tableDescription"];
+            this.tableLocation = _data["tableLocation"];
+            this.isActive = _data["isActive"];
+        }
+    }
+
+    static fromJS(data: any): GetAllRestaurantTableQueryDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new GetAllRestaurantTableQueryDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["uniqueId"] = this.uniqueId;
+        data["tableName"] = this.tableName;
+        data["tableDescription"] = this.tableDescription;
+        data["tableLocation"] = this.tableLocation;
+        data["isActive"] = this.isActive;
+        return data;
+    }
+}
+
+export interface IGetAllRestaurantTableQueryDto {
+    id?: number | undefined;
+    uniqueId?: string | undefined;
+    tableName?: string | undefined;
+    tableDescription?: string | undefined;
+    tableLocation?: string | undefined;
+    isActive?: boolean | undefined;
+}
+
+export class ResultOfGetAllRestaurantTableByIdQueryDto implements IResultOfGetAllRestaurantTableByIdQueryDto {
+    data?: GetAllRestaurantTableByIdQueryDto | undefined;
+    message?: string;
+    resultType?: ResultType;
+
+    constructor(data?: IResultOfGetAllRestaurantTableByIdQueryDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.data = _data["data"] ? GetAllRestaurantTableByIdQueryDto.fromJS(_data["data"]) : <any>undefined;
+            this.message = _data["message"];
+            this.resultType = _data["resultType"];
+        }
+    }
+
+    static fromJS(data: any): ResultOfGetAllRestaurantTableByIdQueryDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new ResultOfGetAllRestaurantTableByIdQueryDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["data"] = this.data ? this.data.toJSON() : <any>undefined;
+        data["message"] = this.message;
+        data["resultType"] = this.resultType;
+        return data;
+    }
+}
+
+export interface IResultOfGetAllRestaurantTableByIdQueryDto {
+    data?: GetAllRestaurantTableByIdQueryDto | undefined;
+    message?: string;
+    resultType?: ResultType;
+}
+
+export class GetAllRestaurantTableByIdQueryDto implements IGetAllRestaurantTableByIdQueryDto {
+    id?: number | undefined;
+    uniqueId?: string | undefined;
+    tableName?: string | undefined;
+    tableDescription?: string | undefined;
+    tableLocation?: string | undefined;
+    isActive?: boolean | undefined;
+
+    constructor(data?: IGetAllRestaurantTableByIdQueryDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.uniqueId = _data["uniqueId"];
+            this.tableName = _data["tableName"];
+            this.tableDescription = _data["tableDescription"];
+            this.tableLocation = _data["tableLocation"];
+            this.isActive = _data["isActive"];
+        }
+    }
+
+    static fromJS(data: any): GetAllRestaurantTableByIdQueryDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new GetAllRestaurantTableByIdQueryDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["uniqueId"] = this.uniqueId;
+        data["tableName"] = this.tableName;
+        data["tableDescription"] = this.tableDescription;
+        data["tableLocation"] = this.tableLocation;
+        data["isActive"] = this.isActive;
+        return data;
+    }
+}
+
+export interface IGetAllRestaurantTableByIdQueryDto {
+    id?: number | undefined;
+    uniqueId?: string | undefined;
+    tableName?: string | undefined;
+    tableDescription?: string | undefined;
+    tableLocation?: string | undefined;
     isActive?: boolean | undefined;
 }
 
