@@ -34,6 +34,7 @@ import { ManageCalendarComponent } from './Pages/AdminPortal/manage-calendar/man
 import { ManageBookingDetailComponent } from './Pages/AdminPortal/manage-booking-detail/manage-booking-detail.component';
 import { ManageFoodCategoryComponent } from './Pages/AdminPortal/manage-food-category/manage-food-category.component';
 import { ManageCustomerDetailComponent } from './Pages/AdminPortal/manage-customer-detail/manage-customer-detail.component';
+import { FoodMenuComponent }  from './Pages/ClientPortal/food-menu/food-menu.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { ManageCustomerDetailComponent } from './Pages/AdminPortal/manage-custom
     ManageCalendarComponent,
     ManageBookingDetailComponent,
     ManageFoodCategoryComponent,
-    ManageCustomerDetailComponent
+    ManageCustomerDetailComponent,
+    FoodMenuComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
