@@ -16,6 +16,13 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IApplica
 
     public DbSet<Flight> Flight => Set<Flight>();
 
+    public DbSet<FoodCategory> FoodCategory => Set<FoodCategory>();
+
+    public DbSet<Food> Food => Set<Food>();
+
+    public DbSet<Promo> Promo => Set<Promo>();
+
+
     public DbSet<PassengerBooking> PassengerBooking => Set<PassengerBooking>();
 
     IQueryable<IdentityUser> IApplicationDbContext.Users => this.Users;

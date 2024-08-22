@@ -15,5 +15,11 @@ public interface IApplicationDbContext
 
     DbSet<PassengerBooking> PassengerBooking { get; }
 
+    DbSet<FoodCategory> FoodCategory { get; }
+
+    DbSet<Food> Food { get; }
+
+    DbSet<Promo> Promo { get; }
+
     Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 }
