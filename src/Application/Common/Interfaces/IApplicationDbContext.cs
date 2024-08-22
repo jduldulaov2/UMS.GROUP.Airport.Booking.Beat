@@ -21,5 +21,19 @@ public interface IApplicationDbContext
 
     DbSet<Promo> Promo { get; }
 
+    DbSet<CustomRole> CustomRole { get; }
+
+    DbSet<Restaurant> Restaurant { get; }
+
+    DbSet<RestaurantBooking> RestaurantBooking { get; }
+
+    DbSet<RestaurantOrder> RestaurantOrder { get; }
+
+    DbSet<RestaurantOrderDetail> RestaurantOrderDetail { get; }
+
+    DbSet<RestaurantPayment> RestaurantPayment { get; }
+
+    DbSet<RestaurantTable> RestaurantTable { get; }
+
     Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 }

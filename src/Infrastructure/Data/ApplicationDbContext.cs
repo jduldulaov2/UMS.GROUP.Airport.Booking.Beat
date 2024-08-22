@@ -22,6 +22,19 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IApplica
 
     public DbSet<Promo> Promo => Set<Promo>();
 
+    public DbSet<CustomRole> CustomRole => Set<CustomRole>();
+
+    public DbSet<Restaurant> Restaurant => Set<Restaurant>();
+
+    public DbSet<RestaurantBooking> RestaurantBooking => Set<RestaurantBooking>();
+
+    public DbSet<RestaurantOrder> RestaurantOrder => Set<RestaurantOrder>();
+
+    public DbSet<RestaurantOrderDetail> RestaurantOrderDetail => Set<RestaurantOrderDetail>();
+
+    public DbSet<RestaurantPayment> RestaurantPayment => Set<RestaurantPayment>();
+
+    public DbSet<RestaurantTable> RestaurantTable => Set<RestaurantTable>();
 
     public DbSet<PassengerBooking> PassengerBooking => Set<PassengerBooking>();
 
