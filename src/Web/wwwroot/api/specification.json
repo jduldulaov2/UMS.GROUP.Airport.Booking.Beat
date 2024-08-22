@@ -6,6 +6,124 @@
     "version": "1.0.0"
   },
   "paths": {
+    "/api/FoodCategory/CreateFoodCategory": {
+      "post": {
+        "tags": [
+          "FoodCategory"
+        ],
+        "operationId": "CreateFoodCategory",
+        "requestBody": {
+          "x-name": "command",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateFoodCategoryCommand"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultOfCreateFoodCategoryCommandDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/FoodCategory/UpdateFoodCategory": {
+      "put": {
+        "tags": [
+          "FoodCategory"
+        ],
+        "operationId": "UpdateFoodCategory",
+        "requestBody": {
+          "x-name": "command",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateFoodCategoryCommand"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultOfUpdateFoodCategoryCommandDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/FoodCategory/GetAllFoodCategory": {
+      "get": {
+        "tags": [
+          "FoodCategory"
+        ],
+        "operationId": "GetAllFoodCategory",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetAllFoodCategoryQueryDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/FoodCategory/GetAllFoodCategoryById": {
+      "get": {
+        "tags": [
+          "FoodCategory"
+        ],
+        "operationId": "GetAllFoodCategoryById",
+        "parameters": [
+          {
+            "name": "UniqueId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultOfGetAllFoodCategoryByIdQueryDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/Airport/GetAllAirportByCountry": {
       "get": {
         "tags": [
@@ -982,6 +1100,204 @@
   },
   "components": {
     "schemas": {
+      "ResultOfCreateFoodCategoryCommandDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/CreateFoodCategoryCommandDto"
+              }
+            ]
+          },
+          "message": {
+            "type": "string"
+          },
+          "resultType": {
+            "$ref": "#/components/schemas/ResultType"
+          }
+        }
+      },
+      "CreateFoodCategoryCommandDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdDate": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "ResultType": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "Success",
+          "Warning",
+          "Error",
+          "Information"
+        ],
+        "enum": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "CreateFoodCategoryCommand": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "categoryName": {
+            "type": "string",
+            "nullable": true
+          },
+          "categoryDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean",
+            "nullable": true
+          }
+        }
+      },
+      "ResultOfUpdateFoodCategoryCommandDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/UpdateFoodCategoryCommandDto"
+              }
+            ]
+          },
+          "message": {
+            "type": "string"
+          },
+          "resultType": {
+            "$ref": "#/components/schemas/ResultType"
+          }
+        }
+      },
+      "UpdateFoodCategoryCommandDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "updatedDate": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "UpdateFoodCategoryCommand": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "uniqueId": {
+            "type": "string",
+            "nullable": true
+          },
+          "categoryName": {
+            "type": "string",
+            "nullable": true
+          },
+          "categoryDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean",
+            "nullable": true
+          }
+        }
+      },
+      "GetAllFoodCategoryQueryDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "uniqueId": {
+            "type": "string",
+            "nullable": true
+          },
+          "categoryName": {
+            "type": "string",
+            "nullable": true
+          },
+          "categoryDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean",
+            "nullable": true
+          }
+        }
+      },
+      "ResultOfGetAllFoodCategoryByIdQueryDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/GetAllFoodCategoryByIdQueryDto"
+              }
+            ]
+          },
+          "message": {
+            "type": "string"
+          },
+          "resultType": {
+            "$ref": "#/components/schemas/ResultType"
+          }
+        }
+      },
+      "GetAllFoodCategoryByIdQueryDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "uniqueId": {
+            "type": "string",
+            "nullable": true
+          },
+          "categoryName": {
+            "type": "string",
+            "nullable": true
+          },
+          "categoryDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean",
+            "nullable": true
+          }
+        }
+      },
       "GetAllAirportByCountryQueryDto": {
         "type": "object",
         "additionalProperties": false,
@@ -1093,22 +1409,6 @@
             "nullable": true
           }
         }
-      },
-      "ResultType": {
-        "type": "integer",
-        "description": "",
-        "x-enumNames": [
-          "Success",
-          "Warning",
-          "Error",
-          "Information"
-        ],
-        "enum": [
-          1,
-          2,
-          3,
-          4
-        ]
       },
       "GetAllAirportQueryDto": {
         "type": "object",

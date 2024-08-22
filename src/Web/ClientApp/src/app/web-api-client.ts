@@ -15,6 +15,236 @@ import { HttpClient, HttpHeaders, HttpResponse, HttpResponseBase } from '@angula
 
 export const API_BASE_URL = new InjectionToken<string>('API_BASE_URL');
 
+export interface IFoodCategoryClient {
+    createFoodCategory(command: CreateFoodCategoryCommand): Observable<ResultOfCreateFoodCategoryCommandDto>;
+    updateFoodCategory(command: UpdateFoodCategoryCommand): Observable<ResultOfUpdateFoodCategoryCommandDto>;
+    getAllFoodCategory(): Observable<GetAllFoodCategoryQueryDto[]>;
+    getAllFoodCategoryById(uniqueId: string | null | undefined): Observable<ResultOfGetAllFoodCategoryByIdQueryDto>;
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class FoodCategoryClient implements IFoodCategoryClient {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ?? "";
+    }
+
+    createFoodCategory(command: CreateFoodCategoryCommand): Observable<ResultOfCreateFoodCategoryCommandDto> {
+        let url_ = this.baseUrl + "/api/FoodCategory/CreateFoodCategory";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(command);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processCreateFoodCategory(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processCreateFoodCategory(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<ResultOfCreateFoodCategoryCommandDto>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<ResultOfCreateFoodCategoryCommandDto>;
+        }));
+    }
+
+    protected processCreateFoodCategory(response: HttpResponseBase): Observable<ResultOfCreateFoodCategoryCommandDto> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ResultOfCreateFoodCategoryCommandDto.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    updateFoodCategory(command: UpdateFoodCategoryCommand): Observable<ResultOfUpdateFoodCategoryCommandDto> {
+        let url_ = this.baseUrl + "/api/FoodCategory/UpdateFoodCategory";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(command);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processUpdateFoodCategory(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processUpdateFoodCategory(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<ResultOfUpdateFoodCategoryCommandDto>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<ResultOfUpdateFoodCategoryCommandDto>;
+        }));
+    }
+
+    protected processUpdateFoodCategory(response: HttpResponseBase): Observable<ResultOfUpdateFoodCategoryCommandDto> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ResultOfUpdateFoodCategoryCommandDto.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    getAllFoodCategory(): Observable<GetAllFoodCategoryQueryDto[]> {
+        let url_ = this.baseUrl + "/api/FoodCategory/GetAllFoodCategory";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetAllFoodCategory(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetAllFoodCategory(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<GetAllFoodCategoryQueryDto[]>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<GetAllFoodCategoryQueryDto[]>;
+        }));
+    }
+
+    protected processGetAllFoodCategory(response: HttpResponseBase): Observable<GetAllFoodCategoryQueryDto[]> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200!.push(GetAllFoodCategoryQueryDto.fromJS(item));
+            }
+            else {
+                result200 = <any>null;
+            }
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    getAllFoodCategoryById(uniqueId: string | null | undefined): Observable<ResultOfGetAllFoodCategoryByIdQueryDto> {
+        let url_ = this.baseUrl + "/api/FoodCategory/GetAllFoodCategoryById?";
+        if (uniqueId !== undefined && uniqueId !== null)
+            url_ += "UniqueId=" + encodeURIComponent("" + uniqueId) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetAllFoodCategoryById(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetAllFoodCategoryById(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<ResultOfGetAllFoodCategoryByIdQueryDto>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<ResultOfGetAllFoodCategoryByIdQueryDto>;
+        }));
+    }
+
+    protected processGetAllFoodCategoryById(response: HttpResponseBase): Observable<ResultOfGetAllFoodCategoryByIdQueryDto> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ResultOfGetAllFoodCategoryByIdQueryDto.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+}
+
 export interface IAirportClient {
     getAllAirportByCountry(countryId: number | null | undefined): Observable<GetAllAirportByCountryQueryDto[]>;
     getAirportById(uniqueId: string | null | undefined): Observable<ResultOfGetAirportByIdQueryDto>;
@@ -1811,6 +2041,421 @@ export class UsersClient implements IUsersClient {
     }
 }
 
+export class ResultOfCreateFoodCategoryCommandDto implements IResultOfCreateFoodCategoryCommandDto {
+    data?: CreateFoodCategoryCommandDto | undefined;
+    message?: string;
+    resultType?: ResultType;
+
+    constructor(data?: IResultOfCreateFoodCategoryCommandDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.data = _data["data"] ? CreateFoodCategoryCommandDto.fromJS(_data["data"]) : <any>undefined;
+            this.message = _data["message"];
+            this.resultType = _data["resultType"];
+        }
+    }
+
+    static fromJS(data: any): ResultOfCreateFoodCategoryCommandDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new ResultOfCreateFoodCategoryCommandDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["data"] = this.data ? this.data.toJSON() : <any>undefined;
+        data["message"] = this.message;
+        data["resultType"] = this.resultType;
+        return data;
+    }
+}
+
+export interface IResultOfCreateFoodCategoryCommandDto {
+    data?: CreateFoodCategoryCommandDto | undefined;
+    message?: string;
+    resultType?: ResultType;
+}
+
+export class CreateFoodCategoryCommandDto implements ICreateFoodCategoryCommandDto {
+    id?: string | undefined;
+    createdDate?: Date;
+
+    constructor(data?: ICreateFoodCategoryCommandDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.createdDate = _data["createdDate"] ? new Date(_data["createdDate"].toString()) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): CreateFoodCategoryCommandDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new CreateFoodCategoryCommandDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["createdDate"] = this.createdDate ? this.createdDate.toISOString() : <any>undefined;
+        return data;
+    }
+}
+
+export interface ICreateFoodCategoryCommandDto {
+    id?: string | undefined;
+    createdDate?: Date;
+}
+
+export enum ResultType {
+    Success = 1,
+    Warning = 2,
+    Error = 3,
+    Information = 4,
+}
+
+export class CreateFoodCategoryCommand implements ICreateFoodCategoryCommand {
+    categoryName?: string | undefined;
+    categoryDescription?: string | undefined;
+    isActive?: boolean | undefined;
+
+    constructor(data?: ICreateFoodCategoryCommand) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.categoryName = _data["categoryName"];
+            this.categoryDescription = _data["categoryDescription"];
+            this.isActive = _data["isActive"];
+        }
+    }
+
+    static fromJS(data: any): CreateFoodCategoryCommand {
+        data = typeof data === 'object' ? data : {};
+        let result = new CreateFoodCategoryCommand();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["categoryName"] = this.categoryName;
+        data["categoryDescription"] = this.categoryDescription;
+        data["isActive"] = this.isActive;
+        return data;
+    }
+}
+
+export interface ICreateFoodCategoryCommand {
+    categoryName?: string | undefined;
+    categoryDescription?: string | undefined;
+    isActive?: boolean | undefined;
+}
+
+export class ResultOfUpdateFoodCategoryCommandDto implements IResultOfUpdateFoodCategoryCommandDto {
+    data?: UpdateFoodCategoryCommandDto | undefined;
+    message?: string;
+    resultType?: ResultType;
+
+    constructor(data?: IResultOfUpdateFoodCategoryCommandDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.data = _data["data"] ? UpdateFoodCategoryCommandDto.fromJS(_data["data"]) : <any>undefined;
+            this.message = _data["message"];
+            this.resultType = _data["resultType"];
+        }
+    }
+
+    static fromJS(data: any): ResultOfUpdateFoodCategoryCommandDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new ResultOfUpdateFoodCategoryCommandDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["data"] = this.data ? this.data.toJSON() : <any>undefined;
+        data["message"] = this.message;
+        data["resultType"] = this.resultType;
+        return data;
+    }
+}
+
+export interface IResultOfUpdateFoodCategoryCommandDto {
+    data?: UpdateFoodCategoryCommandDto | undefined;
+    message?: string;
+    resultType?: ResultType;
+}
+
+export class UpdateFoodCategoryCommandDto implements IUpdateFoodCategoryCommandDto {
+    id?: string | undefined;
+    updatedDate?: Date;
+
+    constructor(data?: IUpdateFoodCategoryCommandDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.updatedDate = _data["updatedDate"] ? new Date(_data["updatedDate"].toString()) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): UpdateFoodCategoryCommandDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new UpdateFoodCategoryCommandDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["updatedDate"] = this.updatedDate ? this.updatedDate.toISOString() : <any>undefined;
+        return data;
+    }
+}
+
+export interface IUpdateFoodCategoryCommandDto {
+    id?: string | undefined;
+    updatedDate?: Date;
+}
+
+export class UpdateFoodCategoryCommand implements IUpdateFoodCategoryCommand {
+    uniqueId?: string | undefined;
+    categoryName?: string | undefined;
+    categoryDescription?: string | undefined;
+    isActive?: boolean | undefined;
+
+    constructor(data?: IUpdateFoodCategoryCommand) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.uniqueId = _data["uniqueId"];
+            this.categoryName = _data["categoryName"];
+            this.categoryDescription = _data["categoryDescription"];
+            this.isActive = _data["isActive"];
+        }
+    }
+
+    static fromJS(data: any): UpdateFoodCategoryCommand {
+        data = typeof data === 'object' ? data : {};
+        let result = new UpdateFoodCategoryCommand();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["uniqueId"] = this.uniqueId;
+        data["categoryName"] = this.categoryName;
+        data["categoryDescription"] = this.categoryDescription;
+        data["isActive"] = this.isActive;
+        return data;
+    }
+}
+
+export interface IUpdateFoodCategoryCommand {
+    uniqueId?: string | undefined;
+    categoryName?: string | undefined;
+    categoryDescription?: string | undefined;
+    isActive?: boolean | undefined;
+}
+
+export class GetAllFoodCategoryQueryDto implements IGetAllFoodCategoryQueryDto {
+    id?: number | undefined;
+    uniqueId?: string | undefined;
+    categoryName?: string | undefined;
+    categoryDescription?: string | undefined;
+    isActive?: boolean | undefined;
+
+    constructor(data?: IGetAllFoodCategoryQueryDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.uniqueId = _data["uniqueId"];
+            this.categoryName = _data["categoryName"];
+            this.categoryDescription = _data["categoryDescription"];
+            this.isActive = _data["isActive"];
+        }
+    }
+
+    static fromJS(data: any): GetAllFoodCategoryQueryDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new GetAllFoodCategoryQueryDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["uniqueId"] = this.uniqueId;
+        data["categoryName"] = this.categoryName;
+        data["categoryDescription"] = this.categoryDescription;
+        data["isActive"] = this.isActive;
+        return data;
+    }
+}
+
+export interface IGetAllFoodCategoryQueryDto {
+    id?: number | undefined;
+    uniqueId?: string | undefined;
+    categoryName?: string | undefined;
+    categoryDescription?: string | undefined;
+    isActive?: boolean | undefined;
+}
+
+export class ResultOfGetAllFoodCategoryByIdQueryDto implements IResultOfGetAllFoodCategoryByIdQueryDto {
+    data?: GetAllFoodCategoryByIdQueryDto | undefined;
+    message?: string;
+    resultType?: ResultType;
+
+    constructor(data?: IResultOfGetAllFoodCategoryByIdQueryDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.data = _data["data"] ? GetAllFoodCategoryByIdQueryDto.fromJS(_data["data"]) : <any>undefined;
+            this.message = _data["message"];
+            this.resultType = _data["resultType"];
+        }
+    }
+
+    static fromJS(data: any): ResultOfGetAllFoodCategoryByIdQueryDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new ResultOfGetAllFoodCategoryByIdQueryDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["data"] = this.data ? this.data.toJSON() : <any>undefined;
+        data["message"] = this.message;
+        data["resultType"] = this.resultType;
+        return data;
+    }
+}
+
+export interface IResultOfGetAllFoodCategoryByIdQueryDto {
+    data?: GetAllFoodCategoryByIdQueryDto | undefined;
+    message?: string;
+    resultType?: ResultType;
+}
+
+export class GetAllFoodCategoryByIdQueryDto implements IGetAllFoodCategoryByIdQueryDto {
+    id?: number | undefined;
+    uniqueId?: string | undefined;
+    categoryName?: string | undefined;
+    categoryDescription?: string | undefined;
+    isActive?: boolean | undefined;
+
+    constructor(data?: IGetAllFoodCategoryByIdQueryDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.uniqueId = _data["uniqueId"];
+            this.categoryName = _data["categoryName"];
+            this.categoryDescription = _data["categoryDescription"];
+            this.isActive = _data["isActive"];
+        }
+    }
+
+    static fromJS(data: any): GetAllFoodCategoryByIdQueryDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new GetAllFoodCategoryByIdQueryDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["uniqueId"] = this.uniqueId;
+        data["categoryName"] = this.categoryName;
+        data["categoryDescription"] = this.categoryDescription;
+        data["isActive"] = this.isActive;
+        return data;
+    }
+}
+
+export interface IGetAllFoodCategoryByIdQueryDto {
+    id?: number | undefined;
+    uniqueId?: string | undefined;
+    categoryName?: string | undefined;
+    categoryDescription?: string | undefined;
+    isActive?: boolean | undefined;
+}
+
 export class GetAllAirportByCountryQueryDto implements IGetAllAirportByCountryQueryDto {
     id?: number | undefined;
     uniqueId?: string | undefined;
@@ -1993,13 +2638,6 @@ export interface IGetAirportByIdQueryDto {
     zipCode?: string | undefined;
     countryId?: number | undefined;
     isActive?: boolean | undefined;
-}
-
-export enum ResultType {
-    Success = 1,
-    Warning = 2,
-    Error = 3,
-    Information = 4,
 }
 
 export class GetAllAirportQueryDto implements IGetAllAirportQueryDto {
