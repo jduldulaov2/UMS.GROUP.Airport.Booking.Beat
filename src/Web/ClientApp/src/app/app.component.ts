@@ -15,18 +15,20 @@ export class AppComponent {
 
   title = 'app';
 
-  IsLoggedIn: any;
+   IsLoggedIn: any;
 
-  ngOnInit(){
-    this.authClient.geLoggedIn().subscribe({
-      next: result => {
-        if(result.message == 'Logged in user detected'){
-          this.IsLoggedIn = true;
-        }else{
-          this.IsLoggedIn = false;
-        }
-      },
-      error: error => console.error(error)
-    });
-  }
+  // ngOnInit(){
+  //   // this.authClient.geLoggedIn().subscribe({
+  //   //   next: result => {
+  //   //     if(result.message == 'Logged in user detected'){
+  //   //       this.IsLoggedIn = true;
+  //   //     }else{
+  //   //       this.IsLoggedIn = false;
+  //   //     }
+  //   //   },
+  //   //   error: error => console.error(error)
+  //   // });
+
+  //   this.IsLoggedIn = false;
+  // }
 }

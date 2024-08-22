@@ -1,0 +1,275 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-8">
+            <h1>Payment Detail and History</h1>
+          </div>
+          <div class="col-sm-4">
+            <h1>Summary</h1>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+      <div class="row" style="
+      padding-bottom: 20px;
+      padding-left: 8px;
+  ">
+          <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-12">
+                  <div class="main-summary" style="
+                      background: #dee2e6;
+                      padding-top: 10px;
+                      padding-left: 30px;
+                  ">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label>From Date:</label>
+                          <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                              <input type="text" class="form-control datetimepicker-input" placeholder="mm/dd/yyyy" data-target="#reservationdate"/>
+                              <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                                  <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                              </div>
+                          </div>
+                      </div>
+                      <!-- /.form-group -->
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label>To Date:</label>
+                          <div class="input-group date" id="reservationdate2" data-target-input="nearest">
+                              <input type="text" class="form-control datetimepicker-input" placeholder="mm/dd/yyyy" data-target="#reservationdate2"/>
+                              <div class="input-group-append" data-target="#reservationdate2" data-toggle="datetimepicker">
+                                  <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                              </div>
+                          </div>
+                      </div>
+                      <!-- /.form-group -->
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label>Status</label>
+                        <div class="input-group">
+                          <div class="btn-group">
+                            <button type="button" class="btn btn-warning">Create Payment</button>
+                            <button type="button" class="btn btn-warning dropdown-toggle dropdown-icon" data-toggle="dropdown" aria-expanded="false">
+                              <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+                            <div class="dropdown-menu" role="menu">
+                              <a class="dropdown-item" href="#">Add Payment</a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- /.form-group -->
+                    </div>
+                    <!-- /.col -->
+                  </div>
+                </div>
+                </div>
+            </div>
+            <div class="row" style="padding-top: 15px;">
+              <div class="col-md-6">
+                <h5>Guest Details</h5>
+                <div class="summary-table-item4" style="min-height: 450px;">
+                  <span style="font-weight: bold;">Jake Velasco Duldulao</span><br>
+                  <span>Block 70 Lot 19 Deca Homes Indangan Phase 3</span><br>
+                  <span>+639 959665 161</span><br><br>
+                  <h6 style="background: #6c757d1f;
+                  padding: 10px;">Other Details</h6>
+                  <span style="font-weight: bold;">Email Address</span><br>
+                  <span>jduldulaov2gmail.com</span><br><br>
+                  <span style="font-weight: bold;">Age</span><br>
+                  <span>33</span><br><br>
+                  <span style="font-weight: bold;">Registration Date</span><br>
+                  <span>August 05 2024</span><br><br>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <h5>Payment Details</h5>
+                <div class="summary-table-item4"  style="min-height: 450px;">
+                  <span style="font-weight: bold;">Last Payment Date:</span><br>
+                  <span>August 01, 2024</span> <span class="badge badge-success">Fully Paid</span> <br><br>
+                  <span style="font-weight: bold;">Payment Referrence #:</span><br>
+                  <span>REF-009-2009-12987</span><br><br>
+                  <span style="font-weight: bold;">Payment Source:</span><br>
+                  <span>Web/Mobile Application</span><br><br>
+                  <span style="font-weight: bold;">Payment History</span><br>
+                  <table class="table table-striped projects">
+                    <thead class="custom-bg-2">
+                        <tr>
+                          <th class="custom-bg-8">
+                            Date
+                        </th>
+                        <th class="custom-bg-8">
+                            Transaction/Referrence #
+                        </th>
+                        <th class="custom-bg-8">
+                            Amount Paid
+                        </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                          <td class="custom-bg-9">
+                            <small>
+                                August 1, 2024
+                            </small>
+                          </td>
+                          <td>
+                            REF-000902-10092-2998
+                          </td>
+                          <td>
+                              $1,200.00
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="custom-bg-9">
+                            <small>
+                                August 1, 2024
+                            </small>
+                          </td>
+                          <td>
+                            REF-000902-10092-2998
+                          </td>
+                          <td>
+                              $1,200.00
+                          </td>
+                        </tr>
+                    </tbody>
+                </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="summary-row"  style="
+              background: #dee2e6;">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col" class="summary-table-item">Items</th>
+                  <th scope="col">Amount</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="summary-table-item">Booking Charges</td>
+                  <td>$150.00</td>
+                </tr>
+                <tr>
+                  <td class="summary-table-item">Extras</td>
+                  <td>$150.00</td>
+                </tr>
+                <tr>
+                  <td class="summary-table-item">Promo/Discounts</td>
+                  <td>$150.00</td>
+                </tr>
+                <tr>
+                  <td class="summary-table-item">Taxes and Fees</td>
+                  <td>$150.00</td>
+                </tr>
+                <tr>
+                  <td class="summary-table-item">Payment Surcharge</td>
+                  <td>$150.00</td>
+                </tr>
+                <tr>
+                  <td class="summary-table-item2">Total</td>
+                  <td>$150.00</td>
+                </tr>
+                <tr>
+                  <td class="summary-table-item2">Paid</td>
+                  <td>$150.00</td>
+                </tr>
+                <tr>
+                  <td class="summary-table-item2">Outstanding Balance</td>
+                  <td style="background: #ff00000d;">$150.00</td>
+                </tr>
+              </tbody>
+            </table>
+              </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="summary-table-item4">
+                  <span style="font-weight: bold;">Internal Notes:</span><br><br> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                  
+                </div>
+              </div>
+            </div>
+              
+          </div>
+      </div>
+
+      <!-- Default box -->
+      <h5>Others / Initial Orders</h5>
+      <div class="card">
+        <div class="card-body p-0">
+          <table class="table table-striped projects">
+              <thead class="custom-bg-2">
+                  <tr>
+                    <th class="custom-bg-8">
+                      Foods
+                  </th>
+                  <th class="custom-bg-8">
+                      Date
+                  </th>
+                  <th class="custom-bg-8">
+                      Customer Name
+                  </th>
+                  <th class="custom-bg-8">
+                      Restaurant Name
+                  </th>
+                  <th class="custom-bg-8">
+                      Total Amount
+                  </th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                    <td class="custom-bg-9">
+                      <a>
+                          Food 1
+                      </a>
+                      <br/>
+                      <small>
+                          Description here..
+                      </small>
+                  </td>
+                  <td>
+                      August 10, 2024
+                  </td>
+                  <td>
+                      Jake V. Duldulao
+                  </td>
+                  <td>
+                      Thoracker
+                  </td>
+                  <td>
+                      $1,200.00
+                  </td>
+                  </tr>
+              </tbody>
+          </table>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
+
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->

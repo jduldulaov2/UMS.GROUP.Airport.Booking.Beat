@@ -2,77 +2,132 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { AdminPortalComponent } from '../../MasterPage/admin-portal/admin-portal.component';
-import { BlankPageComponent } from '../../Pages/BookingPortal/blank-page/blank-page.component';
-import { UserListComponent } from '../../Pages/BookingPortal/user-list/user-list.component';
-import { UserDetailsComponent } from '../../Pages/BookingPortal/user-details/user-details.component';
-import { UserDetailItemComponent } from '../../Pages/BookingPortal/user-detail-item/user-detail-item.component';
-import { AirportListComponent } from '../../Pages/BookingPortal/airport-list/airport-list.component';
-import { PlaneListComponent } from '../../Pages/BookingPortal/plane-list/plane-list.component';
-import { PlaneDetailComponent } from '../../Pages/BookingPortal/plane-detail/plane-detail.component';
-import { FlightListComponent } from '../../Pages/BookingPortal/flight-list/flight-list.component';
-import { FlightDetailComponent } from '../../Pages/BookingPortal/flight-detail/flight-detail.component';
-import { BookingListComponent } from '../../Pages/BookingPortal/booking-list/booking-list.component';
-import { BookingDetailComponent } from '../../Pages/BookingPortal/booking-detail/booking-detail.component';
-import { DashboardComponent } from '../../Pages/BookingPortal/dashboard/dashboard.component';
-import { AirportDetailComponent } from '../../Pages/BookingPortal/airport-detail/airport-detail.component';
+import { DashboardComponent } from '../../Pages/AdminPortal/dashboard/dashboard.component';
+import { ManageBookingComponent } from '../../Pages/AdminPortal/manage-booking/manage-booking.component';
+import { ManageOrderComponent } from '../../Pages/AdminPortal/manage-order/manage-order.component';
+import { ManagePaymentComponent } from '../../Pages/AdminPortal/manage-payment/manage-payment.component';
+import { MenuListPreviewComponent } from '../../Pages/AdminPortal/menu-list-preview/menu-list-preview.component';
+import { ManageCustomerComponent } from '../../Pages/AdminPortal/manage-customer/manage-customer.component';
+import { ManageRoleComponent } from '../../Pages/AdminPortal/manage-role/manage-role.component';
+import { ManageFoodItemComponent } from '../../Pages/AdminPortal/manage-food-item/manage-food-item.component';
+import { ManagePromoComponent } from '../../Pages/AdminPortal/manage-promo/manage-promo.component';
+import { ManageCalendarComponent } from '../../Pages/AdminPortal/manage-calendar/manage-calendar.component';
+import { ManageBookingDetailComponent } from '../../Pages/AdminPortal/manage-booking-detail/manage-booking-detail.component';
+import { ManageOrderDetailComponent } from '../../Pages/AdminPortal/manage-order-detail/manage-order-detail.component';
+import { ManagePaymentDetailComponent } from '../../Pages/AdminPortal/manage-payment-detail/manage-payment-detail.component';
+import { ManageFoodCategoryComponent } from '../../Pages/AdminPortal/manage-food-category/manage-food-category.component';
+// import { AirportDetailComponent } from '../../Pages/BookingPortal/airport-detail/airport-detail.component';
+// import { AirportDetailComponent } from '../../Pages/BookingPortal/airport-detail/airport-detail.component';
+// import { AirportDetailComponent } from '../../Pages/BookingPortal/airport-detail/airport-detail.component';
+// import { AirportDetailComponent } from '../../Pages/BookingPortal/airport-detail/airport-detail.component';
+// import { AirportDetailComponent } from '../../Pages/BookingPortal/airport-detail/airport-detail.component';
+// import { AirportDetailComponent } from '../../Pages/BookingPortal/airport-detail/airport-detail.component';
 
 const routes: Routes = [
   {
-    path: 'portal/my-dashboard',
+    path: 'admin/my-dashboard',
     component: DashboardComponent
   },
   {
-    path: 'portal/manage-airport',
-    component: AirportListComponent
+    path: 'admin/manage-booking',
+    component: ManageBookingComponent
   },
   {
-    path: 'portal/manage-airport/:key/detail',
-    component: AirportDetailComponent
+    path: 'admin/manage-order',
+    component: ManageOrderComponent
   },
   {
-    path: 'portal/manage-airport/register',
-    component: AirportDetailComponent
+    path: 'admin/manage-payment',
+    component: ManagePaymentComponent
   },
   {
-    path: 'portal/manage-planes',
-    component: PlaneListComponent
+    path: 'admin/menu-list-preview',
+    component: MenuListPreviewComponent
   },
   {
-    path: 'portal/manage-flights',
-    component: FlightListComponent
+    path: 'admin/manage-customer',
+    component: ManageCustomerComponent
   },
   {
-    path: 'portal/manage-bookings',
-    component: BookingListComponent
+    path: 'admin/manage-role',
+    component: ManageRoleComponent
   },
   {
-    path: 'portal/manage-bookings/:key/detail',
-    component: BookingDetailComponent
+    path: 'admin/manage-food-item',
+    component: ManageFoodItemComponent
   },
   {
-    path: 'portal/manage-bookings/register-booking',
-    component: BookingDetailComponent
+    path: 'admin/manage-promo',
+    component: ManagePromoComponent
   },
   {
-    path: 'portal/manage-planes/:key/detail',
-    component: PlaneDetailComponent
+    path: 'admin/manage-calendar',
+    component: ManageCalendarComponent
   },
   {
-    path: 'portal/manage-flights/:key/detail',
-    component: FlightDetailComponent
+    path: 'admin/manage-booking/:key/detail',
+    component: ManageBookingDetailComponent
   },
   {
-    path: 'portal/manage-planes/register-airline',
-    component: PlaneDetailComponent
+    path: 'admin/manage-order/:key/detail',
+    component: ManageOrderDetailComponent
   },
   {
-    path: 'portal/manage-flights/register-flight',
-    component: FlightDetailComponent
+    path: 'admin/manage-payment/:key/detail',
+    component: ManagePaymentDetailComponent
   },
   {
-    path: 'portal/blank-page',
-    component: BlankPageComponent
+    path: 'admin/manage-food-category',
+    component: ManageFoodCategoryComponent
   }
+  // {
+  //   path: 'portal/manage-airport/:key/detail',
+  //   component: AirportDetailComponent
+  // },
+  // {
+  //   path: 'portal/manage-airport/register',
+  //   component: AirportDetailComponent
+  // },
+  // {
+  //   path: 'portal/manage-planes',
+  //   component: PlaneListComponent
+  // },
+  // {
+  //   path: 'portal/manage-flights',
+  //   component: FlightListComponent
+  // },
+  // {
+  //   path: 'portal/manage-bookings',
+  //   component: BookingListComponent
+  // },
+  // {
+  //   path: 'portal/manage-bookings/:key/detail',
+  //   component: BookingDetailComponent
+  // },
+  // {
+  //   path: 'portal/manage-bookings/register-booking',
+  //   component: BookingDetailComponent
+  // },
+  // {
+  //   path: 'portal/manage-planes/:key/detail',
+  //   component: PlaneDetailComponent
+  // },
+  // {
+  //   path: 'portal/manage-flights/:key/detail',
+  //   component: FlightDetailComponent
+  // },
+  // {
+  //   path: 'portal/manage-planes/register-airline',
+  //   component: PlaneDetailComponent
+  // },
+  // {
+  //   path: 'portal/manage-flights/register-flight',
+  //   component: FlightDetailComponent
+  // },
+  // {
+  //   path: 'portal/blank-page',
+  //   component: BlankPageComponent
+  // }
 ];
 
 @NgModule({

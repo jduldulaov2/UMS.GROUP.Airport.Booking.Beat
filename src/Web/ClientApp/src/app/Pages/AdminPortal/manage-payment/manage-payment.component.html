@@ -1,0 +1,405 @@
+   <!-- Content Wrapper. Contains page content -->
+   <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Payments</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Payment</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+      <!-- Default box -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Payment List</h3>
+
+          <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+              <i class="fas fa-minus"></i>
+            </button>
+            <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+        </div>
+        <div class="card-body card-body-search card-body-search-custom">
+          <div class="row">
+            <div class="col-md-5">
+              <div class="form-group">
+                <label>From Date:</label>
+                  <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                      <input type="text" class="form-control datetimepicker-input" placeholder="mm/dd/yyyy" data-target="#reservationdate"/>
+                      <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                          <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                      </div>
+                  </div>
+              </div>
+              <!-- /.form-group -->
+            </div>
+            <!-- /.col -->
+            <div class="col-md-5">
+              <div class="form-group">
+                <label>From Date:</label>
+                  <div class="input-group date" id="reservationdate2" data-target-input="nearest">
+                      <input type="text" class="form-control datetimepicker-input" placeholder="mm/dd/yyyy" data-target="#reservationdate2"/>
+                      <div class="input-group-append" data-target="#reservationdate2" data-toggle="datetimepicker">
+                          <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                      </div>
+                  </div>
+              </div>
+              <!-- /.form-group -->
+            </div>
+            <div class="col-md-2">
+              <div class="form-group">
+                <label>&nbsp;</label>
+                <button type="button" class="btn btn-block btn-secondary ">Search</button>
+              </div>
+              <!-- /.form-group -->
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.row -->
+        </div>
+        <div class="card-body p-0">
+          <table class="table table-striped projects">
+              <thead class="custom-bg-2">
+                  <tr>
+                      <th>
+                          Booking ID / Table
+                      </th>
+                      <th>
+                          Date
+                      </th>
+                      <th>
+                          Customer Name
+                      </th>
+                      <th>
+                          Restaurant Name
+                      </th>
+                      <th>
+                          Total Amount
+                      </th>
+                      <th>
+                          Total Balance
+                      </th>
+                      <th>
+                        Payment Method
+                      </th>
+                      <th>
+                        Payment Status
+                      </th>
+                      <th>
+                          Action
+                      </th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                      <td class="custom-bg-1">
+                          <a>
+                              Table 00001
+                          </a>
+                          <br/>
+                          <small>
+                              1112-333443-22334
+                          </small>
+                      </td>
+                      <td>
+                          August 10, 2024
+                      </td>
+                      <td>
+                          Jake V. Duldulao
+                      </td>
+                      <td>
+                          Thoracker
+                      </td>
+                      <td>
+                          $1,200.00
+                      </td>
+                      <td class="custom-color-1">
+                          $1,200.00
+                      </td>
+                      <td>
+                        Cash / Credit Card
+                    </td>
+                      <td class="project-state custom-bg-3">
+                          <span class="badge badge-danger">Payment Pending</span>
+                      </td>
+                      <td class="project-actions text-left">
+                          <a class="btn btn-primary btn-sm" [routerLink]="['/admin/manage-payment/1/detail']">
+                              <i class="fas fa-folder">
+                              </i>
+                              View Payment Detail
+                          </a>
+                      </td>
+                  </tr>
+                  <tr>
+                    <td class="custom-bg-1">
+                        <a>
+                            Table 00001
+                        </a>
+                        <br/>
+                        <small>
+                            1112-333443-22334
+                        </small>
+                    </td>
+                    <td>
+                        August 10, 2024
+                    </td>
+                    <td>
+                        Jake V. Duldulao
+                    </td>
+                    <td>
+                        Thoracker
+                    </td>
+                    <td>
+                        $1,200.00
+                    </td>
+                    <td class="custom-color-1">
+                        $1,200.00
+                    </td>
+                    <td>
+                      Cash / Credit Card
+                  </td>
+                    <td class="project-state custom-bg-3">
+                        <span class="badge badge-danger">Payment Pending</span>
+                    </td>
+                    <td class="project-actions text-left">
+                        <a class="btn btn-primary btn-sm" href="#">
+                            <i class="fas fa-folder">
+                            </i>
+                            View Payment Detail
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                  <td class="custom-bg-1">
+                      <a>
+                          Table 00001
+                      </a>
+                      <br/>
+                      <small>
+                          1112-333443-22334
+                      </small>
+                  </td>
+                  <td>
+                      August 10, 2024
+                  </td>
+                  <td>
+                      Jake V. Duldulao
+                  </td>
+                  <td>
+                      Thoracker
+                  </td>
+                  <td>
+                      $1,200.00
+                  </td>
+                  <td class="custom-color-1">
+                      $1,200.00
+                  </td>
+                  <td>
+                    Cash / Credit Card
+                </td>
+                  <td class="project-state custom-bg-3">
+                      <span class="badge badge-danger">Payment Pending</span>
+                  </td>
+                  <td class="project-actions text-left">
+                      <a class="btn btn-primary btn-sm" href="#">
+                          <i class="fas fa-folder">
+                          </i>
+                          View Payment Detail
+                      </a>
+                  </td>
+              </tr>
+              <tr>
+                <td class="custom-bg-1">
+                    <a>
+                        Table 00001
+                    </a>
+                    <br/>
+                    <small>
+                        1112-333443-22334
+                    </small>
+                </td>
+                <td>
+                    August 10, 2024
+                </td>
+                <td>
+                    Jake V. Duldulao
+                </td>
+                <td>
+                    Thoracker
+                </td>
+                <td>
+                    $1,200.00
+                </td>
+                <td class="custom-color-1">
+                    $1,200.00
+                </td>
+                <td>
+                  Cash / Credit Card
+              </td>
+                <td class="project-state custom-bg-3">
+                    <span class="badge badge-danger">Payment Pending</span>
+                </td>
+                <td class="project-actions text-left">
+                    <a class="btn btn-primary btn-sm" href="#">
+                        <i class="fas fa-folder">
+                        </i>
+                        View Payment Detail
+                    </a>
+                </td>
+            </tr>
+            <tr>
+              <td class="custom-bg-1">
+                  <a>
+                      Table 00001
+                  </a>
+                  <br/>
+                  <small>
+                      1112-333443-22334
+                  </small>
+              </td>
+              <td>
+                  August 10, 2024
+              </td>
+              <td>
+                  Jake V. Duldulao
+              </td>
+              <td>
+                  Thoracker
+              </td>
+              <td>
+                  $1,200.00
+              </td>
+              <td>
+                  $0.00
+              </td>
+              <td>
+                Cash / Credit Card
+            </td>
+              <td class="project-state custom-bg-4">
+                  <span class="badge badge-success">Fully Paid</span>
+              </td>
+              <td class="project-actions text-left">
+                  <a class="btn btn-primary btn-sm" href="#">
+                      <i class="fas fa-folder">
+                      </i>
+                      View Payment Detail
+                  </a>
+              </td>
+          </tr>
+          <tr>
+            <td class="custom-bg-1">
+                <a>
+                    Table 00001
+                </a>
+                <br/>
+                <small>
+                    1112-333443-22334
+                </small>
+            </td>
+            <td>
+                August 10, 2024
+            </td>
+            <td>
+                Jake V. Duldulao
+            </td>
+            <td>
+                Thoracker
+            </td>
+            <td>
+                $1,200.00
+            </td>
+            <td>
+                $0.00
+            </td>
+            <td>
+              Cash / Credit Card
+          </td>
+            <td class="project-state custom-bg-4">
+                <span class="badge badge-success">Fully Paid</span>
+            </td>
+            <td class="project-actions text-left">
+                <a class="btn btn-primary btn-sm" href="#">
+                    <i class="fas fa-folder">
+                    </i>
+                    View Payment Detail
+                </a>
+            </td>
+        </tr><tr>
+          <td class="custom-bg-1">
+              <a>
+                  Table 00001
+              </a>
+              <br/>
+              <small>
+                  1112-333443-22334
+              </small>
+          </td>
+          <td>
+              August 10, 2024
+          </td>
+          <td>
+              Jake V. Duldulao
+          </td>
+          <td>
+              Thoracker
+          </td>
+          <td>
+              $1,200.00
+          </td>
+          <td>
+              $0.00
+          </td>
+          <td>
+            Cash / Credit Card
+        </td>
+          <td class="project-state custom-bg-4">
+              <span class="badge badge-success">Fully Paid</span>
+          </td>
+          <td class="project-actions text-left">
+              <a class="btn btn-primary btn-sm" href="#">
+                  <i class="fas fa-folder">
+                  </i>
+                  View Payment Detail
+              </a>
+          </td>
+      </tr>
+              </tbody>
+          </table>
+          <div class="card-footer custom-bg-2">
+            <nav aria-label="Contacts Page Navigation">
+              <ul class="pagination justify-content-center m-0">
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">4</a></li>
+                <li class="page-item"><a class="page-link" href="#">5</a></li>
+                <li class="page-item"><a class="page-link" href="#">6</a></li>
+                <li class="page-item"><a class="page-link" href="#">7</a></li>
+                <li class="page-item"><a class="page-link" href="#">8</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
+
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->

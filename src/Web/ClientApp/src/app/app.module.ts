@@ -6,6 +6,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
+import { TopMenuComponent } from './top-menu/top-menu.component';
+import { FooterMenuComponent } from './footer-menu/footer-menu.component';
 import { HomeComponent } from './home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HighchartsChartModule } from 'highcharts-angular';
@@ -18,25 +20,25 @@ import { AdminAppRoutingModule } from './MasterPage/admin-portal/admin-app-routi
 import { AdminPortalComponent } from './MasterPage/admin-portal/admin-portal.component';
 import { DefaultPortalComponent } from './MasterPage/default-portal/default-portal.component';
 import { DefaultAppRoutingModule } from './MasterPage/default-portal/default-app-routing.module';
-import { UserListComponent } from './Pages/BookingPortal/user-list/user-list.component';
-import { BlankPageComponent } from './Pages/BookingPortal/blank-page/blank-page.component';
-import { UserDetailsComponent } from './Pages/BookingPortal/user-details/user-details.component';
-import { UserDetailItemComponent } from './Pages/BookingPortal/user-detail-item/user-detail-item.component';
 import { SpinnerComponent } from './Shared/spinner/spinner.component';
-import { AirportListComponent } from './Pages/BookingPortal/airport-list/airport-list.component';
-import { PlaneListComponent } from './Pages/BookingPortal/plane-list/plane-list.component';
-import { PlaneDetailComponent } from './Pages/BookingPortal/plane-detail/plane-detail.component';
-import { FlightListComponent } from './Pages/BookingPortal/flight-list/flight-list.component';
-import { BookingListComponent } from './Pages/BookingPortal/booking-list/booking-list.component';
-import { BookingDetailComponent } from './Pages/BookingPortal/booking-detail/booking-detail.component';
-import { DashboardComponent } from './Pages/BookingPortal/dashboard/dashboard.component';
-import { AirportDetailComponent } from './Pages/BookingPortal/airport-detail/airport-detail.component';
-import { FlightDetailComponent } from './Pages/BookingPortal/flight-detail/flight-detail.component';
+import { DashboardComponent } from './Pages/AdminPortal/dashboard/dashboard.component';
+import { ManageBookingComponent } from './Pages/AdminPortal/manage-booking/manage-booking.component';
+import { ManageOrderComponent } from './Pages/AdminPortal/manage-order/manage-order.component';
+import { ManagePaymentComponent } from './Pages/AdminPortal/manage-payment/manage-payment.component';
+import { MenuListPreviewComponent } from './Pages/AdminPortal/menu-list-preview/menu-list-preview.component';
+import { ManageCustomerComponent } from './Pages/AdminPortal/manage-customer/manage-customer.component';
+import { ManageRoleComponent } from './Pages/AdminPortal/manage-role/manage-role.component';
+import { ManageFoodItemComponent } from './Pages/AdminPortal/manage-food-item/manage-food-item.component';
+import { ManagePromoComponent } from './Pages/AdminPortal/manage-promo/manage-promo.component';
+import { ManageCalendarComponent } from './Pages/AdminPortal/manage-calendar/manage-calendar.component';
+import { ManageBookingDetailComponent } from './Pages/AdminPortal/manage-booking-detail/manage-booking-detail.component';
+import { ManageFoodCategoryComponent } from './Pages/AdminPortal/manage-food-category/manage-food-category.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
+    TopMenuComponent,
     HomeComponent,
     LoginComponent,
     PreLoaderComponent,
@@ -45,20 +47,20 @@ import { FlightDetailComponent } from './Pages/BookingPortal/flight-detail/fligh
     FooterComponent,
     AdminPortalComponent,
     DefaultPortalComponent,
-    UserListComponent,
-    BlankPageComponent,
-    UserDetailsComponent,
-    UserDetailItemComponent,
     SpinnerComponent,
-    AirportListComponent,
-    PlaneListComponent,
-    PlaneDetailComponent,
-    FlightListComponent,
-    BookingListComponent,
-    BookingDetailComponent,
+    FooterMenuComponent,
     DashboardComponent,
-    AirportDetailComponent,
-    FlightDetailComponent
+    ManageBookingComponent,
+    ManageOrderComponent,
+    ManagePaymentComponent,
+    MenuListPreviewComponent,
+    ManageCustomerComponent,
+    ManageRoleComponent,
+    ManageFoodItemComponent,
+    ManagePromoComponent,
+    ManageCalendarComponent,
+    ManageBookingDetailComponent,
+    ManageFoodCategoryComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
