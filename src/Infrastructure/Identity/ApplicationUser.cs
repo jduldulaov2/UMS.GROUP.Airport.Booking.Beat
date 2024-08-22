@@ -13,4 +13,5 @@ public class ApplicationUser : IdentityUser
     public string? Region { get; set; }
     public string? ZipCode { get; set; }
     public string? ContactNumber { get; set; }
+    public DateTime? BirthDate { get; set; }
 }

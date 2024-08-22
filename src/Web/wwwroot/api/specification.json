@@ -747,18 +747,18 @@
         }
       }
     },
-    "/api/Foods/CreateFood": {
+    "/api/Promos/CreatePromo": {
       "post": {
         "tags": [
-          "Foods"
+          "Promos"
         ],
-        "operationId": "CreateFood",
+        "operationId": "CreatePromo",
         "requestBody": {
           "x-name": "command",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateFoodCommand"
+                "$ref": "#/components/schemas/CreatePromoCommand"
               }
             }
           },
@@ -771,7 +771,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ResultOfCreateFoodCommandDto"
+                  "$ref": "#/components/schemas/ResultOfCreatePromoCommandDto"
                 }
               }
             }
@@ -779,18 +779,18 @@
         }
       }
     },
-    "/api/Foods/UpdateFood": {
+    "/api/Promos/UpdatePromo": {
       "put": {
         "tags": [
-          "Foods"
+          "Promos"
         ],
-        "operationId": "UpdateFood",
+        "operationId": "UpdatePromo",
         "requestBody": {
           "x-name": "command",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateFoodCommand"
+                "$ref": "#/components/schemas/UpdatePromoCommand"
               }
             }
           },
@@ -803,7 +803,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ResultOfUpdateFoodCommandDto"
+                  "$ref": "#/components/schemas/ResultOfUpdatePromoCommandDto"
                 }
               }
             }
@@ -811,12 +811,12 @@
         }
       }
     },
-    "/api/Foods/GetAllFood": {
+    "/api/Promos/GetAllPromo": {
       "get": {
         "tags": [
-          "Foods"
+          "Promos"
         ],
-        "operationId": "GetAllFood",
+        "operationId": "GetAllPromo",
         "responses": {
           "200": {
             "description": "",
@@ -825,7 +825,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/GetAllFoodQueryDto"
+                    "$ref": "#/components/schemas/GetAllPromoQueryDto"
                   }
                 }
               }
@@ -834,12 +834,12 @@
         }
       }
     },
-    "/api/Foods/GetAllFoodById": {
+    "/api/Promos/GetAllPromoById": {
       "get": {
         "tags": [
-          "Foods"
+          "Promos"
         ],
-        "operationId": "GetAllFoodById",
+        "operationId": "GetAllPromoById",
         "parameters": [
           {
             "name": "UniqueId",
@@ -857,7 +857,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ResultOfGetAllFoodByIdQueryDto"
+                  "$ref": "#/components/schemas/ResultOfGetAllPromoByIdQueryDto"
                 }
               }
             }
@@ -2663,7 +2663,7 @@
           }
         }
       },
-      "ResultOfCreateFoodCommandDto": {
+      "ResultOfCreatePromoCommandDto": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
@@ -2671,7 +2671,7 @@
             "nullable": true,
             "oneOf": [
               {
-                "$ref": "#/components/schemas/CreateFoodCommandDto"
+                "$ref": "#/components/schemas/CreatePromoCommandDto"
               }
             ]
           },
@@ -2683,7 +2683,7 @@
           }
         }
       },
-      "CreateFoodCommandDto": {
+      "CreatePromoCommandDto": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
@@ -2697,26 +2697,25 @@
           }
         }
       },
-      "CreateFoodCommand": {
+      "CreatePromoCommand": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
-          "foodName": {
+          "promoCode": {
             "type": "string",
             "nullable": true
           },
-          "foodDescription": {
+          "promoName": {
             "type": "string",
             "nullable": true
           },
-          "foodPrice": {
+          "promoDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "promoPrice": {
             "type": "number",
             "format": "float",
-            "nullable": true
-          },
-          "foodCategoryId": {
-            "type": "integer",
-            "format": "int32",
             "nullable": true
           },
           "isActive": {
@@ -2725,7 +2724,7 @@
           }
         }
       },
-      "ResultOfUpdateFoodCommandDto": {
+      "ResultOfUpdatePromoCommandDto": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
@@ -2733,7 +2732,7 @@
             "nullable": true,
             "oneOf": [
               {
-                "$ref": "#/components/schemas/UpdateFoodCommandDto"
+                "$ref": "#/components/schemas/UpdatePromoCommandDto"
               }
             ]
           },
@@ -2745,7 +2744,7 @@
           }
         }
       },
-      "UpdateFoodCommandDto": {
+      "UpdatePromoCommandDto": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
@@ -2759,7 +2758,7 @@
           }
         }
       },
-      "UpdateFoodCommand": {
+      "UpdatePromoCommand": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
@@ -2767,22 +2766,21 @@
             "type": "string",
             "nullable": true
           },
-          "foodName": {
+          "promoCode": {
             "type": "string",
             "nullable": true
           },
-          "foodDescription": {
+          "promoName": {
             "type": "string",
             "nullable": true
           },
-          "foodPrice": {
+          "promoDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "promoPrice": {
             "type": "number",
             "format": "float",
-            "nullable": true
-          },
-          "foodCategoryId": {
-            "type": "integer",
-            "format": "int32",
             "nullable": true
           },
           "isActive": {
@@ -2791,7 +2789,7 @@
           }
         }
       },
-      "GetAllFoodQueryDto": {
+      "GetAllPromoQueryDto": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
@@ -2804,26 +2802,21 @@
             "type": "string",
             "nullable": true
           },
-          "foodName": {
+          "promoCode": {
             "type": "string",
             "nullable": true
           },
-          "foodDescription": {
+          "promoName": {
             "type": "string",
             "nullable": true
           },
-          "foodPrice": {
+          "promoDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "promoPrice": {
             "type": "number",
             "format": "float",
-            "nullable": true
-          },
-          "foodCategoryId": {
-            "type": "number",
-            "format": "float",
-            "nullable": true
-          },
-          "foodCategoryName": {
-            "type": "string",
             "nullable": true
           },
           "isActive": {
@@ -2832,7 +2825,7 @@
           }
         }
       },
-      "ResultOfGetAllFoodByIdQueryDto": {
+      "ResultOfGetAllPromoByIdQueryDto": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
@@ -2840,7 +2833,7 @@
             "nullable": true,
             "oneOf": [
               {
-                "$ref": "#/components/schemas/GetAllFoodByIdQueryDto"
+                "$ref": "#/components/schemas/GetAllPromoByIdQueryDto"
               }
             ]
           },
@@ -2852,7 +2845,7 @@
           }
         }
       },
-      "GetAllFoodByIdQueryDto": {
+      "GetAllPromoByIdQueryDto": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
@@ -2865,26 +2858,21 @@
             "type": "string",
             "nullable": true
           },
-          "foodName": {
+          "promoCode": {
             "type": "string",
             "nullable": true
           },
-          "foodDescription": {
+          "promoName": {
             "type": "string",
             "nullable": true
           },
-          "foodPrice": {
+          "promoDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "promoPrice": {
             "type": "number",
             "format": "float",
-            "nullable": true
-          },
-          "foodCategoryId": {
-            "type": "number",
-            "format": "float",
-            "nullable": true
-          },
-          "foodCategoryName": {
-            "type": "string",
             "nullable": true
           },
           "isActive": {
@@ -3210,6 +3198,11 @@
           "contactNumber": {
             "type": "string",
             "nullable": true
+          },
+          "birthDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
           }
         }
       },
@@ -3292,6 +3285,11 @@
           "contactNumber": {
             "type": "string",
             "nullable": true
+          },
+          "birthDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
           }
         }
       },
@@ -3370,6 +3368,11 @@
           "contactNumber": {
             "type": "string",
             "nullable": true
+          },
+          "birthDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
           }
         }
       },
@@ -3423,6 +3426,11 @@
           },
           "contactNumber": {
             "type": "string",
+            "nullable": true
+          },
+          "birthDate": {
+            "type": "string",
+            "format": "date-time",
             "nullable": true
           }
         }
@@ -3498,6 +3506,11 @@
           "contactNumber": {
             "type": "string",
             "nullable": true
+          },
+          "birthDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
           }
         }
       },
@@ -3551,6 +3564,11 @@
           },
           "contactNumber": {
             "type": "string",
+            "nullable": true
+          },
+          "birthDate": {
+            "type": "string",
+            "format": "date-time",
             "nullable": true
           }
         }

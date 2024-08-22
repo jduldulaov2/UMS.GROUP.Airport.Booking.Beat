@@ -28,6 +28,8 @@ public record UpdateUserCommand : IRequest<Result<UpdateUserDto>>
     public string? ZipCode { get; init; }
 
     public string? ContactNumber { get; init; }
+
+    public DateTime? BirthDate { get; init; }
 }
 
 public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand, Result<UpdateUserDto>>
@@ -43,6 +45,6 @@ public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand, Resul
         return await _identityService.UpdateIdentityUserAsync(
            request.Id, request.UserName,  request.LastName, request.FirstName, request.MiddleName,
            request.EmailAddress, request.Street, request.City, request.Province, request.Region,
-           request.ZipCode, request.ContactNumber);
+           request.ZipCode, request.ContactNumber, request.BirthDate);
     }
 }

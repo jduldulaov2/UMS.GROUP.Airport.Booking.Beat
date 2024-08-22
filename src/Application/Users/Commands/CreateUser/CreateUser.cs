@@ -27,6 +27,8 @@ public record CreateUserCommand : IRequest<Result<CreateUserDto>>
     public string? ZipCode { get; init; }
 
     public string? ContactNumber { get; init; }
+
+    public DateTime? BirthDate { get; init; }
 }
 
 public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, Result<CreateUserDto>>
@@ -42,6 +44,6 @@ public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, Resul
          return await _identityService.CreateIdentityUserAsync(
             request.UserName,request.Password,request.LastName,request.FirstName,request.MiddleName, 
             request.EmailAddress,request.Street,request.City,request.Province, request.Region, 
-            request.ZipCode, request.ContactNumber);
+            request.ZipCode, request.ContactNumber, request.BirthDate);
     }
 }

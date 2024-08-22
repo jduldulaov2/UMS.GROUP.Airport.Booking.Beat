@@ -29,4 +29,6 @@ public class UpdateUserDto
 
     public string? ContactNumber { get; set; }
 
+    public DateTime? BirthDate { get; set; }
+
 }

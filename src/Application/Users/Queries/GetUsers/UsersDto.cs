@@ -35,4 +35,6 @@ public class UsersDto
 
     public string? ContactNumber { get; set; }
 
+    public DateTime? BirthDate { get; set; }
+
 }

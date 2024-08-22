@@ -165,7 +165,8 @@ public class IdentityService : IIdentityService
                     Province = users.Province,
                     Region = users.Region,
                     ZipCode = users.ZipCode,
-                    ContactNumber = users.ContactNumber
+                    ContactNumber = users.ContactNumber,
+                    BirthDate = users.BirthDate
 
                 };
                 userList.Add(dtoList);
@@ -296,7 +297,7 @@ public class IdentityService : IIdentityService
         };
     }
 
-    public async Task<Result<CreateUserDto>> CreateIdentityUserAsync(string? userName, string? password, string? lastName, string? firstName, string? middleName, string? emailAddress, string? street, string? city, string? province, string? region, string? zipCode, string? contactNumber)
+    public async Task<Result<CreateUserDto>> CreateIdentityUserAsync(string? userName, string? password, string? lastName, string? firstName, string? middleName, string? emailAddress, string? street, string? city, string? province, string? region, string? zipCode, string? contactNumber, DateTime? birthDate)
     {
         var isUsernameExist = await _userManager.FindByNameAsync(userName ?? "");
 
@@ -315,7 +316,8 @@ public class IdentityService : IIdentityService
                 Province = province,
                 Region = region,
                 ZipCode = zipCode,
-                ContactNumber = contactNumber
+                ContactNumber = contactNumber,
+                BirthDate = birthDate
             };
 
             await _userManager.CreateAsync(user, password!);
@@ -339,7 +341,8 @@ public class IdentityService : IIdentityService
                     Province = province,
                     Region = region,
                     ZipCode = zipCode,
-                    ContactNumber = contactNumber
+                    ContactNumber = contactNumber,
+                    BirthDate = birthDate
                 },
                 Message = "New user has been successfully added.",
                 ResultType = ResultType.Success
@@ -358,7 +361,7 @@ public class IdentityService : IIdentityService
 
     }
 
-    public async Task<Result<UpdateUserDto>> UpdateIdentityUserAsync(string? id, string? userName, string? lastName, string? firstName, string? middleName, string? emailAddress, string? street, string? city, string? province, string? region, string? zipCode, string? contactNumber)
+    public async Task<Result<UpdateUserDto>> UpdateIdentityUserAsync(string? id, string? userName, string? lastName, string? firstName, string? middleName, string? emailAddress, string? street, string? city, string? province, string? region, string? zipCode, string? contactNumber, DateTime? birthDate)
     {
         var user = await _userManager.FindByIdAsync(id ?? "");
 
@@ -390,6 +393,7 @@ public class IdentityService : IIdentityService
             user.Region = region;
             user.ZipCode = zipCode;
             user.ContactNumber = contactNumber;
+            user.BirthDate = birthDate;
 
             await _userManager.UpdateAsync(user);
 
@@ -408,7 +412,8 @@ public class IdentityService : IIdentityService
                     Province = province,
                     Region = region,
                     ZipCode = zipCode,
-                    ContactNumber = contactNumber
+                    ContactNumber = contactNumber,
+                    BirthDate = birthDate
                 },
                 Message = "Record has been successfully updated.",
                 ResultType = ResultType.Success
@@ -495,7 +500,8 @@ public class IdentityService : IIdentityService
                     Province = usercredential.Province,
                     Region = usercredential.Region,
                     ZipCode = usercredential.ZipCode,
-                    ContactNumber = usercredential.ContactNumber
+                    ContactNumber = usercredential.ContactNumber,
+                    BirthDate = usercredential.BirthDate
                 },
                 Message = "Record found.",
                 ResultType = ResultType.Success
@@ -535,4 +541,5 @@ public class IdentityService : IIdentityService
     {
         return _user.Id!;
     }
+
 }

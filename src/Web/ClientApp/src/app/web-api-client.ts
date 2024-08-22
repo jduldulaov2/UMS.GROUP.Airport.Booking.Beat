@@ -1418,17 +1418,17 @@ export class FlightsClient implements IFlightsClient {
     }
 }
 
-export interface IFoodsClient {
-    createFood(command: CreateFoodCommand): Observable<ResultOfCreateFoodCommandDto>;
-    updateFood(command: UpdateFoodCommand): Observable<ResultOfUpdateFoodCommandDto>;
-    getAllFood(): Observable<GetAllFoodQueryDto[]>;
-    getAllFoodById(uniqueId: string | null | undefined): Observable<ResultOfGetAllFoodByIdQueryDto>;
+export interface IPromosClient {
+    createPromo(command: CreatePromoCommand): Observable<ResultOfCreatePromoCommandDto>;
+    updatePromo(command: UpdatePromoCommand): Observable<ResultOfUpdatePromoCommandDto>;
+    getAllPromo(): Observable<GetAllPromoQueryDto[]>;
+    getAllPromoById(uniqueId: string | null | undefined): Observable<ResultOfGetAllPromoByIdQueryDto>;
 }
 
 @Injectable({
     providedIn: 'root'
 })
-export class FoodsClient implements IFoodsClient {
+export class PromosClient implements IPromosClient {
     private http: HttpClient;
     private baseUrl: string;
     protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
@@ -1438,8 +1438,8 @@ export class FoodsClient implements IFoodsClient {
         this.baseUrl = baseUrl ?? "";
     }
 
-    createFood(command: CreateFoodCommand): Observable<ResultOfCreateFoodCommandDto> {
-        let url_ = this.baseUrl + "/api/Foods/CreateFood";
+    createPromo(command: CreatePromoCommand): Observable<ResultOfCreatePromoCommandDto> {
+        let url_ = this.baseUrl + "/api/Promos/CreatePromo";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(command);
@@ -1455,20 +1455,20 @@ export class FoodsClient implements IFoodsClient {
         };
 
         return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processCreateFood(response_);
+            return this.processCreatePromo(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processCreateFood(response_ as any);
+                    return this.processCreatePromo(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<ResultOfCreateFoodCommandDto>;
+                    return _observableThrow(e) as any as Observable<ResultOfCreatePromoCommandDto>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<ResultOfCreateFoodCommandDto>;
+                return _observableThrow(response_) as any as Observable<ResultOfCreatePromoCommandDto>;
         }));
     }
 
-    protected processCreateFood(response: HttpResponseBase): Observable<ResultOfCreateFoodCommandDto> {
+    protected processCreatePromo(response: HttpResponseBase): Observable<ResultOfCreatePromoCommandDto> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -1479,7 +1479,7 @@ export class FoodsClient implements IFoodsClient {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            result200 = ResultOfCreateFoodCommandDto.fromJS(resultData200);
+            result200 = ResultOfCreatePromoCommandDto.fromJS(resultData200);
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -1490,8 +1490,8 @@ export class FoodsClient implements IFoodsClient {
         return _observableOf(null as any);
     }
 
-    updateFood(command: UpdateFoodCommand): Observable<ResultOfUpdateFoodCommandDto> {
-        let url_ = this.baseUrl + "/api/Foods/UpdateFood";
+    updatePromo(command: UpdatePromoCommand): Observable<ResultOfUpdatePromoCommandDto> {
+        let url_ = this.baseUrl + "/api/Promos/UpdatePromo";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(command);
@@ -1507,20 +1507,20 @@ export class FoodsClient implements IFoodsClient {
         };
 
         return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processUpdateFood(response_);
+            return this.processUpdatePromo(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processUpdateFood(response_ as any);
+                    return this.processUpdatePromo(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<ResultOfUpdateFoodCommandDto>;
+                    return _observableThrow(e) as any as Observable<ResultOfUpdatePromoCommandDto>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<ResultOfUpdateFoodCommandDto>;
+                return _observableThrow(response_) as any as Observable<ResultOfUpdatePromoCommandDto>;
         }));
     }
 
-    protected processUpdateFood(response: HttpResponseBase): Observable<ResultOfUpdateFoodCommandDto> {
+    protected processUpdatePromo(response: HttpResponseBase): Observable<ResultOfUpdatePromoCommandDto> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -1531,7 +1531,7 @@ export class FoodsClient implements IFoodsClient {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            result200 = ResultOfUpdateFoodCommandDto.fromJS(resultData200);
+            result200 = ResultOfUpdatePromoCommandDto.fromJS(resultData200);
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -1542,8 +1542,8 @@ export class FoodsClient implements IFoodsClient {
         return _observableOf(null as any);
     }
 
-    getAllFood(): Observable<GetAllFoodQueryDto[]> {
-        let url_ = this.baseUrl + "/api/Foods/GetAllFood";
+    getAllPromo(): Observable<GetAllPromoQueryDto[]> {
+        let url_ = this.baseUrl + "/api/Promos/GetAllPromo";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -1555,20 +1555,20 @@ export class FoodsClient implements IFoodsClient {
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetAllFood(response_);
+            return this.processGetAllPromo(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetAllFood(response_ as any);
+                    return this.processGetAllPromo(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<GetAllFoodQueryDto[]>;
+                    return _observableThrow(e) as any as Observable<GetAllPromoQueryDto[]>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<GetAllFoodQueryDto[]>;
+                return _observableThrow(response_) as any as Observable<GetAllPromoQueryDto[]>;
         }));
     }
 
-    protected processGetAllFood(response: HttpResponseBase): Observable<GetAllFoodQueryDto[]> {
+    protected processGetAllPromo(response: HttpResponseBase): Observable<GetAllPromoQueryDto[]> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -1582,7 +1582,7 @@ export class FoodsClient implements IFoodsClient {
             if (Array.isArray(resultData200)) {
                 result200 = [] as any;
                 for (let item of resultData200)
-                    result200!.push(GetAllFoodQueryDto.fromJS(item));
+                    result200!.push(GetAllPromoQueryDto.fromJS(item));
             }
             else {
                 result200 = <any>null;
@@ -1597,8 +1597,8 @@ export class FoodsClient implements IFoodsClient {
         return _observableOf(null as any);
     }
 
-    getAllFoodById(uniqueId: string | null | undefined): Observable<ResultOfGetAllFoodByIdQueryDto> {
-        let url_ = this.baseUrl + "/api/Foods/GetAllFoodById?";
+    getAllPromoById(uniqueId: string | null | undefined): Observable<ResultOfGetAllPromoByIdQueryDto> {
+        let url_ = this.baseUrl + "/api/Promos/GetAllPromoById?";
         if (uniqueId !== undefined && uniqueId !== null)
             url_ += "UniqueId=" + encodeURIComponent("" + uniqueId) + "&";
         url_ = url_.replace(/[?&]$/, "");
@@ -1612,20 +1612,20 @@ export class FoodsClient implements IFoodsClient {
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetAllFoodById(response_);
+            return this.processGetAllPromoById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetAllFoodById(response_ as any);
+                    return this.processGetAllPromoById(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<ResultOfGetAllFoodByIdQueryDto>;
+                    return _observableThrow(e) as any as Observable<ResultOfGetAllPromoByIdQueryDto>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<ResultOfGetAllFoodByIdQueryDto>;
+                return _observableThrow(response_) as any as Observable<ResultOfGetAllPromoByIdQueryDto>;
         }));
     }
 
-    protected processGetAllFoodById(response: HttpResponseBase): Observable<ResultOfGetAllFoodByIdQueryDto> {
+    protected processGetAllPromoById(response: HttpResponseBase): Observable<ResultOfGetAllPromoByIdQueryDto> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -1636,7 +1636,7 @@ export class FoodsClient implements IFoodsClient {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            result200 = ResultOfGetAllFoodByIdQueryDto.fromJS(resultData200);
+            result200 = ResultOfGetAllPromoByIdQueryDto.fromJS(resultData200);
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -4862,12 +4862,12 @@ export interface IUpdateFlightCommand {
     isActive?: boolean | undefined;
 }
 
-export class ResultOfCreateFoodCommandDto implements IResultOfCreateFoodCommandDto {
-    data?: CreateFoodCommandDto | undefined;
+export class ResultOfCreatePromoCommandDto implements IResultOfCreatePromoCommandDto {
+    data?: CreatePromoCommandDto | undefined;
     message?: string;
     resultType?: ResultType;
 
-    constructor(data?: IResultOfCreateFoodCommandDto) {
+    constructor(data?: IResultOfCreatePromoCommandDto) {
         if (data) {
             for (var property in data) {
                 if (data.hasOwnProperty(property))
@@ -4878,15 +4878,15 @@ export class ResultOfCreateFoodCommandDto implements IResultOfCreateFoodCommandD
 
     init(_data?: any) {
         if (_data) {
-            this.data = _data["data"] ? CreateFoodCommandDto.fromJS(_data["data"]) : <any>undefined;
+            this.data = _data["data"] ? CreatePromoCommandDto.fromJS(_data["data"]) : <any>undefined;
             this.message = _data["message"];
             this.resultType = _data["resultType"];
         }
     }
 
-    static fromJS(data: any): ResultOfCreateFoodCommandDto {
+    static fromJS(data: any): ResultOfCreatePromoCommandDto {
         data = typeof data === 'object' ? data : {};
-        let result = new ResultOfCreateFoodCommandDto();
+        let result = new ResultOfCreatePromoCommandDto();
         result.init(data);
         return result;
     }
@@ -4900,17 +4900,17 @@ export class ResultOfCreateFoodCommandDto implements IResultOfCreateFoodCommandD
     }
 }
 
-export interface IResultOfCreateFoodCommandDto {
-    data?: CreateFoodCommandDto | undefined;
+export interface IResultOfCreatePromoCommandDto {
+    data?: CreatePromoCommandDto | undefined;
     message?: string;
     resultType?: ResultType;
 }
 
-export class CreateFoodCommandDto implements ICreateFoodCommandDto {
+export class CreatePromoCommandDto implements ICreatePromoCommandDto {
     id?: string | undefined;
     createdDate?: Date;
 
-    constructor(data?: ICreateFoodCommandDto) {
+    constructor(data?: ICreatePromoCommandDto) {
         if (data) {
             for (var property in data) {
                 if (data.hasOwnProperty(property))
@@ -4926,9 +4926,9 @@ export class CreateFoodCommandDto implements ICreateFoodCommandDto {
         }
     }
 
-    static fromJS(data: any): CreateFoodCommandDto {
+    static fromJS(data: any): CreatePromoCommandDto {
         data = typeof data === 'object' ? data : {};
-        let result = new CreateFoodCommandDto();
+        let result = new CreatePromoCommandDto();
         result.init(data);
         return result;
     }
@@ -4941,19 +4941,19 @@ export class CreateFoodCommandDto implements ICreateFoodCommandDto {
     }
 }
 
-export interface ICreateFoodCommandDto {
+export interface ICreatePromoCommandDto {
     id?: string | undefined;
     createdDate?: Date;
 }
 
-export class CreateFoodCommand implements ICreateFoodCommand {
-    foodName?: string | undefined;
-    foodDescription?: string | undefined;
-    foodPrice?: number | undefined;
-    foodCategoryId?: number | undefined;
+export class CreatePromoCommand implements ICreatePromoCommand {
+    promoCode?: string | undefined;
+    promoName?: string | undefined;
+    promoDescription?: string | undefined;
+    promoPrice?: number | undefined;
     isActive?: boolean | undefined;
 
-    constructor(data?: ICreateFoodCommand) {
+    constructor(data?: ICreatePromoCommand) {
         if (data) {
             for (var property in data) {
                 if (data.hasOwnProperty(property))
@@ -4964,46 +4964,46 @@ export class CreateFoodCommand implements ICreateFoodCommand {
 
     init(_data?: any) {
         if (_data) {
-            this.foodName = _data["foodName"];
-            this.foodDescription = _data["foodDescription"];
-            this.foodPrice = _data["foodPrice"];
-            this.foodCategoryId = _data["foodCategoryId"];
+            this.promoCode = _data["promoCode"];
+            this.promoName = _data["promoName"];
+            this.promoDescription = _data["promoDescription"];
+            this.promoPrice = _data["promoPrice"];
             this.isActive = _data["isActive"];
         }
     }
 
-    static fromJS(data: any): CreateFoodCommand {
+    static fromJS(data: any): CreatePromoCommand {
         data = typeof data === 'object' ? data : {};
-        let result = new CreateFoodCommand();
+        let result = new CreatePromoCommand();
         result.init(data);
         return result;
     }
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["foodName"] = this.foodName;
-        data["foodDescription"] = this.foodDescription;
-        data["foodPrice"] = this.foodPrice;
-        data["foodCategoryId"] = this.foodCategoryId;
+        data["promoCode"] = this.promoCode;
+        data["promoName"] = this.promoName;
+        data["promoDescription"] = this.promoDescription;
+        data["promoPrice"] = this.promoPrice;
         data["isActive"] = this.isActive;
         return data;
     }
 }
 
-export interface ICreateFoodCommand {
-    foodName?: string | undefined;
-    foodDescription?: string | undefined;
-    foodPrice?: number | undefined;
-    foodCategoryId?: number | undefined;
+export interface ICreatePromoCommand {
+    promoCode?: string | undefined;
+    promoName?: string | undefined;
+    promoDescription?: string | undefined;
+    promoPrice?: number | undefined;
     isActive?: boolean | undefined;
 }
 
-export class ResultOfUpdateFoodCommandDto implements IResultOfUpdateFoodCommandDto {
-    data?: UpdateFoodCommandDto | undefined;
+export class ResultOfUpdatePromoCommandDto implements IResultOfUpdatePromoCommandDto {
+    data?: UpdatePromoCommandDto | undefined;
     message?: string;
     resultType?: ResultType;
 
-    constructor(data?: IResultOfUpdateFoodCommandDto) {
+    constructor(data?: IResultOfUpdatePromoCommandDto) {
         if (data) {
             for (var property in data) {
                 if (data.hasOwnProperty(property))
@@ -5014,15 +5014,15 @@ export class ResultOfUpdateFoodCommandDto implements IResultOfUpdateFoodCommandD
 
     init(_data?: any) {
         if (_data) {
-            this.data = _data["data"] ? UpdateFoodCommandDto.fromJS(_data["data"]) : <any>undefined;
+            this.data = _data["data"] ? UpdatePromoCommandDto.fromJS(_data["data"]) : <any>undefined;
             this.message = _data["message"];
             this.resultType = _data["resultType"];
         }
     }
 
-    static fromJS(data: any): ResultOfUpdateFoodCommandDto {
+    static fromJS(data: any): ResultOfUpdatePromoCommandDto {
         data = typeof data === 'object' ? data : {};
-        let result = new ResultOfUpdateFoodCommandDto();
+        let result = new ResultOfUpdatePromoCommandDto();
         result.init(data);
         return result;
     }
@@ -5036,17 +5036,17 @@ export class ResultOfUpdateFoodCommandDto implements IResultOfUpdateFoodCommandD
     }
 }
 
-export interface IResultOfUpdateFoodCommandDto {
-    data?: UpdateFoodCommandDto | undefined;
+export interface IResultOfUpdatePromoCommandDto {
+    data?: UpdatePromoCommandDto | undefined;
     message?: string;
     resultType?: ResultType;
 }
 
-export class UpdateFoodCommandDto implements IUpdateFoodCommandDto {
+export class UpdatePromoCommandDto implements IUpdatePromoCommandDto {
     id?: string | undefined;
     updatedDate?: Date;
 
-    constructor(data?: IUpdateFoodCommandDto) {
+    constructor(data?: IUpdatePromoCommandDto) {
         if (data) {
             for (var property in data) {
                 if (data.hasOwnProperty(property))
@@ -5062,9 +5062,9 @@ export class UpdateFoodCommandDto implements IUpdateFoodCommandDto {
         }
     }
 
-    static fromJS(data: any): UpdateFoodCommandDto {
+    static fromJS(data: any): UpdatePromoCommandDto {
         data = typeof data === 'object' ? data : {};
-        let result = new UpdateFoodCommandDto();
+        let result = new UpdatePromoCommandDto();
         result.init(data);
         return result;
     }
@@ -5077,20 +5077,20 @@ export class UpdateFoodCommandDto implements IUpdateFoodCommandDto {
     }
 }
 
-export interface IUpdateFoodCommandDto {
+export interface IUpdatePromoCommandDto {
     id?: string | undefined;
     updatedDate?: Date;
 }
 
-export class UpdateFoodCommand implements IUpdateFoodCommand {
+export class UpdatePromoCommand implements IUpdatePromoCommand {
     uniqueId?: string | undefined;
-    foodName?: string | undefined;
-    foodDescription?: string | undefined;
-    foodPrice?: number | undefined;
-    foodCategoryId?: number | undefined;
+    promoCode?: string | undefined;
+    promoName?: string | undefined;
+    promoDescription?: string | undefined;
+    promoPrice?: number | undefined;
     isActive?: boolean | undefined;
 
-    constructor(data?: IUpdateFoodCommand) {
+    constructor(data?: IUpdatePromoCommand) {
         if (data) {
             for (var property in data) {
                 if (data.hasOwnProperty(property))
@@ -5102,17 +5102,17 @@ export class UpdateFoodCommand implements IUpdateFoodCommand {
     init(_data?: any) {
         if (_data) {
             this.uniqueId = _data["uniqueId"];
-            this.foodName = _data["foodName"];
-            this.foodDescription = _data["foodDescription"];
-            this.foodPrice = _data["foodPrice"];
-            this.foodCategoryId = _data["foodCategoryId"];
+            this.promoCode = _data["promoCode"];
+            this.promoName = _data["promoName"];
+            this.promoDescription = _data["promoDescription"];
+            this.promoPrice = _data["promoPrice"];
             this.isActive = _data["isActive"];
         }
     }
 
-    static fromJS(data: any): UpdateFoodCommand {
+    static fromJS(data: any): UpdatePromoCommand {
         data = typeof data === 'object' ? data : {};
-        let result = new UpdateFoodCommand();
+        let result = new UpdatePromoCommand();
         result.init(data);
         return result;
     }
@@ -5120,35 +5120,34 @@ export class UpdateFoodCommand implements IUpdateFoodCommand {
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         data["uniqueId"] = this.uniqueId;
-        data["foodName"] = this.foodName;
-        data["foodDescription"] = this.foodDescription;
-        data["foodPrice"] = this.foodPrice;
-        data["foodCategoryId"] = this.foodCategoryId;
+        data["promoCode"] = this.promoCode;
+        data["promoName"] = this.promoName;
+        data["promoDescription"] = this.promoDescription;
+        data["promoPrice"] = this.promoPrice;
         data["isActive"] = this.isActive;
         return data;
     }
 }
 
-export interface IUpdateFoodCommand {
+export interface IUpdatePromoCommand {
     uniqueId?: string | undefined;
-    foodName?: string | undefined;
-    foodDescription?: string | undefined;
-    foodPrice?: number | undefined;
-    foodCategoryId?: number | undefined;
+    promoCode?: string | undefined;
+    promoName?: string | undefined;
+    promoDescription?: string | undefined;
+    promoPrice?: number | undefined;
     isActive?: boolean | undefined;
 }
 
-export class GetAllFoodQueryDto implements IGetAllFoodQueryDto {
+export class GetAllPromoQueryDto implements IGetAllPromoQueryDto {
     id?: number | undefined;
     uniqueId?: string | undefined;
-    foodName?: string | undefined;
-    foodDescription?: string | undefined;
-    foodPrice?: number | undefined;
-    foodCategoryId?: number | undefined;
-    foodCategoryName?: string | undefined;
+    promoCode?: string | undefined;
+    promoName?: string | undefined;
+    promoDescription?: string | undefined;
+    promoPrice?: number | undefined;
     isActive?: boolean | undefined;
 
-    constructor(data?: IGetAllFoodQueryDto) {
+    constructor(data?: IGetAllPromoQueryDto) {
         if (data) {
             for (var property in data) {
                 if (data.hasOwnProperty(property))
@@ -5161,18 +5160,17 @@ export class GetAllFoodQueryDto implements IGetAllFoodQueryDto {
         if (_data) {
             this.id = _data["id"];
             this.uniqueId = _data["uniqueId"];
-            this.foodName = _data["foodName"];
-            this.foodDescription = _data["foodDescription"];
-            this.foodPrice = _data["foodPrice"];
-            this.foodCategoryId = _data["foodCategoryId"];
-            this.foodCategoryName = _data["foodCategoryName"];
+            this.promoCode = _data["promoCode"];
+            this.promoName = _data["promoName"];
+            this.promoDescription = _data["promoDescription"];
+            this.promoPrice = _data["promoPrice"];
             this.isActive = _data["isActive"];
         }
     }
 
-    static fromJS(data: any): GetAllFoodQueryDto {
+    static fromJS(data: any): GetAllPromoQueryDto {
         data = typeof data === 'object' ? data : {};
-        let result = new GetAllFoodQueryDto();
+        let result = new GetAllPromoQueryDto();
         result.init(data);
         return result;
     }
@@ -5181,33 +5179,31 @@ export class GetAllFoodQueryDto implements IGetAllFoodQueryDto {
         data = typeof data === 'object' ? data : {};
         data["id"] = this.id;
         data["uniqueId"] = this.uniqueId;
-        data["foodName"] = this.foodName;
-        data["foodDescription"] = this.foodDescription;
-        data["foodPrice"] = this.foodPrice;
-        data["foodCategoryId"] = this.foodCategoryId;
-        data["foodCategoryName"] = this.foodCategoryName;
+        data["promoCode"] = this.promoCode;
+        data["promoName"] = this.promoName;
+        data["promoDescription"] = this.promoDescription;
+        data["promoPrice"] = this.promoPrice;
         data["isActive"] = this.isActive;
         return data;
     }
 }
 
-export interface IGetAllFoodQueryDto {
+export interface IGetAllPromoQueryDto {
     id?: number | undefined;
     uniqueId?: string | undefined;
-    foodName?: string | undefined;
-    foodDescription?: string | undefined;
-    foodPrice?: number | undefined;
-    foodCategoryId?: number | undefined;
-    foodCategoryName?: string | undefined;
+    promoCode?: string | undefined;
+    promoName?: string | undefined;
+    promoDescription?: string | undefined;
+    promoPrice?: number | undefined;
     isActive?: boolean | undefined;
 }
 
-export class ResultOfGetAllFoodByIdQueryDto implements IResultOfGetAllFoodByIdQueryDto {
-    data?: GetAllFoodByIdQueryDto | undefined;
+export class ResultOfGetAllPromoByIdQueryDto implements IResultOfGetAllPromoByIdQueryDto {
+    data?: GetAllPromoByIdQueryDto | undefined;
     message?: string;
     resultType?: ResultType;
 
-    constructor(data?: IResultOfGetAllFoodByIdQueryDto) {
+    constructor(data?: IResultOfGetAllPromoByIdQueryDto) {
         if (data) {
             for (var property in data) {
                 if (data.hasOwnProperty(property))
@@ -5218,15 +5214,15 @@ export class ResultOfGetAllFoodByIdQueryDto implements IResultOfGetAllFoodByIdQu
 
     init(_data?: any) {
         if (_data) {
-            this.data = _data["data"] ? GetAllFoodByIdQueryDto.fromJS(_data["data"]) : <any>undefined;
+            this.data = _data["data"] ? GetAllPromoByIdQueryDto.fromJS(_data["data"]) : <any>undefined;
             this.message = _data["message"];
             this.resultType = _data["resultType"];
         }
     }
 
-    static fromJS(data: any): ResultOfGetAllFoodByIdQueryDto {
+    static fromJS(data: any): ResultOfGetAllPromoByIdQueryDto {
         data = typeof data === 'object' ? data : {};
-        let result = new ResultOfGetAllFoodByIdQueryDto();
+        let result = new ResultOfGetAllPromoByIdQueryDto();
         result.init(data);
         return result;
     }
@@ -5240,23 +5236,22 @@ export class ResultOfGetAllFoodByIdQueryDto implements IResultOfGetAllFoodByIdQu
     }
 }
 
-export interface IResultOfGetAllFoodByIdQueryDto {
-    data?: GetAllFoodByIdQueryDto | undefined;
+export interface IResultOfGetAllPromoByIdQueryDto {
+    data?: GetAllPromoByIdQueryDto | undefined;
     message?: string;
     resultType?: ResultType;
 }
 
-export class GetAllFoodByIdQueryDto implements IGetAllFoodByIdQueryDto {
+export class GetAllPromoByIdQueryDto implements IGetAllPromoByIdQueryDto {
     id?: number | undefined;
     uniqueId?: string | undefined;
-    foodName?: string | undefined;
-    foodDescription?: string | undefined;
-    foodPrice?: number | undefined;
-    foodCategoryId?: number | undefined;
-    foodCategoryName?: string | undefined;
+    promoCode?: string | undefined;
+    promoName?: string | undefined;
+    promoDescription?: string | undefined;
+    promoPrice?: number | undefined;
     isActive?: boolean | undefined;
 
-    constructor(data?: IGetAllFoodByIdQueryDto) {
+    constructor(data?: IGetAllPromoByIdQueryDto) {
         if (data) {
             for (var property in data) {
                 if (data.hasOwnProperty(property))
@@ -5269,18 +5264,17 @@ export class GetAllFoodByIdQueryDto implements IGetAllFoodByIdQueryDto {
         if (_data) {
             this.id = _data["id"];
             this.uniqueId = _data["uniqueId"];
-            this.foodName = _data["foodName"];
-            this.foodDescription = _data["foodDescription"];
-            this.foodPrice = _data["foodPrice"];
-            this.foodCategoryId = _data["foodCategoryId"];
-            this.foodCategoryName = _data["foodCategoryName"];
+            this.promoCode = _data["promoCode"];
+            this.promoName = _data["promoName"];
+            this.promoDescription = _data["promoDescription"];
+            this.promoPrice = _data["promoPrice"];
             this.isActive = _data["isActive"];
         }
     }
 
-    static fromJS(data: any): GetAllFoodByIdQueryDto {
+    static fromJS(data: any): GetAllPromoByIdQueryDto {
         data = typeof data === 'object' ? data : {};
-        let result = new GetAllFoodByIdQueryDto();
+        let result = new GetAllPromoByIdQueryDto();
         result.init(data);
         return result;
     }
@@ -5289,24 +5283,22 @@ export class GetAllFoodByIdQueryDto implements IGetAllFoodByIdQueryDto {
         data = typeof data === 'object' ? data : {};
         data["id"] = this.id;
         data["uniqueId"] = this.uniqueId;
-        data["foodName"] = this.foodName;
-        data["foodDescription"] = this.foodDescription;
-        data["foodPrice"] = this.foodPrice;
-        data["foodCategoryId"] = this.foodCategoryId;
-        data["foodCategoryName"] = this.foodCategoryName;
+        data["promoCode"] = this.promoCode;
+        data["promoName"] = this.promoName;
+        data["promoDescription"] = this.promoDescription;
+        data["promoPrice"] = this.promoPrice;
         data["isActive"] = this.isActive;
         return data;
     }
 }
 
-export interface IGetAllFoodByIdQueryDto {
+export interface IGetAllPromoByIdQueryDto {
     id?: number | undefined;
     uniqueId?: string | undefined;
-    foodName?: string | undefined;
-    foodDescription?: string | undefined;
-    foodPrice?: number | undefined;
-    foodCategoryId?: number | undefined;
-    foodCategoryName?: string | undefined;
+    promoCode?: string | undefined;
+    promoName?: string | undefined;
+    promoDescription?: string | undefined;
+    promoPrice?: number | undefined;
     isActive?: boolean | undefined;
 }
 
@@ -5889,6 +5881,7 @@ export class UsersDto implements IUsersDto {
     region?: string | undefined;
     zipCode?: string | undefined;
     contactNumber?: string | undefined;
+    birthDate?: Date | undefined;
 
     constructor(data?: IUsersDto) {
         if (data) {
@@ -5915,6 +5908,7 @@ export class UsersDto implements IUsersDto {
             this.region = _data["region"];
             this.zipCode = _data["zipCode"];
             this.contactNumber = _data["contactNumber"];
+            this.birthDate = _data["birthDate"] ? new Date(_data["birthDate"].toString()) : <any>undefined;
         }
     }
 
@@ -5941,6 +5935,7 @@ export class UsersDto implements IUsersDto {
         data["region"] = this.region;
         data["zipCode"] = this.zipCode;
         data["contactNumber"] = this.contactNumber;
+        data["birthDate"] = this.birthDate ? this.birthDate.toISOString() : <any>undefined;
         return data;
     }
 }
@@ -5960,6 +5955,7 @@ export interface IUsersDto {
     region?: string | undefined;
     zipCode?: string | undefined;
     contactNumber?: string | undefined;
+    birthDate?: Date | undefined;
 }
 
 export class ResultOfUserByIDDto implements IResultOfUserByIDDto {
@@ -6021,6 +6017,7 @@ export class UserByIDDto implements IUserByIDDto {
     region?: string | undefined;
     zipCode?: string | undefined;
     contactNumber?: string | undefined;
+    birthDate?: Date | undefined;
 
     constructor(data?: IUserByIDDto) {
         if (data) {
@@ -6047,6 +6044,7 @@ export class UserByIDDto implements IUserByIDDto {
             this.region = _data["region"];
             this.zipCode = _data["zipCode"];
             this.contactNumber = _data["contactNumber"];
+            this.birthDate = _data["birthDate"] ? new Date(_data["birthDate"].toString()) : <any>undefined;
         }
     }
 
@@ -6073,6 +6071,7 @@ export class UserByIDDto implements IUserByIDDto {
         data["region"] = this.region;
         data["zipCode"] = this.zipCode;
         data["contactNumber"] = this.contactNumber;
+        data["birthDate"] = this.birthDate ? this.birthDate.toISOString() : <any>undefined;
         return data;
     }
 }
@@ -6092,6 +6091,7 @@ export interface IUserByIDDto {
     region?: string | undefined;
     zipCode?: string | undefined;
     contactNumber?: string | undefined;
+    birthDate?: Date | undefined;
 }
 
 export class ResultOfCreateUserDto implements IResultOfCreateUserDto {
@@ -6152,6 +6152,7 @@ export class CreateUserDto implements ICreateUserDto {
     region?: string | undefined;
     zipCode?: string | undefined;
     contactNumber?: string | undefined;
+    birthDate?: Date | undefined;
 
     constructor(data?: ICreateUserDto) {
         if (data) {
@@ -6177,6 +6178,7 @@ export class CreateUserDto implements ICreateUserDto {
             this.region = _data["region"];
             this.zipCode = _data["zipCode"];
             this.contactNumber = _data["contactNumber"];
+            this.birthDate = _data["birthDate"] ? new Date(_data["birthDate"].toString()) : <any>undefined;
         }
     }
 
@@ -6202,6 +6204,7 @@ export class CreateUserDto implements ICreateUserDto {
         data["region"] = this.region;
         data["zipCode"] = this.zipCode;
         data["contactNumber"] = this.contactNumber;
+        data["birthDate"] = this.birthDate ? this.birthDate.toISOString() : <any>undefined;
         return data;
     }
 }
@@ -6220,6 +6223,7 @@ export interface ICreateUserDto {
     region?: string | undefined;
     zipCode?: string | undefined;
     contactNumber?: string | undefined;
+    birthDate?: Date | undefined;
 }
 
 export class CreateUserCommand implements ICreateUserCommand {
@@ -6235,6 +6239,7 @@ export class CreateUserCommand implements ICreateUserCommand {
     region?: string | undefined;
     zipCode?: string | undefined;
     contactNumber?: string | undefined;
+    birthDate?: Date | undefined;
 
     constructor(data?: ICreateUserCommand) {
         if (data) {
@@ -6259,6 +6264,7 @@ export class CreateUserCommand implements ICreateUserCommand {
             this.region = _data["region"];
             this.zipCode = _data["zipCode"];
             this.contactNumber = _data["contactNumber"];
+            this.birthDate = _data["birthDate"] ? new Date(_data["birthDate"].toString()) : <any>undefined;
         }
     }
 
@@ -6283,6 +6289,7 @@ export class CreateUserCommand implements ICreateUserCommand {
         data["region"] = this.region;
         data["zipCode"] = this.zipCode;
         data["contactNumber"] = this.contactNumber;
+        data["birthDate"] = this.birthDate ? this.birthDate.toISOString() : <any>undefined;
         return data;
     }
 }
@@ -6300,6 +6307,7 @@ export interface ICreateUserCommand {
     region?: string | undefined;
     zipCode?: string | undefined;
     contactNumber?: string | undefined;
+    birthDate?: Date | undefined;
 }
 
 export class ResultOfUpdateUserDto implements IResultOfUpdateUserDto {
@@ -6359,6 +6367,7 @@ export class UpdateUserDto implements IUpdateUserDto {
     region?: string | undefined;
     zipCode?: string | undefined;
     contactNumber?: string | undefined;
+    birthDate?: Date | undefined;
 
     constructor(data?: IUpdateUserDto) {
         if (data) {
@@ -6383,6 +6392,7 @@ export class UpdateUserDto implements IUpdateUserDto {
             this.region = _data["region"];
             this.zipCode = _data["zipCode"];
             this.contactNumber = _data["contactNumber"];
+            this.birthDate = _data["birthDate"] ? new Date(_data["birthDate"].toString()) : <any>undefined;
         }
     }
 
@@ -6407,6 +6417,7 @@ export class UpdateUserDto implements IUpdateUserDto {
         data["region"] = this.region;
         data["zipCode"] = this.zipCode;
         data["contactNumber"] = this.contactNumber;
+        data["birthDate"] = this.birthDate ? this.birthDate.toISOString() : <any>undefined;
         return data;
     }
 }
@@ -6424,6 +6435,7 @@ export interface IUpdateUserDto {
     region?: string | undefined;
     zipCode?: string | undefined;
     contactNumber?: string | undefined;
+    birthDate?: Date | undefined;
 }
 
 export class UpdateUserCommand implements IUpdateUserCommand {
@@ -6439,6 +6451,7 @@ export class UpdateUserCommand implements IUpdateUserCommand {
     region?: string | undefined;
     zipCode?: string | undefined;
     contactNumber?: string | undefined;
+    birthDate?: Date | undefined;
 
     constructor(data?: IUpdateUserCommand) {
         if (data) {
@@ -6463,6 +6476,7 @@ export class UpdateUserCommand implements IUpdateUserCommand {
             this.region = _data["region"];
             this.zipCode = _data["zipCode"];
             this.contactNumber = _data["contactNumber"];
+            this.birthDate = _data["birthDate"] ? new Date(_data["birthDate"].toString()) : <any>undefined;
         }
     }
 
@@ -6487,6 +6501,7 @@ export class UpdateUserCommand implements IUpdateUserCommand {
         data["region"] = this.region;
         data["zipCode"] = this.zipCode;
         data["contactNumber"] = this.contactNumber;
+        data["birthDate"] = this.birthDate ? this.birthDate.toISOString() : <any>undefined;
         return data;
     }
 }
@@ -6504,6 +6519,7 @@ export interface IUpdateUserCommand {
     region?: string | undefined;
     zipCode?: string | undefined;
     contactNumber?: string | undefined;
+    birthDate?: Date | undefined;
 }
 
 export class ResultOfUpdatePasswordDto implements IResultOfUpdatePasswordDto {

@@ -16,7 +16,7 @@ import { ManageBookingDetailComponent } from '../../Pages/AdminPortal/manage-boo
 import { ManageOrderDetailComponent } from '../../Pages/AdminPortal/manage-order-detail/manage-order-detail.component';
 import { ManagePaymentDetailComponent } from '../../Pages/AdminPortal/manage-payment-detail/manage-payment-detail.component';
 import { ManageFoodCategoryComponent } from '../../Pages/AdminPortal/manage-food-category/manage-food-category.component';
-// import { AirportDetailComponent } from '../../Pages/BookingPortal/airport-detail/airport-detail.component';
+import { ManageCustomerDetailComponent } from '../../Pages/AdminPortal/manage-customer-detail/manage-customer-detail.component';
 // import { AirportDetailComponent } from '../../Pages/BookingPortal/airport-detail/airport-detail.component';
 // import { AirportDetailComponent } from '../../Pages/BookingPortal/airport-detail/airport-detail.component';
 // import { AirportDetailComponent } from '../../Pages/BookingPortal/airport-detail/airport-detail.component';
@@ -79,7 +79,12 @@ const routes: Routes = [
   {
     path: 'admin/manage-food-category',
     component: ManageFoodCategoryComponent
+  },
+  {
+    path: 'admin/manage-customer/:key/detail',
+    component: ManageCustomerDetailComponent
   }
+
   // {
   //   path: 'portal/manage-airport/:key/detail',
   //   component: AirportDetailComponent
