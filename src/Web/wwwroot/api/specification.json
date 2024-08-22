@@ -1253,18 +1253,18 @@
         }
       }
     },
-    "/api/RestaurantBookings/CreateRestaurantBooking": {
+    "/api/RestaurantOrders/CreateRestaurantOrder": {
       "post": {
         "tags": [
-          "RestaurantBookings"
+          "RestaurantOrders"
         ],
-        "operationId": "CreateRestaurantBooking",
+        "operationId": "CreateRestaurantOrder",
         "requestBody": {
           "x-name": "command",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateRestaurantBookingCommand"
+                "$ref": "#/components/schemas/CreateRestaurantOrderCommand"
               }
             }
           },
@@ -1277,7 +1277,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ResultOfCreateRestaurantBookingCommandDto"
+                  "$ref": "#/components/schemas/ResultOfCreateRestaurantOrderCommandDto"
                 }
               }
             }
@@ -1285,18 +1285,18 @@
         }
       }
     },
-    "/api/RestaurantBookings/UpdateRestaurantBooking": {
+    "/api/RestaurantOrders/UpdateRestaurantOrder": {
       "put": {
         "tags": [
-          "RestaurantBookings"
+          "RestaurantOrders"
         ],
-        "operationId": "UpdateRestaurantBooking",
+        "operationId": "UpdateRestaurantOrder",
         "requestBody": {
           "x-name": "command",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateRestaurantBookingCommand"
+                "$ref": "#/components/schemas/UpdateRestaurantOrderCommand"
               }
             }
           },
@@ -1309,7 +1309,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ResultOfUpdateRestaurantBookingCommandDto"
+                  "$ref": "#/components/schemas/ResultOfUpdateRestaurantOrderCommandDto"
                 }
               }
             }
@@ -1317,12 +1317,12 @@
         }
       }
     },
-    "/api/RestaurantBookings/GetAllRestaurantBooking": {
+    "/api/RestaurantOrders/GetAllRestaurantOrder": {
       "get": {
         "tags": [
-          "RestaurantBookings"
+          "RestaurantOrders"
         ],
-        "operationId": "GetAllRestaurantBooking",
+        "operationId": "GetAllRestaurantOrder",
         "responses": {
           "200": {
             "description": "",
@@ -1331,7 +1331,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/GetAllRestaurantBookingQueryDto"
+                    "$ref": "#/components/schemas/GetAllRestaurantOrderQueryDto"
                   }
                 }
               }
@@ -1340,12 +1340,12 @@
         }
       }
     },
-    "/api/RestaurantBookings/GetAllRestaurantBookingById": {
+    "/api/RestaurantOrders/GetAllRestaurantOrderById": {
       "get": {
         "tags": [
-          "RestaurantBookings"
+          "RestaurantOrders"
         ],
-        "operationId": "GetAllRestaurantBookingById",
+        "operationId": "GetAllRestaurantOrderById",
         "parameters": [
           {
             "name": "UniqueId",
@@ -1363,7 +1363,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ResultOfGetAllRestaurantBookingByIdQueryDto"
+                  "$ref": "#/components/schemas/ResultOfGetAllRestaurantOrderByIdQueryDto"
                 }
               }
             }
@@ -3990,7 +3990,7 @@
           }
         }
       },
-      "ResultOfCreateRestaurantBookingCommandDto": {
+      "ResultOfCreateRestaurantOrderCommandDto": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
@@ -3998,7 +3998,7 @@
             "nullable": true,
             "oneOf": [
               {
-                "$ref": "#/components/schemas/CreateRestaurantBookingCommandDto"
+                "$ref": "#/components/schemas/CreateRestaurantOrderCommandDto"
               }
             ]
           },
@@ -4010,7 +4010,7 @@
           }
         }
       },
-      "CreateRestaurantBookingCommandDto": {
+      "CreateRestaurantOrderCommandDto": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
@@ -4024,89 +4024,69 @@
           }
         }
       },
-      "CreateRestaurantBookingCommand": {
+      "CreateRestaurantOrderCommand": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
-          "bookingReferrenceNumber": {
+          "orderReferrenceNumber": {
             "type": "string",
             "nullable": true
           },
-          "bookingFromDate": {
+          "orderSource": {
             "type": "string",
             "nullable": true
           },
-          "bookingToDate": {
-            "type": "string",
-            "nullable": true
-          },
-          "bookingSource": {
-            "type": "string",
-            "nullable": true
-          },
-          "bookingEstimatedArrivalTime": {
-            "type": "string",
-            "nullable": true
-          },
-          "bookingEstimatedDepartureTime": {
-            "type": "string",
-            "nullable": true
-          },
-          "bookingStatusID": {
+          "orderStatusID": {
             "type": "integer",
             "format": "int32",
             "nullable": true
           },
-          "bookingPaymentStatusID": {
+          "orderPaymentStatusID": {
             "type": "integer",
             "format": "int32",
             "nullable": true
           },
-          "bookingChargesAmount": {
+          "orderChargesAmount": {
             "type": "number",
             "format": "float",
             "nullable": true
           },
-          "bookingExtrasAmount": {
+          "orderExtrasAmount": {
             "type": "number",
             "format": "float",
             "nullable": true
           },
-          "bookingPromoAmount": {
+          "orderPromoAmount": {
             "type": "number",
             "format": "float",
             "nullable": true
           },
-          "bookingTaxAmount": {
+          "orderTaxAmount": {
             "type": "number",
             "format": "float",
             "nullable": true
           },
-          "bookingPaymentSurchargeAmount": {
+          "orderPaymentSurchargeAmount": {
             "type": "number",
             "format": "float",
             "nullable": true
           },
-          "bookingTotalAmount": {
+          "orderTotalAmount": {
             "type": "number",
             "format": "float",
             "nullable": true
           },
-          "bookingPaidAmount": {
+          "orderPaidAmount": {
             "type": "number",
             "format": "float",
             "nullable": true
           },
-          "bookingOutstandingBalanceAmount": {
+          "orderOutstandingBalanceAmount": {
             "type": "number",
             "format": "float",
             "nullable": true
           },
-          "bookingNotes": {
-            "type": "string",
-            "nullable": true
-          },
-          "paymentMethod": {
+          "orderNotes": {
             "type": "string",
             "nullable": true
           },
@@ -4117,11 +4097,6 @@
           },
           "guestID": {
             "type": "string",
-            "nullable": true
-          },
-          "orderID": {
-            "type": "integer",
-            "format": "int32",
             "nullable": true
           },
           "guestName": {
@@ -4138,7 +4113,7 @@
           }
         }
       },
-      "ResultOfUpdateRestaurantBookingCommandDto": {
+      "ResultOfUpdateRestaurantOrderCommandDto": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
@@ -4146,7 +4121,7 @@
             "nullable": true,
             "oneOf": [
               {
-                "$ref": "#/components/schemas/UpdateRestaurantBookingCommandDto"
+                "$ref": "#/components/schemas/UpdateRestaurantOrderCommandDto"
               }
             ]
           },
@@ -4158,7 +4133,7 @@
           }
         }
       },
-      "UpdateRestaurantBookingCommandDto": {
+      "UpdateRestaurantOrderCommandDto": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
@@ -4172,7 +4147,7 @@
           }
         }
       },
-      "UpdateRestaurantBookingCommand": {
+      "UpdateRestaurantOrderCommand": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
@@ -4180,85 +4155,65 @@
             "type": "string",
             "nullable": true
           },
-          "bookingReferrenceNumber": {
+          "orderReferrenceNumber": {
             "type": "string",
             "nullable": true
           },
-          "bookingFromDate": {
+          "orderSource": {
             "type": "string",
             "nullable": true
           },
-          "bookingToDate": {
-            "type": "string",
-            "nullable": true
-          },
-          "bookingSource": {
-            "type": "string",
-            "nullable": true
-          },
-          "bookingEstimatedArrivalTime": {
-            "type": "string",
-            "nullable": true
-          },
-          "bookingEstimatedDepartureTime": {
-            "type": "string",
-            "nullable": true
-          },
-          "bookingStatusID": {
+          "orderStatusID": {
             "type": "integer",
             "format": "int32",
             "nullable": true
           },
-          "bookingPaymentStatusID": {
+          "orderPaymentStatusID": {
             "type": "integer",
             "format": "int32",
             "nullable": true
           },
-          "bookingChargesAmount": {
+          "orderChargesAmount": {
             "type": "number",
             "format": "float",
             "nullable": true
           },
-          "bookingExtrasAmount": {
+          "orderExtrasAmount": {
             "type": "number",
             "format": "float",
             "nullable": true
           },
-          "bookingPromoAmount": {
+          "orderPromoAmount": {
             "type": "number",
             "format": "float",
             "nullable": true
           },
-          "bookingTaxAmount": {
+          "orderTaxAmount": {
             "type": "number",
             "format": "float",
             "nullable": true
           },
-          "bookingPaymentSurchargeAmount": {
+          "orderPaymentSurchargeAmount": {
             "type": "number",
             "format": "float",
             "nullable": true
           },
-          "bookingTotalAmount": {
+          "orderTotalAmount": {
             "type": "number",
             "format": "float",
             "nullable": true
           },
-          "bookingPaidAmount": {
+          "orderPaidAmount": {
             "type": "number",
             "format": "float",
             "nullable": true
           },
-          "bookingOutstandingBalanceAmount": {
+          "orderOutstandingBalanceAmount": {
             "type": "number",
             "format": "float",
             "nullable": true
           },
-          "bookingNotes": {
-            "type": "string",
-            "nullable": true
-          },
-          "paymentMethod": {
+          "orderNotes": {
             "type": "string",
             "nullable": true
           },
@@ -4271,15 +4226,6 @@
             "type": "string",
             "nullable": true
           },
-          "orderID": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "isActive": {
-            "type": "boolean",
-            "nullable": true
-          },
           "guestName": {
             "type": "string",
             "nullable": true
@@ -4287,10 +4233,14 @@
           "restaurantName": {
             "type": "string",
             "nullable": true
+          },
+          "isActive": {
+            "type": "boolean",
+            "nullable": true
           }
         }
       },
-      "GetAllRestaurantBookingQueryDto": {
+      "GetAllRestaurantOrderQueryDto": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
@@ -4303,85 +4253,65 @@
             "type": "string",
             "nullable": true
           },
-          "bookingReferrenceNumber": {
+          "orderReferrenceNumber": {
             "type": "string",
             "nullable": true
           },
-          "bookingFromDate": {
+          "orderSource": {
             "type": "string",
             "nullable": true
           },
-          "bookingToDate": {
-            "type": "string",
-            "nullable": true
-          },
-          "bookingSource": {
-            "type": "string",
-            "nullable": true
-          },
-          "bookingEstimatedArrivalTime": {
-            "type": "string",
-            "nullable": true
-          },
-          "bookingEstimatedDepartureTime": {
-            "type": "string",
-            "nullable": true
-          },
-          "bookingStatusID": {
+          "orderStatusID": {
             "type": "integer",
             "format": "int32",
             "nullable": true
           },
-          "bookingPaymentStatusID": {
+          "orderPaymentStatusID": {
             "type": "integer",
             "format": "int32",
             "nullable": true
           },
-          "bookingChargesAmount": {
+          "orderChargesAmount": {
             "type": "number",
             "format": "float",
             "nullable": true
           },
-          "bookingExtrasAmount": {
+          "orderExtrasAmount": {
             "type": "number",
             "format": "float",
             "nullable": true
           },
-          "bookingPromoAmount": {
+          "orderPromoAmount": {
             "type": "number",
             "format": "float",
             "nullable": true
           },
-          "bookingTaxAmount": {
+          "orderTaxAmount": {
             "type": "number",
             "format": "float",
             "nullable": true
           },
-          "bookingPaymentSurchargeAmount": {
+          "orderPaymentSurchargeAmount": {
             "type": "number",
             "format": "float",
             "nullable": true
           },
-          "bookingTotalAmount": {
+          "orderTotalAmount": {
             "type": "number",
             "format": "float",
             "nullable": true
           },
-          "bookingPaidAmount": {
+          "orderPaidAmount": {
             "type": "number",
             "format": "float",
             "nullable": true
           },
-          "bookingOutstandingBalanceAmount": {
+          "orderOutstandingBalanceAmount": {
             "type": "number",
             "format": "float",
             "nullable": true
           },
-          "bookingNotes": {
-            "type": "string",
-            "nullable": true
-          },
-          "paymentMethod": {
+          "orderNotes": {
             "type": "string",
             "nullable": true
           },
@@ -4392,11 +4322,6 @@
           },
           "guestID": {
             "type": "string",
-            "nullable": true
-          },
-          "orderID": {
-            "type": "integer",
-            "format": "int32",
             "nullable": true
           },
           "guestName": {
@@ -4413,7 +4338,7 @@
           }
         }
       },
-      "ResultOfGetAllRestaurantBookingByIdQueryDto": {
+      "ResultOfGetAllRestaurantOrderByIdQueryDto": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
@@ -4421,7 +4346,7 @@
             "nullable": true,
             "oneOf": [
               {
-                "$ref": "#/components/schemas/GetAllRestaurantBookingByIdQueryDto"
+                "$ref": "#/components/schemas/GetAllRestaurantOrderByIdQueryDto"
               }
             ]
           },
@@ -4433,7 +4358,7 @@
           }
         }
       },
-      "GetAllRestaurantBookingByIdQueryDto": {
+      "GetAllRestaurantOrderByIdQueryDto": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
@@ -4446,85 +4371,65 @@
             "type": "string",
             "nullable": true
           },
-          "bookingReferrenceNumber": {
+          "orderReferrenceNumber": {
             "type": "string",
             "nullable": true
           },
-          "bookingFromDate": {
+          "orderSource": {
             "type": "string",
             "nullable": true
           },
-          "bookingToDate": {
-            "type": "string",
-            "nullable": true
-          },
-          "bookingSource": {
-            "type": "string",
-            "nullable": true
-          },
-          "bookingEstimatedArrivalTime": {
-            "type": "string",
-            "nullable": true
-          },
-          "bookingEstimatedDepartureTime": {
-            "type": "string",
-            "nullable": true
-          },
-          "bookingStatusID": {
+          "orderStatusID": {
             "type": "integer",
             "format": "int32",
             "nullable": true
           },
-          "bookingPaymentStatusID": {
+          "orderPaymentStatusID": {
             "type": "integer",
             "format": "int32",
             "nullable": true
           },
-          "bookingChargesAmount": {
+          "orderChargesAmount": {
             "type": "number",
             "format": "float",
             "nullable": true
           },
-          "bookingExtrasAmount": {
+          "orderExtrasAmount": {
             "type": "number",
             "format": "float",
             "nullable": true
           },
-          "bookingPromoAmount": {
+          "orderPromoAmount": {
             "type": "number",
             "format": "float",
             "nullable": true
           },
-          "bookingTaxAmount": {
+          "orderTaxAmount": {
             "type": "number",
             "format": "float",
             "nullable": true
           },
-          "bookingPaymentSurchargeAmount": {
+          "orderPaymentSurchargeAmount": {
             "type": "number",
             "format": "float",
             "nullable": true
           },
-          "bookingTotalAmount": {
+          "orderTotalAmount": {
             "type": "number",
             "format": "float",
             "nullable": true
           },
-          "bookingPaidAmount": {
+          "orderPaidAmount": {
             "type": "number",
             "format": "float",
             "nullable": true
           },
-          "bookingOutstandingBalanceAmount": {
+          "orderOutstandingBalanceAmount": {
             "type": "number",
             "format": "float",
             "nullable": true
           },
-          "bookingNotes": {
-            "type": "string",
-            "nullable": true
-          },
-          "paymentMethod": {
+          "orderNotes": {
             "type": "string",
             "nullable": true
           },
@@ -4535,11 +4440,6 @@
           },
           "guestID": {
             "type": "string",
-            "nullable": true
-          },
-          "orderID": {
-            "type": "integer",
-            "format": "int32",
             "nullable": true
           },
           "guestName": {
