@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public class GetAllFoodByIdQueryValidator : AbstractValidator<GetAllFoodCategoryByIdQuery>
+namespace UMS.GROUP.Airport.Booking.Application.Food.Queries.GetAllFoodById;
+
+public class GetAllFoodsByGenIDQueryValidator : AbstractValidator<GetAllFoodByIdQuery>
 {
-    public GetAllFoodByIdQueryValidator()
+    public GetAllFoodsByGenIDQueryValidator()
     {
         RuleFor(x => x.UniqueId)
             .NotEmpty().WithMessage("UniqueId is required.");

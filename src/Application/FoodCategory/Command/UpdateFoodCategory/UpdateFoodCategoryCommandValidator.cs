@@ -5,6 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace UMS.GROUP.Airport.Booking.Application.FoodCategory.Command.UpdateFoodCategory;
-internal class UpdateFoodCategoryCommandValidator
+
+public class UpdateFoodCategoryCommandValidator : AbstractValidator<UpdateFoodCategoryCommand>
 {
+    public UpdateFoodCategoryCommandValidator()
+    {
+        RuleFor(v => v.CategoryName)
+            .NotEmpty()
+            .WithMessage("CategoryName is required.");
+    }
 }
