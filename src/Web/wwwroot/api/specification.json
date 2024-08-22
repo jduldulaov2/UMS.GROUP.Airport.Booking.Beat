@@ -595,6 +595,124 @@
         }
       }
     },
+    "/api/CustomRoles/CreateCustomRole": {
+      "post": {
+        "tags": [
+          "CustomRoles"
+        ],
+        "operationId": "CreateCustomRole",
+        "requestBody": {
+          "x-name": "command",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateCustomRoleCommand"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultOfCreateCustomRoleCommandDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/CustomRoles/UpdateCustomRole": {
+      "put": {
+        "tags": [
+          "CustomRoles"
+        ],
+        "operationId": "UpdateCustomRole",
+        "requestBody": {
+          "x-name": "command",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateCustomRoleCommand"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultOfUpdateCustomRoleCommandDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/CustomRoles/GetAllCustomRole": {
+      "get": {
+        "tags": [
+          "CustomRoles"
+        ],
+        "operationId": "GetAllCustomRole",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetAllCustomRoleQueryDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/CustomRoles/GetAllCustomRoleById": {
+      "get": {
+        "tags": [
+          "CustomRoles"
+        ],
+        "operationId": "GetAllCustomRoleById",
+        "parameters": [
+          {
+            "name": "UniqueId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultOfGetAllCustomRoleByIdQueryDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/Flights/GetAllFlights": {
       "get": {
         "tags": [
@@ -747,18 +865,18 @@
         }
       }
     },
-    "/api/Promos/CreatePromo": {
+    "/api/Foods/CreateFood": {
       "post": {
         "tags": [
-          "Promos"
+          "Foods"
         ],
-        "operationId": "CreatePromo",
+        "operationId": "CreateFood",
         "requestBody": {
           "x-name": "command",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreatePromoCommand"
+                "$ref": "#/components/schemas/CreateFoodCommand"
               }
             }
           },
@@ -771,7 +889,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ResultOfCreatePromoCommandDto"
+                  "$ref": "#/components/schemas/ResultOfCreateFoodCommandDto"
                 }
               }
             }
@@ -779,18 +897,18 @@
         }
       }
     },
-    "/api/Promos/UpdatePromo": {
+    "/api/Foods/UpdateFood": {
       "put": {
         "tags": [
-          "Promos"
+          "Foods"
         ],
-        "operationId": "UpdatePromo",
+        "operationId": "UpdateFood",
         "requestBody": {
           "x-name": "command",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdatePromoCommand"
+                "$ref": "#/components/schemas/UpdateFoodCommand"
               }
             }
           },
@@ -803,7 +921,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ResultOfUpdatePromoCommandDto"
+                  "$ref": "#/components/schemas/ResultOfUpdateFoodCommandDto"
                 }
               }
             }
@@ -811,12 +929,12 @@
         }
       }
     },
-    "/api/Promos/GetAllPromo": {
+    "/api/Foods/GetAllFood": {
       "get": {
         "tags": [
-          "Promos"
+          "Foods"
         ],
-        "operationId": "GetAllPromo",
+        "operationId": "GetAllFood",
         "responses": {
           "200": {
             "description": "",
@@ -825,7 +943,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/GetAllPromoQueryDto"
+                    "$ref": "#/components/schemas/GetAllFoodQueryDto"
                   }
                 }
               }
@@ -834,12 +952,12 @@
         }
       }
     },
-    "/api/Promos/GetAllPromoById": {
+    "/api/Foods/GetAllFoodById": {
       "get": {
         "tags": [
-          "Promos"
+          "Foods"
         ],
-        "operationId": "GetAllPromoById",
+        "operationId": "GetAllFoodById",
         "parameters": [
           {
             "name": "UniqueId",
@@ -857,7 +975,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ResultOfGetAllPromoByIdQueryDto"
+                  "$ref": "#/components/schemas/ResultOfGetAllFoodByIdQueryDto"
                 }
               }
             }
@@ -1010,6 +1128,124 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ResultOfUpdateAirlineCommandDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Promo/CreatePromo": {
+      "post": {
+        "tags": [
+          "Promo"
+        ],
+        "operationId": "CreatePromo",
+        "requestBody": {
+          "x-name": "command",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreatePromoCommand"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultOfCreatePromoCommandDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Promo/UpdatePromo": {
+      "put": {
+        "tags": [
+          "Promo"
+        ],
+        "operationId": "UpdatePromo",
+        "requestBody": {
+          "x-name": "command",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePromoCommand"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultOfUpdatePromoCommandDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Promo/GetAllPromo": {
+      "get": {
+        "tags": [
+          "Promo"
+        ],
+        "operationId": "GetAllPromo",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetAllPromoQueryDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Promo/GetAllPromoById": {
+      "get": {
+        "tags": [
+          "Promo"
+        ],
+        "operationId": "GetAllPromoById",
+        "parameters": [
+          {
+            "name": "UniqueId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultOfGetAllPromoByIdQueryDto"
                 }
               }
             }
@@ -2412,6 +2648,188 @@
           }
         }
       },
+      "ResultOfCreateCustomRoleCommandDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/CreateCustomRoleCommandDto"
+              }
+            ]
+          },
+          "message": {
+            "type": "string"
+          },
+          "resultType": {
+            "$ref": "#/components/schemas/ResultType"
+          }
+        }
+      },
+      "CreateCustomRoleCommandDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdDate": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "CreateCustomRoleCommand": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "roleName": {
+            "type": "string",
+            "nullable": true
+          },
+          "roleDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean",
+            "nullable": true
+          }
+        }
+      },
+      "ResultOfUpdateCustomRoleCommandDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/UpdateCustomRoleCommandDto"
+              }
+            ]
+          },
+          "message": {
+            "type": "string"
+          },
+          "resultType": {
+            "$ref": "#/components/schemas/ResultType"
+          }
+        }
+      },
+      "UpdateCustomRoleCommandDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "updatedDate": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "UpdateCustomRoleCommand": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "uniqueId": {
+            "type": "string",
+            "nullable": true
+          },
+          "roleName": {
+            "type": "string",
+            "nullable": true
+          },
+          "roleDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean",
+            "nullable": true
+          }
+        }
+      },
+      "GetAllCustomRoleQueryDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "uniqueId": {
+            "type": "string",
+            "nullable": true
+          },
+          "roleName": {
+            "type": "string",
+            "nullable": true
+          },
+          "roleDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean",
+            "nullable": true
+          }
+        }
+      },
+      "ResultOfGetAllCustomRoleByIdQueryDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/GetAllCustomRoleByIdQueryDto"
+              }
+            ]
+          },
+          "message": {
+            "type": "string"
+          },
+          "resultType": {
+            "$ref": "#/components/schemas/ResultType"
+          }
+        }
+      },
+      "GetAllCustomRoleByIdQueryDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "uniqueId": {
+            "type": "string",
+            "nullable": true
+          },
+          "roleName": {
+            "type": "string",
+            "nullable": true
+          },
+          "roleDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean",
+            "nullable": true
+          }
+        }
+      },
       "GetAllFlightQueryDto": {
         "type": "object",
         "additionalProperties": false,
@@ -2663,7 +3081,7 @@
           }
         }
       },
-      "ResultOfCreatePromoCommandDto": {
+      "ResultOfCreateFoodCommandDto": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
@@ -2671,7 +3089,7 @@
             "nullable": true,
             "oneOf": [
               {
-                "$ref": "#/components/schemas/CreatePromoCommandDto"
+                "$ref": "#/components/schemas/CreateFoodCommandDto"
               }
             ]
           },
@@ -2683,7 +3101,7 @@
           }
         }
       },
-      "CreatePromoCommandDto": {
+      "CreateFoodCommandDto": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
@@ -2697,25 +3115,26 @@
           }
         }
       },
-      "CreatePromoCommand": {
+      "CreateFoodCommand": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
-          "promoCode": {
+          "foodName": {
             "type": "string",
             "nullable": true
           },
-          "promoName": {
+          "foodDescription": {
             "type": "string",
             "nullable": true
           },
-          "promoDescription": {
-            "type": "string",
-            "nullable": true
-          },
-          "promoPrice": {
+          "foodPrice": {
             "type": "number",
             "format": "float",
+            "nullable": true
+          },
+          "foodCategoryId": {
+            "type": "integer",
+            "format": "int32",
             "nullable": true
           },
           "isActive": {
@@ -2724,7 +3143,7 @@
           }
         }
       },
-      "ResultOfUpdatePromoCommandDto": {
+      "ResultOfUpdateFoodCommandDto": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
@@ -2732,7 +3151,7 @@
             "nullable": true,
             "oneOf": [
               {
-                "$ref": "#/components/schemas/UpdatePromoCommandDto"
+                "$ref": "#/components/schemas/UpdateFoodCommandDto"
               }
             ]
           },
@@ -2744,7 +3163,7 @@
           }
         }
       },
-      "UpdatePromoCommandDto": {
+      "UpdateFoodCommandDto": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
@@ -2758,7 +3177,7 @@
           }
         }
       },
-      "UpdatePromoCommand": {
+      "UpdateFoodCommand": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
@@ -2766,21 +3185,22 @@
             "type": "string",
             "nullable": true
           },
-          "promoCode": {
+          "foodName": {
             "type": "string",
             "nullable": true
           },
-          "promoName": {
+          "foodDescription": {
             "type": "string",
             "nullable": true
           },
-          "promoDescription": {
-            "type": "string",
-            "nullable": true
-          },
-          "promoPrice": {
+          "foodPrice": {
             "type": "number",
             "format": "float",
+            "nullable": true
+          },
+          "foodCategoryId": {
+            "type": "integer",
+            "format": "int32",
             "nullable": true
           },
           "isActive": {
@@ -2789,7 +3209,7 @@
           }
         }
       },
-      "GetAllPromoQueryDto": {
+      "GetAllFoodQueryDto": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
@@ -2802,21 +3222,26 @@
             "type": "string",
             "nullable": true
           },
-          "promoCode": {
+          "foodName": {
             "type": "string",
             "nullable": true
           },
-          "promoName": {
+          "foodDescription": {
             "type": "string",
             "nullable": true
           },
-          "promoDescription": {
-            "type": "string",
-            "nullable": true
-          },
-          "promoPrice": {
+          "foodPrice": {
             "type": "number",
             "format": "float",
+            "nullable": true
+          },
+          "foodCategoryId": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "foodCategoryName": {
+            "type": "string",
             "nullable": true
           },
           "isActive": {
@@ -2825,7 +3250,7 @@
           }
         }
       },
-      "ResultOfGetAllPromoByIdQueryDto": {
+      "ResultOfGetAllFoodByIdQueryDto": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
@@ -2833,7 +3258,7 @@
             "nullable": true,
             "oneOf": [
               {
-                "$ref": "#/components/schemas/GetAllPromoByIdQueryDto"
+                "$ref": "#/components/schemas/GetAllFoodByIdQueryDto"
               }
             ]
           },
@@ -2845,7 +3270,7 @@
           }
         }
       },
-      "GetAllPromoByIdQueryDto": {
+      "GetAllFoodByIdQueryDto": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
@@ -2858,21 +3283,26 @@
             "type": "string",
             "nullable": true
           },
-          "promoCode": {
+          "foodName": {
             "type": "string",
             "nullable": true
           },
-          "promoName": {
+          "foodDescription": {
             "type": "string",
             "nullable": true
           },
-          "promoDescription": {
-            "type": "string",
-            "nullable": true
-          },
-          "promoPrice": {
+          "foodPrice": {
             "type": "number",
             "format": "float",
+            "nullable": true
+          },
+          "foodCategoryId": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "foodCategoryName": {
+            "type": "string",
             "nullable": true
           },
           "isActive": {
@@ -3106,6 +3536,224 @@
           }
         }
       },
+      "ResultOfCreatePromoCommandDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/CreatePromoCommandDto"
+              }
+            ]
+          },
+          "message": {
+            "type": "string"
+          },
+          "resultType": {
+            "$ref": "#/components/schemas/ResultType"
+          }
+        }
+      },
+      "CreatePromoCommandDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdDate": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "CreatePromoCommand": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "promoCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "promoName": {
+            "type": "string",
+            "nullable": true
+          },
+          "promoDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "promoPrice": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean",
+            "nullable": true
+          }
+        }
+      },
+      "ResultOfUpdatePromoCommandDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/UpdatePromoCommandDto"
+              }
+            ]
+          },
+          "message": {
+            "type": "string"
+          },
+          "resultType": {
+            "$ref": "#/components/schemas/ResultType"
+          }
+        }
+      },
+      "UpdatePromoCommandDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "updatedDate": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "UpdatePromoCommand": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "uniqueId": {
+            "type": "string",
+            "nullable": true
+          },
+          "promoCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "promoName": {
+            "type": "string",
+            "nullable": true
+          },
+          "promoDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "promoPrice": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean",
+            "nullable": true
+          }
+        }
+      },
+      "GetAllPromoQueryDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "uniqueId": {
+            "type": "string",
+            "nullable": true
+          },
+          "promoCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "promoName": {
+            "type": "string",
+            "nullable": true
+          },
+          "promoDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "promoPrice": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean",
+            "nullable": true
+          }
+        }
+      },
+      "ResultOfGetAllPromoByIdQueryDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/GetAllPromoByIdQueryDto"
+              }
+            ]
+          },
+          "message": {
+            "type": "string"
+          },
+          "resultType": {
+            "$ref": "#/components/schemas/ResultType"
+          }
+        }
+      },
+      "GetAllPromoByIdQueryDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "uniqueId": {
+            "type": "string",
+            "nullable": true
+          },
+          "promoCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "promoName": {
+            "type": "string",
+            "nullable": true
+          },
+          "promoDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "promoPrice": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean",
+            "nullable": true
+          }
+        }
+      },
       "ResultOfUsersListDto": {
         "type": "object",
         "additionalProperties": false,
@@ -3201,7 +3849,6 @@
           },
           "birthDate": {
             "type": "string",
-            "format": "date-time",
             "nullable": true
           }
         }
@@ -3288,7 +3935,6 @@
           },
           "birthDate": {
             "type": "string",
-            "format": "date-time",
             "nullable": true
           }
         }
@@ -3371,7 +4017,6 @@
           },
           "birthDate": {
             "type": "string",
-            "format": "date-time",
             "nullable": true
           }
         }
@@ -3430,7 +4075,6 @@
           },
           "birthDate": {
             "type": "string",
-            "format": "date-time",
             "nullable": true
           }
         }
@@ -3509,7 +4153,6 @@
           },
           "birthDate": {
             "type": "string",
-            "format": "date-time",
             "nullable": true
           }
         }
@@ -3568,7 +4211,6 @@
           },
           "birthDate": {
             "type": "string",
-            "format": "date-time",
             "nullable": true
           }
         }

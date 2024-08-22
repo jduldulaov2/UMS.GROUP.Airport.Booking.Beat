@@ -297,7 +297,7 @@ public class IdentityService : IIdentityService
         };
     }
 
-    public async Task<Result<CreateUserDto>> CreateIdentityUserAsync(string? userName, string? password, string? lastName, string? firstName, string? middleName, string? emailAddress, string? street, string? city, string? province, string? region, string? zipCode, string? contactNumber, DateTime? birthDate)
+    public async Task<Result<CreateUserDto>> CreateIdentityUserAsync(string? userName, string? password, string? lastName, string? firstName, string? middleName, string? emailAddress, string? street, string? city, string? province, string? region, string? zipCode, string? contactNumber, string? birthDate)
     {
         var isUsernameExist = await _userManager.FindByNameAsync(userName ?? "");
 
@@ -361,7 +361,7 @@ public class IdentityService : IIdentityService
 
     }
 
-    public async Task<Result<UpdateUserDto>> UpdateIdentityUserAsync(string? id, string? userName, string? lastName, string? firstName, string? middleName, string? emailAddress, string? street, string? city, string? province, string? region, string? zipCode, string? contactNumber, DateTime? birthDate)
+    public async Task<Result<UpdateUserDto>> UpdateIdentityUserAsync(string? id, string? userName, string? lastName, string? firstName, string? middleName, string? emailAddress, string? street, string? city, string? province, string? region, string? zipCode, string? contactNumber, string? birthDate)
     {
         var user = await _userManager.FindByIdAsync(id ?? "");
 

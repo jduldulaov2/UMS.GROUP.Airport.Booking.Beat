@@ -36,6 +36,6 @@ public class UserByIDDto
 
     public string? ContactNumber { get; set; }
 
-    public DateTime? BirthDate { get; set; }
+    public string? BirthDate { get; set; }
 
 }

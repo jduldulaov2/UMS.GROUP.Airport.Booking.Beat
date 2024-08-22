@@ -1130,6 +1130,236 @@ export class CountryClient implements ICountryClient {
     }
 }
 
+export interface ICustomRolesClient {
+    createCustomRole(command: CreateCustomRoleCommand): Observable<ResultOfCreateCustomRoleCommandDto>;
+    updateCustomRole(command: UpdateCustomRoleCommand): Observable<ResultOfUpdateCustomRoleCommandDto>;
+    getAllCustomRole(): Observable<GetAllCustomRoleQueryDto[]>;
+    getAllCustomRoleById(uniqueId: string | null | undefined): Observable<ResultOfGetAllCustomRoleByIdQueryDto>;
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class CustomRolesClient implements ICustomRolesClient {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ?? "";
+    }
+
+    createCustomRole(command: CreateCustomRoleCommand): Observable<ResultOfCreateCustomRoleCommandDto> {
+        let url_ = this.baseUrl + "/api/CustomRoles/CreateCustomRole";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(command);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processCreateCustomRole(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processCreateCustomRole(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<ResultOfCreateCustomRoleCommandDto>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<ResultOfCreateCustomRoleCommandDto>;
+        }));
+    }
+
+    protected processCreateCustomRole(response: HttpResponseBase): Observable<ResultOfCreateCustomRoleCommandDto> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ResultOfCreateCustomRoleCommandDto.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    updateCustomRole(command: UpdateCustomRoleCommand): Observable<ResultOfUpdateCustomRoleCommandDto> {
+        let url_ = this.baseUrl + "/api/CustomRoles/UpdateCustomRole";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(command);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processUpdateCustomRole(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processUpdateCustomRole(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<ResultOfUpdateCustomRoleCommandDto>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<ResultOfUpdateCustomRoleCommandDto>;
+        }));
+    }
+
+    protected processUpdateCustomRole(response: HttpResponseBase): Observable<ResultOfUpdateCustomRoleCommandDto> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ResultOfUpdateCustomRoleCommandDto.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    getAllCustomRole(): Observable<GetAllCustomRoleQueryDto[]> {
+        let url_ = this.baseUrl + "/api/CustomRoles/GetAllCustomRole";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetAllCustomRole(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetAllCustomRole(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<GetAllCustomRoleQueryDto[]>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<GetAllCustomRoleQueryDto[]>;
+        }));
+    }
+
+    protected processGetAllCustomRole(response: HttpResponseBase): Observable<GetAllCustomRoleQueryDto[]> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200!.push(GetAllCustomRoleQueryDto.fromJS(item));
+            }
+            else {
+                result200 = <any>null;
+            }
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    getAllCustomRoleById(uniqueId: string | null | undefined): Observable<ResultOfGetAllCustomRoleByIdQueryDto> {
+        let url_ = this.baseUrl + "/api/CustomRoles/GetAllCustomRoleById?";
+        if (uniqueId !== undefined && uniqueId !== null)
+            url_ += "UniqueId=" + encodeURIComponent("" + uniqueId) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetAllCustomRoleById(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetAllCustomRoleById(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<ResultOfGetAllCustomRoleByIdQueryDto>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<ResultOfGetAllCustomRoleByIdQueryDto>;
+        }));
+    }
+
+    protected processGetAllCustomRoleById(response: HttpResponseBase): Observable<ResultOfGetAllCustomRoleByIdQueryDto> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ResultOfGetAllCustomRoleByIdQueryDto.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+}
+
 export interface IFlightsClient {
     getAllFlights(): Observable<GetAllFlightQueryDto[]>;
     getFlightById(uniqueId: string | null | undefined): Observable<ResultOfGetFlightByIdQueryDto>;
@@ -1418,17 +1648,17 @@ export class FlightsClient implements IFlightsClient {
     }
 }
 
-export interface IPromosClient {
-    createPromo(command: CreatePromoCommand): Observable<ResultOfCreatePromoCommandDto>;
-    updatePromo(command: UpdatePromoCommand): Observable<ResultOfUpdatePromoCommandDto>;
-    getAllPromo(): Observable<GetAllPromoQueryDto[]>;
-    getAllPromoById(uniqueId: string | null | undefined): Observable<ResultOfGetAllPromoByIdQueryDto>;
+export interface IFoodsClient {
+    createFood(command: CreateFoodCommand): Observable<ResultOfCreateFoodCommandDto>;
+    updateFood(command: UpdateFoodCommand): Observable<ResultOfUpdateFoodCommandDto>;
+    getAllFood(): Observable<GetAllFoodQueryDto[]>;
+    getAllFoodById(uniqueId: string | null | undefined): Observable<ResultOfGetAllFoodByIdQueryDto>;
 }
 
 @Injectable({
     providedIn: 'root'
 })
-export class PromosClient implements IPromosClient {
+export class FoodsClient implements IFoodsClient {
     private http: HttpClient;
     private baseUrl: string;
     protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
@@ -1438,8 +1668,8 @@ export class PromosClient implements IPromosClient {
         this.baseUrl = baseUrl ?? "";
     }
 
-    createPromo(command: CreatePromoCommand): Observable<ResultOfCreatePromoCommandDto> {
-        let url_ = this.baseUrl + "/api/Promos/CreatePromo";
+    createFood(command: CreateFoodCommand): Observable<ResultOfCreateFoodCommandDto> {
+        let url_ = this.baseUrl + "/api/Foods/CreateFood";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(command);
@@ -1455,20 +1685,20 @@ export class PromosClient implements IPromosClient {
         };
 
         return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processCreatePromo(response_);
+            return this.processCreateFood(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processCreatePromo(response_ as any);
+                    return this.processCreateFood(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<ResultOfCreatePromoCommandDto>;
+                    return _observableThrow(e) as any as Observable<ResultOfCreateFoodCommandDto>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<ResultOfCreatePromoCommandDto>;
+                return _observableThrow(response_) as any as Observable<ResultOfCreateFoodCommandDto>;
         }));
     }
 
-    protected processCreatePromo(response: HttpResponseBase): Observable<ResultOfCreatePromoCommandDto> {
+    protected processCreateFood(response: HttpResponseBase): Observable<ResultOfCreateFoodCommandDto> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -1479,7 +1709,7 @@ export class PromosClient implements IPromosClient {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            result200 = ResultOfCreatePromoCommandDto.fromJS(resultData200);
+            result200 = ResultOfCreateFoodCommandDto.fromJS(resultData200);
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -1490,8 +1720,8 @@ export class PromosClient implements IPromosClient {
         return _observableOf(null as any);
     }
 
-    updatePromo(command: UpdatePromoCommand): Observable<ResultOfUpdatePromoCommandDto> {
-        let url_ = this.baseUrl + "/api/Promos/UpdatePromo";
+    updateFood(command: UpdateFoodCommand): Observable<ResultOfUpdateFoodCommandDto> {
+        let url_ = this.baseUrl + "/api/Foods/UpdateFood";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(command);
@@ -1507,20 +1737,20 @@ export class PromosClient implements IPromosClient {
         };
 
         return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processUpdatePromo(response_);
+            return this.processUpdateFood(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processUpdatePromo(response_ as any);
+                    return this.processUpdateFood(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<ResultOfUpdatePromoCommandDto>;
+                    return _observableThrow(e) as any as Observable<ResultOfUpdateFoodCommandDto>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<ResultOfUpdatePromoCommandDto>;
+                return _observableThrow(response_) as any as Observable<ResultOfUpdateFoodCommandDto>;
         }));
     }
 
-    protected processUpdatePromo(response: HttpResponseBase): Observable<ResultOfUpdatePromoCommandDto> {
+    protected processUpdateFood(response: HttpResponseBase): Observable<ResultOfUpdateFoodCommandDto> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -1531,7 +1761,7 @@ export class PromosClient implements IPromosClient {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            result200 = ResultOfUpdatePromoCommandDto.fromJS(resultData200);
+            result200 = ResultOfUpdateFoodCommandDto.fromJS(resultData200);
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -1542,8 +1772,8 @@ export class PromosClient implements IPromosClient {
         return _observableOf(null as any);
     }
 
-    getAllPromo(): Observable<GetAllPromoQueryDto[]> {
-        let url_ = this.baseUrl + "/api/Promos/GetAllPromo";
+    getAllFood(): Observable<GetAllFoodQueryDto[]> {
+        let url_ = this.baseUrl + "/api/Foods/GetAllFood";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -1555,20 +1785,20 @@ export class PromosClient implements IPromosClient {
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetAllPromo(response_);
+            return this.processGetAllFood(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetAllPromo(response_ as any);
+                    return this.processGetAllFood(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<GetAllPromoQueryDto[]>;
+                    return _observableThrow(e) as any as Observable<GetAllFoodQueryDto[]>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<GetAllPromoQueryDto[]>;
+                return _observableThrow(response_) as any as Observable<GetAllFoodQueryDto[]>;
         }));
     }
 
-    protected processGetAllPromo(response: HttpResponseBase): Observable<GetAllPromoQueryDto[]> {
+    protected processGetAllFood(response: HttpResponseBase): Observable<GetAllFoodQueryDto[]> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -1582,7 +1812,7 @@ export class PromosClient implements IPromosClient {
             if (Array.isArray(resultData200)) {
                 result200 = [] as any;
                 for (let item of resultData200)
-                    result200!.push(GetAllPromoQueryDto.fromJS(item));
+                    result200!.push(GetAllFoodQueryDto.fromJS(item));
             }
             else {
                 result200 = <any>null;
@@ -1597,8 +1827,8 @@ export class PromosClient implements IPromosClient {
         return _observableOf(null as any);
     }
 
-    getAllPromoById(uniqueId: string | null | undefined): Observable<ResultOfGetAllPromoByIdQueryDto> {
-        let url_ = this.baseUrl + "/api/Promos/GetAllPromoById?";
+    getAllFoodById(uniqueId: string | null | undefined): Observable<ResultOfGetAllFoodByIdQueryDto> {
+        let url_ = this.baseUrl + "/api/Foods/GetAllFoodById?";
         if (uniqueId !== undefined && uniqueId !== null)
             url_ += "UniqueId=" + encodeURIComponent("" + uniqueId) + "&";
         url_ = url_.replace(/[?&]$/, "");
@@ -1612,20 +1842,20 @@ export class PromosClient implements IPromosClient {
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetAllPromoById(response_);
+            return this.processGetAllFoodById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetAllPromoById(response_ as any);
+                    return this.processGetAllFoodById(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<ResultOfGetAllPromoByIdQueryDto>;
+                    return _observableThrow(e) as any as Observable<ResultOfGetAllFoodByIdQueryDto>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<ResultOfGetAllPromoByIdQueryDto>;
+                return _observableThrow(response_) as any as Observable<ResultOfGetAllFoodByIdQueryDto>;
         }));
     }
 
-    protected processGetAllPromoById(response: HttpResponseBase): Observable<ResultOfGetAllPromoByIdQueryDto> {
+    protected processGetAllFoodById(response: HttpResponseBase): Observable<ResultOfGetAllFoodByIdQueryDto> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -1636,7 +1866,7 @@ export class PromosClient implements IPromosClient {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            result200 = ResultOfGetAllPromoByIdQueryDto.fromJS(resultData200);
+            result200 = ResultOfGetAllFoodByIdQueryDto.fromJS(resultData200);
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -1925,6 +2155,236 @@ export class PlanesClient implements IPlanesClient {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
             result200 = ResultOfUpdateAirlineCommandDto.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+}
+
+export interface IPromoClient {
+    createPromo(command: CreatePromoCommand): Observable<ResultOfCreatePromoCommandDto>;
+    updatePromo(command: UpdatePromoCommand): Observable<ResultOfUpdatePromoCommandDto>;
+    getAllPromo(): Observable<GetAllPromoQueryDto[]>;
+    getAllPromoById(uniqueId: string | null | undefined): Observable<ResultOfGetAllPromoByIdQueryDto>;
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class PromoClient implements IPromoClient {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ?? "";
+    }
+
+    createPromo(command: CreatePromoCommand): Observable<ResultOfCreatePromoCommandDto> {
+        let url_ = this.baseUrl + "/api/Promo/CreatePromo";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(command);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processCreatePromo(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processCreatePromo(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<ResultOfCreatePromoCommandDto>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<ResultOfCreatePromoCommandDto>;
+        }));
+    }
+
+    protected processCreatePromo(response: HttpResponseBase): Observable<ResultOfCreatePromoCommandDto> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ResultOfCreatePromoCommandDto.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    updatePromo(command: UpdatePromoCommand): Observable<ResultOfUpdatePromoCommandDto> {
+        let url_ = this.baseUrl + "/api/Promo/UpdatePromo";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(command);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processUpdatePromo(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processUpdatePromo(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<ResultOfUpdatePromoCommandDto>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<ResultOfUpdatePromoCommandDto>;
+        }));
+    }
+
+    protected processUpdatePromo(response: HttpResponseBase): Observable<ResultOfUpdatePromoCommandDto> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ResultOfUpdatePromoCommandDto.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    getAllPromo(): Observable<GetAllPromoQueryDto[]> {
+        let url_ = this.baseUrl + "/api/Promo/GetAllPromo";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetAllPromo(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetAllPromo(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<GetAllPromoQueryDto[]>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<GetAllPromoQueryDto[]>;
+        }));
+    }
+
+    protected processGetAllPromo(response: HttpResponseBase): Observable<GetAllPromoQueryDto[]> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200!.push(GetAllPromoQueryDto.fromJS(item));
+            }
+            else {
+                result200 = <any>null;
+            }
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    getAllPromoById(uniqueId: string | null | undefined): Observable<ResultOfGetAllPromoByIdQueryDto> {
+        let url_ = this.baseUrl + "/api/Promo/GetAllPromoById?";
+        if (uniqueId !== undefined && uniqueId !== null)
+            url_ += "UniqueId=" + encodeURIComponent("" + uniqueId) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetAllPromoById(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetAllPromoById(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<ResultOfGetAllPromoByIdQueryDto>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<ResultOfGetAllPromoByIdQueryDto>;
+        }));
+    }
+
+    protected processGetAllPromoById(response: HttpResponseBase): Observable<ResultOfGetAllPromoByIdQueryDto> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ResultOfGetAllPromoByIdQueryDto.fromJS(resultData200);
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -4370,6 +4830,414 @@ export interface IGetAllCountryQueryDto {
     description?: string | undefined;
 }
 
+export class ResultOfCreateCustomRoleCommandDto implements IResultOfCreateCustomRoleCommandDto {
+    data?: CreateCustomRoleCommandDto | undefined;
+    message?: string;
+    resultType?: ResultType;
+
+    constructor(data?: IResultOfCreateCustomRoleCommandDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.data = _data["data"] ? CreateCustomRoleCommandDto.fromJS(_data["data"]) : <any>undefined;
+            this.message = _data["message"];
+            this.resultType = _data["resultType"];
+        }
+    }
+
+    static fromJS(data: any): ResultOfCreateCustomRoleCommandDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new ResultOfCreateCustomRoleCommandDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["data"] = this.data ? this.data.toJSON() : <any>undefined;
+        data["message"] = this.message;
+        data["resultType"] = this.resultType;
+        return data;
+    }
+}
+
+export interface IResultOfCreateCustomRoleCommandDto {
+    data?: CreateCustomRoleCommandDto | undefined;
+    message?: string;
+    resultType?: ResultType;
+}
+
+export class CreateCustomRoleCommandDto implements ICreateCustomRoleCommandDto {
+    id?: string | undefined;
+    createdDate?: Date;
+
+    constructor(data?: ICreateCustomRoleCommandDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.createdDate = _data["createdDate"] ? new Date(_data["createdDate"].toString()) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): CreateCustomRoleCommandDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new CreateCustomRoleCommandDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["createdDate"] = this.createdDate ? this.createdDate.toISOString() : <any>undefined;
+        return data;
+    }
+}
+
+export interface ICreateCustomRoleCommandDto {
+    id?: string | undefined;
+    createdDate?: Date;
+}
+
+export class CreateCustomRoleCommand implements ICreateCustomRoleCommand {
+    roleName?: string | undefined;
+    roleDescription?: string | undefined;
+    isActive?: boolean | undefined;
+
+    constructor(data?: ICreateCustomRoleCommand) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.roleName = _data["roleName"];
+            this.roleDescription = _data["roleDescription"];
+            this.isActive = _data["isActive"];
+        }
+    }
+
+    static fromJS(data: any): CreateCustomRoleCommand {
+        data = typeof data === 'object' ? data : {};
+        let result = new CreateCustomRoleCommand();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["roleName"] = this.roleName;
+        data["roleDescription"] = this.roleDescription;
+        data["isActive"] = this.isActive;
+        return data;
+    }
+}
+
+export interface ICreateCustomRoleCommand {
+    roleName?: string | undefined;
+    roleDescription?: string | undefined;
+    isActive?: boolean | undefined;
+}
+
+export class ResultOfUpdateCustomRoleCommandDto implements IResultOfUpdateCustomRoleCommandDto {
+    data?: UpdateCustomRoleCommandDto | undefined;
+    message?: string;
+    resultType?: ResultType;
+
+    constructor(data?: IResultOfUpdateCustomRoleCommandDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.data = _data["data"] ? UpdateCustomRoleCommandDto.fromJS(_data["data"]) : <any>undefined;
+            this.message = _data["message"];
+            this.resultType = _data["resultType"];
+        }
+    }
+
+    static fromJS(data: any): ResultOfUpdateCustomRoleCommandDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new ResultOfUpdateCustomRoleCommandDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["data"] = this.data ? this.data.toJSON() : <any>undefined;
+        data["message"] = this.message;
+        data["resultType"] = this.resultType;
+        return data;
+    }
+}
+
+export interface IResultOfUpdateCustomRoleCommandDto {
+    data?: UpdateCustomRoleCommandDto | undefined;
+    message?: string;
+    resultType?: ResultType;
+}
+
+export class UpdateCustomRoleCommandDto implements IUpdateCustomRoleCommandDto {
+    id?: string | undefined;
+    updatedDate?: Date;
+
+    constructor(data?: IUpdateCustomRoleCommandDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.updatedDate = _data["updatedDate"] ? new Date(_data["updatedDate"].toString()) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): UpdateCustomRoleCommandDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new UpdateCustomRoleCommandDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["updatedDate"] = this.updatedDate ? this.updatedDate.toISOString() : <any>undefined;
+        return data;
+    }
+}
+
+export interface IUpdateCustomRoleCommandDto {
+    id?: string | undefined;
+    updatedDate?: Date;
+}
+
+export class UpdateCustomRoleCommand implements IUpdateCustomRoleCommand {
+    uniqueId?: string | undefined;
+    roleName?: string | undefined;
+    roleDescription?: string | undefined;
+    isActive?: boolean | undefined;
+
+    constructor(data?: IUpdateCustomRoleCommand) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.uniqueId = _data["uniqueId"];
+            this.roleName = _data["roleName"];
+            this.roleDescription = _data["roleDescription"];
+            this.isActive = _data["isActive"];
+        }
+    }
+
+    static fromJS(data: any): UpdateCustomRoleCommand {
+        data = typeof data === 'object' ? data : {};
+        let result = new UpdateCustomRoleCommand();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["uniqueId"] = this.uniqueId;
+        data["roleName"] = this.roleName;
+        data["roleDescription"] = this.roleDescription;
+        data["isActive"] = this.isActive;
+        return data;
+    }
+}
+
+export interface IUpdateCustomRoleCommand {
+    uniqueId?: string | undefined;
+    roleName?: string | undefined;
+    roleDescription?: string | undefined;
+    isActive?: boolean | undefined;
+}
+
+export class GetAllCustomRoleQueryDto implements IGetAllCustomRoleQueryDto {
+    id?: number | undefined;
+    uniqueId?: string | undefined;
+    roleName?: string | undefined;
+    roleDescription?: string | undefined;
+    isActive?: boolean | undefined;
+
+    constructor(data?: IGetAllCustomRoleQueryDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.uniqueId = _data["uniqueId"];
+            this.roleName = _data["roleName"];
+            this.roleDescription = _data["roleDescription"];
+            this.isActive = _data["isActive"];
+        }
+    }
+
+    static fromJS(data: any): GetAllCustomRoleQueryDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new GetAllCustomRoleQueryDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["uniqueId"] = this.uniqueId;
+        data["roleName"] = this.roleName;
+        data["roleDescription"] = this.roleDescription;
+        data["isActive"] = this.isActive;
+        return data;
+    }
+}
+
+export interface IGetAllCustomRoleQueryDto {
+    id?: number | undefined;
+    uniqueId?: string | undefined;
+    roleName?: string | undefined;
+    roleDescription?: string | undefined;
+    isActive?: boolean | undefined;
+}
+
+export class ResultOfGetAllCustomRoleByIdQueryDto implements IResultOfGetAllCustomRoleByIdQueryDto {
+    data?: GetAllCustomRoleByIdQueryDto | undefined;
+    message?: string;
+    resultType?: ResultType;
+
+    constructor(data?: IResultOfGetAllCustomRoleByIdQueryDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.data = _data["data"] ? GetAllCustomRoleByIdQueryDto.fromJS(_data["data"]) : <any>undefined;
+            this.message = _data["message"];
+            this.resultType = _data["resultType"];
+        }
+    }
+
+    static fromJS(data: any): ResultOfGetAllCustomRoleByIdQueryDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new ResultOfGetAllCustomRoleByIdQueryDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["data"] = this.data ? this.data.toJSON() : <any>undefined;
+        data["message"] = this.message;
+        data["resultType"] = this.resultType;
+        return data;
+    }
+}
+
+export interface IResultOfGetAllCustomRoleByIdQueryDto {
+    data?: GetAllCustomRoleByIdQueryDto | undefined;
+    message?: string;
+    resultType?: ResultType;
+}
+
+export class GetAllCustomRoleByIdQueryDto implements IGetAllCustomRoleByIdQueryDto {
+    id?: number | undefined;
+    uniqueId?: string | undefined;
+    roleName?: string | undefined;
+    roleDescription?: string | undefined;
+    isActive?: boolean | undefined;
+
+    constructor(data?: IGetAllCustomRoleByIdQueryDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.uniqueId = _data["uniqueId"];
+            this.roleName = _data["roleName"];
+            this.roleDescription = _data["roleDescription"];
+            this.isActive = _data["isActive"];
+        }
+    }
+
+    static fromJS(data: any): GetAllCustomRoleByIdQueryDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new GetAllCustomRoleByIdQueryDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["uniqueId"] = this.uniqueId;
+        data["roleName"] = this.roleName;
+        data["roleDescription"] = this.roleDescription;
+        data["isActive"] = this.isActive;
+        return data;
+    }
+}
+
+export interface IGetAllCustomRoleByIdQueryDto {
+    id?: number | undefined;
+    uniqueId?: string | undefined;
+    roleName?: string | undefined;
+    roleDescription?: string | undefined;
+    isActive?: boolean | undefined;
+}
+
 export class GetAllFlightQueryDto implements IGetAllFlightQueryDto {
     id?: number | undefined;
     flightCode?: string | undefined;
@@ -4862,12 +5730,12 @@ export interface IUpdateFlightCommand {
     isActive?: boolean | undefined;
 }
 
-export class ResultOfCreatePromoCommandDto implements IResultOfCreatePromoCommandDto {
-    data?: CreatePromoCommandDto | undefined;
+export class ResultOfCreateFoodCommandDto implements IResultOfCreateFoodCommandDto {
+    data?: CreateFoodCommandDto | undefined;
     message?: string;
     resultType?: ResultType;
 
-    constructor(data?: IResultOfCreatePromoCommandDto) {
+    constructor(data?: IResultOfCreateFoodCommandDto) {
         if (data) {
             for (var property in data) {
                 if (data.hasOwnProperty(property))
@@ -4878,15 +5746,15 @@ export class ResultOfCreatePromoCommandDto implements IResultOfCreatePromoComman
 
     init(_data?: any) {
         if (_data) {
-            this.data = _data["data"] ? CreatePromoCommandDto.fromJS(_data["data"]) : <any>undefined;
+            this.data = _data["data"] ? CreateFoodCommandDto.fromJS(_data["data"]) : <any>undefined;
             this.message = _data["message"];
             this.resultType = _data["resultType"];
         }
     }
 
-    static fromJS(data: any): ResultOfCreatePromoCommandDto {
+    static fromJS(data: any): ResultOfCreateFoodCommandDto {
         data = typeof data === 'object' ? data : {};
-        let result = new ResultOfCreatePromoCommandDto();
+        let result = new ResultOfCreateFoodCommandDto();
         result.init(data);
         return result;
     }
@@ -4900,17 +5768,17 @@ export class ResultOfCreatePromoCommandDto implements IResultOfCreatePromoComman
     }
 }
 
-export interface IResultOfCreatePromoCommandDto {
-    data?: CreatePromoCommandDto | undefined;
+export interface IResultOfCreateFoodCommandDto {
+    data?: CreateFoodCommandDto | undefined;
     message?: string;
     resultType?: ResultType;
 }
 
-export class CreatePromoCommandDto implements ICreatePromoCommandDto {
+export class CreateFoodCommandDto implements ICreateFoodCommandDto {
     id?: string | undefined;
     createdDate?: Date;
 
-    constructor(data?: ICreatePromoCommandDto) {
+    constructor(data?: ICreateFoodCommandDto) {
         if (data) {
             for (var property in data) {
                 if (data.hasOwnProperty(property))
@@ -4926,9 +5794,9 @@ export class CreatePromoCommandDto implements ICreatePromoCommandDto {
         }
     }
 
-    static fromJS(data: any): CreatePromoCommandDto {
+    static fromJS(data: any): CreateFoodCommandDto {
         data = typeof data === 'object' ? data : {};
-        let result = new CreatePromoCommandDto();
+        let result = new CreateFoodCommandDto();
         result.init(data);
         return result;
     }
@@ -4941,19 +5809,19 @@ export class CreatePromoCommandDto implements ICreatePromoCommandDto {
     }
 }
 
-export interface ICreatePromoCommandDto {
+export interface ICreateFoodCommandDto {
     id?: string | undefined;
     createdDate?: Date;
 }
 
-export class CreatePromoCommand implements ICreatePromoCommand {
-    promoCode?: string | undefined;
-    promoName?: string | undefined;
-    promoDescription?: string | undefined;
-    promoPrice?: number | undefined;
+export class CreateFoodCommand implements ICreateFoodCommand {
+    foodName?: string | undefined;
+    foodDescription?: string | undefined;
+    foodPrice?: number | undefined;
+    foodCategoryId?: number | undefined;
     isActive?: boolean | undefined;
 
-    constructor(data?: ICreatePromoCommand) {
+    constructor(data?: ICreateFoodCommand) {
         if (data) {
             for (var property in data) {
                 if (data.hasOwnProperty(property))
@@ -4964,46 +5832,46 @@ export class CreatePromoCommand implements ICreatePromoCommand {
 
     init(_data?: any) {
         if (_data) {
-            this.promoCode = _data["promoCode"];
-            this.promoName = _data["promoName"];
-            this.promoDescription = _data["promoDescription"];
-            this.promoPrice = _data["promoPrice"];
+            this.foodName = _data["foodName"];
+            this.foodDescription = _data["foodDescription"];
+            this.foodPrice = _data["foodPrice"];
+            this.foodCategoryId = _data["foodCategoryId"];
             this.isActive = _data["isActive"];
         }
     }
 
-    static fromJS(data: any): CreatePromoCommand {
+    static fromJS(data: any): CreateFoodCommand {
         data = typeof data === 'object' ? data : {};
-        let result = new CreatePromoCommand();
+        let result = new CreateFoodCommand();
         result.init(data);
         return result;
     }
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["promoCode"] = this.promoCode;
-        data["promoName"] = this.promoName;
-        data["promoDescription"] = this.promoDescription;
-        data["promoPrice"] = this.promoPrice;
+        data["foodName"] = this.foodName;
+        data["foodDescription"] = this.foodDescription;
+        data["foodPrice"] = this.foodPrice;
+        data["foodCategoryId"] = this.foodCategoryId;
         data["isActive"] = this.isActive;
         return data;
     }
 }
 
-export interface ICreatePromoCommand {
-    promoCode?: string | undefined;
-    promoName?: string | undefined;
-    promoDescription?: string | undefined;
-    promoPrice?: number | undefined;
+export interface ICreateFoodCommand {
+    foodName?: string | undefined;
+    foodDescription?: string | undefined;
+    foodPrice?: number | undefined;
+    foodCategoryId?: number | undefined;
     isActive?: boolean | undefined;
 }
 
-export class ResultOfUpdatePromoCommandDto implements IResultOfUpdatePromoCommandDto {
-    data?: UpdatePromoCommandDto | undefined;
+export class ResultOfUpdateFoodCommandDto implements IResultOfUpdateFoodCommandDto {
+    data?: UpdateFoodCommandDto | undefined;
     message?: string;
     resultType?: ResultType;
 
-    constructor(data?: IResultOfUpdatePromoCommandDto) {
+    constructor(data?: IResultOfUpdateFoodCommandDto) {
         if (data) {
             for (var property in data) {
                 if (data.hasOwnProperty(property))
@@ -5014,15 +5882,15 @@ export class ResultOfUpdatePromoCommandDto implements IResultOfUpdatePromoComman
 
     init(_data?: any) {
         if (_data) {
-            this.data = _data["data"] ? UpdatePromoCommandDto.fromJS(_data["data"]) : <any>undefined;
+            this.data = _data["data"] ? UpdateFoodCommandDto.fromJS(_data["data"]) : <any>undefined;
             this.message = _data["message"];
             this.resultType = _data["resultType"];
         }
     }
 
-    static fromJS(data: any): ResultOfUpdatePromoCommandDto {
+    static fromJS(data: any): ResultOfUpdateFoodCommandDto {
         data = typeof data === 'object' ? data : {};
-        let result = new ResultOfUpdatePromoCommandDto();
+        let result = new ResultOfUpdateFoodCommandDto();
         result.init(data);
         return result;
     }
@@ -5036,17 +5904,17 @@ export class ResultOfUpdatePromoCommandDto implements IResultOfUpdatePromoComman
     }
 }
 
-export interface IResultOfUpdatePromoCommandDto {
-    data?: UpdatePromoCommandDto | undefined;
+export interface IResultOfUpdateFoodCommandDto {
+    data?: UpdateFoodCommandDto | undefined;
     message?: string;
     resultType?: ResultType;
 }
 
-export class UpdatePromoCommandDto implements IUpdatePromoCommandDto {
+export class UpdateFoodCommandDto implements IUpdateFoodCommandDto {
     id?: string | undefined;
     updatedDate?: Date;
 
-    constructor(data?: IUpdatePromoCommandDto) {
+    constructor(data?: IUpdateFoodCommandDto) {
         if (data) {
             for (var property in data) {
                 if (data.hasOwnProperty(property))
@@ -5062,9 +5930,9 @@ export class UpdatePromoCommandDto implements IUpdatePromoCommandDto {
         }
     }
 
-    static fromJS(data: any): UpdatePromoCommandDto {
+    static fromJS(data: any): UpdateFoodCommandDto {
         data = typeof data === 'object' ? data : {};
-        let result = new UpdatePromoCommandDto();
+        let result = new UpdateFoodCommandDto();
         result.init(data);
         return result;
     }
@@ -5077,20 +5945,20 @@ export class UpdatePromoCommandDto implements IUpdatePromoCommandDto {
     }
 }
 
-export interface IUpdatePromoCommandDto {
+export interface IUpdateFoodCommandDto {
     id?: string | undefined;
     updatedDate?: Date;
 }
 
-export class UpdatePromoCommand implements IUpdatePromoCommand {
+export class UpdateFoodCommand implements IUpdateFoodCommand {
     uniqueId?: string | undefined;
-    promoCode?: string | undefined;
-    promoName?: string | undefined;
-    promoDescription?: string | undefined;
-    promoPrice?: number | undefined;
+    foodName?: string | undefined;
+    foodDescription?: string | undefined;
+    foodPrice?: number | undefined;
+    foodCategoryId?: number | undefined;
     isActive?: boolean | undefined;
 
-    constructor(data?: IUpdatePromoCommand) {
+    constructor(data?: IUpdateFoodCommand) {
         if (data) {
             for (var property in data) {
                 if (data.hasOwnProperty(property))
@@ -5102,17 +5970,17 @@ export class UpdatePromoCommand implements IUpdatePromoCommand {
     init(_data?: any) {
         if (_data) {
             this.uniqueId = _data["uniqueId"];
-            this.promoCode = _data["promoCode"];
-            this.promoName = _data["promoName"];
-            this.promoDescription = _data["promoDescription"];
-            this.promoPrice = _data["promoPrice"];
+            this.foodName = _data["foodName"];
+            this.foodDescription = _data["foodDescription"];
+            this.foodPrice = _data["foodPrice"];
+            this.foodCategoryId = _data["foodCategoryId"];
             this.isActive = _data["isActive"];
         }
     }
 
-    static fromJS(data: any): UpdatePromoCommand {
+    static fromJS(data: any): UpdateFoodCommand {
         data = typeof data === 'object' ? data : {};
-        let result = new UpdatePromoCommand();
+        let result = new UpdateFoodCommand();
         result.init(data);
         return result;
     }
@@ -5120,34 +5988,35 @@ export class UpdatePromoCommand implements IUpdatePromoCommand {
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         data["uniqueId"] = this.uniqueId;
-        data["promoCode"] = this.promoCode;
-        data["promoName"] = this.promoName;
-        data["promoDescription"] = this.promoDescription;
-        data["promoPrice"] = this.promoPrice;
+        data["foodName"] = this.foodName;
+        data["foodDescription"] = this.foodDescription;
+        data["foodPrice"] = this.foodPrice;
+        data["foodCategoryId"] = this.foodCategoryId;
         data["isActive"] = this.isActive;
         return data;
     }
 }
 
-export interface IUpdatePromoCommand {
+export interface IUpdateFoodCommand {
     uniqueId?: string | undefined;
-    promoCode?: string | undefined;
-    promoName?: string | undefined;
-    promoDescription?: string | undefined;
-    promoPrice?: number | undefined;
+    foodName?: string | undefined;
+    foodDescription?: string | undefined;
+    foodPrice?: number | undefined;
+    foodCategoryId?: number | undefined;
     isActive?: boolean | undefined;
 }
 
-export class GetAllPromoQueryDto implements IGetAllPromoQueryDto {
+export class GetAllFoodQueryDto implements IGetAllFoodQueryDto {
     id?: number | undefined;
     uniqueId?: string | undefined;
-    promoCode?: string | undefined;
-    promoName?: string | undefined;
-    promoDescription?: string | undefined;
-    promoPrice?: number | undefined;
+    foodName?: string | undefined;
+    foodDescription?: string | undefined;
+    foodPrice?: number | undefined;
+    foodCategoryId?: number | undefined;
+    foodCategoryName?: string | undefined;
     isActive?: boolean | undefined;
 
-    constructor(data?: IGetAllPromoQueryDto) {
+    constructor(data?: IGetAllFoodQueryDto) {
         if (data) {
             for (var property in data) {
                 if (data.hasOwnProperty(property))
@@ -5160,17 +6029,18 @@ export class GetAllPromoQueryDto implements IGetAllPromoQueryDto {
         if (_data) {
             this.id = _data["id"];
             this.uniqueId = _data["uniqueId"];
-            this.promoCode = _data["promoCode"];
-            this.promoName = _data["promoName"];
-            this.promoDescription = _data["promoDescription"];
-            this.promoPrice = _data["promoPrice"];
+            this.foodName = _data["foodName"];
+            this.foodDescription = _data["foodDescription"];
+            this.foodPrice = _data["foodPrice"];
+            this.foodCategoryId = _data["foodCategoryId"];
+            this.foodCategoryName = _data["foodCategoryName"];
             this.isActive = _data["isActive"];
         }
     }
 
-    static fromJS(data: any): GetAllPromoQueryDto {
+    static fromJS(data: any): GetAllFoodQueryDto {
         data = typeof data === 'object' ? data : {};
-        let result = new GetAllPromoQueryDto();
+        let result = new GetAllFoodQueryDto();
         result.init(data);
         return result;
     }
@@ -5179,31 +6049,33 @@ export class GetAllPromoQueryDto implements IGetAllPromoQueryDto {
         data = typeof data === 'object' ? data : {};
         data["id"] = this.id;
         data["uniqueId"] = this.uniqueId;
-        data["promoCode"] = this.promoCode;
-        data["promoName"] = this.promoName;
-        data["promoDescription"] = this.promoDescription;
-        data["promoPrice"] = this.promoPrice;
+        data["foodName"] = this.foodName;
+        data["foodDescription"] = this.foodDescription;
+        data["foodPrice"] = this.foodPrice;
+        data["foodCategoryId"] = this.foodCategoryId;
+        data["foodCategoryName"] = this.foodCategoryName;
         data["isActive"] = this.isActive;
         return data;
     }
 }
 
-export interface IGetAllPromoQueryDto {
+export interface IGetAllFoodQueryDto {
     id?: number | undefined;
     uniqueId?: string | undefined;
-    promoCode?: string | undefined;
-    promoName?: string | undefined;
-    promoDescription?: string | undefined;
-    promoPrice?: number | undefined;
+    foodName?: string | undefined;
+    foodDescription?: string | undefined;
+    foodPrice?: number | undefined;
+    foodCategoryId?: number | undefined;
+    foodCategoryName?: string | undefined;
     isActive?: boolean | undefined;
 }
 
-export class ResultOfGetAllPromoByIdQueryDto implements IResultOfGetAllPromoByIdQueryDto {
-    data?: GetAllPromoByIdQueryDto | undefined;
+export class ResultOfGetAllFoodByIdQueryDto implements IResultOfGetAllFoodByIdQueryDto {
+    data?: GetAllFoodByIdQueryDto | undefined;
     message?: string;
     resultType?: ResultType;
 
-    constructor(data?: IResultOfGetAllPromoByIdQueryDto) {
+    constructor(data?: IResultOfGetAllFoodByIdQueryDto) {
         if (data) {
             for (var property in data) {
                 if (data.hasOwnProperty(property))
@@ -5214,15 +6086,15 @@ export class ResultOfGetAllPromoByIdQueryDto implements IResultOfGetAllPromoById
 
     init(_data?: any) {
         if (_data) {
-            this.data = _data["data"] ? GetAllPromoByIdQueryDto.fromJS(_data["data"]) : <any>undefined;
+            this.data = _data["data"] ? GetAllFoodByIdQueryDto.fromJS(_data["data"]) : <any>undefined;
             this.message = _data["message"];
             this.resultType = _data["resultType"];
         }
     }
 
-    static fromJS(data: any): ResultOfGetAllPromoByIdQueryDto {
+    static fromJS(data: any): ResultOfGetAllFoodByIdQueryDto {
         data = typeof data === 'object' ? data : {};
-        let result = new ResultOfGetAllPromoByIdQueryDto();
+        let result = new ResultOfGetAllFoodByIdQueryDto();
         result.init(data);
         return result;
     }
@@ -5236,22 +6108,23 @@ export class ResultOfGetAllPromoByIdQueryDto implements IResultOfGetAllPromoById
     }
 }
 
-export interface IResultOfGetAllPromoByIdQueryDto {
-    data?: GetAllPromoByIdQueryDto | undefined;
+export interface IResultOfGetAllFoodByIdQueryDto {
+    data?: GetAllFoodByIdQueryDto | undefined;
     message?: string;
     resultType?: ResultType;
 }
 
-export class GetAllPromoByIdQueryDto implements IGetAllPromoByIdQueryDto {
+export class GetAllFoodByIdQueryDto implements IGetAllFoodByIdQueryDto {
     id?: number | undefined;
     uniqueId?: string | undefined;
-    promoCode?: string | undefined;
-    promoName?: string | undefined;
-    promoDescription?: string | undefined;
-    promoPrice?: number | undefined;
+    foodName?: string | undefined;
+    foodDescription?: string | undefined;
+    foodPrice?: number | undefined;
+    foodCategoryId?: number | undefined;
+    foodCategoryName?: string | undefined;
     isActive?: boolean | undefined;
 
-    constructor(data?: IGetAllPromoByIdQueryDto) {
+    constructor(data?: IGetAllFoodByIdQueryDto) {
         if (data) {
             for (var property in data) {
                 if (data.hasOwnProperty(property))
@@ -5264,17 +6137,18 @@ export class GetAllPromoByIdQueryDto implements IGetAllPromoByIdQueryDto {
         if (_data) {
             this.id = _data["id"];
             this.uniqueId = _data["uniqueId"];
-            this.promoCode = _data["promoCode"];
-            this.promoName = _data["promoName"];
-            this.promoDescription = _data["promoDescription"];
-            this.promoPrice = _data["promoPrice"];
+            this.foodName = _data["foodName"];
+            this.foodDescription = _data["foodDescription"];
+            this.foodPrice = _data["foodPrice"];
+            this.foodCategoryId = _data["foodCategoryId"];
+            this.foodCategoryName = _data["foodCategoryName"];
             this.isActive = _data["isActive"];
         }
     }
 
-    static fromJS(data: any): GetAllPromoByIdQueryDto {
+    static fromJS(data: any): GetAllFoodByIdQueryDto {
         data = typeof data === 'object' ? data : {};
-        let result = new GetAllPromoByIdQueryDto();
+        let result = new GetAllFoodByIdQueryDto();
         result.init(data);
         return result;
     }
@@ -5283,22 +6157,24 @@ export class GetAllPromoByIdQueryDto implements IGetAllPromoByIdQueryDto {
         data = typeof data === 'object' ? data : {};
         data["id"] = this.id;
         data["uniqueId"] = this.uniqueId;
-        data["promoCode"] = this.promoCode;
-        data["promoName"] = this.promoName;
-        data["promoDescription"] = this.promoDescription;
-        data["promoPrice"] = this.promoPrice;
+        data["foodName"] = this.foodName;
+        data["foodDescription"] = this.foodDescription;
+        data["foodPrice"] = this.foodPrice;
+        data["foodCategoryId"] = this.foodCategoryId;
+        data["foodCategoryName"] = this.foodCategoryName;
         data["isActive"] = this.isActive;
         return data;
     }
 }
 
-export interface IGetAllPromoByIdQueryDto {
+export interface IGetAllFoodByIdQueryDto {
     id?: number | undefined;
     uniqueId?: string | undefined;
-    promoCode?: string | undefined;
-    promoName?: string | undefined;
-    promoDescription?: string | undefined;
-    promoPrice?: number | undefined;
+    foodName?: string | undefined;
+    foodDescription?: string | undefined;
+    foodPrice?: number | undefined;
+    foodCategoryId?: number | undefined;
+    foodCategoryName?: string | undefined;
     isActive?: boolean | undefined;
 }
 
@@ -5778,6 +6654,446 @@ export interface IUpdateAirlineCommand {
     isActive?: boolean | undefined;
 }
 
+export class ResultOfCreatePromoCommandDto implements IResultOfCreatePromoCommandDto {
+    data?: CreatePromoCommandDto | undefined;
+    message?: string;
+    resultType?: ResultType;
+
+    constructor(data?: IResultOfCreatePromoCommandDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.data = _data["data"] ? CreatePromoCommandDto.fromJS(_data["data"]) : <any>undefined;
+            this.message = _data["message"];
+            this.resultType = _data["resultType"];
+        }
+    }
+
+    static fromJS(data: any): ResultOfCreatePromoCommandDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new ResultOfCreatePromoCommandDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["data"] = this.data ? this.data.toJSON() : <any>undefined;
+        data["message"] = this.message;
+        data["resultType"] = this.resultType;
+        return data;
+    }
+}
+
+export interface IResultOfCreatePromoCommandDto {
+    data?: CreatePromoCommandDto | undefined;
+    message?: string;
+    resultType?: ResultType;
+}
+
+export class CreatePromoCommandDto implements ICreatePromoCommandDto {
+    id?: string | undefined;
+    createdDate?: Date;
+
+    constructor(data?: ICreatePromoCommandDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.createdDate = _data["createdDate"] ? new Date(_data["createdDate"].toString()) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): CreatePromoCommandDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new CreatePromoCommandDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["createdDate"] = this.createdDate ? this.createdDate.toISOString() : <any>undefined;
+        return data;
+    }
+}
+
+export interface ICreatePromoCommandDto {
+    id?: string | undefined;
+    createdDate?: Date;
+}
+
+export class CreatePromoCommand implements ICreatePromoCommand {
+    promoCode?: string | undefined;
+    promoName?: string | undefined;
+    promoDescription?: string | undefined;
+    promoPrice?: number | undefined;
+    isActive?: boolean | undefined;
+
+    constructor(data?: ICreatePromoCommand) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.promoCode = _data["promoCode"];
+            this.promoName = _data["promoName"];
+            this.promoDescription = _data["promoDescription"];
+            this.promoPrice = _data["promoPrice"];
+            this.isActive = _data["isActive"];
+        }
+    }
+
+    static fromJS(data: any): CreatePromoCommand {
+        data = typeof data === 'object' ? data : {};
+        let result = new CreatePromoCommand();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["promoCode"] = this.promoCode;
+        data["promoName"] = this.promoName;
+        data["promoDescription"] = this.promoDescription;
+        data["promoPrice"] = this.promoPrice;
+        data["isActive"] = this.isActive;
+        return data;
+    }
+}
+
+export interface ICreatePromoCommand {
+    promoCode?: string | undefined;
+    promoName?: string | undefined;
+    promoDescription?: string | undefined;
+    promoPrice?: number | undefined;
+    isActive?: boolean | undefined;
+}
+
+export class ResultOfUpdatePromoCommandDto implements IResultOfUpdatePromoCommandDto {
+    data?: UpdatePromoCommandDto | undefined;
+    message?: string;
+    resultType?: ResultType;
+
+    constructor(data?: IResultOfUpdatePromoCommandDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.data = _data["data"] ? UpdatePromoCommandDto.fromJS(_data["data"]) : <any>undefined;
+            this.message = _data["message"];
+            this.resultType = _data["resultType"];
+        }
+    }
+
+    static fromJS(data: any): ResultOfUpdatePromoCommandDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new ResultOfUpdatePromoCommandDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["data"] = this.data ? this.data.toJSON() : <any>undefined;
+        data["message"] = this.message;
+        data["resultType"] = this.resultType;
+        return data;
+    }
+}
+
+export interface IResultOfUpdatePromoCommandDto {
+    data?: UpdatePromoCommandDto | undefined;
+    message?: string;
+    resultType?: ResultType;
+}
+
+export class UpdatePromoCommandDto implements IUpdatePromoCommandDto {
+    id?: string | undefined;
+    updatedDate?: Date;
+
+    constructor(data?: IUpdatePromoCommandDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.updatedDate = _data["updatedDate"] ? new Date(_data["updatedDate"].toString()) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): UpdatePromoCommandDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new UpdatePromoCommandDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["updatedDate"] = this.updatedDate ? this.updatedDate.toISOString() : <any>undefined;
+        return data;
+    }
+}
+
+export interface IUpdatePromoCommandDto {
+    id?: string | undefined;
+    updatedDate?: Date;
+}
+
+export class UpdatePromoCommand implements IUpdatePromoCommand {
+    uniqueId?: string | undefined;
+    promoCode?: string | undefined;
+    promoName?: string | undefined;
+    promoDescription?: string | undefined;
+    promoPrice?: number | undefined;
+    isActive?: boolean | undefined;
+
+    constructor(data?: IUpdatePromoCommand) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.uniqueId = _data["uniqueId"];
+            this.promoCode = _data["promoCode"];
+            this.promoName = _data["promoName"];
+            this.promoDescription = _data["promoDescription"];
+            this.promoPrice = _data["promoPrice"];
+            this.isActive = _data["isActive"];
+        }
+    }
+
+    static fromJS(data: any): UpdatePromoCommand {
+        data = typeof data === 'object' ? data : {};
+        let result = new UpdatePromoCommand();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["uniqueId"] = this.uniqueId;
+        data["promoCode"] = this.promoCode;
+        data["promoName"] = this.promoName;
+        data["promoDescription"] = this.promoDescription;
+        data["promoPrice"] = this.promoPrice;
+        data["isActive"] = this.isActive;
+        return data;
+    }
+}
+
+export interface IUpdatePromoCommand {
+    uniqueId?: string | undefined;
+    promoCode?: string | undefined;
+    promoName?: string | undefined;
+    promoDescription?: string | undefined;
+    promoPrice?: number | undefined;
+    isActive?: boolean | undefined;
+}
+
+export class GetAllPromoQueryDto implements IGetAllPromoQueryDto {
+    id?: number | undefined;
+    uniqueId?: string | undefined;
+    promoCode?: string | undefined;
+    promoName?: string | undefined;
+    promoDescription?: string | undefined;
+    promoPrice?: number | undefined;
+    isActive?: boolean | undefined;
+
+    constructor(data?: IGetAllPromoQueryDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.uniqueId = _data["uniqueId"];
+            this.promoCode = _data["promoCode"];
+            this.promoName = _data["promoName"];
+            this.promoDescription = _data["promoDescription"];
+            this.promoPrice = _data["promoPrice"];
+            this.isActive = _data["isActive"];
+        }
+    }
+
+    static fromJS(data: any): GetAllPromoQueryDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new GetAllPromoQueryDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["uniqueId"] = this.uniqueId;
+        data["promoCode"] = this.promoCode;
+        data["promoName"] = this.promoName;
+        data["promoDescription"] = this.promoDescription;
+        data["promoPrice"] = this.promoPrice;
+        data["isActive"] = this.isActive;
+        return data;
+    }
+}
+
+export interface IGetAllPromoQueryDto {
+    id?: number | undefined;
+    uniqueId?: string | undefined;
+    promoCode?: string | undefined;
+    promoName?: string | undefined;
+    promoDescription?: string | undefined;
+    promoPrice?: number | undefined;
+    isActive?: boolean | undefined;
+}
+
+export class ResultOfGetAllPromoByIdQueryDto implements IResultOfGetAllPromoByIdQueryDto {
+    data?: GetAllPromoByIdQueryDto | undefined;
+    message?: string;
+    resultType?: ResultType;
+
+    constructor(data?: IResultOfGetAllPromoByIdQueryDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.data = _data["data"] ? GetAllPromoByIdQueryDto.fromJS(_data["data"]) : <any>undefined;
+            this.message = _data["message"];
+            this.resultType = _data["resultType"];
+        }
+    }
+
+    static fromJS(data: any): ResultOfGetAllPromoByIdQueryDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new ResultOfGetAllPromoByIdQueryDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["data"] = this.data ? this.data.toJSON() : <any>undefined;
+        data["message"] = this.message;
+        data["resultType"] = this.resultType;
+        return data;
+    }
+}
+
+export interface IResultOfGetAllPromoByIdQueryDto {
+    data?: GetAllPromoByIdQueryDto | undefined;
+    message?: string;
+    resultType?: ResultType;
+}
+
+export class GetAllPromoByIdQueryDto implements IGetAllPromoByIdQueryDto {
+    id?: number | undefined;
+    uniqueId?: string | undefined;
+    promoCode?: string | undefined;
+    promoName?: string | undefined;
+    promoDescription?: string | undefined;
+    promoPrice?: number | undefined;
+    isActive?: boolean | undefined;
+
+    constructor(data?: IGetAllPromoByIdQueryDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.uniqueId = _data["uniqueId"];
+            this.promoCode = _data["promoCode"];
+            this.promoName = _data["promoName"];
+            this.promoDescription = _data["promoDescription"];
+            this.promoPrice = _data["promoPrice"];
+            this.isActive = _data["isActive"];
+        }
+    }
+
+    static fromJS(data: any): GetAllPromoByIdQueryDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new GetAllPromoByIdQueryDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["uniqueId"] = this.uniqueId;
+        data["promoCode"] = this.promoCode;
+        data["promoName"] = this.promoName;
+        data["promoDescription"] = this.promoDescription;
+        data["promoPrice"] = this.promoPrice;
+        data["isActive"] = this.isActive;
+        return data;
+    }
+}
+
+export interface IGetAllPromoByIdQueryDto {
+    id?: number | undefined;
+    uniqueId?: string | undefined;
+    promoCode?: string | undefined;
+    promoName?: string | undefined;
+    promoDescription?: string | undefined;
+    promoPrice?: number | undefined;
+    isActive?: boolean | undefined;
+}
+
 export class ResultOfUsersListDto implements IResultOfUsersListDto {
     data?: UsersListDto | undefined;
     message?: string;
@@ -5881,7 +7197,7 @@ export class UsersDto implements IUsersDto {
     region?: string | undefined;
     zipCode?: string | undefined;
     contactNumber?: string | undefined;
-    birthDate?: Date | undefined;
+    birthDate?: string | undefined;
 
     constructor(data?: IUsersDto) {
         if (data) {
@@ -5908,7 +7224,7 @@ export class UsersDto implements IUsersDto {
             this.region = _data["region"];
             this.zipCode = _data["zipCode"];
             this.contactNumber = _data["contactNumber"];
-            this.birthDate = _data["birthDate"] ? new Date(_data["birthDate"].toString()) : <any>undefined;
+            this.birthDate = _data["birthDate"];
         }
     }
 
@@ -5935,7 +7251,7 @@ export class UsersDto implements IUsersDto {
         data["region"] = this.region;
         data["zipCode"] = this.zipCode;
         data["contactNumber"] = this.contactNumber;
-        data["birthDate"] = this.birthDate ? this.birthDate.toISOString() : <any>undefined;
+        data["birthDate"] = this.birthDate;
         return data;
     }
 }
@@ -5955,7 +7271,7 @@ export interface IUsersDto {
     region?: string | undefined;
     zipCode?: string | undefined;
     contactNumber?: string | undefined;
-    birthDate?: Date | undefined;
+    birthDate?: string | undefined;
 }
 
 export class ResultOfUserByIDDto implements IResultOfUserByIDDto {
@@ -6017,7 +7333,7 @@ export class UserByIDDto implements IUserByIDDto {
     region?: string | undefined;
     zipCode?: string | undefined;
     contactNumber?: string | undefined;
-    birthDate?: Date | undefined;
+    birthDate?: string | undefined;
 
     constructor(data?: IUserByIDDto) {
         if (data) {
@@ -6044,7 +7360,7 @@ export class UserByIDDto implements IUserByIDDto {
             this.region = _data["region"];
             this.zipCode = _data["zipCode"];
             this.contactNumber = _data["contactNumber"];
-            this.birthDate = _data["birthDate"] ? new Date(_data["birthDate"].toString()) : <any>undefined;
+            this.birthDate = _data["birthDate"];
         }
     }
 
@@ -6071,7 +7387,7 @@ export class UserByIDDto implements IUserByIDDto {
         data["region"] = this.region;
         data["zipCode"] = this.zipCode;
         data["contactNumber"] = this.contactNumber;
-        data["birthDate"] = this.birthDate ? this.birthDate.toISOString() : <any>undefined;
+        data["birthDate"] = this.birthDate;
         return data;
     }
 }
@@ -6091,7 +7407,7 @@ export interface IUserByIDDto {
     region?: string | undefined;
     zipCode?: string | undefined;
     contactNumber?: string | undefined;
-    birthDate?: Date | undefined;
+    birthDate?: string | undefined;
 }
 
 export class ResultOfCreateUserDto implements IResultOfCreateUserDto {
@@ -6152,7 +7468,7 @@ export class CreateUserDto implements ICreateUserDto {
     region?: string | undefined;
     zipCode?: string | undefined;
     contactNumber?: string | undefined;
-    birthDate?: Date | undefined;
+    birthDate?: string | undefined;
 
     constructor(data?: ICreateUserDto) {
         if (data) {
@@ -6178,7 +7494,7 @@ export class CreateUserDto implements ICreateUserDto {
             this.region = _data["region"];
             this.zipCode = _data["zipCode"];
             this.contactNumber = _data["contactNumber"];
-            this.birthDate = _data["birthDate"] ? new Date(_data["birthDate"].toString()) : <any>undefined;
+            this.birthDate = _data["birthDate"];
         }
     }
 
@@ -6204,7 +7520,7 @@ export class CreateUserDto implements ICreateUserDto {
         data["region"] = this.region;
         data["zipCode"] = this.zipCode;
         data["contactNumber"] = this.contactNumber;
-        data["birthDate"] = this.birthDate ? this.birthDate.toISOString() : <any>undefined;
+        data["birthDate"] = this.birthDate;
         return data;
     }
 }
@@ -6223,7 +7539,7 @@ export interface ICreateUserDto {
     region?: string | undefined;
     zipCode?: string | undefined;
     contactNumber?: string | undefined;
-    birthDate?: Date | undefined;
+    birthDate?: string | undefined;
 }
 
 export class CreateUserCommand implements ICreateUserCommand {
@@ -6239,7 +7555,7 @@ export class CreateUserCommand implements ICreateUserCommand {
     region?: string | undefined;
     zipCode?: string | undefined;
     contactNumber?: string | undefined;
-    birthDate?: Date | undefined;
+    birthDate?: string | undefined;
 
     constructor(data?: ICreateUserCommand) {
         if (data) {
@@ -6264,7 +7580,7 @@ export class CreateUserCommand implements ICreateUserCommand {
             this.region = _data["region"];
             this.zipCode = _data["zipCode"];
             this.contactNumber = _data["contactNumber"];
-            this.birthDate = _data["birthDate"] ? new Date(_data["birthDate"].toString()) : <any>undefined;
+            this.birthDate = _data["birthDate"];
         }
     }
 
@@ -6289,7 +7605,7 @@ export class CreateUserCommand implements ICreateUserCommand {
         data["region"] = this.region;
         data["zipCode"] = this.zipCode;
         data["contactNumber"] = this.contactNumber;
-        data["birthDate"] = this.birthDate ? this.birthDate.toISOString() : <any>undefined;
+        data["birthDate"] = this.birthDate;
         return data;
     }
 }
@@ -6307,7 +7623,7 @@ export interface ICreateUserCommand {
     region?: string | undefined;
     zipCode?: string | undefined;
     contactNumber?: string | undefined;
-    birthDate?: Date | undefined;
+    birthDate?: string | undefined;
 }
 
 export class ResultOfUpdateUserDto implements IResultOfUpdateUserDto {
@@ -6367,7 +7683,7 @@ export class UpdateUserDto implements IUpdateUserDto {
     region?: string | undefined;
     zipCode?: string | undefined;
     contactNumber?: string | undefined;
-    birthDate?: Date | undefined;
+    birthDate?: string | undefined;
 
     constructor(data?: IUpdateUserDto) {
         if (data) {
@@ -6392,7 +7708,7 @@ export class UpdateUserDto implements IUpdateUserDto {
             this.region = _data["region"];
             this.zipCode = _data["zipCode"];
             this.contactNumber = _data["contactNumber"];
-            this.birthDate = _data["birthDate"] ? new Date(_data["birthDate"].toString()) : <any>undefined;
+            this.birthDate = _data["birthDate"];
         }
     }
 
@@ -6417,7 +7733,7 @@ export class UpdateUserDto implements IUpdateUserDto {
         data["region"] = this.region;
         data["zipCode"] = this.zipCode;
         data["contactNumber"] = this.contactNumber;
-        data["birthDate"] = this.birthDate ? this.birthDate.toISOString() : <any>undefined;
+        data["birthDate"] = this.birthDate;
         return data;
     }
 }
@@ -6435,7 +7751,7 @@ export interface IUpdateUserDto {
     region?: string | undefined;
     zipCode?: string | undefined;
     contactNumber?: string | undefined;
-    birthDate?: Date | undefined;
+    birthDate?: string | undefined;
 }
 
 export class UpdateUserCommand implements IUpdateUserCommand {
@@ -6451,7 +7767,7 @@ export class UpdateUserCommand implements IUpdateUserCommand {
     region?: string | undefined;
     zipCode?: string | undefined;
     contactNumber?: string | undefined;
-    birthDate?: Date | undefined;
+    birthDate?: string | undefined;
 
     constructor(data?: IUpdateUserCommand) {
         if (data) {
@@ -6476,7 +7792,7 @@ export class UpdateUserCommand implements IUpdateUserCommand {
             this.region = _data["region"];
             this.zipCode = _data["zipCode"];
             this.contactNumber = _data["contactNumber"];
-            this.birthDate = _data["birthDate"] ? new Date(_data["birthDate"].toString()) : <any>undefined;
+            this.birthDate = _data["birthDate"];
         }
     }
 
@@ -6501,7 +7817,7 @@ export class UpdateUserCommand implements IUpdateUserCommand {
         data["region"] = this.region;
         data["zipCode"] = this.zipCode;
         data["contactNumber"] = this.contactNumber;
-        data["birthDate"] = this.birthDate ? this.birthDate.toISOString() : <any>undefined;
+        data["birthDate"] = this.birthDate;
         return data;
     }
 }
@@ -6519,7 +7835,7 @@ export interface IUpdateUserCommand {
     region?: string | undefined;
     zipCode?: string | undefined;
     contactNumber?: string | undefined;
-    birthDate?: Date | undefined;
+    birthDate?: string | undefined;
 }
 
 export class ResultOfUpdatePasswordDto implements IResultOfUpdatePasswordDto {

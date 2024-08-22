@@ -37,9 +37,9 @@ public interface IIdentityService
 
     Task<Result<LogoutDto>> LogOut(string? userid);
 
-    Task<Result<CreateUserDto>> CreateIdentityUserAsync(string? userName, string? password, string? lastName, string? firstName, string? middleName, string? emailAddress, string? street, string? city, string? province, string? region, string? zipCode, string? contactNumber, DateTime? birthDate);
+    Task<Result<CreateUserDto>> CreateIdentityUserAsync(string? userName, string? password, string? lastName, string? firstName, string? middleName, string? emailAddress, string? street, string? city, string? province, string? region, string? zipCode, string? contactNumber, string? birthDate);
 
-    Task<Result<UpdateUserDto>> UpdateIdentityUserAsync(string? id, string? userName, string? lastName, string? firstName, string? middleName, string? emailAddress, string? street, string? city, string? province, string? region, string? zipCode, string? contactNumber, DateTime? birthDate);
+    Task<Result<UpdateUserDto>> UpdateIdentityUserAsync(string? id, string? userName, string? lastName, string? firstName, string? middleName, string? emailAddress, string? street, string? city, string? province, string? region, string? zipCode, string? contactNumber, string? birthDate);
 
     Task<Result<UpdatePasswordDto>> UpdateIdentityUserPasswordAsync(string? userName, string? oldPassword, string? newPassword);
 

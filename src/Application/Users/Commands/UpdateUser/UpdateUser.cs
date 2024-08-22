@@ -29,7 +29,7 @@ public record UpdateUserCommand : IRequest<Result<UpdateUserDto>>
 
     public string? ContactNumber { get; init; }
 
-    public DateTime? BirthDate { get; init; }
+    public string? BirthDate { get; init; }
 }
 
 public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand, Result<UpdateUserDto>>

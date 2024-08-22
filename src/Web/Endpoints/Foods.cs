@@ -1,37 +1,38 @@
 ﻿
 using UMS.GROUP.Airport.Booking.Application.Common.Models;
-using UMS.GROUP.Airport.Booking.Application.PromoCategory.Queries.GetAllPromoCategory;
+using UMS.GROUP.Airport.Booking.Application.FoodCategory.Command.CreateFoodCategory;
+using UMS.GROUP.Airport.Booking.Application.FoodCategory.Queries.GetAllFoodCategory;
 
 namespace UMS.GROUP.Airport.Booking.Web.Endpoints;
 
-public class Promos : EndpointGroupBase
+public class Foods : EndpointGroupBase
 {
     public override void Map(WebApplication app)
     {
         app.MapGroup(this)
-            .MapPost(CreatePromo, "CreatePromo")
-            .MapPut(UpdatePromo, "UpdatePromo")
-            .MapGet(GetAllPromo, "GetAllPromo")
-            .MapGet(GetAllPromoById, "GetAllPromoById")
+            .MapPost(CreateFood, "CreateFood")
+            .MapPut(UpdateFood, "UpdateFood")
+            .MapGet(GetAllFood, "GetAllFood")
+            .MapGet(GetAllFoodById, "GetAllFoodById")
             ;
     }
 
-    public async Task<List<GetAllPromoQueryDto>> GetAllPromo(ISender sender, [AsParameters] GetAllPromoQuery query)
+    public async Task<List<GetAllFoodQueryDto>> GetAllFood(ISender sender, [AsParameters] GetAllFoodQuery query)
     {
         return await sender.Send(query);
     }
 
-    public async Task<Result<GetAllPromoByIdQueryDto>> GetAllPromoById(ISender sender, [AsParameters] GetAllPromoByIdQuery query)
+    public async Task<Result<GetAllFoodByIdQueryDto>> GetAllFoodById(ISender sender, [AsParameters] GetAllFoodByIdQuery query)
     {
         return await sender.Send(query);
     }
 
-    public Task<Result<CreatePromoCommandDto>> CreatePromo(ISender sender, CreatePromoCommand command)
+    public Task<Result<CreateFoodCommandDto>> CreateFood(ISender sender, CreateFoodCommand command)
     {
         return sender.Send(command);
     }
 
-    public Task<Result<UpdatePromoCommandDto>> UpdatePromo(ISender sender, UpdatePromoCommand command)
+    public Task<Result<UpdateFoodCommandDto>> UpdateFood(ISender sender, UpdateFoodCommand command)
     {
         return sender.Send(command);
     }

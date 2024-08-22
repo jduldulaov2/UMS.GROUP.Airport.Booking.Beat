@@ -7,7 +7,7 @@
       <div class="container" style="max-width: 1320px;">
 
         <div class="d-flex justify-content-between align-items-center">
-          <h2>Home > Reserve a Table</h2>
+          <h2 class="curly">Home > Reserve a Table</h2>
           <ol>
             <li><a href="index.html">Home</a></li>
             <li><span class="li-before">Reserve a Table</span></li>
@@ -22,7 +22,7 @@
       <div class="container" style="max-width: 90%;" >
 
         <div class="section-title" style="background: linear-gradient(0deg, rgb(232 206 121 / 82%) 0%, rgb(236 217 151 / 21%) 100%);">
-          <div style="padding: 10px;"><h2>Reserve a <span>Table</span></h2>
+          <div style="padding: 10px;"><h2 class="curly">Reserve a <span>Table</span></h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p></div>
         </div>
         
@@ -62,10 +62,47 @@
             <div class="error-message"></div>
             <div class="sent-message">Your booking request was sent. We will call back or send an Email to confirm your reservation. Thank you!</div>
           </div>
-          <div class="text-center"><button type="submit" data-toggle="modal" data-target="#myModal" style="margin-right: 20px;">Select Table Location</button><button type="submit">Send Message</button> </div>
+          <div class="text-center">
+            <button type="submit" data-toggle="modal" data-target="#myModal" style="margin-right: 20px;">Select Table Location</button>
+            <button type="submit" style="margin-right: 20px;">Place Order</button>
+            <button type="submit">Send Message</button> </div>
         </div>
 
       </div>
     </section>
 
   </main><!-- End #main -->
+
+    <!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-body">
+        <ul class="nav nav-tabs" role="tablist">
+          <li class="nav-item" role="presentation">
+            <a class="nav-link active" id="simple-tab-0" data-bs-toggle="tab" href="#simple-tabpanel-0" role="tab" aria-controls="simple-tabpanel-0" aria-selected="true">Inside Restaurant</a>
+          </li>
+          <li class="nav-item" role="presentation">
+            <a class="nav-link" id="simple-tab-1" data-bs-toggle="tab" href="#simple-tabpanel-1" role="tab" aria-controls="simple-tabpanel-1" aria-selected="false">Terrese</a>
+          </li>
+        </ul>
+        <div class="tab-content pt-5" id="tab-content">
+          <div class="tab-pane active" id="simple-tabpanel-0" role="tabpanel" aria-labelledby="simple-tab-0">
+            <p><img src="assets/reservation/client/assets/img/RestaurantPlanDraftFinal.png" alt="" class="img-fluid"></p>
+          </div>
+          <div class="tab-pane" id="simple-tabpanel-1" role="tabpanel" aria-labelledby="simple-tab-1">
+            <p><img src="assets/reservation/client/assets/img/TerreseDraft.png" alt="" class="img-fluid"></p>
+          </div>
+        </div>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Select</button>
+      </div>
+    </div>
+
+  </div>
+</div>

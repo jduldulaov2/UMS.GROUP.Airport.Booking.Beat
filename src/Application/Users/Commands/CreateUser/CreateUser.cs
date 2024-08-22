@@ -28,7 +28,7 @@ public record CreateUserCommand : IRequest<Result<CreateUserDto>>
 
     public string? ContactNumber { get; init; }
 
-    public DateTime? BirthDate { get; init; }
+    public string? BirthDate { get; init; }
 }
 
 public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, Result<CreateUserDto>>
