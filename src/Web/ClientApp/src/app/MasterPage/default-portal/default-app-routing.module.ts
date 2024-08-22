@@ -10,6 +10,7 @@ import { SpecialMenuComponent }  from '../../Pages/ClientPortal/special-menu/spe
 import { ContactUsComponent }  from '../../Pages/ClientPortal/contact-us/contact-us.component';
 import { MyCartComponent }  from '../../Pages/ClientPortal/my-cart/my-cart.component';
 import { ReserveATableComponent }  from '../../Pages/ClientPortal/reserve-atable/reserve-atable.component';
+import { CheckoutComponent }  from '../../Pages/ClientPortal/checkout/checkout.component';
 
 const routes: Routes = [
   { 
@@ -43,6 +44,10 @@ const routes: Routes = [
   {
     path: 'reserve-a-table',
     component: ReserveATableComponent
+  },
+  {
+    path: 'checkout',
+    component: CheckoutComponent
   }
   
 ];
