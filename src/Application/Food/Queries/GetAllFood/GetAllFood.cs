@@ -22,16 +22,17 @@ public class GetAllFoodQueryHandler : IRequestHandler<GetAllFoodQuery, List<GetA
     public async Task<List<GetAllFoodQueryDto>> Handle(GetAllFoodQuery request, CancellationToken cancellationToken)
     {
         return await (from food in _context.Food
-                      join foodcategory in _context.FoodCategory on food.Id equals foodcategory.Id
+                      join foodcategory in _context.FoodCategory on food.FoodCategoryId equals foodcategory.Id
                       select new GetAllFoodQueryDto
                       {
-                          Id = foodcategory.Id,
+                          Id = food.Id,
+                          UniqueId = food.UniqueId,
                           FoodName = food.FoodName,
                           FoodDescription = food.FoodDescription,
                           FoodPrice = food.FoodPrice,
                           FoodCategoryId = food.FoodCategoryId,
                           FoodCategoryName = foodcategory.CategoryName,
-                          IsActive = foodcategory.IsActive == null ? true : foodcategory.IsActive
+                          IsActive = food.IsActive == null ? true : food.IsActive
 
                       }).ToListAsync();
     }

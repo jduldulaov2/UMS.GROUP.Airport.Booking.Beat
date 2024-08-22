@@ -33,6 +33,7 @@ public class GetFoodByIdQueryHandler : IRequestHandler<GetAllFoodByIdQuery, Resu
                 Data = new GetAllFoodByIdQueryDto
                 {
                     Id = result.Id,
+                    UniqueId = result.UniqueId,
                     FoodName = result.FoodName,
                     FoodDescription = result.FoodDescription,
                     FoodPrice = result.FoodPrice,
