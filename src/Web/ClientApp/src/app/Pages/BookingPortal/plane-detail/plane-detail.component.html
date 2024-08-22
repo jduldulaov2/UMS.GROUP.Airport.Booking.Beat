@@ -1,0 +1,82 @@
+<div class="content-wrapper">
+    
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0" *ngIf="uniqueKey == null">Airline Registration</h1>
+            <h1 class="m-0" *ngIf="uniqueKey != null">Airline Details</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item">Admin Dashboard</li>
+              <li class="breadcrumb-item active">Airline Details</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="card-header p-2 custom-background">
+                    Plane detail Summary
+                  </div><!-- /.card-header -->
+                  <div class="card-body">
+                    <div class="tab-content">
+                      <div class="active tab-pane" id="profile">
+                        <form class="form-horizontal">
+                          <div class="form-group row">
+                            <label for="inputAirlineName" class="col-sm-2 col-form-label">Airline Name <span style="color: red;">*</span></label>
+                            <div class="col-sm-10">
+                              <input type="text" class="form-control" id="inputAirlineName" placeholder="Airline" #inputAirlineName>
+                            </div>
+                          </div>
+                              <div class="form-group row">
+                                <label for="inputCode" class="col-sm-2 col-form-label">Code <span style="color: red;">*</span></label>
+                                <div class="col-sm-10">
+                                  <input type="text" class="form-control" id="inputCode" placeholder="Airline Code" #inputCode>
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                <label for="inputAirlineModel" class="col-sm-2 col-form-label">Model <span style="color: red;">*</span></label>
+                                <div class="col-sm-10">
+                                  <input type="text" class="form-control" id="inputAirlineModel" placeholder="Airline Model" #inputAirlineModel>
+                                </div>
+                              </div>
+                              <div class="form-check form-switch"  *ngIf="uniqueKey != null">
+                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                                <label class="form-check-label" for="flexSwitchCheckChecked">Status (Active)?</label>
+                              </div>
+                                  <div class="form-group row">
+                                    <div class="offset-sm-2 col-sm-10"  *ngIf="uniqueKey == null">
+                                      <button type="submit" class="btn btn-danger" [routerLink]="['/portal/manage-planes']" style="margin-right: 10px;">Back</button>
+                                      <button type="submit" (click)="SaveAirline(inputAirlineName.value, inputCode.value, inputAirlineModel.value)" class="btn btn-primary">Save</button>
+                                    </div>
+                                    <div class="offset-sm-2 col-sm-10"  *ngIf="uniqueKey != null">
+                                      <button type="submit" class="btn btn-danger" [routerLink]="['/portal/manage-planes']" style="margin-right: 10px;">Back</button>
+                                      <button type="submit" (click)="UpdateAirline(inputAirlineName.value, inputCode.value, inputAirlineModel.value)" class="btn btn-primary">Update / Save</button>
+                                    </div>
+                                  </div>
+                                  <div class="alert alert-danger alert-dismissible collapse" role="alert" id="alert">
+                                    <strong>Error: <br></strong> <span id="errorMessage"></span>
+                                  </div>
+
+                          </form>
+                      </div>
+
+                    </div>
+                    <!-- /.tab-content -->
+                  </div><!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+          </div><!-- /.container-fluid -->
+    </section>
+  </div>
