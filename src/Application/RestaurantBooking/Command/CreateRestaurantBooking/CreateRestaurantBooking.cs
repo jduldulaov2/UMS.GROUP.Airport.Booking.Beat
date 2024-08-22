@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using UMS.GROUP.Airport.Booking.Application.Common.Models;
 using UMS.GROUP.Airport.Booking.Application.Common.Models.Enums;
-using UMS.GROUP.Airport.Booking.Application.FoodCategory.Command.CreateFoodCategory;
 using UMS.GROUP.Airport.Booking.Domain.Entities;
 
 public record CreateRestaurantBookingCommand : IRequest<Result<CreateRestaurantBookingCommandDto>>

@@ -5,8 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using UMS.GROUP.Airport.Booking.Application.Common.Models;
 using UMS.GROUP.Airport.Booking.Application.Common.Models.Enums;
-using UMS.GROUP.Airport.Booking.Application.FoodCategory.Queries.GetAllFoodCategoryById;
-using UMS.GROUP.Airport.Booking.Domain.Entities;
 
 public record GetAllFoodByIdQuery : IRequest<Result<GetAllFoodByIdQueryDto>>
 {

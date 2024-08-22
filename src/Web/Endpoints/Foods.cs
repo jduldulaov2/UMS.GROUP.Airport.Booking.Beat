@@ -1,8 +1,5 @@
 ﻿
 using UMS.GROUP.Airport.Booking.Application.Common.Models;
-using UMS.GROUP.Airport.Booking.Application.FoodCategory.Command.CreateFoodCategory;
-using UMS.GROUP.Airport.Booking.Application.FoodCategory.Queries.GetAllFoodCategory;
-
 namespace UMS.GROUP.Airport.Booking.Web.Endpoints;
 
 public class Foods : EndpointGroupBase

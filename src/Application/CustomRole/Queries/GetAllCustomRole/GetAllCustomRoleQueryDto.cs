@@ -4,8 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UMS.GROUP.Airport.Booking.Application.CustomRoleCategory.Queries.GetAllCustomRoleCategory;
-
 public class GetAllCustomRoleQueryDto
 {
     public int? Id { get; set; }

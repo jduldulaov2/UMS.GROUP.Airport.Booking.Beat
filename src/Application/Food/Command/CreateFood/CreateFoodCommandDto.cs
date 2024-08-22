@@ -4,8 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UMS.GROUP.Airport.Booking.Application.FoodCategory.Command.CreateFoodCategory;
-
 public class CreateFoodCommandDto
 {
     public string? Id { get; set; }

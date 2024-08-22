@@ -4,8 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UMS.GROUP.Airport.Booking.Application.FoodCategory.Command.UpdateFoodCategory;
-
 public class UpdateFoodCategoryCommandValidator : AbstractValidator<UpdateFoodCategoryCommand>
 {
     public UpdateFoodCategoryCommandValidator()

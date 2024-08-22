@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using UMS.GROUP.Airport.Booking.Application.FoodCategory.Queries.GetAllFoodCategory;
 using UMS.GROUP.Airport.Booking.Domain.Entities;
 
 public record GetAllRestaurantBookingQuery : IRequest<List<GetAllRestaurantBookingQueryDto>>

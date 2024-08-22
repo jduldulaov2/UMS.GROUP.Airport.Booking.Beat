@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using UMS.GROUP.Airport.Booking.Application.PromoCategory.Queries.GetAllPromoCategory;
 
 public record GetAllPromoQuery : IRequest<List<GetAllPromoQueryDto>>
 {

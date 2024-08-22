@@ -4,8 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UMS.GROUP.Airport.Booking.Application.FoodCategory.Queries.GetAllFoodCategory;
-
 public class GetAllRestaurantBookingQueryDto
 {
     public int? Id { get; set; }

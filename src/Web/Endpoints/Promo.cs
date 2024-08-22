@@ -1,6 +1,5 @@
 ﻿
 using UMS.GROUP.Airport.Booking.Application.Common.Models;
-using UMS.GROUP.Airport.Booking.Application.PromoCategory.Queries.GetAllPromoCategory;
 
 namespace UMS.GROUP.Airport.Booking.Web.Endpoints;
 

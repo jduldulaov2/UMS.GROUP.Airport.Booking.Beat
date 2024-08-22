@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using UMS.GROUP.Airport.Booking.Application.CustomRoleCategory.Queries.GetAllCustomRoleCategory;
 
 public record GetAllCustomRoleQuery : IRequest<List<GetAllCustomRoleQueryDto>>
 {
