@@ -113,6 +113,7 @@ public class UpdateRestaurantBookingCommandHandler : IRequestHandler<UpdateResta
                     {
                         Id = entity.UniqueId,
                         UpdatedDate = DateTime.Now,
+                        PrimaryId = entity.Id
                     },
                     Message = "Updated successfully.",
                     ResultType = ResultType.Success,

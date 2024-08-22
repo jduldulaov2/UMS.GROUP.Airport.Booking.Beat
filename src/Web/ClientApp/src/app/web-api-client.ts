@@ -2396,6 +2396,236 @@ export class PromoClient implements IPromoClient {
     }
 }
 
+export interface IRestaurantBookingsClient {
+    createRestaurantBooking(command: CreateRestaurantBookingCommand): Observable<ResultOfCreateRestaurantBookingCommandDto>;
+    updateRestaurantBooking(command: UpdateRestaurantBookingCommand): Observable<ResultOfUpdateRestaurantBookingCommandDto>;
+    getAllRestaurantBooking(): Observable<GetAllRestaurantBookingQueryDto[]>;
+    getAllRestaurantBookingById(uniqueId: string | null | undefined): Observable<ResultOfGetAllRestaurantBookingByIdQueryDto>;
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class RestaurantBookingsClient implements IRestaurantBookingsClient {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ?? "";
+    }
+
+    createRestaurantBooking(command: CreateRestaurantBookingCommand): Observable<ResultOfCreateRestaurantBookingCommandDto> {
+        let url_ = this.baseUrl + "/api/RestaurantBookings/CreateRestaurantBooking";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(command);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processCreateRestaurantBooking(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processCreateRestaurantBooking(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<ResultOfCreateRestaurantBookingCommandDto>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<ResultOfCreateRestaurantBookingCommandDto>;
+        }));
+    }
+
+    protected processCreateRestaurantBooking(response: HttpResponseBase): Observable<ResultOfCreateRestaurantBookingCommandDto> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ResultOfCreateRestaurantBookingCommandDto.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    updateRestaurantBooking(command: UpdateRestaurantBookingCommand): Observable<ResultOfUpdateRestaurantBookingCommandDto> {
+        let url_ = this.baseUrl + "/api/RestaurantBookings/UpdateRestaurantBooking";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(command);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processUpdateRestaurantBooking(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processUpdateRestaurantBooking(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<ResultOfUpdateRestaurantBookingCommandDto>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<ResultOfUpdateRestaurantBookingCommandDto>;
+        }));
+    }
+
+    protected processUpdateRestaurantBooking(response: HttpResponseBase): Observable<ResultOfUpdateRestaurantBookingCommandDto> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ResultOfUpdateRestaurantBookingCommandDto.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    getAllRestaurantBooking(): Observable<GetAllRestaurantBookingQueryDto[]> {
+        let url_ = this.baseUrl + "/api/RestaurantBookings/GetAllRestaurantBooking";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetAllRestaurantBooking(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetAllRestaurantBooking(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<GetAllRestaurantBookingQueryDto[]>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<GetAllRestaurantBookingQueryDto[]>;
+        }));
+    }
+
+    protected processGetAllRestaurantBooking(response: HttpResponseBase): Observable<GetAllRestaurantBookingQueryDto[]> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200!.push(GetAllRestaurantBookingQueryDto.fromJS(item));
+            }
+            else {
+                result200 = <any>null;
+            }
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    getAllRestaurantBookingById(uniqueId: string | null | undefined): Observable<ResultOfGetAllRestaurantBookingByIdQueryDto> {
+        let url_ = this.baseUrl + "/api/RestaurantBookings/GetAllRestaurantBookingById?";
+        if (uniqueId !== undefined && uniqueId !== null)
+            url_ += "UniqueId=" + encodeURIComponent("" + uniqueId) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetAllRestaurantBookingById(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetAllRestaurantBookingById(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<ResultOfGetAllRestaurantBookingByIdQueryDto>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<ResultOfGetAllRestaurantBookingByIdQueryDto>;
+        }));
+    }
+
+    protected processGetAllRestaurantBookingById(response: HttpResponseBase): Observable<ResultOfGetAllRestaurantBookingByIdQueryDto> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ResultOfGetAllRestaurantBookingByIdQueryDto.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+}
+
 export interface IRestaurantOrdersClient {
     createRestaurantOrder(command: CreateRestaurantOrderCommand): Observable<ResultOfCreateRestaurantOrderCommandDto>;
     updateRestaurantOrder(command: UpdateRestaurantOrderCommand): Observable<ResultOfUpdateRestaurantOrderCommandDto>;
@@ -2615,6 +2845,236 @@ export class RestaurantOrdersClient implements IRestaurantOrdersClient {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
             result200 = ResultOfGetAllRestaurantOrderByIdQueryDto.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+}
+
+export interface IRestaurantOrderDetailsClient {
+    createRestaurantOrderDetail(command: CreateRestaurantOrderDetailCommand): Observable<ResultOfCreateRestaurantOrderDetailCommandDto>;
+    updateRestaurantOrderDetail(command: UpdateRestaurantOrderDetailCommand): Observable<ResultOfUpdateRestaurantOrderDetailCommandDto>;
+    getAllRestaurantOrderDetail(): Observable<GetAllRestaurantOrderDetailQueryDto[]>;
+    getAllRestaurantOrderDetailById(uniqueId: string | null | undefined): Observable<ResultOfGetAllRestaurantOrderDetailByIdQueryDto>;
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class RestaurantOrderDetailsClient implements IRestaurantOrderDetailsClient {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ?? "";
+    }
+
+    createRestaurantOrderDetail(command: CreateRestaurantOrderDetailCommand): Observable<ResultOfCreateRestaurantOrderDetailCommandDto> {
+        let url_ = this.baseUrl + "/api/RestaurantOrderDetails/CreateRestaurantOrderDetail";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(command);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processCreateRestaurantOrderDetail(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processCreateRestaurantOrderDetail(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<ResultOfCreateRestaurantOrderDetailCommandDto>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<ResultOfCreateRestaurantOrderDetailCommandDto>;
+        }));
+    }
+
+    protected processCreateRestaurantOrderDetail(response: HttpResponseBase): Observable<ResultOfCreateRestaurantOrderDetailCommandDto> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ResultOfCreateRestaurantOrderDetailCommandDto.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    updateRestaurantOrderDetail(command: UpdateRestaurantOrderDetailCommand): Observable<ResultOfUpdateRestaurantOrderDetailCommandDto> {
+        let url_ = this.baseUrl + "/api/RestaurantOrderDetails/UpdateRestaurantOrderDetail";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(command);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processUpdateRestaurantOrderDetail(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processUpdateRestaurantOrderDetail(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<ResultOfUpdateRestaurantOrderDetailCommandDto>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<ResultOfUpdateRestaurantOrderDetailCommandDto>;
+        }));
+    }
+
+    protected processUpdateRestaurantOrderDetail(response: HttpResponseBase): Observable<ResultOfUpdateRestaurantOrderDetailCommandDto> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ResultOfUpdateRestaurantOrderDetailCommandDto.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    getAllRestaurantOrderDetail(): Observable<GetAllRestaurantOrderDetailQueryDto[]> {
+        let url_ = this.baseUrl + "/api/RestaurantOrderDetails/GetAllRestaurantOrderDetail";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetAllRestaurantOrderDetail(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetAllRestaurantOrderDetail(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<GetAllRestaurantOrderDetailQueryDto[]>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<GetAllRestaurantOrderDetailQueryDto[]>;
+        }));
+    }
+
+    protected processGetAllRestaurantOrderDetail(response: HttpResponseBase): Observable<GetAllRestaurantOrderDetailQueryDto[]> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200!.push(GetAllRestaurantOrderDetailQueryDto.fromJS(item));
+            }
+            else {
+                result200 = <any>null;
+            }
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    getAllRestaurantOrderDetailById(uniqueId: string | null | undefined): Observable<ResultOfGetAllRestaurantOrderDetailByIdQueryDto> {
+        let url_ = this.baseUrl + "/api/RestaurantOrderDetails/GetAllRestaurantOrderDetailById?";
+        if (uniqueId !== undefined && uniqueId !== null)
+            url_ += "UniqueId=" + encodeURIComponent("" + uniqueId) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetAllRestaurantOrderDetailById(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetAllRestaurantOrderDetailById(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<ResultOfGetAllRestaurantOrderDetailByIdQueryDto>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<ResultOfGetAllRestaurantOrderDetailByIdQueryDto>;
+        }));
+    }
+
+    protected processGetAllRestaurantOrderDetailById(response: HttpResponseBase): Observable<ResultOfGetAllRestaurantOrderDetailByIdQueryDto> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ResultOfGetAllRestaurantOrderDetailByIdQueryDto.fromJS(resultData200);
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -7554,6 +8014,758 @@ export interface IGetAllPromoByIdQueryDto {
     isActive?: boolean | undefined;
 }
 
+export class ResultOfCreateRestaurantBookingCommandDto implements IResultOfCreateRestaurantBookingCommandDto {
+    data?: CreateRestaurantBookingCommandDto | undefined;
+    message?: string;
+    resultType?: ResultType;
+
+    constructor(data?: IResultOfCreateRestaurantBookingCommandDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.data = _data["data"] ? CreateRestaurantBookingCommandDto.fromJS(_data["data"]) : <any>undefined;
+            this.message = _data["message"];
+            this.resultType = _data["resultType"];
+        }
+    }
+
+    static fromJS(data: any): ResultOfCreateRestaurantBookingCommandDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new ResultOfCreateRestaurantBookingCommandDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["data"] = this.data ? this.data.toJSON() : <any>undefined;
+        data["message"] = this.message;
+        data["resultType"] = this.resultType;
+        return data;
+    }
+}
+
+export interface IResultOfCreateRestaurantBookingCommandDto {
+    data?: CreateRestaurantBookingCommandDto | undefined;
+    message?: string;
+    resultType?: ResultType;
+}
+
+export class CreateRestaurantBookingCommandDto implements ICreateRestaurantBookingCommandDto {
+    id?: string | undefined;
+    createdDate?: Date;
+    primaryId?: number | undefined;
+
+    constructor(data?: ICreateRestaurantBookingCommandDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.createdDate = _data["createdDate"] ? new Date(_data["createdDate"].toString()) : <any>undefined;
+            this.primaryId = _data["primaryId"];
+        }
+    }
+
+    static fromJS(data: any): CreateRestaurantBookingCommandDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new CreateRestaurantBookingCommandDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["createdDate"] = this.createdDate ? this.createdDate.toISOString() : <any>undefined;
+        data["primaryId"] = this.primaryId;
+        return data;
+    }
+}
+
+export interface ICreateRestaurantBookingCommandDto {
+    id?: string | undefined;
+    createdDate?: Date;
+    primaryId?: number | undefined;
+}
+
+export class CreateRestaurantBookingCommand implements ICreateRestaurantBookingCommand {
+    bookingReferrenceNumber?: string | undefined;
+    bookingFromDate?: string | undefined;
+    bookingToDate?: string | undefined;
+    bookingSource?: string | undefined;
+    bookingEstimatedArrivalTime?: string | undefined;
+    bookingEstimatedDepartureTime?: string | undefined;
+    bookingStatusID?: number | undefined;
+    bookingPaymentStatusID?: number | undefined;
+    bookingChargesAmount?: number | undefined;
+    bookingExtrasAmount?: number | undefined;
+    bookingPromoAmount?: number | undefined;
+    bookingTaxAmount?: number | undefined;
+    bookingPaymentSurchargeAmount?: number | undefined;
+    bookingTotalAmount?: number | undefined;
+    bookingPaidAmount?: number | undefined;
+    bookingOutstandingBalanceAmount?: number | undefined;
+    bookingNotes?: string | undefined;
+    paymentMethod?: string | undefined;
+    restaurantID?: number | undefined;
+    guestID?: string | undefined;
+    orderID?: number | undefined;
+    guestName?: string | undefined;
+    restaurantName?: string | undefined;
+    isActive?: boolean | undefined;
+
+    constructor(data?: ICreateRestaurantBookingCommand) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.bookingReferrenceNumber = _data["bookingReferrenceNumber"];
+            this.bookingFromDate = _data["bookingFromDate"];
+            this.bookingToDate = _data["bookingToDate"];
+            this.bookingSource = _data["bookingSource"];
+            this.bookingEstimatedArrivalTime = _data["bookingEstimatedArrivalTime"];
+            this.bookingEstimatedDepartureTime = _data["bookingEstimatedDepartureTime"];
+            this.bookingStatusID = _data["bookingStatusID"];
+            this.bookingPaymentStatusID = _data["bookingPaymentStatusID"];
+            this.bookingChargesAmount = _data["bookingChargesAmount"];
+            this.bookingExtrasAmount = _data["bookingExtrasAmount"];
+            this.bookingPromoAmount = _data["bookingPromoAmount"];
+            this.bookingTaxAmount = _data["bookingTaxAmount"];
+            this.bookingPaymentSurchargeAmount = _data["bookingPaymentSurchargeAmount"];
+            this.bookingTotalAmount = _data["bookingTotalAmount"];
+            this.bookingPaidAmount = _data["bookingPaidAmount"];
+            this.bookingOutstandingBalanceAmount = _data["bookingOutstandingBalanceAmount"];
+            this.bookingNotes = _data["bookingNotes"];
+            this.paymentMethod = _data["paymentMethod"];
+            this.restaurantID = _data["restaurantID"];
+            this.guestID = _data["guestID"];
+            this.orderID = _data["orderID"];
+            this.guestName = _data["guestName"];
+            this.restaurantName = _data["restaurantName"];
+            this.isActive = _data["isActive"];
+        }
+    }
+
+    static fromJS(data: any): CreateRestaurantBookingCommand {
+        data = typeof data === 'object' ? data : {};
+        let result = new CreateRestaurantBookingCommand();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["bookingReferrenceNumber"] = this.bookingReferrenceNumber;
+        data["bookingFromDate"] = this.bookingFromDate;
+        data["bookingToDate"] = this.bookingToDate;
+        data["bookingSource"] = this.bookingSource;
+        data["bookingEstimatedArrivalTime"] = this.bookingEstimatedArrivalTime;
+        data["bookingEstimatedDepartureTime"] = this.bookingEstimatedDepartureTime;
+        data["bookingStatusID"] = this.bookingStatusID;
+        data["bookingPaymentStatusID"] = this.bookingPaymentStatusID;
+        data["bookingChargesAmount"] = this.bookingChargesAmount;
+        data["bookingExtrasAmount"] = this.bookingExtrasAmount;
+        data["bookingPromoAmount"] = this.bookingPromoAmount;
+        data["bookingTaxAmount"] = this.bookingTaxAmount;
+        data["bookingPaymentSurchargeAmount"] = this.bookingPaymentSurchargeAmount;
+        data["bookingTotalAmount"] = this.bookingTotalAmount;
+        data["bookingPaidAmount"] = this.bookingPaidAmount;
+        data["bookingOutstandingBalanceAmount"] = this.bookingOutstandingBalanceAmount;
+        data["bookingNotes"] = this.bookingNotes;
+        data["paymentMethod"] = this.paymentMethod;
+        data["restaurantID"] = this.restaurantID;
+        data["guestID"] = this.guestID;
+        data["orderID"] = this.orderID;
+        data["guestName"] = this.guestName;
+        data["restaurantName"] = this.restaurantName;
+        data["isActive"] = this.isActive;
+        return data;
+    }
+}
+
+export interface ICreateRestaurantBookingCommand {
+    bookingReferrenceNumber?: string | undefined;
+    bookingFromDate?: string | undefined;
+    bookingToDate?: string | undefined;
+    bookingSource?: string | undefined;
+    bookingEstimatedArrivalTime?: string | undefined;
+    bookingEstimatedDepartureTime?: string | undefined;
+    bookingStatusID?: number | undefined;
+    bookingPaymentStatusID?: number | undefined;
+    bookingChargesAmount?: number | undefined;
+    bookingExtrasAmount?: number | undefined;
+    bookingPromoAmount?: number | undefined;
+    bookingTaxAmount?: number | undefined;
+    bookingPaymentSurchargeAmount?: number | undefined;
+    bookingTotalAmount?: number | undefined;
+    bookingPaidAmount?: number | undefined;
+    bookingOutstandingBalanceAmount?: number | undefined;
+    bookingNotes?: string | undefined;
+    paymentMethod?: string | undefined;
+    restaurantID?: number | undefined;
+    guestID?: string | undefined;
+    orderID?: number | undefined;
+    guestName?: string | undefined;
+    restaurantName?: string | undefined;
+    isActive?: boolean | undefined;
+}
+
+export class ResultOfUpdateRestaurantBookingCommandDto implements IResultOfUpdateRestaurantBookingCommandDto {
+    data?: UpdateRestaurantBookingCommandDto | undefined;
+    message?: string;
+    resultType?: ResultType;
+
+    constructor(data?: IResultOfUpdateRestaurantBookingCommandDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.data = _data["data"] ? UpdateRestaurantBookingCommandDto.fromJS(_data["data"]) : <any>undefined;
+            this.message = _data["message"];
+            this.resultType = _data["resultType"];
+        }
+    }
+
+    static fromJS(data: any): ResultOfUpdateRestaurantBookingCommandDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new ResultOfUpdateRestaurantBookingCommandDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["data"] = this.data ? this.data.toJSON() : <any>undefined;
+        data["message"] = this.message;
+        data["resultType"] = this.resultType;
+        return data;
+    }
+}
+
+export interface IResultOfUpdateRestaurantBookingCommandDto {
+    data?: UpdateRestaurantBookingCommandDto | undefined;
+    message?: string;
+    resultType?: ResultType;
+}
+
+export class UpdateRestaurantBookingCommandDto implements IUpdateRestaurantBookingCommandDto {
+    id?: string | undefined;
+    updatedDate?: Date;
+    primaryId?: number | undefined;
+
+    constructor(data?: IUpdateRestaurantBookingCommandDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.updatedDate = _data["updatedDate"] ? new Date(_data["updatedDate"].toString()) : <any>undefined;
+            this.primaryId = _data["primaryId"];
+        }
+    }
+
+    static fromJS(data: any): UpdateRestaurantBookingCommandDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new UpdateRestaurantBookingCommandDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["updatedDate"] = this.updatedDate ? this.updatedDate.toISOString() : <any>undefined;
+        data["primaryId"] = this.primaryId;
+        return data;
+    }
+}
+
+export interface IUpdateRestaurantBookingCommandDto {
+    id?: string | undefined;
+    updatedDate?: Date;
+    primaryId?: number | undefined;
+}
+
+export class UpdateRestaurantBookingCommand implements IUpdateRestaurantBookingCommand {
+    uniqueId?: string | undefined;
+    bookingReferrenceNumber?: string | undefined;
+    bookingFromDate?: string | undefined;
+    bookingToDate?: string | undefined;
+    bookingSource?: string | undefined;
+    bookingEstimatedArrivalTime?: string | undefined;
+    bookingEstimatedDepartureTime?: string | undefined;
+    bookingStatusID?: number | undefined;
+    bookingPaymentStatusID?: number | undefined;
+    bookingChargesAmount?: number | undefined;
+    bookingExtrasAmount?: number | undefined;
+    bookingPromoAmount?: number | undefined;
+    bookingTaxAmount?: number | undefined;
+    bookingPaymentSurchargeAmount?: number | undefined;
+    bookingTotalAmount?: number | undefined;
+    bookingPaidAmount?: number | undefined;
+    bookingOutstandingBalanceAmount?: number | undefined;
+    bookingNotes?: string | undefined;
+    paymentMethod?: string | undefined;
+    restaurantID?: number | undefined;
+    guestID?: string | undefined;
+    orderID?: number | undefined;
+    isActive?: boolean | undefined;
+    guestName?: string | undefined;
+    restaurantName?: string | undefined;
+
+    constructor(data?: IUpdateRestaurantBookingCommand) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.uniqueId = _data["uniqueId"];
+            this.bookingReferrenceNumber = _data["bookingReferrenceNumber"];
+            this.bookingFromDate = _data["bookingFromDate"];
+            this.bookingToDate = _data["bookingToDate"];
+            this.bookingSource = _data["bookingSource"];
+            this.bookingEstimatedArrivalTime = _data["bookingEstimatedArrivalTime"];
+            this.bookingEstimatedDepartureTime = _data["bookingEstimatedDepartureTime"];
+            this.bookingStatusID = _data["bookingStatusID"];
+            this.bookingPaymentStatusID = _data["bookingPaymentStatusID"];
+            this.bookingChargesAmount = _data["bookingChargesAmount"];
+            this.bookingExtrasAmount = _data["bookingExtrasAmount"];
+            this.bookingPromoAmount = _data["bookingPromoAmount"];
+            this.bookingTaxAmount = _data["bookingTaxAmount"];
+            this.bookingPaymentSurchargeAmount = _data["bookingPaymentSurchargeAmount"];
+            this.bookingTotalAmount = _data["bookingTotalAmount"];
+            this.bookingPaidAmount = _data["bookingPaidAmount"];
+            this.bookingOutstandingBalanceAmount = _data["bookingOutstandingBalanceAmount"];
+            this.bookingNotes = _data["bookingNotes"];
+            this.paymentMethod = _data["paymentMethod"];
+            this.restaurantID = _data["restaurantID"];
+            this.guestID = _data["guestID"];
+            this.orderID = _data["orderID"];
+            this.isActive = _data["isActive"];
+            this.guestName = _data["guestName"];
+            this.restaurantName = _data["restaurantName"];
+        }
+    }
+
+    static fromJS(data: any): UpdateRestaurantBookingCommand {
+        data = typeof data === 'object' ? data : {};
+        let result = new UpdateRestaurantBookingCommand();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["uniqueId"] = this.uniqueId;
+        data["bookingReferrenceNumber"] = this.bookingReferrenceNumber;
+        data["bookingFromDate"] = this.bookingFromDate;
+        data["bookingToDate"] = this.bookingToDate;
+        data["bookingSource"] = this.bookingSource;
+        data["bookingEstimatedArrivalTime"] = this.bookingEstimatedArrivalTime;
+        data["bookingEstimatedDepartureTime"] = this.bookingEstimatedDepartureTime;
+        data["bookingStatusID"] = this.bookingStatusID;
+        data["bookingPaymentStatusID"] = this.bookingPaymentStatusID;
+        data["bookingChargesAmount"] = this.bookingChargesAmount;
+        data["bookingExtrasAmount"] = this.bookingExtrasAmount;
+        data["bookingPromoAmount"] = this.bookingPromoAmount;
+        data["bookingTaxAmount"] = this.bookingTaxAmount;
+        data["bookingPaymentSurchargeAmount"] = this.bookingPaymentSurchargeAmount;
+        data["bookingTotalAmount"] = this.bookingTotalAmount;
+        data["bookingPaidAmount"] = this.bookingPaidAmount;
+        data["bookingOutstandingBalanceAmount"] = this.bookingOutstandingBalanceAmount;
+        data["bookingNotes"] = this.bookingNotes;
+        data["paymentMethod"] = this.paymentMethod;
+        data["restaurantID"] = this.restaurantID;
+        data["guestID"] = this.guestID;
+        data["orderID"] = this.orderID;
+        data["isActive"] = this.isActive;
+        data["guestName"] = this.guestName;
+        data["restaurantName"] = this.restaurantName;
+        return data;
+    }
+}
+
+export interface IUpdateRestaurantBookingCommand {
+    uniqueId?: string | undefined;
+    bookingReferrenceNumber?: string | undefined;
+    bookingFromDate?: string | undefined;
+    bookingToDate?: string | undefined;
+    bookingSource?: string | undefined;
+    bookingEstimatedArrivalTime?: string | undefined;
+    bookingEstimatedDepartureTime?: string | undefined;
+    bookingStatusID?: number | undefined;
+    bookingPaymentStatusID?: number | undefined;
+    bookingChargesAmount?: number | undefined;
+    bookingExtrasAmount?: number | undefined;
+    bookingPromoAmount?: number | undefined;
+    bookingTaxAmount?: number | undefined;
+    bookingPaymentSurchargeAmount?: number | undefined;
+    bookingTotalAmount?: number | undefined;
+    bookingPaidAmount?: number | undefined;
+    bookingOutstandingBalanceAmount?: number | undefined;
+    bookingNotes?: string | undefined;
+    paymentMethod?: string | undefined;
+    restaurantID?: number | undefined;
+    guestID?: string | undefined;
+    orderID?: number | undefined;
+    isActive?: boolean | undefined;
+    guestName?: string | undefined;
+    restaurantName?: string | undefined;
+}
+
+export class GetAllRestaurantBookingQueryDto implements IGetAllRestaurantBookingQueryDto {
+    id?: number | undefined;
+    uniqueId?: string | undefined;
+    bookingReferrenceNumber?: string | undefined;
+    bookingFromDate?: string | undefined;
+    bookingToDate?: string | undefined;
+    bookingSource?: string | undefined;
+    bookingEstimatedArrivalTime?: string | undefined;
+    bookingEstimatedDepartureTime?: string | undefined;
+    bookingStatusID?: number | undefined;
+    bookingPaymentStatusID?: number | undefined;
+    bookingChargesAmount?: number | undefined;
+    bookingExtrasAmount?: number | undefined;
+    bookingPromoAmount?: number | undefined;
+    bookingTaxAmount?: number | undefined;
+    bookingPaymentSurchargeAmount?: number | undefined;
+    bookingTotalAmount?: number | undefined;
+    bookingPaidAmount?: number | undefined;
+    bookingOutstandingBalanceAmount?: number | undefined;
+    bookingNotes?: string | undefined;
+    paymentMethod?: string | undefined;
+    restaurantID?: number | undefined;
+    guestID?: string | undefined;
+    orderID?: number | undefined;
+    guestName?: string | undefined;
+    restaurantName?: string | undefined;
+    isActive?: boolean | undefined;
+
+    constructor(data?: IGetAllRestaurantBookingQueryDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.uniqueId = _data["uniqueId"];
+            this.bookingReferrenceNumber = _data["bookingReferrenceNumber"];
+            this.bookingFromDate = _data["bookingFromDate"];
+            this.bookingToDate = _data["bookingToDate"];
+            this.bookingSource = _data["bookingSource"];
+            this.bookingEstimatedArrivalTime = _data["bookingEstimatedArrivalTime"];
+            this.bookingEstimatedDepartureTime = _data["bookingEstimatedDepartureTime"];
+            this.bookingStatusID = _data["bookingStatusID"];
+            this.bookingPaymentStatusID = _data["bookingPaymentStatusID"];
+            this.bookingChargesAmount = _data["bookingChargesAmount"];
+            this.bookingExtrasAmount = _data["bookingExtrasAmount"];
+            this.bookingPromoAmount = _data["bookingPromoAmount"];
+            this.bookingTaxAmount = _data["bookingTaxAmount"];
+            this.bookingPaymentSurchargeAmount = _data["bookingPaymentSurchargeAmount"];
+            this.bookingTotalAmount = _data["bookingTotalAmount"];
+            this.bookingPaidAmount = _data["bookingPaidAmount"];
+            this.bookingOutstandingBalanceAmount = _data["bookingOutstandingBalanceAmount"];
+            this.bookingNotes = _data["bookingNotes"];
+            this.paymentMethod = _data["paymentMethod"];
+            this.restaurantID = _data["restaurantID"];
+            this.guestID = _data["guestID"];
+            this.orderID = _data["orderID"];
+            this.guestName = _data["guestName"];
+            this.restaurantName = _data["restaurantName"];
+            this.isActive = _data["isActive"];
+        }
+    }
+
+    static fromJS(data: any): GetAllRestaurantBookingQueryDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new GetAllRestaurantBookingQueryDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["uniqueId"] = this.uniqueId;
+        data["bookingReferrenceNumber"] = this.bookingReferrenceNumber;
+        data["bookingFromDate"] = this.bookingFromDate;
+        data["bookingToDate"] = this.bookingToDate;
+        data["bookingSource"] = this.bookingSource;
+        data["bookingEstimatedArrivalTime"] = this.bookingEstimatedArrivalTime;
+        data["bookingEstimatedDepartureTime"] = this.bookingEstimatedDepartureTime;
+        data["bookingStatusID"] = this.bookingStatusID;
+        data["bookingPaymentStatusID"] = this.bookingPaymentStatusID;
+        data["bookingChargesAmount"] = this.bookingChargesAmount;
+        data["bookingExtrasAmount"] = this.bookingExtrasAmount;
+        data["bookingPromoAmount"] = this.bookingPromoAmount;
+        data["bookingTaxAmount"] = this.bookingTaxAmount;
+        data["bookingPaymentSurchargeAmount"] = this.bookingPaymentSurchargeAmount;
+        data["bookingTotalAmount"] = this.bookingTotalAmount;
+        data["bookingPaidAmount"] = this.bookingPaidAmount;
+        data["bookingOutstandingBalanceAmount"] = this.bookingOutstandingBalanceAmount;
+        data["bookingNotes"] = this.bookingNotes;
+        data["paymentMethod"] = this.paymentMethod;
+        data["restaurantID"] = this.restaurantID;
+        data["guestID"] = this.guestID;
+        data["orderID"] = this.orderID;
+        data["guestName"] = this.guestName;
+        data["restaurantName"] = this.restaurantName;
+        data["isActive"] = this.isActive;
+        return data;
+    }
+}
+
+export interface IGetAllRestaurantBookingQueryDto {
+    id?: number | undefined;
+    uniqueId?: string | undefined;
+    bookingReferrenceNumber?: string | undefined;
+    bookingFromDate?: string | undefined;
+    bookingToDate?: string | undefined;
+    bookingSource?: string | undefined;
+    bookingEstimatedArrivalTime?: string | undefined;
+    bookingEstimatedDepartureTime?: string | undefined;
+    bookingStatusID?: number | undefined;
+    bookingPaymentStatusID?: number | undefined;
+    bookingChargesAmount?: number | undefined;
+    bookingExtrasAmount?: number | undefined;
+    bookingPromoAmount?: number | undefined;
+    bookingTaxAmount?: number | undefined;
+    bookingPaymentSurchargeAmount?: number | undefined;
+    bookingTotalAmount?: number | undefined;
+    bookingPaidAmount?: number | undefined;
+    bookingOutstandingBalanceAmount?: number | undefined;
+    bookingNotes?: string | undefined;
+    paymentMethod?: string | undefined;
+    restaurantID?: number | undefined;
+    guestID?: string | undefined;
+    orderID?: number | undefined;
+    guestName?: string | undefined;
+    restaurantName?: string | undefined;
+    isActive?: boolean | undefined;
+}
+
+export class ResultOfGetAllRestaurantBookingByIdQueryDto implements IResultOfGetAllRestaurantBookingByIdQueryDto {
+    data?: GetAllRestaurantBookingByIdQueryDto | undefined;
+    message?: string;
+    resultType?: ResultType;
+
+    constructor(data?: IResultOfGetAllRestaurantBookingByIdQueryDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.data = _data["data"] ? GetAllRestaurantBookingByIdQueryDto.fromJS(_data["data"]) : <any>undefined;
+            this.message = _data["message"];
+            this.resultType = _data["resultType"];
+        }
+    }
+
+    static fromJS(data: any): ResultOfGetAllRestaurantBookingByIdQueryDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new ResultOfGetAllRestaurantBookingByIdQueryDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["data"] = this.data ? this.data.toJSON() : <any>undefined;
+        data["message"] = this.message;
+        data["resultType"] = this.resultType;
+        return data;
+    }
+}
+
+export interface IResultOfGetAllRestaurantBookingByIdQueryDto {
+    data?: GetAllRestaurantBookingByIdQueryDto | undefined;
+    message?: string;
+    resultType?: ResultType;
+}
+
+export class GetAllRestaurantBookingByIdQueryDto implements IGetAllRestaurantBookingByIdQueryDto {
+    id?: number | undefined;
+    uniqueId?: string | undefined;
+    bookingReferrenceNumber?: string | undefined;
+    bookingFromDate?: string | undefined;
+    bookingToDate?: string | undefined;
+    bookingSource?: string | undefined;
+    bookingEstimatedArrivalTime?: string | undefined;
+    bookingEstimatedDepartureTime?: string | undefined;
+    bookingStatusID?: number | undefined;
+    bookingPaymentStatusID?: number | undefined;
+    bookingChargesAmount?: number | undefined;
+    bookingExtrasAmount?: number | undefined;
+    bookingPromoAmount?: number | undefined;
+    bookingTaxAmount?: number | undefined;
+    bookingPaymentSurchargeAmount?: number | undefined;
+    bookingTotalAmount?: number | undefined;
+    bookingPaidAmount?: number | undefined;
+    bookingOutstandingBalanceAmount?: number | undefined;
+    bookingNotes?: string | undefined;
+    paymentMethod?: string | undefined;
+    restaurantID?: number | undefined;
+    guestID?: string | undefined;
+    orderID?: number | undefined;
+    guestName?: string | undefined;
+    restaurantName?: string | undefined;
+    isActive?: boolean | undefined;
+
+    constructor(data?: IGetAllRestaurantBookingByIdQueryDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.uniqueId = _data["uniqueId"];
+            this.bookingReferrenceNumber = _data["bookingReferrenceNumber"];
+            this.bookingFromDate = _data["bookingFromDate"];
+            this.bookingToDate = _data["bookingToDate"];
+            this.bookingSource = _data["bookingSource"];
+            this.bookingEstimatedArrivalTime = _data["bookingEstimatedArrivalTime"];
+            this.bookingEstimatedDepartureTime = _data["bookingEstimatedDepartureTime"];
+            this.bookingStatusID = _data["bookingStatusID"];
+            this.bookingPaymentStatusID = _data["bookingPaymentStatusID"];
+            this.bookingChargesAmount = _data["bookingChargesAmount"];
+            this.bookingExtrasAmount = _data["bookingExtrasAmount"];
+            this.bookingPromoAmount = _data["bookingPromoAmount"];
+            this.bookingTaxAmount = _data["bookingTaxAmount"];
+            this.bookingPaymentSurchargeAmount = _data["bookingPaymentSurchargeAmount"];
+            this.bookingTotalAmount = _data["bookingTotalAmount"];
+            this.bookingPaidAmount = _data["bookingPaidAmount"];
+            this.bookingOutstandingBalanceAmount = _data["bookingOutstandingBalanceAmount"];
+            this.bookingNotes = _data["bookingNotes"];
+            this.paymentMethod = _data["paymentMethod"];
+            this.restaurantID = _data["restaurantID"];
+            this.guestID = _data["guestID"];
+            this.orderID = _data["orderID"];
+            this.guestName = _data["guestName"];
+            this.restaurantName = _data["restaurantName"];
+            this.isActive = _data["isActive"];
+        }
+    }
+
+    static fromJS(data: any): GetAllRestaurantBookingByIdQueryDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new GetAllRestaurantBookingByIdQueryDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["uniqueId"] = this.uniqueId;
+        data["bookingReferrenceNumber"] = this.bookingReferrenceNumber;
+        data["bookingFromDate"] = this.bookingFromDate;
+        data["bookingToDate"] = this.bookingToDate;
+        data["bookingSource"] = this.bookingSource;
+        data["bookingEstimatedArrivalTime"] = this.bookingEstimatedArrivalTime;
+        data["bookingEstimatedDepartureTime"] = this.bookingEstimatedDepartureTime;
+        data["bookingStatusID"] = this.bookingStatusID;
+        data["bookingPaymentStatusID"] = this.bookingPaymentStatusID;
+        data["bookingChargesAmount"] = this.bookingChargesAmount;
+        data["bookingExtrasAmount"] = this.bookingExtrasAmount;
+        data["bookingPromoAmount"] = this.bookingPromoAmount;
+        data["bookingTaxAmount"] = this.bookingTaxAmount;
+        data["bookingPaymentSurchargeAmount"] = this.bookingPaymentSurchargeAmount;
+        data["bookingTotalAmount"] = this.bookingTotalAmount;
+        data["bookingPaidAmount"] = this.bookingPaidAmount;
+        data["bookingOutstandingBalanceAmount"] = this.bookingOutstandingBalanceAmount;
+        data["bookingNotes"] = this.bookingNotes;
+        data["paymentMethod"] = this.paymentMethod;
+        data["restaurantID"] = this.restaurantID;
+        data["guestID"] = this.guestID;
+        data["orderID"] = this.orderID;
+        data["guestName"] = this.guestName;
+        data["restaurantName"] = this.restaurantName;
+        data["isActive"] = this.isActive;
+        return data;
+    }
+}
+
+export interface IGetAllRestaurantBookingByIdQueryDto {
+    id?: number | undefined;
+    uniqueId?: string | undefined;
+    bookingReferrenceNumber?: string | undefined;
+    bookingFromDate?: string | undefined;
+    bookingToDate?: string | undefined;
+    bookingSource?: string | undefined;
+    bookingEstimatedArrivalTime?: string | undefined;
+    bookingEstimatedDepartureTime?: string | undefined;
+    bookingStatusID?: number | undefined;
+    bookingPaymentStatusID?: number | undefined;
+    bookingChargesAmount?: number | undefined;
+    bookingExtrasAmount?: number | undefined;
+    bookingPromoAmount?: number | undefined;
+    bookingTaxAmount?: number | undefined;
+    bookingPaymentSurchargeAmount?: number | undefined;
+    bookingTotalAmount?: number | undefined;
+    bookingPaidAmount?: number | undefined;
+    bookingOutstandingBalanceAmount?: number | undefined;
+    bookingNotes?: string | undefined;
+    paymentMethod?: string | undefined;
+    restaurantID?: number | undefined;
+    guestID?: string | undefined;
+    orderID?: number | undefined;
+    guestName?: string | undefined;
+    restaurantName?: string | undefined;
+    isActive?: boolean | undefined;
+}
+
 export class ResultOfCreateRestaurantOrderCommandDto implements IResultOfCreateRestaurantOrderCommandDto {
     data?: CreateRestaurantOrderCommandDto | undefined;
     message?: string;
@@ -8199,6 +9411,502 @@ export interface IGetAllRestaurantOrderByIdQueryDto {
     guestID?: string | undefined;
     guestName?: string | undefined;
     restaurantName?: string | undefined;
+    isActive?: boolean | undefined;
+}
+
+export class ResultOfCreateRestaurantOrderDetailCommandDto implements IResultOfCreateRestaurantOrderDetailCommandDto {
+    data?: CreateRestaurantOrderDetailCommandDto | undefined;
+    message?: string;
+    resultType?: ResultType;
+
+    constructor(data?: IResultOfCreateRestaurantOrderDetailCommandDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.data = _data["data"] ? CreateRestaurantOrderDetailCommandDto.fromJS(_data["data"]) : <any>undefined;
+            this.message = _data["message"];
+            this.resultType = _data["resultType"];
+        }
+    }
+
+    static fromJS(data: any): ResultOfCreateRestaurantOrderDetailCommandDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new ResultOfCreateRestaurantOrderDetailCommandDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["data"] = this.data ? this.data.toJSON() : <any>undefined;
+        data["message"] = this.message;
+        data["resultType"] = this.resultType;
+        return data;
+    }
+}
+
+export interface IResultOfCreateRestaurantOrderDetailCommandDto {
+    data?: CreateRestaurantOrderDetailCommandDto | undefined;
+    message?: string;
+    resultType?: ResultType;
+}
+
+export class CreateRestaurantOrderDetailCommandDto implements ICreateRestaurantOrderDetailCommandDto {
+    id?: string | undefined;
+    createdDate?: Date;
+    primaryId?: number | undefined;
+
+    constructor(data?: ICreateRestaurantOrderDetailCommandDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.createdDate = _data["createdDate"] ? new Date(_data["createdDate"].toString()) : <any>undefined;
+            this.primaryId = _data["primaryId"];
+        }
+    }
+
+    static fromJS(data: any): CreateRestaurantOrderDetailCommandDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new CreateRestaurantOrderDetailCommandDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["createdDate"] = this.createdDate ? this.createdDate.toISOString() : <any>undefined;
+        data["primaryId"] = this.primaryId;
+        return data;
+    }
+}
+
+export interface ICreateRestaurantOrderDetailCommandDto {
+    id?: string | undefined;
+    createdDate?: Date;
+    primaryId?: number | undefined;
+}
+
+export class CreateRestaurantOrderDetailCommand implements ICreateRestaurantOrderDetailCommand {
+    restaurantOrderID?: number | undefined;
+    foodID?: number | undefined;
+    orderDetailFoodPrice?: number | undefined;
+    orderQuantity?: number | undefined;
+    orderTotalAmount?: number | undefined;
+    orderSource?: string | undefined;
+    orderDetailNotes?: string | undefined;
+    isActive?: boolean | undefined;
+
+    constructor(data?: ICreateRestaurantOrderDetailCommand) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.restaurantOrderID = _data["restaurantOrderID"];
+            this.foodID = _data["foodID"];
+            this.orderDetailFoodPrice = _data["orderDetailFoodPrice"];
+            this.orderQuantity = _data["orderQuantity"];
+            this.orderTotalAmount = _data["orderTotalAmount"];
+            this.orderSource = _data["orderSource"];
+            this.orderDetailNotes = _data["orderDetailNotes"];
+            this.isActive = _data["isActive"];
+        }
+    }
+
+    static fromJS(data: any): CreateRestaurantOrderDetailCommand {
+        data = typeof data === 'object' ? data : {};
+        let result = new CreateRestaurantOrderDetailCommand();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["restaurantOrderID"] = this.restaurantOrderID;
+        data["foodID"] = this.foodID;
+        data["orderDetailFoodPrice"] = this.orderDetailFoodPrice;
+        data["orderQuantity"] = this.orderQuantity;
+        data["orderTotalAmount"] = this.orderTotalAmount;
+        data["orderSource"] = this.orderSource;
+        data["orderDetailNotes"] = this.orderDetailNotes;
+        data["isActive"] = this.isActive;
+        return data;
+    }
+}
+
+export interface ICreateRestaurantOrderDetailCommand {
+    restaurantOrderID?: number | undefined;
+    foodID?: number | undefined;
+    orderDetailFoodPrice?: number | undefined;
+    orderQuantity?: number | undefined;
+    orderTotalAmount?: number | undefined;
+    orderSource?: string | undefined;
+    orderDetailNotes?: string | undefined;
+    isActive?: boolean | undefined;
+}
+
+export class ResultOfUpdateRestaurantOrderDetailCommandDto implements IResultOfUpdateRestaurantOrderDetailCommandDto {
+    data?: UpdateRestaurantOrderDetailCommandDto | undefined;
+    message?: string;
+    resultType?: ResultType;
+
+    constructor(data?: IResultOfUpdateRestaurantOrderDetailCommandDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.data = _data["data"] ? UpdateRestaurantOrderDetailCommandDto.fromJS(_data["data"]) : <any>undefined;
+            this.message = _data["message"];
+            this.resultType = _data["resultType"];
+        }
+    }
+
+    static fromJS(data: any): ResultOfUpdateRestaurantOrderDetailCommandDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new ResultOfUpdateRestaurantOrderDetailCommandDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["data"] = this.data ? this.data.toJSON() : <any>undefined;
+        data["message"] = this.message;
+        data["resultType"] = this.resultType;
+        return data;
+    }
+}
+
+export interface IResultOfUpdateRestaurantOrderDetailCommandDto {
+    data?: UpdateRestaurantOrderDetailCommandDto | undefined;
+    message?: string;
+    resultType?: ResultType;
+}
+
+export class UpdateRestaurantOrderDetailCommandDto implements IUpdateRestaurantOrderDetailCommandDto {
+    id?: string | undefined;
+    updatedDate?: Date;
+    primaryId?: number | undefined;
+
+    constructor(data?: IUpdateRestaurantOrderDetailCommandDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.updatedDate = _data["updatedDate"] ? new Date(_data["updatedDate"].toString()) : <any>undefined;
+            this.primaryId = _data["primaryId"];
+        }
+    }
+
+    static fromJS(data: any): UpdateRestaurantOrderDetailCommandDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new UpdateRestaurantOrderDetailCommandDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["updatedDate"] = this.updatedDate ? this.updatedDate.toISOString() : <any>undefined;
+        data["primaryId"] = this.primaryId;
+        return data;
+    }
+}
+
+export interface IUpdateRestaurantOrderDetailCommandDto {
+    id?: string | undefined;
+    updatedDate?: Date;
+    primaryId?: number | undefined;
+}
+
+export class UpdateRestaurantOrderDetailCommand implements IUpdateRestaurantOrderDetailCommand {
+    uniqueId?: string | undefined;
+    restaurantOrderID?: number | undefined;
+    foodID?: number | undefined;
+    orderDetailFoodPrice?: number | undefined;
+    orderQuantity?: number | undefined;
+    orderTotalAmount?: number | undefined;
+    orderSource?: string | undefined;
+    orderDetailNotes?: string | undefined;
+    isActive?: boolean | undefined;
+
+    constructor(data?: IUpdateRestaurantOrderDetailCommand) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.uniqueId = _data["uniqueId"];
+            this.restaurantOrderID = _data["restaurantOrderID"];
+            this.foodID = _data["foodID"];
+            this.orderDetailFoodPrice = _data["orderDetailFoodPrice"];
+            this.orderQuantity = _data["orderQuantity"];
+            this.orderTotalAmount = _data["orderTotalAmount"];
+            this.orderSource = _data["orderSource"];
+            this.orderDetailNotes = _data["orderDetailNotes"];
+            this.isActive = _data["isActive"];
+        }
+    }
+
+    static fromJS(data: any): UpdateRestaurantOrderDetailCommand {
+        data = typeof data === 'object' ? data : {};
+        let result = new UpdateRestaurantOrderDetailCommand();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["uniqueId"] = this.uniqueId;
+        data["restaurantOrderID"] = this.restaurantOrderID;
+        data["foodID"] = this.foodID;
+        data["orderDetailFoodPrice"] = this.orderDetailFoodPrice;
+        data["orderQuantity"] = this.orderQuantity;
+        data["orderTotalAmount"] = this.orderTotalAmount;
+        data["orderSource"] = this.orderSource;
+        data["orderDetailNotes"] = this.orderDetailNotes;
+        data["isActive"] = this.isActive;
+        return data;
+    }
+}
+
+export interface IUpdateRestaurantOrderDetailCommand {
+    uniqueId?: string | undefined;
+    restaurantOrderID?: number | undefined;
+    foodID?: number | undefined;
+    orderDetailFoodPrice?: number | undefined;
+    orderQuantity?: number | undefined;
+    orderTotalAmount?: number | undefined;
+    orderSource?: string | undefined;
+    orderDetailNotes?: string | undefined;
+    isActive?: boolean | undefined;
+}
+
+export class GetAllRestaurantOrderDetailQueryDto implements IGetAllRestaurantOrderDetailQueryDto {
+    id?: number | undefined;
+    uniqueId?: string | undefined;
+    restaurantOrderID?: number | undefined;
+    foodID?: number | undefined;
+    orderDetailFoodPrice?: number | undefined;
+    orderQuantity?: number | undefined;
+    orderTotalAmount?: number | undefined;
+    orderSource?: string | undefined;
+    orderDetailNotes?: string | undefined;
+    isActive?: boolean | undefined;
+
+    constructor(data?: IGetAllRestaurantOrderDetailQueryDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.uniqueId = _data["uniqueId"];
+            this.restaurantOrderID = _data["restaurantOrderID"];
+            this.foodID = _data["foodID"];
+            this.orderDetailFoodPrice = _data["orderDetailFoodPrice"];
+            this.orderQuantity = _data["orderQuantity"];
+            this.orderTotalAmount = _data["orderTotalAmount"];
+            this.orderSource = _data["orderSource"];
+            this.orderDetailNotes = _data["orderDetailNotes"];
+            this.isActive = _data["isActive"];
+        }
+    }
+
+    static fromJS(data: any): GetAllRestaurantOrderDetailQueryDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new GetAllRestaurantOrderDetailQueryDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["uniqueId"] = this.uniqueId;
+        data["restaurantOrderID"] = this.restaurantOrderID;
+        data["foodID"] = this.foodID;
+        data["orderDetailFoodPrice"] = this.orderDetailFoodPrice;
+        data["orderQuantity"] = this.orderQuantity;
+        data["orderTotalAmount"] = this.orderTotalAmount;
+        data["orderSource"] = this.orderSource;
+        data["orderDetailNotes"] = this.orderDetailNotes;
+        data["isActive"] = this.isActive;
+        return data;
+    }
+}
+
+export interface IGetAllRestaurantOrderDetailQueryDto {
+    id?: number | undefined;
+    uniqueId?: string | undefined;
+    restaurantOrderID?: number | undefined;
+    foodID?: number | undefined;
+    orderDetailFoodPrice?: number | undefined;
+    orderQuantity?: number | undefined;
+    orderTotalAmount?: number | undefined;
+    orderSource?: string | undefined;
+    orderDetailNotes?: string | undefined;
+    isActive?: boolean | undefined;
+}
+
+export class ResultOfGetAllRestaurantOrderDetailByIdQueryDto implements IResultOfGetAllRestaurantOrderDetailByIdQueryDto {
+    data?: GetAllRestaurantOrderDetailByIdQueryDto | undefined;
+    message?: string;
+    resultType?: ResultType;
+
+    constructor(data?: IResultOfGetAllRestaurantOrderDetailByIdQueryDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.data = _data["data"] ? GetAllRestaurantOrderDetailByIdQueryDto.fromJS(_data["data"]) : <any>undefined;
+            this.message = _data["message"];
+            this.resultType = _data["resultType"];
+        }
+    }
+
+    static fromJS(data: any): ResultOfGetAllRestaurantOrderDetailByIdQueryDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new ResultOfGetAllRestaurantOrderDetailByIdQueryDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["data"] = this.data ? this.data.toJSON() : <any>undefined;
+        data["message"] = this.message;
+        data["resultType"] = this.resultType;
+        return data;
+    }
+}
+
+export interface IResultOfGetAllRestaurantOrderDetailByIdQueryDto {
+    data?: GetAllRestaurantOrderDetailByIdQueryDto | undefined;
+    message?: string;
+    resultType?: ResultType;
+}
+
+export class GetAllRestaurantOrderDetailByIdQueryDto implements IGetAllRestaurantOrderDetailByIdQueryDto {
+    id?: number | undefined;
+    uniqueId?: string | undefined;
+    restaurantOrderID?: number | undefined;
+    foodID?: number | undefined;
+    orderDetailFoodPrice?: number | undefined;
+    orderQuantity?: number | undefined;
+    orderTotalAmount?: number | undefined;
+    orderSource?: string | undefined;
+    orderDetailNotes?: string | undefined;
+    isActive?: boolean | undefined;
+
+    constructor(data?: IGetAllRestaurantOrderDetailByIdQueryDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.uniqueId = _data["uniqueId"];
+            this.restaurantOrderID = _data["restaurantOrderID"];
+            this.foodID = _data["foodID"];
+            this.orderDetailFoodPrice = _data["orderDetailFoodPrice"];
+            this.orderQuantity = _data["orderQuantity"];
+            this.orderTotalAmount = _data["orderTotalAmount"];
+            this.orderSource = _data["orderSource"];
+            this.orderDetailNotes = _data["orderDetailNotes"];
+            this.isActive = _data["isActive"];
+        }
+    }
+
+    static fromJS(data: any): GetAllRestaurantOrderDetailByIdQueryDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new GetAllRestaurantOrderDetailByIdQueryDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["uniqueId"] = this.uniqueId;
+        data["restaurantOrderID"] = this.restaurantOrderID;
+        data["foodID"] = this.foodID;
+        data["orderDetailFoodPrice"] = this.orderDetailFoodPrice;
+        data["orderQuantity"] = this.orderQuantity;
+        data["orderTotalAmount"] = this.orderTotalAmount;
+        data["orderSource"] = this.orderSource;
+        data["orderDetailNotes"] = this.orderDetailNotes;
+        data["isActive"] = this.isActive;
+        return data;
+    }
+}
+
+export interface IGetAllRestaurantOrderDetailByIdQueryDto {
+    id?: number | undefined;
+    uniqueId?: string | undefined;
+    restaurantOrderID?: number | undefined;
+    foodID?: number | undefined;
+    orderDetailFoodPrice?: number | undefined;
+    orderQuantity?: number | undefined;
+    orderTotalAmount?: number | undefined;
+    orderSource?: string | undefined;
+    orderDetailNotes?: string | undefined;
     isActive?: boolean | undefined;
 }
 

@@ -1253,6 +1253,124 @@
         }
       }
     },
+    "/api/RestaurantBookings/CreateRestaurantBooking": {
+      "post": {
+        "tags": [
+          "RestaurantBookings"
+        ],
+        "operationId": "CreateRestaurantBooking",
+        "requestBody": {
+          "x-name": "command",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateRestaurantBookingCommand"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultOfCreateRestaurantBookingCommandDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/RestaurantBookings/UpdateRestaurantBooking": {
+      "put": {
+        "tags": [
+          "RestaurantBookings"
+        ],
+        "operationId": "UpdateRestaurantBooking",
+        "requestBody": {
+          "x-name": "command",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateRestaurantBookingCommand"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultOfUpdateRestaurantBookingCommandDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/RestaurantBookings/GetAllRestaurantBooking": {
+      "get": {
+        "tags": [
+          "RestaurantBookings"
+        ],
+        "operationId": "GetAllRestaurantBooking",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetAllRestaurantBookingQueryDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/RestaurantBookings/GetAllRestaurantBookingById": {
+      "get": {
+        "tags": [
+          "RestaurantBookings"
+        ],
+        "operationId": "GetAllRestaurantBookingById",
+        "parameters": [
+          {
+            "name": "UniqueId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultOfGetAllRestaurantBookingByIdQueryDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/RestaurantOrders/CreateRestaurantOrder": {
       "post": {
         "tags": [
@@ -1364,6 +1482,124 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ResultOfGetAllRestaurantOrderByIdQueryDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/RestaurantOrderDetails/CreateRestaurantOrderDetail": {
+      "post": {
+        "tags": [
+          "RestaurantOrderDetails"
+        ],
+        "operationId": "CreateRestaurantOrderDetail",
+        "requestBody": {
+          "x-name": "command",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateRestaurantOrderDetailCommand"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultOfCreateRestaurantOrderDetailCommandDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/RestaurantOrderDetails/UpdateRestaurantOrderDetail": {
+      "put": {
+        "tags": [
+          "RestaurantOrderDetails"
+        ],
+        "operationId": "UpdateRestaurantOrderDetail",
+        "requestBody": {
+          "x-name": "command",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateRestaurantOrderDetailCommand"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultOfUpdateRestaurantOrderDetailCommandDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/RestaurantOrderDetails/GetAllRestaurantOrderDetail": {
+      "get": {
+        "tags": [
+          "RestaurantOrderDetails"
+        ],
+        "operationId": "GetAllRestaurantOrderDetail",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetAllRestaurantOrderDetailQueryDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/RestaurantOrderDetails/GetAllRestaurantOrderDetailById": {
+      "get": {
+        "tags": [
+          "RestaurantOrderDetails"
+        ],
+        "operationId": "GetAllRestaurantOrderDetailById",
+        "parameters": [
+          {
+            "name": "UniqueId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultOfGetAllRestaurantOrderDetailByIdQueryDto"
                 }
               }
             }
@@ -3990,6 +4226,582 @@
           }
         }
       },
+      "ResultOfCreateRestaurantBookingCommandDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/CreateRestaurantBookingCommandDto"
+              }
+            ]
+          },
+          "message": {
+            "type": "string"
+          },
+          "resultType": {
+            "$ref": "#/components/schemas/ResultType"
+          }
+        }
+      },
+      "CreateRestaurantBookingCommandDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "primaryId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        }
+      },
+      "CreateRestaurantBookingCommand": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "bookingReferrenceNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "bookingFromDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "bookingToDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "bookingSource": {
+            "type": "string",
+            "nullable": true
+          },
+          "bookingEstimatedArrivalTime": {
+            "type": "string",
+            "nullable": true
+          },
+          "bookingEstimatedDepartureTime": {
+            "type": "string",
+            "nullable": true
+          },
+          "bookingStatusID": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "bookingPaymentStatusID": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "bookingChargesAmount": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "bookingExtrasAmount": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "bookingPromoAmount": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "bookingTaxAmount": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "bookingPaymentSurchargeAmount": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "bookingTotalAmount": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "bookingPaidAmount": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "bookingOutstandingBalanceAmount": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "bookingNotes": {
+            "type": "string",
+            "nullable": true
+          },
+          "paymentMethod": {
+            "type": "string",
+            "nullable": true
+          },
+          "restaurantID": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "guestID": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderID": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "guestName": {
+            "type": "string",
+            "nullable": true
+          },
+          "restaurantName": {
+            "type": "string",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean",
+            "nullable": true
+          }
+        }
+      },
+      "ResultOfUpdateRestaurantBookingCommandDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/UpdateRestaurantBookingCommandDto"
+              }
+            ]
+          },
+          "message": {
+            "type": "string"
+          },
+          "resultType": {
+            "$ref": "#/components/schemas/ResultType"
+          }
+        }
+      },
+      "UpdateRestaurantBookingCommandDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "updatedDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "primaryId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        }
+      },
+      "UpdateRestaurantBookingCommand": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "uniqueId": {
+            "type": "string",
+            "nullable": true
+          },
+          "bookingReferrenceNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "bookingFromDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "bookingToDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "bookingSource": {
+            "type": "string",
+            "nullable": true
+          },
+          "bookingEstimatedArrivalTime": {
+            "type": "string",
+            "nullable": true
+          },
+          "bookingEstimatedDepartureTime": {
+            "type": "string",
+            "nullable": true
+          },
+          "bookingStatusID": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "bookingPaymentStatusID": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "bookingChargesAmount": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "bookingExtrasAmount": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "bookingPromoAmount": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "bookingTaxAmount": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "bookingPaymentSurchargeAmount": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "bookingTotalAmount": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "bookingPaidAmount": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "bookingOutstandingBalanceAmount": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "bookingNotes": {
+            "type": "string",
+            "nullable": true
+          },
+          "paymentMethod": {
+            "type": "string",
+            "nullable": true
+          },
+          "restaurantID": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "guestID": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderID": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "guestName": {
+            "type": "string",
+            "nullable": true
+          },
+          "restaurantName": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "GetAllRestaurantBookingQueryDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "uniqueId": {
+            "type": "string",
+            "nullable": true
+          },
+          "bookingReferrenceNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "bookingFromDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "bookingToDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "bookingSource": {
+            "type": "string",
+            "nullable": true
+          },
+          "bookingEstimatedArrivalTime": {
+            "type": "string",
+            "nullable": true
+          },
+          "bookingEstimatedDepartureTime": {
+            "type": "string",
+            "nullable": true
+          },
+          "bookingStatusID": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "bookingPaymentStatusID": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "bookingChargesAmount": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "bookingExtrasAmount": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "bookingPromoAmount": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "bookingTaxAmount": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "bookingPaymentSurchargeAmount": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "bookingTotalAmount": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "bookingPaidAmount": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "bookingOutstandingBalanceAmount": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "bookingNotes": {
+            "type": "string",
+            "nullable": true
+          },
+          "paymentMethod": {
+            "type": "string",
+            "nullable": true
+          },
+          "restaurantID": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "guestID": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderID": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "guestName": {
+            "type": "string",
+            "nullable": true
+          },
+          "restaurantName": {
+            "type": "string",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean",
+            "nullable": true
+          }
+        }
+      },
+      "ResultOfGetAllRestaurantBookingByIdQueryDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/GetAllRestaurantBookingByIdQueryDto"
+              }
+            ]
+          },
+          "message": {
+            "type": "string"
+          },
+          "resultType": {
+            "$ref": "#/components/schemas/ResultType"
+          }
+        }
+      },
+      "GetAllRestaurantBookingByIdQueryDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "uniqueId": {
+            "type": "string",
+            "nullable": true
+          },
+          "bookingReferrenceNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "bookingFromDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "bookingToDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "bookingSource": {
+            "type": "string",
+            "nullable": true
+          },
+          "bookingEstimatedArrivalTime": {
+            "type": "string",
+            "nullable": true
+          },
+          "bookingEstimatedDepartureTime": {
+            "type": "string",
+            "nullable": true
+          },
+          "bookingStatusID": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "bookingPaymentStatusID": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "bookingChargesAmount": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "bookingExtrasAmount": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "bookingPromoAmount": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "bookingTaxAmount": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "bookingPaymentSurchargeAmount": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "bookingTotalAmount": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "bookingPaidAmount": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "bookingOutstandingBalanceAmount": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "bookingNotes": {
+            "type": "string",
+            "nullable": true
+          },
+          "paymentMethod": {
+            "type": "string",
+            "nullable": true
+          },
+          "restaurantID": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "guestID": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderID": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "guestName": {
+            "type": "string",
+            "nullable": true
+          },
+          "restaurantName": {
+            "type": "string",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean",
+            "nullable": true
+          }
+        }
+      },
       "ResultOfCreateRestaurantOrderCommandDto": {
         "type": "object",
         "additionalProperties": false,
@@ -4447,6 +5259,298 @@
             "nullable": true
           },
           "restaurantName": {
+            "type": "string",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean",
+            "nullable": true
+          }
+        }
+      },
+      "ResultOfCreateRestaurantOrderDetailCommandDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/CreateRestaurantOrderDetailCommandDto"
+              }
+            ]
+          },
+          "message": {
+            "type": "string"
+          },
+          "resultType": {
+            "$ref": "#/components/schemas/ResultType"
+          }
+        }
+      },
+      "CreateRestaurantOrderDetailCommandDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "primaryId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        }
+      },
+      "CreateRestaurantOrderDetailCommand": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "restaurantOrderID": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "foodID": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "orderDetailFoodPrice": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "orderQuantity": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "orderTotalAmount": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "orderSource": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderDetailNotes": {
+            "type": "string",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean",
+            "nullable": true
+          }
+        }
+      },
+      "ResultOfUpdateRestaurantOrderDetailCommandDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/UpdateRestaurantOrderDetailCommandDto"
+              }
+            ]
+          },
+          "message": {
+            "type": "string"
+          },
+          "resultType": {
+            "$ref": "#/components/schemas/ResultType"
+          }
+        }
+      },
+      "UpdateRestaurantOrderDetailCommandDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "updatedDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "primaryId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        }
+      },
+      "UpdateRestaurantOrderDetailCommand": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "uniqueId": {
+            "type": "string",
+            "nullable": true
+          },
+          "restaurantOrderID": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "foodID": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "orderDetailFoodPrice": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "orderQuantity": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "orderTotalAmount": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "orderSource": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderDetailNotes": {
+            "type": "string",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean",
+            "nullable": true
+          }
+        }
+      },
+      "GetAllRestaurantOrderDetailQueryDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "uniqueId": {
+            "type": "string",
+            "nullable": true
+          },
+          "restaurantOrderID": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "foodID": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "orderDetailFoodPrice": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "orderQuantity": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "orderTotalAmount": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "orderSource": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderDetailNotes": {
+            "type": "string",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean",
+            "nullable": true
+          }
+        }
+      },
+      "ResultOfGetAllRestaurantOrderDetailByIdQueryDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/GetAllRestaurantOrderDetailByIdQueryDto"
+              }
+            ]
+          },
+          "message": {
+            "type": "string"
+          },
+          "resultType": {
+            "$ref": "#/components/schemas/ResultType"
+          }
+        }
+      },
+      "GetAllRestaurantOrderDetailByIdQueryDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "uniqueId": {
+            "type": "string",
+            "nullable": true
+          },
+          "restaurantOrderID": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "foodID": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "orderDetailFoodPrice": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "orderQuantity": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "orderTotalAmount": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "orderSource": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderDetailNotes": {
             "type": "string",
             "nullable": true
           },

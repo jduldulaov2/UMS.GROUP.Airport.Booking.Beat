@@ -1,35 +1,37 @@
 ﻿
+
 using UMS.GROUP.Airport.Booking.Application.Common.Models;
+
 namespace UMS.GROUP.Airport.Booking.Web.Endpoints;
 
-public class RestaurantOrders : EndpointGroupBase
+public class RestaurantBookings : EndpointGroupBase
 {
     public override void Map(WebApplication app)
     {
         app.MapGroup(this)
-            .MapPost(CreateRestaurantOrder, "CreateRestaurantOrder")
-            .MapPut(UpdateRestaurantOrder, "UpdateRestaurantOrder")
-            .MapGet(GetAllRestaurantOrder, "GetAllRestaurantOrder")
-            .MapGet(GetAllRestaurantOrderById, "GetAllRestaurantOrderById")
+            .MapPost(CreateRestaurantBooking, "CreateRestaurantBooking")
+            .MapPut(UpdateRestaurantBooking, "UpdateRestaurantBooking")
+            .MapGet(GetAllRestaurantBooking, "GetAllRestaurantBooking")
+            .MapGet(GetAllRestaurantBookingById, "GetAllRestaurantBookingById")
             ;
     }
 
-    public async Task<List<GetAllRestaurantOrderQueryDto>> GetAllRestaurantOrder(ISender sender, [AsParameters] GetAllRestaurantOrderQuery query)
+    public async Task<List<GetAllRestaurantBookingQueryDto>> GetAllRestaurantBooking(ISender sender, [AsParameters] GetAllRestaurantBookingQuery query)
     {
         return await sender.Send(query);
     }
 
-    public async Task<Result<GetAllRestaurantOrderByIdQueryDto>> GetAllRestaurantOrderById(ISender sender, [AsParameters] GetAllRestaurantOrderByIdQuery query)
+    public async Task<Result<GetAllRestaurantBookingByIdQueryDto>> GetAllRestaurantBookingById(ISender sender, [AsParameters] GetAllRestaurantBookingByIdQuery query)
     {
         return await sender.Send(query);
     }
 
-    public Task<Result<CreateRestaurantOrderCommandDto>> CreateRestaurantOrder(ISender sender, CreateRestaurantOrderCommand command)
+    public Task<Result<CreateRestaurantBookingCommandDto>> CreateRestaurantBooking(ISender sender, CreateRestaurantBookingCommand command)
     {
         return sender.Send(command);
     }
 
-    public Task<Result<UpdateRestaurantOrderCommandDto>> UpdateRestaurantOrder(ISender sender, UpdateRestaurantOrderCommand command)
+    public Task<Result<UpdateRestaurantBookingCommandDto>> UpdateRestaurantBooking(ISender sender, UpdateRestaurantBookingCommand command)
     {
         return sender.Send(command);
     }

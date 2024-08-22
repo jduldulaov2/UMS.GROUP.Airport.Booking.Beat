@@ -113,6 +113,7 @@ public class CreateRestaurantBookingCommandHandler : IRequestHandler<CreateResta
                 {
                     Id = entity.UniqueId,
                     CreatedDate = DateTime.Now,
+                    PrimaryId = entity.Id
                 },
                 Message = "success",
                 ResultType = ResultType.Success,

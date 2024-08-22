@@ -4,9 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UMS.GROUP.Airport.Booking.Domain.Entities;
-public class RestaurantOrderDetail : BaseAuditableEntity
+public class GetAllRestaurantOrderDetailQueryDto
 {
+    public int? Id { get; set; }
+
+    public string? UniqueId { get; set; }
+
     public int? RestaurantOrderID { get; set; }
 
     public int? FoodID { get; set; }
@@ -21,4 +24,5 @@ public class RestaurantOrderDetail : BaseAuditableEntity
 
     public string? OrderDetailNotes { get; set; }
 
+    public bool? IsActive { get; set; }
 }

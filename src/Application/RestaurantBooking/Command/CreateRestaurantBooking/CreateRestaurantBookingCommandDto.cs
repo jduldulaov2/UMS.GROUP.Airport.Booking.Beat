@@ -9,5 +9,7 @@ public class CreateRestaurantBookingCommandDto
     public string? Id { get; set; }
 
     public DateTime CreatedDate { get; set; }
+
+    public int? PrimaryId { get; set; }
 }
 
