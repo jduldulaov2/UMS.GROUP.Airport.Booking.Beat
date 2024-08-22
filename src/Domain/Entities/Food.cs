@@ -13,4 +13,6 @@ public class Food : BaseAuditableEntity
 
     public float? FoodPrice { get; set; }
 
+    public int? FoodCategoryId { get; set; }
+
 }
