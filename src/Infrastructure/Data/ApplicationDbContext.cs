@@ -36,6 +36,8 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IApplica
 
     public DbSet<RestaurantTable> RestaurantTable => Set<RestaurantTable>();
 
+    public DbSet<RestaurantBookingTable> RestaurantBookingTable => Set<RestaurantBookingTable>();
+
     public DbSet<PassengerBooking> PassengerBooking => Set<PassengerBooking>();
 
     IQueryable<IdentityUser> IApplicationDbContext.Users => this.Users;

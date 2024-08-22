@@ -4,9 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UMS.GROUP.Airport.Booking.Domain.Entities;
-public class RestaurantBooking : BaseAuditableEntity
+namespace UMS.GROUP.Airport.Booking.Application.FoodCategory.Queries.GetAllFoodCategory;
+
+public class GetAllRestaurantBookingQueryDto
 {
+    public int? Id { get; set; }
+
+    public string? UniqueId { get; set; }
+
     public string? BookingReferrenceNumber { get; set; }
 
     public string? BookingFromDate { get; set; }
@@ -19,13 +24,13 @@ public class RestaurantBooking : BaseAuditableEntity
 
     public string? BookingEstimatedDepartureTime { get; set; }
 
-    public int? BookingStatusID { get; set;}
+    public int? BookingStatusID { get; set; }
 
     public int? BookingPaymentStatusID { get; set; }
 
     public float? BookingChargesAmount { get; set; }
 
-    public float? BookingExtrasAmount{ get; set; }
+    public float? BookingExtrasAmount { get; set; }
 
     public float? BookingPromoAmount { get; set; }
 
@@ -52,4 +57,6 @@ public class RestaurantBooking : BaseAuditableEntity
     public string? GuestName { get; set; }
 
     public string? RestaurantName { get; set; }
+
+    public bool? IsActive { get; set; }
 }

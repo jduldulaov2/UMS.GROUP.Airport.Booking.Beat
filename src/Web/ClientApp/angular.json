@@ -31,12 +31,10 @@
             ],
             "styles": [
               "src/assets/reservation/client/assets/vendor/animate.css/animate.min.css",
-              "src/assets/reservation/client/assets/vendor/bootstrap/css/bootstrap.min.css",
               "src/assets/reservation/client/assets/vendor/bootstrap-icons/bootstrap-icons.css",
               "src/assets/reservation/client/assets/vendor/boxicons/css/boxicons.min.css",
               "src/assets/reservation/client/assets/vendor/glightbox/css/glightbox.min.css",
               "src/assets/reservation/client/assets/vendor/swiper/swiper-bundle.min.css",
-              "src/assets/reservation/client/CustomMenu/css/open-iconic-bootstrap.min.css",
               "src/assets/reservation/client/CustomMenu/css/animate.css",
               //"src/assets/reservation/client/CustomMenu/css/owl.carousel.min.css",
               "src/assets/reservation/client/CustomMenu/css/owl.theme.default.min.css",
@@ -62,7 +60,7 @@
               "src/assets/reservation/admin/plugins/fullcalendar/main.css"
             ],
             "scripts": [
-              //"src/assets/reservation/client/assets/vendor/bootstrap/js/bootstrap.bundle.min.js",
+              "src/assets/reservation/client/assets/vendor/bootstrap/js/bootstrap.bundle.min.js",
               "src/assets/reservation/client/assets/vendor/glightbox/js/glightbox.min.js",
               "src/assets/reservation/client/assets/vendor/isotope-layout/isotope.pkgd.min.js",
               "src/assets/reservation/client/assets/vendor/swiper/swiper-bundle.min.js",

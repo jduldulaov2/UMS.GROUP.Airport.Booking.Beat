@@ -13,7 +13,7 @@ import { ReserveATableComponent }  from '../../Pages/ClientPortal/reserve-atable
 
 const routes: Routes = [
   { 
-    path: '', 
+    path: 'home', 
     component: HomeComponent
   },
   {
