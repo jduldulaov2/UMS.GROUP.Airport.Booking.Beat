@@ -37,5 +37,7 @@ public interface IApplicationDbContext
 
     DbSet<RestaurantBookingTable> RestaurantBookingTable { get; }
 
+    DbSet<DraftCartItems> DraftCartItems { get; }
+
     Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 }

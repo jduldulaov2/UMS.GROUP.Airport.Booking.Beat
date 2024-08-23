@@ -40,6 +40,8 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IApplica
 
     public DbSet<PassengerBooking> PassengerBooking => Set<PassengerBooking>();
 
+    public DbSet<DraftCartItems> DraftCartItems => Set<DraftCartItems>();
+
     IQueryable<IdentityUser> IApplicationDbContext.Users => this.Users;
     protected override void OnModelCreating(ModelBuilder builder)
     {
