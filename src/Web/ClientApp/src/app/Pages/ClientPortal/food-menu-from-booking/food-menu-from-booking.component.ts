@@ -1,15 +1,19 @@
 import { Component } from '@angular/core';
 import { FoodsClient, GetAllFoodQueryDto } from '../../../web-api-client';
+import { ActivatedRoute, Router } from '@angular/router';
+declare var $: any;
 
 @Component({
-  selector: 'app-food-menu',
-  templateUrl: './food-menu.component.html',
-  styleUrls: ['./food-menu.component.css']
+  selector: 'app-food-menu-from-booking',
+  templateUrl: './food-menu-from-booking.component.html',
+  styleUrls: ['./food-menu-from-booking.component.css']
 })
-export class FoodMenuComponent {
+export class FoodMenuFromBookingComponent {
   public foodDto: GetAllFoodQueryDto[] = [];
   constructor(
-    private foodsClient: FoodsClient
+    private foodsClient: FoodsClient,
+    private router: Router,
+    private route: ActivatedRoute
   ) {
   }
 
@@ -41,4 +45,12 @@ export class FoodMenuComponent {
     this.getFoodList();
   }
 
+  GoBackToCart(id: any): void {
+    //this.router.navigate(['/food-menu/booking',this.route.snapshot.paramMap.get('key'),'detail']);
+    var draft_id = this.route.snapshot.paramMap.get('key');
+
+    alert(id);
+    alert(draft_id);
+  }
+  
 }

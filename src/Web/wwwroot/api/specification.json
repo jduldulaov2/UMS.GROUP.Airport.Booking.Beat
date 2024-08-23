@@ -952,6 +952,41 @@
         }
       }
     },
+    "/api/Foods/GetAllFoodByCategoryId": {
+      "get": {
+        "tags": [
+          "Foods"
+        ],
+        "operationId": "GetAllFoodByCategoryId",
+        "parameters": [
+          {
+            "name": "FoodCategoryId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "x-position": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetAllFoodByCategoryIdQueryDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/Foods/GetAllFoodById": {
       "get": {
         "tags": [
@@ -3722,6 +3757,47 @@
           }
         }
       },
+      "GetAllFoodByCategoryIdQueryDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "uniqueId": {
+            "type": "string",
+            "nullable": true
+          },
+          "foodName": {
+            "type": "string",
+            "nullable": true
+          },
+          "foodDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "foodPrice": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "foodCategoryId": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "foodCategoryName": {
+            "type": "string",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean",
+            "nullable": true
+          }
+        }
+      },
       "ResultOfGetAllFoodByIdQueryDto": {
         "type": "object",
         "additionalProperties": false,
@@ -4376,6 +4452,11 @@
           "isActive": {
             "type": "boolean",
             "nullable": true
+          },
+          "numberOfPax": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
           }
         }
       },
@@ -4533,6 +4614,11 @@
           "restaurantName": {
             "type": "string",
             "nullable": true
+          },
+          "numberOfPax": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
           }
         }
       },
@@ -4655,6 +4741,11 @@
           },
           "isActive": {
             "type": "boolean",
+            "nullable": true
+          },
+          "numberOfPax": {
+            "type": "integer",
+            "format": "int32",
             "nullable": true
           }
         }
@@ -4798,6 +4889,11 @@
           },
           "isActive": {
             "type": "boolean",
+            "nullable": true
+          },
+          "numberOfPax": {
+            "type": "integer",
+            "format": "int32",
             "nullable": true
           }
         }

@@ -14,6 +14,8 @@ import { LoginComponent }  from '../../Pages/ClientPortal/login/login.component'
 import { ClientRegisterComponent }  from '../../Pages/ClientPortal/client-register/client-register.component';
 import { ClientRegistrationConfirmationComponent }  from '../../Pages/ClientPortal/client-registration-confirmation/client-registration-confirmation.component';
 import { ClientLoginConfirmationComponent }  from '../../Pages/ClientPortal/client-login-confirmation/client-login-confirmation.component';
+import { MyCartFromBookingComponent }  from '../../Pages/ClientPortal/my-cart-from-booking/my-cart-from-booking.component';
+import { FoodMenuFromBookingComponent }  from '../../Pages/ClientPortal/food-menu-from-booking/food-menu-from-booking.component';
 
 const routes: Routes = [
   { 
@@ -63,6 +65,14 @@ const routes: Routes = [
   {
     path: 'login/login-confirmation',
     component: ClientLoginConfirmationComponent
+  },
+  {
+    path: 'my-cart/booking/:key/detail',
+    component: MyCartFromBookingComponent
+  },
+  {
+    path: 'food-menu/booking/:key/detail',
+    component: FoodMenuFromBookingComponent
   }
   
 ];

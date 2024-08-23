@@ -56,6 +56,8 @@ public record CreateRestaurantBookingCommand : IRequest<Result<CreateRestaurantB
     public string? RestaurantName { get; init; }
 
     public bool? IsActive { get; init; }
+
+    public int? NumberOfPax { get; init; }
 }
 
 public class CreateRestaurantBookingCommandHandler : IRequestHandler<CreateRestaurantBookingCommand, Result<CreateRestaurantBookingCommandDto>>
@@ -102,6 +104,7 @@ public class CreateRestaurantBookingCommandHandler : IRequestHandler<CreateResta
             entity.GuestName = request.GuestName;
             entity.RestaurantName = request.RestaurantName;
             entity.IsActive = request.IsActive;
+            entity.NumberOfPax = request.NumberOfPax;
 
             _context.RestaurantBooking.Add(entity);
 

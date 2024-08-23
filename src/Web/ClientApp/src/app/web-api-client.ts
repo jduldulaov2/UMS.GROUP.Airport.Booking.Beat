@@ -1652,6 +1652,7 @@ export interface IFoodsClient {
     createFood(command: CreateFoodCommand): Observable<ResultOfCreateFoodCommandDto>;
     updateFood(command: UpdateFoodCommand): Observable<ResultOfUpdateFoodCommandDto>;
     getAllFood(): Observable<GetAllFoodQueryDto[]>;
+    getAllFoodByCategoryId(foodCategoryId: number | null | undefined): Observable<GetAllFoodByCategoryIdQueryDto[]>;
     getAllFoodById(uniqueId: string | null | undefined): Observable<ResultOfGetAllFoodByIdQueryDto>;
 }
 
@@ -1813,6 +1814,63 @@ export class FoodsClient implements IFoodsClient {
                 result200 = [] as any;
                 for (let item of resultData200)
                     result200!.push(GetAllFoodQueryDto.fromJS(item));
+            }
+            else {
+                result200 = <any>null;
+            }
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    getAllFoodByCategoryId(foodCategoryId: number | null | undefined): Observable<GetAllFoodByCategoryIdQueryDto[]> {
+        let url_ = this.baseUrl + "/api/Foods/GetAllFoodByCategoryId?";
+        if (foodCategoryId !== undefined && foodCategoryId !== null)
+            url_ += "FoodCategoryId=" + encodeURIComponent("" + foodCategoryId) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetAllFoodByCategoryId(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetAllFoodByCategoryId(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<GetAllFoodByCategoryIdQueryDto[]>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<GetAllFoodByCategoryIdQueryDto[]>;
+        }));
+    }
+
+    protected processGetAllFoodByCategoryId(response: HttpResponseBase): Observable<GetAllFoodByCategoryIdQueryDto[]> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200!.push(GetAllFoodByCategoryIdQueryDto.fromJS(item));
             }
             else {
                 result200 = <any>null;
@@ -6990,6 +7048,70 @@ export interface IGetAllFoodQueryDto {
     isActive?: boolean | undefined;
 }
 
+export class GetAllFoodByCategoryIdQueryDto implements IGetAllFoodByCategoryIdQueryDto {
+    id?: number | undefined;
+    uniqueId?: string | undefined;
+    foodName?: string | undefined;
+    foodDescription?: string | undefined;
+    foodPrice?: number | undefined;
+    foodCategoryId?: number | undefined;
+    foodCategoryName?: string | undefined;
+    isActive?: boolean | undefined;
+
+    constructor(data?: IGetAllFoodByCategoryIdQueryDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.uniqueId = _data["uniqueId"];
+            this.foodName = _data["foodName"];
+            this.foodDescription = _data["foodDescription"];
+            this.foodPrice = _data["foodPrice"];
+            this.foodCategoryId = _data["foodCategoryId"];
+            this.foodCategoryName = _data["foodCategoryName"];
+            this.isActive = _data["isActive"];
+        }
+    }
+
+    static fromJS(data: any): GetAllFoodByCategoryIdQueryDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new GetAllFoodByCategoryIdQueryDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["uniqueId"] = this.uniqueId;
+        data["foodName"] = this.foodName;
+        data["foodDescription"] = this.foodDescription;
+        data["foodPrice"] = this.foodPrice;
+        data["foodCategoryId"] = this.foodCategoryId;
+        data["foodCategoryName"] = this.foodCategoryName;
+        data["isActive"] = this.isActive;
+        return data;
+    }
+}
+
+export interface IGetAllFoodByCategoryIdQueryDto {
+    id?: number | undefined;
+    uniqueId?: string | undefined;
+    foodName?: string | undefined;
+    foodDescription?: string | undefined;
+    foodPrice?: number | undefined;
+    foodCategoryId?: number | undefined;
+    foodCategoryName?: string | undefined;
+    isActive?: boolean | undefined;
+}
+
 export class ResultOfGetAllFoodByIdQueryDto implements IResultOfGetAllFoodByIdQueryDto {
     data?: GetAllFoodByIdQueryDto | undefined;
     message?: string;
@@ -8127,6 +8249,7 @@ export class CreateRestaurantBookingCommand implements ICreateRestaurantBookingC
     guestName?: string | undefined;
     restaurantName?: string | undefined;
     isActive?: boolean | undefined;
+    numberOfPax?: number | undefined;
 
     constructor(data?: ICreateRestaurantBookingCommand) {
         if (data) {
@@ -8163,6 +8286,7 @@ export class CreateRestaurantBookingCommand implements ICreateRestaurantBookingC
             this.guestName = _data["guestName"];
             this.restaurantName = _data["restaurantName"];
             this.isActive = _data["isActive"];
+            this.numberOfPax = _data["numberOfPax"];
         }
     }
 
@@ -8199,6 +8323,7 @@ export class CreateRestaurantBookingCommand implements ICreateRestaurantBookingC
         data["guestName"] = this.guestName;
         data["restaurantName"] = this.restaurantName;
         data["isActive"] = this.isActive;
+        data["numberOfPax"] = this.numberOfPax;
         return data;
     }
 }
@@ -8228,6 +8353,7 @@ export interface ICreateRestaurantBookingCommand {
     guestName?: string | undefined;
     restaurantName?: string | undefined;
     isActive?: boolean | undefined;
+    numberOfPax?: number | undefined;
 }
 
 export class ResultOfUpdateRestaurantBookingCommandDto implements IResultOfUpdateRestaurantBookingCommandDto {
@@ -8344,6 +8470,7 @@ export class UpdateRestaurantBookingCommand implements IUpdateRestaurantBookingC
     isActive?: boolean | undefined;
     guestName?: string | undefined;
     restaurantName?: string | undefined;
+    numberOfPax?: number | undefined;
 
     constructor(data?: IUpdateRestaurantBookingCommand) {
         if (data) {
@@ -8381,6 +8508,7 @@ export class UpdateRestaurantBookingCommand implements IUpdateRestaurantBookingC
             this.isActive = _data["isActive"];
             this.guestName = _data["guestName"];
             this.restaurantName = _data["restaurantName"];
+            this.numberOfPax = _data["numberOfPax"];
         }
     }
 
@@ -8418,6 +8546,7 @@ export class UpdateRestaurantBookingCommand implements IUpdateRestaurantBookingC
         data["isActive"] = this.isActive;
         data["guestName"] = this.guestName;
         data["restaurantName"] = this.restaurantName;
+        data["numberOfPax"] = this.numberOfPax;
         return data;
     }
 }
@@ -8448,6 +8577,7 @@ export interface IUpdateRestaurantBookingCommand {
     isActive?: boolean | undefined;
     guestName?: string | undefined;
     restaurantName?: string | undefined;
+    numberOfPax?: number | undefined;
 }
 
 export class GetAllRestaurantBookingQueryDto implements IGetAllRestaurantBookingQueryDto {
@@ -8477,6 +8607,7 @@ export class GetAllRestaurantBookingQueryDto implements IGetAllRestaurantBooking
     guestName?: string | undefined;
     restaurantName?: string | undefined;
     isActive?: boolean | undefined;
+    numberOfPax?: number | undefined;
 
     constructor(data?: IGetAllRestaurantBookingQueryDto) {
         if (data) {
@@ -8515,6 +8646,7 @@ export class GetAllRestaurantBookingQueryDto implements IGetAllRestaurantBooking
             this.guestName = _data["guestName"];
             this.restaurantName = _data["restaurantName"];
             this.isActive = _data["isActive"];
+            this.numberOfPax = _data["numberOfPax"];
         }
     }
 
@@ -8553,6 +8685,7 @@ export class GetAllRestaurantBookingQueryDto implements IGetAllRestaurantBooking
         data["guestName"] = this.guestName;
         data["restaurantName"] = this.restaurantName;
         data["isActive"] = this.isActive;
+        data["numberOfPax"] = this.numberOfPax;
         return data;
     }
 }
@@ -8584,6 +8717,7 @@ export interface IGetAllRestaurantBookingQueryDto {
     guestName?: string | undefined;
     restaurantName?: string | undefined;
     isActive?: boolean | undefined;
+    numberOfPax?: number | undefined;
 }
 
 export class ResultOfGetAllRestaurantBookingByIdQueryDto implements IResultOfGetAllRestaurantBookingByIdQueryDto {
@@ -8657,6 +8791,7 @@ export class GetAllRestaurantBookingByIdQueryDto implements IGetAllRestaurantBoo
     guestName?: string | undefined;
     restaurantName?: string | undefined;
     isActive?: boolean | undefined;
+    numberOfPax?: number | undefined;
 
     constructor(data?: IGetAllRestaurantBookingByIdQueryDto) {
         if (data) {
@@ -8695,6 +8830,7 @@ export class GetAllRestaurantBookingByIdQueryDto implements IGetAllRestaurantBoo
             this.guestName = _data["guestName"];
             this.restaurantName = _data["restaurantName"];
             this.isActive = _data["isActive"];
+            this.numberOfPax = _data["numberOfPax"];
         }
     }
 
@@ -8733,6 +8869,7 @@ export class GetAllRestaurantBookingByIdQueryDto implements IGetAllRestaurantBoo
         data["guestName"] = this.guestName;
         data["restaurantName"] = this.restaurantName;
         data["isActive"] = this.isActive;
+        data["numberOfPax"] = this.numberOfPax;
         return data;
     }
 }
@@ -8764,6 +8901,7 @@ export interface IGetAllRestaurantBookingByIdQueryDto {
     guestName?: string | undefined;
     restaurantName?: string | undefined;
     isActive?: boolean | undefined;
+    numberOfPax?: number | undefined;
 }
 
 export class ResultOfCreateRestaurantOrderCommandDto implements IResultOfCreateRestaurantOrderCommandDto {

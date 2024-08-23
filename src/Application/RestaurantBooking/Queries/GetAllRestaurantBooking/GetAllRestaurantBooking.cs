@@ -49,7 +49,8 @@ public class GetAllRestaurantBookingQueryHandler : IRequestHandler<GetAllRestaur
                             OrderID = restaurantbooking.OrderID,
                             IsActive = restaurantbooking.IsActive,
                             GuestName = restaurantbooking.GuestName,
-                            RestaurantName = restaurantbooking.RestaurantName
+                            RestaurantName = restaurantbooking.RestaurantName,
+                            NumberOfPax = restaurantbooking.NumberOfPax
 
                       }).ToListAsync();
     }

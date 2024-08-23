@@ -10,11 +10,17 @@ public class Foods : EndpointGroupBase
             .MapPost(CreateFood, "CreateFood")
             .MapPut(UpdateFood, "UpdateFood")
             .MapGet(GetAllFood, "GetAllFood")
+            .MapGet(GetAllFoodByCategoryId, "GetAllFoodByCategoryId")
             .MapGet(GetAllFoodById, "GetAllFoodById")
             ;
     }
 
     public async Task<List<GetAllFoodQueryDto>> GetAllFood(ISender sender, [AsParameters] GetAllFoodQuery query)
+    {
+        return await sender.Send(query);
+    }
+
+    public async Task<List<GetAllFoodByCategoryIdQueryDto>> GetAllFoodByCategoryId(ISender sender, [AsParameters] GetAllFoodCategoryIdQuery query)
     {
         return await sender.Send(query);
     }
