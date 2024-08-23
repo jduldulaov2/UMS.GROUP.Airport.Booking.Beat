@@ -11,7 +11,6 @@ import { FooterMenuComponent } from './footer-menu/footer-menu.component';
 import { HomeComponent } from './home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HighchartsChartModule } from 'highcharts-angular';
-import { LoginComponent } from './Pages/Auth/login/login.component'
 import { PreLoaderComponent } from './Shared/pre-loader/pre-loader.component';
 import { SidebarComponent } from './Shared/sidebar/sidebar.component';
 import { HeaderComponent } from './Shared/header/header.component';
@@ -36,6 +35,9 @@ import { ManageFoodCategoryComponent } from './Pages/AdminPortal/manage-food-cat
 import { ManageCustomerDetailComponent } from './Pages/AdminPortal/manage-customer-detail/manage-customer-detail.component';
 import { FoodMenuComponent }  from './Pages/ClientPortal/food-menu/food-menu.component';
 import { CheckoutComponent }  from './Pages/ClientPortal/checkout/checkout.component';
+import { LoginComponent }  from './Pages/ClientPortal/login/login.component';
+import { ClientRegisterComponent }  from './Pages/ClientPortal/client-register/client-register.component';
+
 
 @NgModule({
   declarations: [
@@ -66,7 +68,8 @@ import { CheckoutComponent }  from './Pages/ClientPortal/checkout/checkout.compo
     ManageFoodCategoryComponent,
     ManageCustomerDetailComponent,
     FoodMenuComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    ClientRegisterComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

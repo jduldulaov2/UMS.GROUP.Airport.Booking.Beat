@@ -7,6 +7,62 @@
       padding: 30px 20px;
       border-radius: 0px;
   }
+
+  .menus .menu-img {
+    border-radius: 0%!important;
+    background: rgb(211, 207, 207);
+}
+
+.pro-qty {
+    width: 0px !important;
+}
+
+.custom-quantity{
+  height: 100%;
+    width: 100%;
+    font-size: 16px;
+    color: #6f6f6f;
+    width: 50px;
+    border: none;
+    background: #f8f9fa;
+    text-align: center;
+    padding: 13px;
+}
+
+.custom-quantity-deduct{
+  height: 100%;
+    width: 100%;
+    font-size: 16px;
+    color: #6f6f6f;
+    width: 50px;
+    border: none;
+    background: #dc35451c;
+    text-align: center;
+    padding-top: 13px;
+    padding-bottom: 13px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: solid 1px #80808040;
+    cursor: pointer;
+}
+
+.custom-quantity-add{
+  height: 100%;
+    width: 100%;
+    font-size: 16px;
+    color: #6f6f6f;
+    width: 50px;
+    border: none;
+    background: #00bc8c1c;
+    text-align: center;
+    padding-top: 13px;
+    padding-bottom: 13px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: solid 1px #80808040;
+    cursor: pointer;
+}
+
    </style>
 
    <main id="main">
@@ -67,9 +123,9 @@
               <td class="align-middle">$55.00</td>
               <td class="align-middle">
                 <div class="quantity">
-                    <div class="pro-qty">
-                        <input type="text" value="1">
-                    </div>
+                    <span>
+                        <span><span class="custom-quantity-deduct"> - </span><input class="custom-quantity" type="text" value="1"><span class="custom-quantity-add"> + </span></span>
+                    </span>
                 </div>
               </td>
               <td class="align-middle">$110.00</td>
@@ -93,9 +149,7 @@
               <td class="align-middle">$55.00</td>
               <td class="align-middle">
                 <div class="quantity">
-                    <div class="pro-qty">
-                        <input type="text" value="1">
-                    </div>
+                  <span><span class="custom-quantity-deduct"> - </span><input class="custom-quantity" type="text" value="1"><span class="custom-quantity-add"> + </span></span>
                 </div>
               </td>
               <td class="align-middle">$110.00</td>
@@ -119,9 +173,7 @@
               <td class="align-middle">$55.00</td>
               <td class="align-middle">
                 <div class="quantity">
-                    <div class="pro-qty">
-                        <input type="text" value="1">
-                    </div>
+                  <span><span class="custom-quantity-deduct"> - </span><input class="custom-quantity" type="text" value="1"><span class="custom-quantity-add"> + </span></span>
                 </div>
               </td>
               <td class="align-middle">$110.00</td>

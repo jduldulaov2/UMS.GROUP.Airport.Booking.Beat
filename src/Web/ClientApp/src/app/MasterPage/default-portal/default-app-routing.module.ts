@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
-import { LoginComponent } from '../../Pages/Auth/login/login.component';
 import { DefaultPortalComponent } from '../../MasterPage/default-portal/default-portal.component';
 import { HomeComponent } from '../../home/home.component';
 import { AboutComponent }  from '../../Pages/ClientPortal/about/about.component';
@@ -11,6 +10,8 @@ import { ContactUsComponent }  from '../../Pages/ClientPortal/contact-us/contact
 import { MyCartComponent }  from '../../Pages/ClientPortal/my-cart/my-cart.component';
 import { ReserveATableComponent }  from '../../Pages/ClientPortal/reserve-atable/reserve-atable.component';
 import { CheckoutComponent }  from '../../Pages/ClientPortal/checkout/checkout.component';
+import { LoginComponent }  from '../../Pages/ClientPortal/login/login.component';
+import { ClientRegisterComponent }  from '../../Pages/ClientPortal/client-register/client-register.component';
 
 const routes: Routes = [
   { 
@@ -48,6 +49,10 @@ const routes: Routes = [
   {
     path: 'checkout',
     component: CheckoutComponent
+  },
+  {
+    path: 'login/registration',
+    component: ClientRegisterComponent
   }
   
 ];
