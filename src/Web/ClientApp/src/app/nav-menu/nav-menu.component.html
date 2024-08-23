@@ -15,10 +15,11 @@
           <li><a class="nav-link scrollto" [routerLink]="['/food-menu']" routerLinkActive="active">Menu</a></li>
           <li><a class="nav-link scrollto" [routerLink]="['/special-menu']" routerLinkActive="active">Specials</a></li>
           <li><a class="nav-link scrollto" [routerLink]="['/contact-us']" routerLinkActive="active">Contact</a></li>
-          <li><a class="nav-link scrollto" [routerLink]="['/my-cart']" routerLinkActive="active" >My Cart</a></li>
-          <li><a class="nav-link scrollto" [routerLink]="['/checkout']" routerLinkActive="active" >Checkout</a></li>
+          <li *ngIf="IsLoggedIn == true"><a class="nav-link scrollto" [routerLink]="['/my-cart']" routerLinkActive="active" >My Cart</a></li>
+          <li *ngIf="IsLoggedIn == true"><a class="nav-link scrollto" [routerLink]="['/checkout']" routerLinkActive="active" >Checkout</a></li>
           <li><a class="nav-link scrollto" [routerLink]="['/reserve-a-table']" routerLinkActive="active">Book a table</a></li>
-          <li><a class="nav-link scrollto" [routerLink]="['/login']" routerLinkActive="active">Login</a></li>
+          <li (click)="SignOut()" style="cursor: pointer;" *ngIf="IsLoggedIn == true"><a class="nav-link scrollto" >Logout</a></li>
+          <li *ngIf="IsLoggedIn == false"><a class="nav-link scrollto" [routerLink]="['/login']" routerLinkActive="active">Login</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->

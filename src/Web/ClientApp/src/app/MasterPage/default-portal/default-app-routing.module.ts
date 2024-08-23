@@ -13,6 +13,7 @@ import { CheckoutComponent }  from '../../Pages/ClientPortal/checkout/checkout.c
 import { LoginComponent }  from '../../Pages/ClientPortal/login/login.component';
 import { ClientRegisterComponent }  from '../../Pages/ClientPortal/client-register/client-register.component';
 import { ClientRegistrationConfirmationComponent }  from '../../Pages/ClientPortal/client-registration-confirmation/client-registration-confirmation.component';
+import { ClientLoginConfirmationComponent }  from '../../Pages/ClientPortal/client-login-confirmation/client-login-confirmation.component';
 
 const routes: Routes = [
   { 
@@ -58,6 +59,10 @@ const routes: Routes = [
   {
     path: 'login/registration-confirmation',
     component: ClientRegistrationConfirmationComponent
+  },
+  {
+    path: 'login/login-confirmation',
+    component: ClientLoginConfirmationComponent
   }
   
 ];

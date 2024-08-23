@@ -15,20 +15,24 @@ export class AppComponent {
 
   title = 'app';
 
-   IsLoggedIn: any;
+   IsAdminLoggedIn: any;
 
-  // ngOnInit(){
-  //   // this.authClient.geLoggedIn().subscribe({
-  //   //   next: result => {
-  //   //     if(result.message == 'Logged in user detected'){
-  //   //       this.IsLoggedIn = true;
-  //   //     }else{
-  //   //       this.IsLoggedIn = false;
-  //   //     }
-  //   //   },
-  //   //   error: error => console.error(error)
-  //   // });
+  ngOnInit(){
 
-  //   this.IsLoggedIn = false;
-  // }
+    var retrievedObject = localStorage.getItem('loggedindetail');
+
+    if (typeof retrievedObject !== 'undefined' && retrievedObject !== null){
+      // CONVERT STRING TO REGULAR JS OBJECT
+      var parsedObject = JSON.parse(retrievedObject!);
+      if(parsedObject.resultType == 1 && parsedObject.data?.isAdminAccount == false){
+        this.IsAdminLoggedIn = false;
+      }else if(parsedObject.resultType == 1 && parsedObject.data?.isAdminAccount == true){
+        this.IsAdminLoggedIn = true;
+      }else{
+        this.IsAdminLoggedIn = false;
+      }
+    }else{
+      this.IsAdminLoggedIn = false;
+    }
+  }
 }

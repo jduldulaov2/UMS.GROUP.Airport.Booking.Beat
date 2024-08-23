@@ -38,6 +38,7 @@ import { CheckoutComponent }  from './Pages/ClientPortal/checkout/checkout.compo
 import { LoginComponent }  from './Pages/ClientPortal/login/login.component';
 import { ClientRegisterComponent }  from './Pages/ClientPortal/client-register/client-register.component';
 import { ClientRegistrationConfirmationComponent }  from './Pages/ClientPortal/client-registration-confirmation/client-registration-confirmation.component';
+import { ClientLoginConfirmationComponent }  from './Pages/ClientPortal/client-login-confirmation/client-login-confirmation.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import { ClientRegistrationConfirmationComponent }  from './Pages/ClientPortal/c
     FoodMenuComponent,
     CheckoutComponent,
     ClientRegisterComponent,
-    ClientRegistrationConfirmationComponent
+    ClientRegistrationConfirmationComponent,
+    ClientLoginConfirmationComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
