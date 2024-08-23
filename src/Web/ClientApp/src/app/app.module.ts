@@ -37,7 +37,7 @@ import { FoodMenuComponent }  from './Pages/ClientPortal/food-menu/food-menu.com
 import { CheckoutComponent }  from './Pages/ClientPortal/checkout/checkout.component';
 import { LoginComponent }  from './Pages/ClientPortal/login/login.component';
 import { ClientRegisterComponent }  from './Pages/ClientPortal/client-register/client-register.component';
-
+import { ClientRegistrationConfirmationComponent }  from './Pages/ClientPortal/client-registration-confirmation/client-registration-confirmation.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +69,8 @@ import { ClientRegisterComponent }  from './Pages/ClientPortal/client-register/c
     ManageCustomerDetailComponent,
     FoodMenuComponent,
     CheckoutComponent,
-    ClientRegisterComponent
+    ClientRegisterComponent,
+    ClientRegistrationConfirmationComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

@@ -12,6 +12,7 @@ import { ReserveATableComponent }  from '../../Pages/ClientPortal/reserve-atable
 import { CheckoutComponent }  from '../../Pages/ClientPortal/checkout/checkout.component';
 import { LoginComponent }  from '../../Pages/ClientPortal/login/login.component';
 import { ClientRegisterComponent }  from '../../Pages/ClientPortal/client-register/client-register.component';
+import { ClientRegistrationConfirmationComponent }  from '../../Pages/ClientPortal/client-registration-confirmation/client-registration-confirmation.component';
 
 const routes: Routes = [
   { 
@@ -53,6 +54,10 @@ const routes: Routes = [
   {
     path: 'login/registration',
     component: ClientRegisterComponent
+  },
+  {
+    path: 'login/registration-confirmation',
+    component: ClientRegistrationConfirmationComponent
   }
   
 ];
