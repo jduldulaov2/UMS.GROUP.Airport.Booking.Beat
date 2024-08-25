@@ -31,10 +31,10 @@
           <li class="nav-item d-none d-sm-inline-block">
             <a [routerLink]="['/reserve-a-table']" routerLinkActive="is-active"  class="nav-link">Book a Table</a>
           </li>
-          <li class="nav-item d-none d-sm-inline-block">
+          <li (click)="SignOut()" style="cursor: pointer;" *ngIf="IsLoggedIn == true" class="nav-item d-none d-sm-inline-block">
             <a [routerLink]="['/contact-us']" routerLinkActive="is-active"  class="nav-link">Logout</a>
           </li>
-          <li class="nav-item d-none d-sm-inline-block">
+          <li style="cursor: pointer;" *ngIf="IsLoggedIn == false"  class="nav-item d-none d-sm-inline-block">
             <a [routerLink]="['/login']" routerLinkActive="is-active"  class="nav-link">Login</a>
           </li>
     </ul>
