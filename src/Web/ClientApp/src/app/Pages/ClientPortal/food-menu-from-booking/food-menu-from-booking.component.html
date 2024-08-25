@@ -1,83 +1,311 @@
-<style>
-	.menu-container{
-		height: auto!important;
-	}
 
-	.btn-warning-custom
-	{
-		color: #f8f9fa;
-		border-radius: 0px;
-		background: #ffa323;
-	}
-</style>
-<main id="main">
-
-    <!-- ======= Breadcrumbs Section ======= -->
-    <section class="breadcrumbs">
-      <div class="container">
-
-        <div class="d-flex justify-content-between align-items-center">
-          <h2 class="curly">Main Menu</h2>
-          <ol>
-            <li><a href="index.html">Home</a></li>
-            <li><span class="li-before">Main Menu</span></li>
-          </ol>
+  <style>
+    .menu-container{
+      height: auto!important;
+    }
+  
+    .btn-warning-custom
+    {
+      color: #f8f9fa;
+      border-radius: 0px;
+      background: #ffa323;
+    }
+  </style>
+  
+    
+  <style>
+    .section-title h2 {
+      margin: 15px 0 0 0;
+      font-size: 32px;
+      font-weight: 700;
+      color: #5f5950;
+  }
+  
+  .section-title p {
+      margin: 15px auto 0 auto;
+      font-weight: 300;
+  }
+  
+  .curly{
+    font-family: "Satisfy", sans-serif;
+  }
+  
+  .section-title h2 span {
+      color: #ffb03b;
+  }
+  
+  .about .content p {
+      font-size: 15px;
+      color: #848484;
+  }
+  
+  .about .content h3 {
+      font-weight: 400;
+      font-size: 34px;
+      color: #5f5950;
+  }
+  
+  .about .content ul li {
+      position: relative;
+      padding-left: 26px;
+  }
+  
+  .about .content p {
+      font-size: 15px;
+      color: #848484;
+  }
+  .fst-italic {
+      font-style: italic !important;
+  }
+  
+  .about .content ul {
+      list-style: none;
+      padding: 0;
+  }
+  
+  .about .video-box {
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+      min-height: 400px;
+      position: relative;
+  }
+  
+  .bg-warning{
+    width: 140px!important;
+  }
+  
+  .bg-warning {
+      background-color: #dee2e642 !important;
+  }
+  
+  .bg-warning i{
+    color: #6c757d8c !important;
+  }
+  
+  </style>
+  
+  
+  <head>
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+      <!-- Google fonts-->
+      <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+      <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+    </head>
+  <style>
+    .carousel-caption{
+      bottom: 50%!important;
+    }
+  
+    .text-primary {
+    color: #ffb03b !important;
+  }
+  
+  </style>  
+    
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper" style="padding-top: 55px; ">
+      
+      <div class="section-title" style="background: linear-gradient(0deg, rgb(232 206 121 / 82%) 0%, rgb(236 217 151 / 21%) 100%);">
+        <div style="padding-top: 50px; padding-bottom: 50px; text-align: center;"><h2 class="curly">Check our Tasty<span> Menu</span></h2>
+          <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p>
         </div>
-
       </div>
-    </section><!-- End Breadcrumbs Section -->
-
-    <section class="inner-page">
-      <div class="container" style="max-width: 90%!important;">
-            <!-- ======= Menu Section ======= -->
-    <section id="menu" class="menu" style="padding-top: 0px;">
-      <div class="container" style="max-width: 90%!important;">
-
-        <div class="section-title">
-          <h2 class="curly">Check our tasty <span>Menu</span></h2>
-        </div>
-
-        <div class="row" style="padding-bottom: 20px;">
-          <div class="col-lg-12 d-flex justify-content-center">
-            <ul id="menu-flters">
-              <li (click)="GetFilter()" class="filter-active">Show All</li>
-              <li (click)="getFoodListById(4)" data-filter=".insalate-salate">INSALATE / SALATE</li>
-              <li (click)="getFoodListById(5)" data-filter=".ANTIPASTI-VORSPEISEN">ANTIPASTI / VORSPEISEN</li>
-              <li (click)="getFoodListById(6)" data-filter=".RISOTTO">RISOTTO</li>
-              <li (click)="getFoodListById(7)" data-filter=".pasta-teigwaren">PASTA / TEIGWAREN</li>
-              <li (click)="getFoodListById(8)" data-filter=".pizza">PIZZA I PINSA DEL FORNO A LEGNA / PIZZA UND PINSA AUS DEM HOLZOFEN</li>
-              <li (click)="getFoodListById(9)" data-filter=".GRATIN">GRATIN</li>
-              <li (click)="getFoodListById(10)" data-filter=".SOMMER">SOMMER</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="row menu-container" >
-
-          <div *ngFor="let item of foodDto" class="col-lg-4 menu-item" >
-            <div class="menus d-flex ">
-              <div class="text">
-              	<div class="d-flex">
-	                <div class="one-half">
-	                  <h3>{{item.foodName}}</h3>
-	                </div>
-	                <div class="one-forth">
-	                  <span class="price">{{item.foodPrice}}</span>
-	                </div>
-	              </div>
-	              <p><span>{{item.foodDescription}}</span></p>
-				 
+  
+      <section id="about" class="about" style="padding: 15px;">
+  
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card card-primary card-tabs">
+              <div class="card-header p-0 pt-1">
+                <ul class="nav nav-tabs" id="custom-tabs-five-tab" role="tablist">
+                  <li class="nav-item">
+                    <a (click)="GetFilter()" class="nav-link active" id="custom-tabs-five-normal-tab" data-toggle="pill" href="#GETALL" role="tab" aria-controls="custom-tabs-five-normal" aria-selected="true">ALL Foods</a>
+                  </li>
+                  <li class="nav-item">
+                    <a (click)="getFoodListById(4)" class="nav-link" id="custom-tabs-five-normal-tab" data-toggle="pill" href="#INSALATE" role="tab" aria-controls="custom-tabs-five-normal" aria-selected="true">INSALATE / SALATE</a>
+                  </li>
+                  <li class="nav-item">
+                    <a (click)="getFoodListById(4)" class="nav-link" id="custom-tabs-five-normal-tab" data-toggle="pill" href="#INSALATE" role="tab" aria-controls="custom-tabs-five-normal" aria-selected="true">INSALATE / SALATE</a>
+                  </li>
+                  <li class="nav-item">
+                    <a (click)="getFoodListById(5)" class="nav-link" id="custom-tabs-five-normal-tab" data-toggle="pill" href="#ANTIPASTI" role="tab" aria-controls="custom-tabs-five-normal" aria-selected="false">ANTIPASTI / VORSPEISEN</a>
+                  </li>
+                  <li class="nav-item">
+                    <a (click)="getFoodListById(6)" class="nav-link" id="custom-tabs-five-normal-tab" data-toggle="pill" href="#RISOTTO" role="tab" aria-controls="custom-tabs-five-normal" aria-selected="false">RISOTTO</a>
+                  </li>
+                  <li class="nav-item">
+                    <a (click)="getFoodListById(7)" class="nav-link" id="custom-tabs-five-normal-tab" data-toggle="pill" href="#PASTA" role="tab" aria-controls="custom-tabs-five-normal" aria-selected="false">PASTA / TEIGWAREN</a>
+                  </li>
+                  <li class="nav-item">
+                    <a (click)="getFoodListById(8)" class="nav-link" id="custom-tabs-five-normal-tab" data-toggle="pill" href="#PIZZA" role="tab" aria-controls="custom-tabs-five-normal" aria-selected="false">PIZZA I PINSA DEL FORNO A LEGNA / PIZZA UND PINSA AUS DEM HOLZOFEN</a>
+                  </li>
+                  <li class="nav-item">
+                    <a (click)="getFoodListById(9)" class="nav-link" id="custom-tabs-five-normal-tab" data-toggle="pill" href="#GRATIN" role="tab" aria-controls="custom-tabs-five-normal" aria-selected="false">GRATIN</a>
+                  </li>
+                  <li class="nav-item">
+                    <a (click)="getFoodListById(10)" class="nav-link" id="custom-tabs-five-normal-tab" data-toggle="pill" href="#SOMMER" role="tab" aria-controls="custom-tabs-five-normal" aria-selected="false">SOMMER</a>
+                  </li>
+                </ul>
               </div>
-			  
+              <div class="card-body">
+                <div class="tab-content" id="custom-tabs-five-tabContent">
+                  <div class="tab-pane fade show active" id="GETALL" role="tabpanel">
+                    <div class="row menu-container" >
+                      <div *ngFor="let item of foodDto" class="col-lg-4 menu-item" >
+                        <div class="menus d-flex ">
+                          <div class="info-box">
+                            <span class="info-box-icon bg-warning"><i class="fas fa-images"></i></span>
+                            <div class="info-box-content">
+                              <span class="info-box-text"><span style="font-weight: bold;">Food:</span> {{item.foodName}}</span>
+                              <span class="info-box-text"><span style="font-weight: bold;">Price:</span> {{item.foodPrice}}</span>
+                              <span class="info-box-text"><span style="font-weight: bold;">Description:</span>: {{item.foodDescription}}</span>
+                              <div style="text-align: right;"><button type="button" (click)="GoBackToCart(item.id)" class="btn btn-warning btn-warning-custom" style="width: 130px"> <i class="fa fa-cart-plus"></i> Add to Cart</button></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tab-pane fade show active" id="INSALATE" role="tabpanel">
+                    <div class="row menu-container" >
+                      <div *ngFor="let item of foodDto" class="col-lg-4 menu-item" >
+                        <div class="menus d-flex ">
+                          <div class="info-box">
+                            <span class="info-box-icon bg-warning"><i class="fas fa-images"></i></span>
+                            <div class="info-box-content">
+                              <span class="info-box-text"><span style="font-weight: bold;">Food:</span> {{item.foodName}}</span>
+                              <span class="info-box-text"><span style="font-weight: bold;">Price:</span> {{item.foodPrice}}</span>
+                              <span class="info-box-text"><span style="font-weight: bold;">Description:</span>: {{item.foodDescription}}</span>
+                              <div style="text-align: right;"><button type="button" (click)="GoBackToCart(item.id)" class="btn btn-warning btn-warning-custom" style="width: 130px"> <i class="fa fa-cart-plus"></i> Add to Cart</button></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tab-pane fade" id="ANTIPASTI" role="tabpanel" >
+                    <div class="tab-pane fade show active" id="INSALATE" role="tabpanel">
+                      <div class="row menu-container" >
+                        <div *ngFor="let item of foodDto" class="col-lg-4 menu-item" >
+                          <div class="menus d-flex ">
+                            <div class="info-box">
+                              <span class="info-box-icon bg-warning"><i class="fas fa-images"></i></span>
+                              <div class="info-box-content">
+                                <span class="info-box-text"><span style="font-weight: bold;">Food:</span> {{item.foodName}}</span>
+                                <span class="info-box-text"><span style="font-weight: bold;">Price:</span> {{item.foodPrice}}</span>
+                                <span class="info-box-text"><span style="font-weight: bold;">Description:</span>: {{item.foodDescription}}</span>
+                                <div style="text-align: right;"><button type="button" (click)="GoBackToCart(item.id)" class="btn btn-warning btn-warning-custom" style="width: 130px"> <i class="fa fa-cart-plus"></i> Add to Cart</button></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tab-pane fade" id="RISOTTO" role="tabpanel">
+                    <div class="tab-pane fade show active" id="INSALATE" role="tabpanel">
+                      <div class="row menu-container" >
+                        <div *ngFor="let item of foodDto" class="col-lg-4 menu-item" >
+                          <div class="menus d-flex ">
+                            <div class="info-box">
+                              <span class="info-box-icon bg-warning"><i class="fas fa-images"></i></span>
+                              <div class="info-box-content">
+                                <span class="info-box-text"><span style="font-weight: bold;">Food:</span> {{item.foodName}}</span>
+                                <span class="info-box-text"><span style="font-weight: bold;">Price:</span> {{item.foodPrice}}</span>
+                                <span class="info-box-text"><span style="font-weight: bold;">Description:</span>: {{item.foodDescription}}</span>
+                                <div style="text-align: right;"><button type="button" (click)="GoBackToCart(item.id)" class="btn btn-warning btn-warning-custom" style="width: 130px"> <i class="fa fa-cart-plus"></i> Add to Cart</button></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tab-pane fade" id="PASTA" role="tabpanel" >
+                    <div class="tab-pane fade show active" id="INSALATE" role="tabpanel">
+                      <div class="row menu-container" >
+                        <div *ngFor="let item of foodDto" class="col-lg-4 menu-item" >
+                          <div class="menus d-flex ">
+                            <div class="info-box">
+                              <span class="info-box-icon bg-warning"><i class="fas fa-images"></i></span>
+                              <div class="info-box-content">
+                                <span class="info-box-text"><span style="font-weight: bold;">Food:</span> {{item.foodName}}</span>
+                                <span class="info-box-text"><span style="font-weight: bold;">Price:</span> {{item.foodPrice}}</span>
+                                <span class="info-box-text"><span style="font-weight: bold;">Description:</span>: {{item.foodDescription}}</span>
+                                <div style="text-align: right;"><button type="button" (click)="GoBackToCart(item.id)" class="btn btn-warning btn-warning-custom" style="width: 130px"> <i class="fa fa-cart-plus"></i> Add to Cart</button></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tab-pane fade" id="PIZZA" role="tabpanel">
+                    <div class="tab-pane fade show active" id="INSALATE" role="tabpanel">
+                      <div class="row menu-container" >
+                        <div *ngFor="let item of foodDto" class="col-lg-4 menu-item" >
+                          <div class="menus d-flex ">
+                            <div class="info-box">
+                              <span class="info-box-icon bg-warning"><i class="fas fa-images"></i></span>
+                              <div class="info-box-content">
+                                <span class="info-box-text"><span style="font-weight: bold;">Food:</span> {{item.foodName}}</span>
+                                <span class="info-box-text"><span style="font-weight: bold;">Price:</span> {{item.foodPrice}}</span>
+                                <span class="info-box-text"><span style="font-weight: bold;">Description:</span>: {{item.foodDescription}}</span>
+                                <div style="text-align: right;"><button type="button" (click)="GoBackToCart(item.id)" class="btn btn-warning btn-warning-custom" style="width: 130px"> <i class="fa fa-cart-plus"></i> Add to Cart</button></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tab-pane fade" id="GRATIN" role="tabpanel" >
+                    <div class="tab-pane fade show active" id="INSALATE" role="tabpanel">
+                      <div class="row menu-container" >
+                        <div *ngFor="let item of foodDto" class="col-lg-4 menu-item" >
+                          <div class="menus d-flex ">
+                            <div class="info-box">
+                              <span class="info-box-icon bg-warning"><i class="fas fa-images"></i></span>
+                              <div class="info-box-content">
+                                <span class="info-box-text"><span style="font-weight: bold;">Food:</span> {{item.foodName}}</span>
+                                <span class="info-box-text"><span style="font-weight: bold;">Price:</span> {{item.foodPrice}}</span>
+                                <span class="info-box-text"><span style="font-weight: bold;">Description:</span>: {{item.foodDescription}}</span>
+                                <div style="text-align: right;"><button type="button" (click)="GoBackToCart(item.id)" class="btn btn-warning btn-warning-custom" style="width: 130px"> <i class="fa fa-cart-plus"></i> Add to Cart</button></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tab-pane fade" id="SOMMER" role="tabpanel">
+                    <div class="tab-pane fade show active" id="INSALATE" role="tabpanel">
+                      <div class="row menu-container" >
+                        <div *ngFor="let item of foodDto" class="col-lg-4 menu-item" >
+                          <div class="menus d-flex ">
+                            <div class="info-box">
+                              <span class="info-box-icon bg-warning"><i class="fas fa-images"></i></span>
+                              <div class="info-box-content">
+                                <span class="info-box-text"><span style="font-weight: bold;">Food:</span> {{item.foodName}}</span>
+                                <span class="info-box-text"><span style="font-weight: bold;">Price:</span> {{item.foodPrice}}</span>
+                                <span class="info-box-text"><span style="font-weight: bold;">Description:</span>: {{item.foodDescription}}</span>
+                                <div style="text-align: right;"><button type="button" (click)="GoBackToCart(item.id)" class="btn btn-warning btn-warning-custom" style="width: 130px"> <i class="fa fa-cart-plus"></i> Add to Cart</button></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /.card -->
             </div>
-			<div style="margin-top: -21px; padding-bottom: 20px; text-align: right;"><button (click)="GoBackToCart(item.id)" type="button" class="btn btn-warning btn-warning-custom"> <i class="fa fa-cart-plus"></i> Add to Cart</button></div>
           </div>
-
         </div>
-
-      </div>
-    </section><!-- End Menu Section -->
-      </div>
-    </section>
-
-  </main><!-- End #main -->
+      </section>
+  
+    </div>
+    <!-- /.content-wrapper -->
+     

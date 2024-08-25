@@ -1,5 +1,75 @@
+<head>
+  <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+  </head>
 <style>
-    .menus {
+  .carousel-caption{
+    bottom: 50%!important;
+  }
+
+  .text-primary {
+  color: #ffb03b !important;}
+
+  .section-title h2 {
+    margin: 15px 0 0 0;
+    font-size: 32px;
+    font-weight: 700;
+    color: #5f5950;
+}
+
+.section-title p {
+    margin: 15px auto 0 auto;
+    font-weight: 300;
+}
+
+.curly{
+  font-family: "Satisfy", sans-serif;
+}
+
+.section-title h2 span {
+    color: #ffb03b;
+}
+
+.about .content p {
+    font-size: 15px;
+    color: #848484;
+}
+
+.about .content h3 {
+    font-weight: 400;
+    font-size: 34px;
+    color: #5f5950;
+}
+
+.about .content ul li {
+    position: relative;
+    padding-left: 26px;
+}
+
+.about .content p {
+    font-size: 15px;
+    color: #848484;
+}
+.fst-italic {
+    font-style: italic !important;
+}
+
+.about .content ul {
+    list-style: none;
+    padding: 0;
+}
+
+.about .video-box {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    min-height: 400px;
+    position: relative;
+}
+
+.menus {
       width: 100%;
       margin-bottom: 0px;
       padding-bottom: 0px;
@@ -36,7 +106,7 @@
     color: #6f6f6f;
     width: 50px;
     border: none;
-    background: #dc35451c;
+    background: #dee2e6;
     text-align: center;
     padding-top: 13px;
     padding-bottom: 13px;
@@ -53,7 +123,7 @@
     color: #6f6f6f;
     width: 50px;
     border: none;
-    background: #00bc8c1c;
+    background: #dee2e6;
     text-align: center;
     padding-top: 13px;
     padding-bottom: 13px;
@@ -67,132 +137,82 @@
     border-radius: 0px!important;
 }
 
-   </style>
 
-   <main id="main">
-
-    <!-- ======= Breadcrumbs Section ======= -->
-    <section class="breadcrumbs">
-      <div class="container">
-
-        <div class="d-flex justify-content-between align-items-center">
-          <h2 class="curly">Main Menu</h2>
-          <ol>
-            <li><a href="index.html">Home</a></li>
-            <li><span class="li-before">Main Menu</span></li>
-          </ol>
-        </div>
-
+</style>  
+  
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper" style="padding-top: 55px; ">
+    
+    <div class="section-title" style="background: linear-gradient(0deg, rgb(232 206 121 / 82%) 0%, rgb(236 217 151 / 21%) 100%);">
+      <div style="padding-top: 50px; padding-bottom: 50px; text-align: center;"><h2 class="curly">My Food <span>Items (Cart)</span></h2>
+        <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p>
       </div>
-    </section><!-- End Breadcrumbs Section -->
+    </div>
 
-    <section class="inner-page" style="padding: 0px 0;">
+    <section id="about" class="about" style="padding: 15px;">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-12 justify-content-center">
+            <div class="callout callout-warning">
+              <h5>Table booking is initially processed.</h5>
 
-      <div class="section-title" style="background: linear-gradient(0deg, rgb(232 206 121 / 82%) 0%, rgb(236 217 151 / 21%) 100%);">
-        <div style="padding: 10px;"><h2 class="curly">Add Food <span>items</span></h2>
-          <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p></div>
-      </div>
-
-      <div class="container" style="max-width: 90%!important;">
-            <!-- ======= Menu Section ======= -->
-    <section id="menu" class="menu" style="padding-top: 0px;">
-      <div class="container" style="max-width: 100%!important;">
-
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">Food</th>
-              <th scope="col">Price</th>
-              <th scope="col">Quantity</th>
-              <th scope="col">Total</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="align-middle">
-                <div class="col-lg-12 menu-item insalate-salate">
-                  <div style="padding: 10px 20px;" class="menus d-flex">
-                    <div class="menu-img img"></div>
-                    <div class="text">
-                      <div class="d-flex">
-                        <div class="one-half">
-                          <h3>Spaghetti alla Carbonara</h3>
-                        </div>
-                      </div>
-                      <p><span>mit gebratenem Speck, Rahm und Parmesan</span></p>
-                    </div>
-                  </div>
-                </div>
-              </td>
-              <td class="align-middle">$55.00</td>
-              <td class="align-middle">
-                <div class="quantity">
-                    <span>
-                        <span><span class="custom-quantity-deduct"> - </span><input class="custom-quantity" type="text" value="1"><span class="custom-quantity-add"> + </span></span>
-                    </span>
-                </div>
-              </td>
-              <td class="align-middle">$110.00</td>
-            </tr>
-            <tr>
-              <td class="align-middle">
-                <div class="col-lg-12 menu-item insalate-salate">
-                  <div style="padding: 10px 20px;" class="menus d-flex">
-                    <div class="menu-img img"></div>
-                      <div class="text">
-                        <div class="d-flex">
-                          <div class="one-half">
-                            <h3>Margherita</h3>
+              <p>You may add foods/order fot this booking or just skip and proceed to checkout.</p>
+            </div>
+          </div>
+          <div class="col-lg-12 justify-content-center">
+            <div class="container" style="max-width: 100%!important;">
+              <table class="table">
+                <thead class="card-header">
+                  <tr>
+                    <th scope="col">Food</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="align-middle">
+                      <div class="col-lg-12 menu-item insalate-salate">
+                        <div style="padding: 0px 0px;" class="menus d-flex">
+                          <div class="menu-img img"></div>
+                          <div class="text">
+                            <div class="d-flex">
+                              <div class="one-half">
+                                <h3>Spaghetti alla Carbonara</h3>
+                              </div>
+                            </div>
+                            <p><span>mit gebratenem Speck, Rahm und Parmesan</span></p>
                           </div>
                         </div>
-                        <p><span>Tomatensauce, Mozzarella und Oregano</span></p>
                       </div>
-                  </div>
-                </div>
-              </td>
-              <td class="align-middle">$55.00</td>
-              <td class="align-middle">
-                <div class="quantity">
-                  <span><span class="custom-quantity-deduct"> - </span><input class="custom-quantity" type="text" value="1"><span class="custom-quantity-add"> + </span></span>
-                </div>
-              </td>
-              <td class="align-middle">$110.00</td>
-            </tr>
-            <tr>
-              <td class="align-middle">
-                <div class="col-lg-12 menu-item insalate-salate">
-                  <div style="padding: 10px 20px;" class="menus d-flex">
-                    <div class="menu-img img"></div>
-                    <div class="text">
-                      <div class="d-flex">
-                        <div class="one-half">
-                          <h3>Insalata Verde</h3>
-                        </div>
+                    </td>
+                    <td class="align-middle">$55.00</td>
+                    <td class="align-middle">
+                      <div class="quantity">
+                          <span>
+                              <span><span class="custom-quantity-deduct"> - </span><input class="custom-quantity" type="text" value="1"><span class="custom-quantity-add"> + </span></span>
+                          </span>
                       </div>
-                      <p><span>Grüner Salat</span></p>
-                    </div>
-                  </div>
-                </div>
-              </td>
-              <td class="align-middle">$55.00</td>
-              <td class="align-middle">
-                <div class="quantity">
-                  <span><span class="custom-quantity-deduct"> - </span><input class="custom-quantity" type="text" value="1"><span class="custom-quantity-add"> + </span></span>
-                </div>
-              </td>
-              <td class="align-middle">$110.00</td>
-            </tr>
-          </tbody>
-        </table>
-        
-        <div style="text-align: right;" class="menu-container">
-          <a (click)="GoToFoods()" class="book-a-table-btn scrollto" style="background: #ffb03b; cursor: pointer;"> + Add Food</a>
-          <a (click)="GoToCheckout()" class="book-a-table-btn scrollto" style="background: rgb(167 1 1); cursor: pointer;">Proceed To Checkout</a>
-        </div>
+                    </td>
+                    <td class="align-middle">$110.00</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            
+            <div class="form-group row" style="text-align: right;">
+              <div class="col-md-12">
+                <button type="button" (click)="GoToFoods()" style="margin-right: 10px;" class="btn bg-gradient-warning btn-flat">Add Food</button>
+                <button type="button" (click)="GoToCheckout()" class="btn bg-gradient-warning btn-flat">Checkout</button>
+              </div>
+            </div>
 
+          </div>
+        </div>
+       
       </div>
-    </section><!-- End Menu Section -->
-      </div>
+
     </section>
 
-  </main><!-- End #main -->
+  </div>

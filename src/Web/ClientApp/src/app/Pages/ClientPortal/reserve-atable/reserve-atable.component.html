@@ -1,4 +1,62 @@
+
 <style>
+  .section-title h2 {
+    margin: 15px 0 0 0;
+    font-size: 32px;
+    font-weight: 700;
+    color: #5f5950;
+}
+
+.section-title p {
+    margin: 15px auto 0 auto;
+    font-weight: 300;
+}
+
+.curly{
+  font-family: "Satisfy", sans-serif;
+}
+
+.section-title h2 span {
+    color: #ffb03b;
+}
+
+.about .content p {
+    font-size: 15px;
+    color: #848484;
+}
+
+.about .content h3 {
+    font-weight: 400;
+    font-size: 34px;
+    color: #5f5950;
+}
+
+.about .content ul li {
+    position: relative;
+    padding-left: 26px;
+}
+
+.about .content p {
+    font-size: 15px;
+    color: #848484;
+}
+.fst-italic {
+    font-style: italic !important;
+}
+
+.about .content ul {
+    list-style: none;
+    padding: 0;
+}
+
+.about .video-box {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    min-height: 400px;
+    position: relative;
+}
+
 .book-a-table .php-email-form button[type=submit] {
     border-radius: 0px!important;
 }
@@ -6,112 +64,128 @@
 .form-control input {
     height: 45px !important;
 }
+
 </style>
 
-<main id="main">
 
-    <!-- ======= Breadcrumbs Section ======= -->
-    <section class="breadcrumbs">
+<head>
+  <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+  </head>
+<style>
+  .carousel-caption{
+    bottom: 50%!important;
+  }
 
-      
-      <div class="container" style="max-width: 1320px;">
+  .text-primary {
+  color: #ffb03b !important;
+}
 
-        <div class="d-flex justify-content-between align-items-center">
-          <h2 class="curly">Home > Reserve a Table</h2>
-          <ol>
-            <li><a href="index.html">Home</a></li>
-            <li><span class="li-before">Reserve a Table</span></li>
-          </ol>
-        </div>
-      </div>
-    </section><!-- End Breadcrumbs Section -->
-
-
-    <section class="inner-page book-a-table booking" style="padding-top: 0px;">
-      
-      <div class="container" style="max-width: 90%;" >
-
-        <div class="section-title" style="background: linear-gradient(0deg, rgb(232 206 121 / 82%) 0%, rgb(236 217 151 / 21%) 100%);">
-          <div style="padding: 10px;"><h2 class="curly">Reserve a <span>Table</span></h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p></div>
-        </div>
-        
-        <div class="php-email-form">
-          <div class="row">
-            <div class="col-lg-4 col-md-6 form-group">
-              <input type="text" name="name" class="form-control" id="fullname" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" #fullname disabled>
-              <div class="validate"></div>
-            </div>
-            <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0">
-              <input type="email" class="form-control" name="email" id="emailaddress" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" #emailaddress disabled>
-              <div class="validate"></div>
-            </div>
-            <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0">
-              <input type="text" class="form-control" name="phone" id="phonenumber" placeholder="Your Phone" data-rule="minlen:4" data-msg="Please enter at least 4 chars" #phonenumber disabled>
-              <div class="validate"></div>
-            </div>
-            <div class="col-lg-4 col-md-6 form-group mt-3">
-              <input type="date" name="date" class="form-control" id="bookingdate" placeholder="Date" data-rule="minlen:4" #bookingdate data-msg="Please enter at least 4 chars">
-              <div class="validate"></div>
-            </div>
-            <div class="col-lg-4 col-md-6 form-group mt-3">
-              <input type="time" class="form-control" name="time" id="bookingtime" placeholder="Time" data-rule="minlen:4" #bookingtime data-msg="Please enter at least 4 chars">
-              <div class="validate"></div>
-            </div>
-            <div class="col-lg-4 col-md-6 form-group mt-3">
-              <input type="number" class="form-control" name="people" id="numberofpeople" placeholder="# of people" data-rule="minlen:1" #numberofpeople data-msg="Please enter at least 1 chars">
-              <div class="validate"></div>
-            </div>
-          </div>
-          <div class="form-group mt-3">
-            <textarea class="form-control" id="message" name="message" rows="5" placeholder="Message" #message></textarea>
-            <div class="validate"></div>
-          </div>
-          <div class="mb-3">
-            <div class="loading">Loading</div>
-            <div class="error-message"></div>
-            <div class="sent-message">Your booking request was sent. We will call back or send an Email to confirm your reservation. Thank you!</div>
-          </div>
-          <div class="text-center">
-            <button type="submit" data-toggle="modal" data-target="#myModal" style="margin-right: 20px;">Select Desired Table/s</button>
-            <button (click)="ReserveATable(fullname.value, emailaddress.value, phonenumber.value, bookingdate.value, bookingtime.value, numberofpeople.value, message.value)" style="background-color: rgb(167 1 1);" type="submit">Prepare Booking</button> </div>
-        </div>
-
-      </div>
-    </section>
-
-  </main><!-- End #main -->
-
-    <!-- Modal -->
-<div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-body">
-        <ul class="nav nav-tabs" role="tablist">
-          <li class="nav-item" role="presentation">
-            <a class="nav-link active" id="simple-tab-0" data-bs-toggle="tab" href="#simple-tabpanel-0" role="tab" aria-controls="simple-tabpanel-0" aria-selected="true">Inside Restaurant</a>
-          </li>
-          <li class="nav-item" role="presentation">
-            <a class="nav-link" id="simple-tab-1" data-bs-toggle="tab" href="#simple-tabpanel-1" role="tab" aria-controls="simple-tabpanel-1" aria-selected="false">Terrese</a>
-          </li>
-        </ul>
-        <div class="tab-content pt-5" id="tab-content">
-          <div class="tab-pane active" id="simple-tabpanel-0" role="tabpanel" aria-labelledby="simple-tab-0">
-            <p><img src="assets/reservation/client/assets/img/RestaurantPlanDraftFinal.png" alt="" class="img-fluid"></p>
-          </div>
-          <div class="tab-pane" id="simple-tabpanel-1" role="tabpanel" aria-labelledby="simple-tab-1">
-            <p><img src="assets/reservation/client/assets/img/TerreseDraft.png" alt="" class="img-fluid"></p>
-          </div>
-        </div>
-        
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Select</button>
+</style>  
+  
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper" style="padding-top: 55px; ">
+    
+    <div class="section-title" style="background: linear-gradient(0deg, rgb(232 206 121 / 82%) 0%, rgb(236 217 151 / 21%) 100%);">
+      <div style="padding-top: 50px; padding-bottom: 50px; text-align: center;"><h2 class="curly">Book a <span>Table</span></h2>
+        <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p>
       </div>
     </div>
+    
+    <section id="about" class="about" style="padding: 15px;">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-12 justify-content-center">
+            <div class="php-email-form">
+              <div class="row">
+                <div class="col-lg-4 col-md-6 form-group">
+                  <input type="text" name="name" class="form-control" id="fullname" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" #fullname disabled>
+                  <div class="validate"></div>
+                </div>
+                <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0">
+                  <input type="email" class="form-control" name="email" id="emailaddress" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" #emailaddress disabled>
+                  <div class="validate"></div>
+                </div>
+                <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0">
+                  <input type="text" class="form-control" name="phone" id="phonenumber" placeholder="Your Phone" data-rule="minlen:4" data-msg="Please enter at least 4 chars" #phonenumber disabled>
+                  <div class="validate"></div>
+                </div>
+                <div class="col-lg-4 col-md-6 form-group mt-3">
+                  <input type="date" name="date" class="form-control" id="bookingdate" placeholder="Date" data-rule="minlen:4" #bookingdate data-msg="Please enter at least 4 chars">
+                  <div class="validate"></div>
+                </div>
+                <div class="col-lg-4 col-md-6 form-group mt-3">
+                  <input type="time" class="form-control" name="time" id="bookingtime" placeholder="Time" data-rule="minlen:4" #bookingtime data-msg="Please enter at least 4 chars">
+                  <div class="validate"></div>
+                </div>
+                <div class="col-lg-4 col-md-6 form-group mt-3">
+                  <input type="number" class="form-control" name="people" id="numberofpeople" placeholder="# of people" data-rule="minlen:1" #numberofpeople data-msg="Please enter at least 1 chars">
+                  <div class="validate"></div>
+                </div>
+              </div>
+              <div class="form-group mt-3">
+                <textarea class="form-control" id="message" name="message" rows="5" placeholder="Message" #message></textarea>
+                <div class="validate"></div>
+              </div>
+              <div class="text-center">
+                <button type="submit" class="btn bg-gradient-warning btn-flat" data-toggle="modal" data-target="#modal-xl" style="margin-right: 20px;">Select Desired Table/s</button>
+                <button class="btn bg-gradient-warning btn-flat"  (click)="ReserveATable(fullname.value, emailaddress.value, phonenumber.value, bookingdate.value, bookingtime.value, numberofpeople.value, message.value)"  type="submit">Prepare Booking</button> </div>
+            </div>
+          </div>
+        </div>
+      
+      </div>
+
+    </section>
 
   </div>
-</div>
+  <!-- /.content-wrapper -->
+  
+
+  <div class="modal fade" id="modal-xl">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Select Table Location</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="col-md-12">
+            <div class="card card-primary card-tabs">
+              <div class="card-header p-0 pt-1">
+                <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
+                  <li class="nav-item">
+                    <a class="nav-link active" id="custom-tabs-one-home-tab" data-toggle="pill" href="#custom-tabs-one-home" role="tab" aria-controls="custom-tabs-one-home" aria-selected="true">Inside Restaurant</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" id="custom-tabs-one-profile-tab" data-toggle="pill" href="#custom-tabs-one-profile" role="tab" aria-controls="custom-tabs-one-profile" aria-selected="false">Terrese</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="card-body">
+                <div class="tab-content" id="custom-tabs-one-tabContent">
+                  <div class="tab-pane fade show active" id="custom-tabs-one-home" role="tabpanel" aria-labelledby="custom-tabs-one-home-tab">
+                    <p><img src="assets/reservation/client/assets/img/RestaurantPlanDraftFinal.png" alt="" class="img-fluid"></p>
+                  </div>
+                  <div class="tab-pane fade" id="custom-tabs-one-profile" role="tabpanel" aria-labelledby="custom-tabs-one-profile-tab">
+                    <p><img src="assets/reservation/client/assets/img/TerreseDraft.png" alt="" class="img-fluid"></p>
+                  </div>
+                </div>
+              </div>
+              <!-- /.card -->
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
