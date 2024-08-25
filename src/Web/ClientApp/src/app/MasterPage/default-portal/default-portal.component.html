@@ -1,6 +1,9 @@
-<body>
-    <app-nav-menu></app-nav-menu>
-    <router-outlet></router-outlet>
-    <app-footer-menu></app-footer-menu>
+<body class="hold-transition skin-blue sidebar-collapse">
+    <div class="wrapper">
+      <app-pre-loader></app-pre-loader>
+      <app-header-client style="position: fixed !important;z-index: 9999;width: 100%;"></app-header-client>
+      <app-sidebar-client></app-sidebar-client>
+      <router-outlet></router-outlet>
+      <app-footer-client></app-footer-client>
+    </div>
 </body>
-

@@ -1,0 +1,181 @@
+<!-- Main Sidebar Container -->
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="index3.html" class="brand-link" style="text-align: center;background: white;">
+      <span class="brand-text font-weight-light"><img src="assets/reservation/admin/dist/img/thorackerlogo.jpg" style="height: 50px;" alt="Thoraker"></span>
+    </a>
+  
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+  
+          <li class="nav-header">MAIN</li>     
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/admin/my-dashboard']" routerLinkActive="active">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Dashboard
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/admin/manage-booking']" routerLinkActive="active">
+              <i class="nav-icon  fas fa-book"></i>
+              <p>
+                Manage Booking
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/admin/manage-order']" routerLinkActive="active">
+              <i class="nav-icon fa fa-cart-arrow-down"></i>
+              <p>
+               Manage Orders
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/admin/manage-payment']" routerLinkActive="active">
+              <i class="nav-icon fa fa-cart-arrow-down"></i>
+              <p>
+               Manage Payment
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/admin/menu-list-preview']" routerLinkActive="active">
+              <i class="nav-icon material-icons">restaurant</i>
+              <p>
+                Menu List Preview
+              </p>
+            </a>
+          </li>
+          <li class="nav-header">BASIC SETTINGS</li>
+          <li class="nav-item">
+            <a [routerLink]="['/admin/manage-customer']" routerLinkActive="active" class="nav-link">
+              <i class="nav-icon far fa-address-card"></i>
+              <p>
+                Users & Customers
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a [routerLink]="['/admin/manage-role']" routerLinkActive="active" class="nav-link">
+              <i class="nav-icon  far fa-address-book"></i>
+              <p>
+                Role Settings
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a [routerLink]="['/admin/manage-food-category']" routerLinkActive="active" class="nav-link">
+              <i class="nav-icon fas fa-project-diagram"></i>
+              <p>
+                Food Category Items
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a [routerLink]="['/admin/manage-table']" routerLinkActive="active" class="nav-link">
+              <i class="nav-icon fas fa-chair"></i>
+              <p>
+                Table Detail
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a [routerLink]="['/admin/manage-food-item']" routerLinkActive="active" class="nav-link">
+              <i class="nav-icon fas fa-pizza-slice"></i>
+              <p>
+                Food Items
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a [routerLink]="['/admin/manage-promo']" routerLinkActive="active" class="nav-link">
+              <i class="nav-icon fab fa-artstation"></i>
+              <p>
+                Promos & Special Offers
+              </p>
+            </a>
+          </li>
+          
+          <li class="nav-header">REPORTINGS</li>
+          
+          <li class="nav-item">
+            <a href="pages/gallery.html" class="nav-link">
+              <i class="nav-icon fas fa-file-invoice-dollar"></i>
+              <p>
+                Invoice
+              </p>
+            </a>
+          </li>
+  
+          <li class="nav-item">
+            <a [routerLink]="['/admin/manage-calendar']" routerLinkActive="active" class="nav-link">
+              <i class="nav-icon fa fa-calendar"></i>
+              <p>
+                Calendar
+              </p>
+            </a>
+          </li>
+  
+          <li class="nav-header">APPLICATION SETTINGS</li>
+  
+          <li class="nav-item">
+            <a href="pages/gallery.html" class="nav-link">
+             <i class="nav-icon material-icons">settings</i>
+              <p>
+                Client Pages Settings
+              </p>
+            </a>
+          </li>
+  
+          <li class="nav-item">
+            <a href="pages/gallery.html" class="nav-link">
+             <i class="nav-icon material-icons">settings</i>
+              <p>
+                System Settings
+              </p>
+            </a>
+          </li>
+  
+          <li class="nav-item">
+            <a href="pages/gallery.html" class="nav-link">
+              <i class="nav-icon fas fa-money-check-alt"></i>
+              <p>
+                Bank Details
+              </p>
+            </a>
+          </li>
+  
+          <li class="nav-header">ACTION</li>
+          <li class="nav-item">
+            <a href="pages/gallery.html" class="nav-link">
+              <i class="nav-icon material-icons">account_box</i>
+              <p>
+                My Profile
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="pages/gallery.html" class="nav-link">
+              <i class="nav-icon fas fa-box-open"></i>
+              <p>
+                About Us
+              </p>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+  
+  <app-spinner></app-spinner>
+  

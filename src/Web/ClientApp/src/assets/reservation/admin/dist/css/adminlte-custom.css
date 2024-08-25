@@ -471,3 +471,7 @@ table tbody tr:hover td, .table-hover tbody tr:hover th {
 .custom-bg-9 {
   background-color: #f39c1214!important;
 }
+
+.is-active{
+  background: #ffb03b!important;
+}

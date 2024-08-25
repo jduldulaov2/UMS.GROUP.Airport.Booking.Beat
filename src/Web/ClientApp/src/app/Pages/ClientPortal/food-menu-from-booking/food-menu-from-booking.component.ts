@@ -46,11 +46,13 @@ export class FoodMenuFromBookingComponent {
   }
 
   GoBackToCart(id: any): void {
-    //this.router.navigate(['/food-menu/booking',this.route.snapshot.paramMap.get('key'),'detail']);
-    var draft_id = this.route.snapshot.paramMap.get('key');
+    //my-cart/booking/a7786e7e-91c6-4218-aeae-2b6ed12eee7e/detail
+    // var draft_id = this.route.snapshot.paramMap.get('key');
 
-    alert(id);
-    alert(draft_id);
+    // alert(id);
+    // alert(draft_id);
+
+    this.router.navigate(['/my-cart/booking',this.route.snapshot.paramMap.get('key'),'detail']);
   }
   
 }

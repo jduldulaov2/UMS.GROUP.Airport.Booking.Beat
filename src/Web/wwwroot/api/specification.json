@@ -713,6 +713,104 @@
         }
       }
     },
+    "/api/DraftCartItems/CreateDraftCartItems": {
+      "post": {
+        "tags": [
+          "DraftCartItems"
+        ],
+        "operationId": "CreateDraftCartItems",
+        "requestBody": {
+          "x-name": "command",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateDraftCartItemsCommand"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultOfCreateDraftCartItemsCommandDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/DraftCartItems/UpdateDraftCartItems": {
+      "put": {
+        "tags": [
+          "DraftCartItems"
+        ],
+        "operationId": "UpdateDraftCartItems",
+        "requestBody": {
+          "x-name": "command",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateDraftCartItemsCommand"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultOfUpdateDraftCartItemsCommandDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/DraftCartItems/GetAllDraftCartItemsByCode": {
+      "get": {
+        "tags": [
+          "DraftCartItems"
+        ],
+        "operationId": "GetAllDraftCartItemsByCode",
+        "parameters": [
+          {
+            "name": "DraftCode",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetAllDraftCartItemsQueryDtoByCode"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/Flights/GetAllFlights": {
       "get": {
         "tags": [
@@ -3329,6 +3427,144 @@
           },
           "roleDescription": {
             "type": "string",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean",
+            "nullable": true
+          }
+        }
+      },
+      "ResultOfCreateDraftCartItemsCommandDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/CreateDraftCartItemsCommandDto"
+              }
+            ]
+          },
+          "message": {
+            "type": "string"
+          },
+          "resultType": {
+            "$ref": "#/components/schemas/ResultType"
+          }
+        }
+      },
+      "CreateDraftCartItemsCommandDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdDate": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "CreateDraftCartItemsCommand": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "bookingReservationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "foodId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean",
+            "nullable": true
+          }
+        }
+      },
+      "ResultOfUpdateDraftCartItemsCommandDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/UpdateDraftCartItemsCommandDto"
+              }
+            ]
+          },
+          "message": {
+            "type": "string"
+          },
+          "resultType": {
+            "$ref": "#/components/schemas/ResultType"
+          }
+        }
+      },
+      "UpdateDraftCartItemsCommandDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "updatedDate": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "UpdateDraftCartItemsCommand": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "uniqueId": {
+            "type": "string",
+            "nullable": true
+          },
+          "bookingReservationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "foodId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean",
+            "nullable": true
+          }
+        }
+      },
+      "GetAllDraftCartItemsQueryDtoByCode": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "uniqueId": {
+            "type": "string",
+            "nullable": true
+          },
+          "bookingReservationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "foodId": {
+            "type": "integer",
+            "format": "int32",
             "nullable": true
           },
           "isActive": {

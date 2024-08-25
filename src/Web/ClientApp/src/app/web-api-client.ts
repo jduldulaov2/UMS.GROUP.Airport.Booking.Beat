@@ -1360,6 +1360,187 @@ export class CustomRolesClient implements ICustomRolesClient {
     }
 }
 
+export interface IDraftCartItemsClient {
+    createDraftCartItems(command: CreateDraftCartItemsCommand): Observable<ResultOfCreateDraftCartItemsCommandDto>;
+    updateDraftCartItems(command: UpdateDraftCartItemsCommand): Observable<ResultOfUpdateDraftCartItemsCommandDto>;
+    getAllDraftCartItemsByCode(draftCode: string | null | undefined): Observable<GetAllDraftCartItemsQueryDtoByCode[]>;
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class DraftCartItemsClient implements IDraftCartItemsClient {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ?? "";
+    }
+
+    createDraftCartItems(command: CreateDraftCartItemsCommand): Observable<ResultOfCreateDraftCartItemsCommandDto> {
+        let url_ = this.baseUrl + "/api/DraftCartItems/CreateDraftCartItems";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(command);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processCreateDraftCartItems(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processCreateDraftCartItems(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<ResultOfCreateDraftCartItemsCommandDto>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<ResultOfCreateDraftCartItemsCommandDto>;
+        }));
+    }
+
+    protected processCreateDraftCartItems(response: HttpResponseBase): Observable<ResultOfCreateDraftCartItemsCommandDto> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ResultOfCreateDraftCartItemsCommandDto.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    updateDraftCartItems(command: UpdateDraftCartItemsCommand): Observable<ResultOfUpdateDraftCartItemsCommandDto> {
+        let url_ = this.baseUrl + "/api/DraftCartItems/UpdateDraftCartItems";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(command);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processUpdateDraftCartItems(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processUpdateDraftCartItems(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<ResultOfUpdateDraftCartItemsCommandDto>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<ResultOfUpdateDraftCartItemsCommandDto>;
+        }));
+    }
+
+    protected processUpdateDraftCartItems(response: HttpResponseBase): Observable<ResultOfUpdateDraftCartItemsCommandDto> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ResultOfUpdateDraftCartItemsCommandDto.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    getAllDraftCartItemsByCode(draftCode: string | null | undefined): Observable<GetAllDraftCartItemsQueryDtoByCode[]> {
+        let url_ = this.baseUrl + "/api/DraftCartItems/GetAllDraftCartItemsByCode?";
+        if (draftCode !== undefined && draftCode !== null)
+            url_ += "DraftCode=" + encodeURIComponent("" + draftCode) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetAllDraftCartItemsByCode(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetAllDraftCartItemsByCode(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<GetAllDraftCartItemsQueryDtoByCode[]>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<GetAllDraftCartItemsQueryDtoByCode[]>;
+        }));
+    }
+
+    protected processGetAllDraftCartItemsByCode(response: HttpResponseBase): Observable<GetAllDraftCartItemsQueryDtoByCode[]> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200!.push(GetAllDraftCartItemsQueryDtoByCode.fromJS(item));
+            }
+            else {
+                result200 = <any>null;
+            }
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+}
+
 export interface IFlightsClient {
     getAllFlights(): Observable<GetAllFlightQueryDto[]>;
     getFlightById(uniqueId: string | null | undefined): Observable<ResultOfGetFlightByIdQueryDto>;
@@ -6213,6 +6394,318 @@ export interface IGetAllCustomRoleByIdQueryDto {
     uniqueId?: string | undefined;
     roleName?: string | undefined;
     roleDescription?: string | undefined;
+    isActive?: boolean | undefined;
+}
+
+export class ResultOfCreateDraftCartItemsCommandDto implements IResultOfCreateDraftCartItemsCommandDto {
+    data?: CreateDraftCartItemsCommandDto | undefined;
+    message?: string;
+    resultType?: ResultType;
+
+    constructor(data?: IResultOfCreateDraftCartItemsCommandDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.data = _data["data"] ? CreateDraftCartItemsCommandDto.fromJS(_data["data"]) : <any>undefined;
+            this.message = _data["message"];
+            this.resultType = _data["resultType"];
+        }
+    }
+
+    static fromJS(data: any): ResultOfCreateDraftCartItemsCommandDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new ResultOfCreateDraftCartItemsCommandDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["data"] = this.data ? this.data.toJSON() : <any>undefined;
+        data["message"] = this.message;
+        data["resultType"] = this.resultType;
+        return data;
+    }
+}
+
+export interface IResultOfCreateDraftCartItemsCommandDto {
+    data?: CreateDraftCartItemsCommandDto | undefined;
+    message?: string;
+    resultType?: ResultType;
+}
+
+export class CreateDraftCartItemsCommandDto implements ICreateDraftCartItemsCommandDto {
+    id?: string | undefined;
+    createdDate?: Date;
+
+    constructor(data?: ICreateDraftCartItemsCommandDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.createdDate = _data["createdDate"] ? new Date(_data["createdDate"].toString()) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): CreateDraftCartItemsCommandDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new CreateDraftCartItemsCommandDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["createdDate"] = this.createdDate ? this.createdDate.toISOString() : <any>undefined;
+        return data;
+    }
+}
+
+export interface ICreateDraftCartItemsCommandDto {
+    id?: string | undefined;
+    createdDate?: Date;
+}
+
+export class CreateDraftCartItemsCommand implements ICreateDraftCartItemsCommand {
+    bookingReservationId?: string | undefined;
+    foodId?: number | undefined;
+    isActive?: boolean | undefined;
+
+    constructor(data?: ICreateDraftCartItemsCommand) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.bookingReservationId = _data["bookingReservationId"];
+            this.foodId = _data["foodId"];
+            this.isActive = _data["isActive"];
+        }
+    }
+
+    static fromJS(data: any): CreateDraftCartItemsCommand {
+        data = typeof data === 'object' ? data : {};
+        let result = new CreateDraftCartItemsCommand();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["bookingReservationId"] = this.bookingReservationId;
+        data["foodId"] = this.foodId;
+        data["isActive"] = this.isActive;
+        return data;
+    }
+}
+
+export interface ICreateDraftCartItemsCommand {
+    bookingReservationId?: string | undefined;
+    foodId?: number | undefined;
+    isActive?: boolean | undefined;
+}
+
+export class ResultOfUpdateDraftCartItemsCommandDto implements IResultOfUpdateDraftCartItemsCommandDto {
+    data?: UpdateDraftCartItemsCommandDto | undefined;
+    message?: string;
+    resultType?: ResultType;
+
+    constructor(data?: IResultOfUpdateDraftCartItemsCommandDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.data = _data["data"] ? UpdateDraftCartItemsCommandDto.fromJS(_data["data"]) : <any>undefined;
+            this.message = _data["message"];
+            this.resultType = _data["resultType"];
+        }
+    }
+
+    static fromJS(data: any): ResultOfUpdateDraftCartItemsCommandDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new ResultOfUpdateDraftCartItemsCommandDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["data"] = this.data ? this.data.toJSON() : <any>undefined;
+        data["message"] = this.message;
+        data["resultType"] = this.resultType;
+        return data;
+    }
+}
+
+export interface IResultOfUpdateDraftCartItemsCommandDto {
+    data?: UpdateDraftCartItemsCommandDto | undefined;
+    message?: string;
+    resultType?: ResultType;
+}
+
+export class UpdateDraftCartItemsCommandDto implements IUpdateDraftCartItemsCommandDto {
+    id?: string | undefined;
+    updatedDate?: Date;
+
+    constructor(data?: IUpdateDraftCartItemsCommandDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.updatedDate = _data["updatedDate"] ? new Date(_data["updatedDate"].toString()) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): UpdateDraftCartItemsCommandDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new UpdateDraftCartItemsCommandDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["updatedDate"] = this.updatedDate ? this.updatedDate.toISOString() : <any>undefined;
+        return data;
+    }
+}
+
+export interface IUpdateDraftCartItemsCommandDto {
+    id?: string | undefined;
+    updatedDate?: Date;
+}
+
+export class UpdateDraftCartItemsCommand implements IUpdateDraftCartItemsCommand {
+    uniqueId?: string | undefined;
+    bookingReservationId?: string | undefined;
+    foodId?: number | undefined;
+    isActive?: boolean | undefined;
+
+    constructor(data?: IUpdateDraftCartItemsCommand) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.uniqueId = _data["uniqueId"];
+            this.bookingReservationId = _data["bookingReservationId"];
+            this.foodId = _data["foodId"];
+            this.isActive = _data["isActive"];
+        }
+    }
+
+    static fromJS(data: any): UpdateDraftCartItemsCommand {
+        data = typeof data === 'object' ? data : {};
+        let result = new UpdateDraftCartItemsCommand();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["uniqueId"] = this.uniqueId;
+        data["bookingReservationId"] = this.bookingReservationId;
+        data["foodId"] = this.foodId;
+        data["isActive"] = this.isActive;
+        return data;
+    }
+}
+
+export interface IUpdateDraftCartItemsCommand {
+    uniqueId?: string | undefined;
+    bookingReservationId?: string | undefined;
+    foodId?: number | undefined;
+    isActive?: boolean | undefined;
+}
+
+export class GetAllDraftCartItemsQueryDtoByCode implements IGetAllDraftCartItemsQueryDtoByCode {
+    id?: number | undefined;
+    uniqueId?: string | undefined;
+    bookingReservationId?: string | undefined;
+    foodId?: number | undefined;
+    isActive?: boolean | undefined;
+
+    constructor(data?: IGetAllDraftCartItemsQueryDtoByCode) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.uniqueId = _data["uniqueId"];
+            this.bookingReservationId = _data["bookingReservationId"];
+            this.foodId = _data["foodId"];
+            this.isActive = _data["isActive"];
+        }
+    }
+
+    static fromJS(data: any): GetAllDraftCartItemsQueryDtoByCode {
+        data = typeof data === 'object' ? data : {};
+        let result = new GetAllDraftCartItemsQueryDtoByCode();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["uniqueId"] = this.uniqueId;
+        data["bookingReservationId"] = this.bookingReservationId;
+        data["foodId"] = this.foodId;
+        data["isActive"] = this.isActive;
+        return data;
+    }
+}
+
+export interface IGetAllDraftCartItemsQueryDtoByCode {
+    id?: number | undefined;
+    uniqueId?: string | undefined;
+    bookingReservationId?: string | undefined;
+    foodId?: number | undefined;
     isActive?: boolean | undefined;
 }
 

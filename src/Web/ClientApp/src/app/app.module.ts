@@ -41,6 +41,9 @@ import { ClientRegistrationConfirmationComponent }  from './Pages/ClientPortal/c
 import { ClientLoginConfirmationComponent }  from './Pages/ClientPortal/client-login-confirmation/client-login-confirmation.component';
 import { MyCartFromBookingComponent }  from './Pages/ClientPortal/my-cart-from-booking/my-cart-from-booking.component';
 import { FoodMenuFromBookingComponent }  from './Pages/ClientPortal/food-menu-from-booking/food-menu-from-booking.component';
+import { HeaderClientComponent } from './Shared/header-client/header-client.component';
+import { SidebarClientComponent } from './Shared/sidebar-client/sidebar-client.component';
+import { FooterClientComponent } from './Shared/footer-client/footer-client.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +79,10 @@ import { FoodMenuFromBookingComponent }  from './Pages/ClientPortal/food-menu-fr
     ClientRegistrationConfirmationComponent,
     ClientLoginConfirmationComponent,
     MyCartFromBookingComponent,
-    FoodMenuFromBookingComponent
+    FoodMenuFromBookingComponent,
+    HeaderClientComponent,
+    SidebarClientComponent,
+    FooterClientComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

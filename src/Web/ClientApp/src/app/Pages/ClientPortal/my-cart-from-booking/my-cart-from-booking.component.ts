@@ -17,4 +17,9 @@ export class MyCartFromBookingComponent {
   GoToFoods(){
     this.router.navigate(['/food-menu/booking',this.route.snapshot.paramMap.get('key'),'detail']);
   }
+
+  GoToCheckout(){
+    this.router.navigate(['/checkout']);
+  }
+  
 }
