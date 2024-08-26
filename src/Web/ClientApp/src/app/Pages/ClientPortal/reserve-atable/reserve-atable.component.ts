@@ -20,6 +20,7 @@ export class ReserveATableComponent {
   ngOnInit(){
     this.GetInitialInfo();
   }
+  
 
   user_code!: any;
 
@@ -116,7 +117,7 @@ export class ReserveATableComponent {
       this.restaurantBookingClient.createRestaurantBooking(list as CreateRestaurantBookingCommand).subscribe(
         result => {
           if(result.resultType == 1){
-            alert(result.data?.id);
+            //alert(result.data?.id);
             //this.loader.ShowToast("New Airport has been successfully added.", "success");
             //this.router.navigate(['login/registration-confirmation']); my-cart/booking/19283098230840982908908r/detail
             this.router.navigate(['/my-cart/booking/',result.data?.id,'detail']);

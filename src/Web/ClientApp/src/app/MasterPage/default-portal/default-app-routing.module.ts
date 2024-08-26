@@ -17,8 +17,10 @@ import { ClientLoginConfirmationComponent }  from '../../Pages/ClientPortal/clie
 import { MyCartFromBookingComponent }  from '../../Pages/ClientPortal/my-cart-from-booking/my-cart-from-booking.component';
 import { FoodMenuFromBookingComponent }  from '../../Pages/ClientPortal/food-menu-from-booking/food-menu-from-booking.component';
 import { UserActivityComponent }  from '../../Pages/ClientPortal/user-activity/user-activity.component';
+import { CheckoutFromBookingComponent }  from '../../Pages/ClientPortal/checkout-from-booking/checkout-from-booking.component';
 
 const routes: Routes = [
+  { path: '', component: HomeComponent },
   { 
     path: 'home', 
     component: HomeComponent
@@ -79,6 +81,10 @@ const routes: Routes = [
   {
     path: 'my-activity',
     component: UserActivityComponent
+  },
+  {
+    path: 'checkout/booking/:key/detail',
+    component: CheckoutFromBookingComponent
   }
   
 ];

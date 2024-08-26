@@ -133,11 +133,13 @@ export class MyCartFromBookingComponent {
   }
 
   GoToFoods(){
+    $("html, body").animate({ scrollTop: 0 }, "fast");
     this.router.navigate(['/food-menu/booking',this.route.snapshot.paramMap.get('key'),'detail']);
   }
 
   GoToCheckout(){
-    this.router.navigate(['/checkout']);
+    $("html, body").animate({ scrollTop: 0 }, "fast");
+    this.router.navigate(['/checkout/booking',this.route.snapshot.paramMap.get('key'),'detail']);
   }
   
 }

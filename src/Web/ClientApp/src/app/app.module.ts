@@ -45,6 +45,8 @@ import { HeaderClientComponent } from './Shared/header-client/header-client.comp
 import { SidebarClientComponent } from './Shared/sidebar-client/sidebar-client.component';
 import { FooterClientComponent } from './Shared/footer-client/footer-client.component';
 import { UserActivityComponent }  from './Pages/ClientPortal/user-activity/user-activity.component';
+import { CheckoutFromBookingComponent }  from './Pages/ClientPortal/checkout-from-booking/checkout-from-booking.component';
+
 
 @NgModule({
   declarations: [
@@ -84,7 +86,8 @@ import { UserActivityComponent }  from './Pages/ClientPortal/user-activity/user-
     HeaderClientComponent,
     SidebarClientComponent,
     FooterClientComponent,
-    UserActivityComponent
+    UserActivityComponent,
+    CheckoutFromBookingComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
