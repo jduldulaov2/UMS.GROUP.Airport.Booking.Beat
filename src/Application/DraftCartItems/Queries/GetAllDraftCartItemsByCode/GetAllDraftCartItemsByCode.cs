@@ -21,7 +21,7 @@ public class GetAllDraftCartItemsQueryHandler : IRequestHandler<GetAllDraftCartI
     public async Task<List<GetAllDraftCartItemsQueryDtoByCode>> Handle(GetAllDraftCartItemsQuery request, CancellationToken cancellationToken)
     {
         return await (from DraftCartItems in _context.DraftCartItems
-                      where DraftCartItems.BookingReservationId == request.DraftCode
+                      join food in _context.Food on DraftCartItems.FoodId equals food.Id
                       select new GetAllDraftCartItemsQueryDtoByCode
                       {
                           Id = DraftCartItems.Id,
@@ -31,6 +31,8 @@ public class GetAllDraftCartItemsQueryHandler : IRequestHandler<GetAllDraftCartI
                           CurrentQuantity = DraftCartItems.CurrrentQuantity,
                           CurrentTotal = DraftCartItems.CurrentTotal,
                           FoodId = DraftCartItems.FoodId,
+                          FoodName  = food.FoodName,
+                          FoodDescription = food.FoodDescription,
                           IsActive = DraftCartItems.IsActive == null ? true : DraftCartItems.IsActive
 
                       }).ToListAsync();

@@ -6686,6 +6686,8 @@ export class GetAllDraftCartItemsQueryDtoByCode implements IGetAllDraftCartItems
     uniqueId?: string | undefined;
     bookingReservationId?: string | undefined;
     foodId?: number | undefined;
+    foodName?: string | undefined;
+    foodDescription?: string | undefined;
     currentPrice?: number | undefined;
     currentQuantity?: number | undefined;
     currentTotal?: number | undefined;
@@ -6706,6 +6708,8 @@ export class GetAllDraftCartItemsQueryDtoByCode implements IGetAllDraftCartItems
             this.uniqueId = _data["uniqueId"];
             this.bookingReservationId = _data["bookingReservationId"];
             this.foodId = _data["foodId"];
+            this.foodName = _data["foodName"];
+            this.foodDescription = _data["foodDescription"];
             this.currentPrice = _data["currentPrice"];
             this.currentQuantity = _data["currentQuantity"];
             this.currentTotal = _data["currentTotal"];
@@ -6726,6 +6730,8 @@ export class GetAllDraftCartItemsQueryDtoByCode implements IGetAllDraftCartItems
         data["uniqueId"] = this.uniqueId;
         data["bookingReservationId"] = this.bookingReservationId;
         data["foodId"] = this.foodId;
+        data["foodName"] = this.foodName;
+        data["foodDescription"] = this.foodDescription;
         data["currentPrice"] = this.currentPrice;
         data["currentQuantity"] = this.currentQuantity;
         data["currentTotal"] = this.currentTotal;
@@ -6739,6 +6745,8 @@ export interface IGetAllDraftCartItemsQueryDtoByCode {
     uniqueId?: string | undefined;
     bookingReservationId?: string | undefined;
     foodId?: number | undefined;
+    foodName?: string | undefined;
+    foodDescription?: string | undefined;
     currentPrice?: number | undefined;
     currentQuantity?: number | undefined;
     currentTotal?: number | undefined;

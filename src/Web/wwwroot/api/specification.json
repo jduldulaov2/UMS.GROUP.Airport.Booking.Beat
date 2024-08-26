@@ -3597,6 +3597,14 @@
             "format": "int32",
             "nullable": true
           },
+          "foodName": {
+            "type": "string",
+            "nullable": true
+          },
+          "foodDescription": {
+            "type": "string",
+            "nullable": true
+          },
           "currentPrice": {
             "type": "number",
             "format": "float",
