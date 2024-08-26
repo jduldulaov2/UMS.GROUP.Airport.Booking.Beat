@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <Folder Include="Auth\Commands\Logout\" />
+    <Folder Include="DraftCartItems\Command\DeleteDraftCartItems\" />
   </ItemGroup>
 
 </Project>
