@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+declare var $: any;
 
 @Component({
   selector: 'app-checkout',
@@ -6,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./checkout.component.css']
 })
 export class CheckoutComponent {
-
+  ngOnInit(){
+    $("html, body").animate({ scrollTop: 0 }, "fast");
+  }
 }

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FoodsClient, GetAllFoodQueryDto } from '../../../web-api-client';
+declare var $: any;
 
 @Component({
   selector: 'app-food-menu',
@@ -14,6 +15,7 @@ export class FoodMenuComponent {
   }
 
   ngOnInit(){
+    $("html, body").animate({ scrollTop: 0 }, "fast");
     this.getFoodList();
   }
 

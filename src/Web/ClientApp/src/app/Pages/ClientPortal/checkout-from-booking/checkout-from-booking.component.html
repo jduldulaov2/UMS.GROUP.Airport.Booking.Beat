@@ -185,12 +185,21 @@
               <!-- /.row -->
 
               <!-- this row will not appear when printing -->
-              <div class="row no-print">
+              <div class="row no-print d-none d-md-block">
                 <div class="col-12" style="text-align: center;">
                   <button (click)="GoToCart()" style="margin-right: 10px;" type="button" class="btn btn-warning"><i class="far fa-credit-card"></i> Back to cart page</button>
                   <button type="button" class="btn btn-success"><i class="far fa-credit-card"></i> Submit Booking (For Approval)</button>
                 </div>
               </div>
+
+              <div class="row no-print d-block d-md-none">
+                <div class="col-12" style="text-align: center;">
+                  <button style="width: 100%; margin-bottom: 5px;" [routerLink]="['/home/mobile']" type="button" class="btn btn-warning"><i class="far fa-credit-card"></i> Back to Home page</button>
+                  <button style="width: 100%; margin-bottom: 5px;" (click)="GoToCart()" type="button" class="btn btn-warning"><i class="far fa-credit-card"></i> Back to Cart page</button>
+                  <button style="width: 100%; margin-bottom: 5px;" type="button" class="btn btn-success"><i class="far fa-credit-card"></i> Submit Booking (For Approval)</button>
+                </div>
+              </div>
+
             </div>
             <!-- /.invoice -->
           </div><!-- /.col -->

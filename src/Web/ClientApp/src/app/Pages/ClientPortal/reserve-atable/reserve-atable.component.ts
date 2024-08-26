@@ -18,6 +18,7 @@ export class ReserveATableComponent {
   }
 
   ngOnInit(){
+    $("html, body").animate({ scrollTop: 0 }, "fast");
     this.GetInitialInfo();
   }
   

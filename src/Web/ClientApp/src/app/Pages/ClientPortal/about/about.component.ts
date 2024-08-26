@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+declare var $: any;
 
 @Component({
   selector: 'app-about',
@@ -6,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./about.component.css']
 })
 export class AboutComponent {
-
+  ngOnInit(){
+    $("html, body").animate({ scrollTop: 0 }, "fast");
+  }
 }

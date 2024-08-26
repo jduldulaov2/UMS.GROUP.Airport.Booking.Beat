@@ -84,8 +84,31 @@
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
         </div>
       </div>
+      
+      <section id="about" class="about d-block d-md-none" style="padding: 15px;">
+        <div class="container-fluid">
   
-      <section id="about" class="about" style="padding: 15px;">
+          <div class="row">
+  
+            <div class="col-md-12" style="text-align: center;">
+              <div class="callout callout-info"><h5><i class="fas fa-info"></i> User Activities / Transactions</h5> Welcome <b>Jake</b> <br> To continue, you can book a table and create an order.</div>
+  
+             
+            </div>
+
+            <div class="col-md-12" style="text-align: center;">
+              <button style="width: 100%; margin-bottom: 5px;"  type="submit" [routerLink]="['/home/mobile']" class="btn bg-gradient-warning btn-flat">Go back to Home Page</button>
+              <button style="width: 100%; margin-bottom: 5px;" type="submit" [routerLink]="['/reserve-a-table']" class="btn bg-gradient-warning btn-flat"  >Book a table</button>
+              <button style="width: 100%; margin-bottom: 5px;" type="submit" [routerLink]="['/food-menu']" class="btn bg-gradient-warning btn-flat">Create an Order</button>
+              <button style="width: 100%; margin-bottom: 5px;" type="submit" [routerLink]="['/my-activities']" class="btn bg-gradient-warning btn-flat">View My History</button>
+            </div>
+  
+          </div>
+  
+        </div>
+      </section>
+      
+      <section id="about" class="about d-none d-md-block" style="padding: 15px;">
         <div class="container-fluid">
   
           <div class="row">

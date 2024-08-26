@@ -1,4 +1,9 @@
 
+<script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+      <!-- Google fonts-->
+      <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+      <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+      
 <style>
     .section-title h2 {
       margin: 15px 0 0 0;
@@ -56,18 +61,13 @@
       min-height: 400px;
       position: relative;
   }
+
+  .bg-warning {
+    background: linear-gradient(0deg, rgb(232 206 121 / 0%) 0%, rgb(236 217 151 / 21%) 100%) !important;
+    border: #fd7e14 solid 1px;
+}
   
-  </style>
-  
-  
-  <head>
-    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-      <!-- Google fonts-->
-      <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
-      <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
-    </head>
-  <style>
-    .carousel-caption{
+.carousel-caption{
       bottom: 50%!important;
     }
   
@@ -75,22 +75,178 @@
     color: #ffb03b !important;
   }
   
-  </style>  
-    
+  .small-box {
+    border-radius: 1.25rem!important;
+}
+
+.small-box-footer{
+    border-bottom-right-radius: 17px;
+    border-bottom-left-radius: 17px;
+    background: #fd7e1461;
+}
+
+.small-box>.small-box-footer {
+    padding: 10px 0 !important;
+}
+
+.inner i{
+    color: brown;
+}
+  </style>
+  
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper" style="padding-top: 55px; ">
-      
-      <div class="section-title" style="background: linear-gradient(0deg, rgb(232 206 121 / 82%) 0%, rgb(236 217 151 / 21%) 100%);">
-        <div style="padding-top: 50px; padding-bottom: 50px; text-align: center;"><h2 class="curly">About <span>Us</span></h2>
-          <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p>
-        </div>
-      </div>
   
-      <section id="about" class="about" style="padding: 15px;">
+        <div class="section-title" style="background: linear-gradient(0deg, rgb(232 206 121 / 82%) 0%, rgb(236 217 151 / 21%) 100%);">
+            <div style="padding-top: 10px;padding-bottom: 15px;text-align: center;"><h2>Main <span>Dashboard</span></h2>
+              <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p>
+            </div>
+          </div>
+
+      <section id="about" class="about" style="padding: 30px;">
         <div class="container-fluid">
-  
-                Mobile
-  
+            <div class="row">
+                <div class="col-lg-3 col-6" style="cursor: pointer;" [routerLink]="['/home']">
+                  <!-- small box -->
+                  <div class="small-box bg-warning">
+                    <div class="inner">
+                      <i class='fas fa-home' style='font-size:48px;'></i>
+                      <p>Home</p>
+                    </div>
+                    <div class="icon">
+                      <i class="ion ion-person-add"></i>
+                    </div>
+                    <a href="#" class="small-box-footer">Home <i class="fas fa-arrow-circle-right"></i></a>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-6" style="cursor: pointer;" [routerLink]="['/about-us']">
+                    <!-- small box -->
+                    <div class="small-box bg-warning">
+                      <div class="inner">
+                        <i class='fas fa-atlas' style='font-size:48px;'></i>
+                        <p>About</p>
+                      </div>
+                      <div class="icon">
+                        <i class="ion ion-person-add"></i>
+                      </div>
+                      <a href="#" class="small-box-footer">About <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                  </div>
+                  <div class="col-lg-3 col-6" style="cursor: pointer;" [routerLink]="['/food-menu']">
+                    <!-- small box -->
+                    <div class="small-box bg-warning">
+                      <div class="inner">
+                        <i class='fa fa-book' style='font-size:48px;'></i>
+                        <p>Menu</p>
+                      </div>
+                      <div class="icon">
+                        <i class="ion ion-person-add"></i>
+                      </div>
+                      <a href="#" class="small-box-footer">Menu <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                  </div>
+                  <div class="col-lg-3 col-6" style="cursor: pointer;" [routerLink]="['/special-menu']">
+                    <!-- small box -->
+                    <div class="small-box bg-warning">
+                      <div class="inner">
+                        <i class='fas fa-box-open' style='font-size:48px;'></i>
+                        <p>Specials</p>
+                      </div>
+                      <div class="icon">
+                        <i class="ion ion-person-add"></i>
+                      </div>
+                      <a href="#" class="small-box-footer">Specials <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                  </div>
+                <!-- ./col -->
+                <!-- ./col -->
+            </div>
+
+            <div class="row">
+                <div class="col-lg-3 col-6" style="cursor: pointer;" [routerLink]="['/contact-us']">
+                  <!-- small box -->
+                  <div class="small-box bg-warning">
+                    <div class="inner">
+                      <i class='fas fa-home' style='font-size:48px;'></i>
+                      <p>Contact</p>
+                    </div>
+                    <div class="icon">
+                      <i class="ion ion-person-add"></i>
+                    </div>
+                    <a href="#" class="small-box-footer">Contact <i class="fas fa-arrow-circle-right"></i></a>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-6"  style="cursor: pointer;" [routerLink]="['/reserve-a-table']">
+                    <!-- small box -->
+                    <div class="small-box bg-warning">
+                      <div class="inner">
+                        <i class='fas fa-atlas' style='font-size:48px;'></i>
+                        <p>Book a Table</p>
+                      </div>
+                      <div class="icon">
+                        <i class="ion ion-person-add"></i>
+                      </div>
+                      <a  class="small-box-footer">Book a Table <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                  </div>
+                  <div class="col-lg-3 col-6" [routerLink]="['/login']">
+                    <!-- small box -->
+                    <div class="small-box bg-warning">
+                      <div class="inner">
+                        <i class='fa fa-book' style='font-size:48px;'></i>
+                        <p>Login</p>
+                      </div>
+                      <div class="icon">
+                        <i class="ion ion-person-add"></i>
+                      </div>
+                      <a  class="small-box-footer">Login <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                  </div>
+                  <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-warning">
+                      <div class="inner">
+                        <i class='fa fa-book' style='font-size:48px;'></i>
+                        <p>My Cart</p>
+                      </div>
+                      <div class="icon">
+                        <i class="ion ion-person-add"></i>
+                      </div>
+                      <a href="#" class="small-box-footer">My Cart <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                  </div>
+                <!-- ./col -->
+                <!-- ./col -->
+            </div>
+            <div class="row">
+                  <div class="col-lg-3 col-6" [routerLink]="['/checkout']">
+                    <!-- small box -->
+                    <div class="small-box bg-warning">
+                      <div class="inner">
+                        <i class='fa fa-book' style='font-size:48px;'></i>
+                        <p>Checkout</p>
+                      </div>
+                      <div class="icon">
+                        <i class="ion ion-person-add"></i>
+                      </div>
+                      <a href="#" class="small-box-footer">Checkout<i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                  </div>
+                  <div [routerLink]="['/my-activity']" class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-warning">
+                      <div class="inner">
+                        <i class='fa fa-book' style='font-size:48px;'></i>
+                        <p>My Activities</p>
+                      </div>
+                      <div class="icon">
+                        <i class="ion ion-person-add"></i>
+                      </div>
+                      <a href="#" class="small-box-footer">My Activities<i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                  </div>
+            </div>
+
         </div>
       </section>
   

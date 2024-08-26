@@ -56,6 +56,7 @@ export class CheckoutFromBookingComponent {
   }
 
   ngOnInit(){
+    $("html, body").animate({ scrollTop: 0 }, "fast");
     this.getCartList();
     var code_id = this.route.snapshot.paramMap.get('key');
     this.GetInitialInfo();

@@ -47,6 +47,7 @@ import { FooterClientComponent } from './Shared/footer-client/footer-client.comp
 import { UserActivityComponent }  from './Pages/ClientPortal/user-activity/user-activity.component';
 import { CheckoutFromBookingComponent }  from './Pages/ClientPortal/checkout-from-booking/checkout-from-booking.component';
 import { MobileHomeComponent }  from './Pages/ClientPortal/mobile-home/mobile-home.component';
+import { ReserveATableComponent }  from './Pages/ClientPortal/reserve-atable/reserve-atable.component';
 
 @NgModule({
   declarations: [
@@ -88,7 +89,8 @@ import { MobileHomeComponent }  from './Pages/ClientPortal/mobile-home/mobile-ho
     FooterClientComponent,
     UserActivityComponent,
     CheckoutFromBookingComponent,
-    MobileHomeComponent
+    MobileHomeComponent,
+    ReserveATableComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

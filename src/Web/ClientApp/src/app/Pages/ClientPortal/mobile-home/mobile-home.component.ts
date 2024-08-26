@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+declare var $: any;
 
 @Component({
   selector: 'app-mobile-home',
@@ -6,5 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./mobile-home.component.css']
 })
 export class MobileHomeComponent {
+  ngOnInit(){
+    $("html, body").animate({ scrollTop: 0 }, "fast");
+  }
 
 }
