@@ -22,6 +22,7 @@ public class GetAllDraftCartItemsQueryHandler : IRequestHandler<GetAllDraftCartI
     {
         return await (from DraftCartItems in _context.DraftCartItems
                       join food in _context.Food on DraftCartItems.FoodId equals food.Id
+                      where DraftCartItems.BookingReservationId == request.DraftCode
                       select new GetAllDraftCartItemsQueryDtoByCode
                       {
                           Id = DraftCartItems.Id,

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FoodsClient, GetAllFoodQueryDto } from '../../../web-api-client';
+import { FoodsClient, DraftCartItemsClient, GetAllFoodQueryDto, GetAllDraftCartItemsQueryDtoByCode, CreateDraftCartItemsCommand } from '../../../web-api-client';
 import { ActivatedRoute, Router } from '@angular/router';
 declare var $: any;
 
@@ -10,8 +10,10 @@ declare var $: any;
 })
 export class FoodMenuFromBookingComponent {
   public foodDto: GetAllFoodQueryDto[] = [];
+  public draftDto: GetAllDraftCartItemsQueryDtoByCode[] = [];
   constructor(
     private foodsClient: FoodsClient,
+    private draftClient: DraftCartItemsClient,
     private router: Router,
     private route: ActivatedRoute
   ) {
@@ -45,14 +47,32 @@ export class FoodMenuFromBookingComponent {
     this.getFoodList();
   }
 
-  GoBackToCart(id: any): void {
+  GoBackToCart(id: any, price: any, quantity: any, total: any): void {
     //my-cart/booking/a7786e7e-91c6-4218-aeae-2b6ed12eee7e/detail
-    // var draft_id = this.route.snapshot.paramMap.get('key');
+    var draft_id = this.route.snapshot.paramMap.get('key');
 
-    // alert(id);
-    // alert(draft_id);
+    const list = {
+      "bookingReservationId": draft_id,
+      "foodId": id,
+      "currentPrice": price,
+      "currrentQuantity": quantity,
+      "currentTotal": total,
+      "isActive": true
+    };
 
-    this.router.navigate(['/my-cart/booking',this.route.snapshot.paramMap.get('key'),'detail']);
+    this.draftClient.createDraftCartItems(list as CreateDraftCartItemsCommand).subscribe(
+      result => {
+        if(result.resultType == 1){
+          this.router.navigate(['/my-cart/booking',draft_id,'detail']);
+        }else{
+          alert(result.message);
+        }
+      },
+      error => {
+        const errors = JSON.parse(error.response).errors;
+        alert(errors);
+      }
+    );
   }
   
 }
