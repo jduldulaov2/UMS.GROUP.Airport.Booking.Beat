@@ -10,12 +10,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Invoice</h1>
+            <h1>&nbsp;</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Invoice</li>
+              <li class="breadcrumb-item"><a href="#">&nbsp;</a></li>
+              <li class="breadcrumb-item active"></li>
             </ol>
           </div>
         </div>
@@ -26,9 +26,34 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-12">
-            <div class="callout callout-info">
-              <h5><i class="fas fa-info"></i> Note:</h5>
-              This page has been enhanced for printing. Click the print button at the bottom of the invoice to test.
+            <div class="row">
+              <div class="col-md-9">
+                <div class="callout callout-info">
+                  <h5>Note:</h5>
+                  The booking status is still pending. Submit the booking and wait for the response from the restaurant.
+                </div>
+              </div>
+              <div *ngIf="b_bookingStatusID == 0" class="col-md-3">
+                <div class="callout callout-info">
+                  <h5>Status: <span style="background-color: yellow; padding: 5px;">Pending</span> </h5>
+                  <span>Booking as still in pending status.</span>
+                </div>
+              </div>
+
+              <div *ngIf="b_bookingStatusID == 1" class="col-md-3">
+                <div class="callout callout-info">
+                  <h5>Status: Approved <i class="material-icons" style="color:green">check_circle</i></h5>
+                  <span>Booking as been approved. Proceed with the payment.</span>
+                </div>
+              </div>
+              
+              <div *ngIf="b_bookingStatusID == 2" class="col-md-3">
+                <div class="callout callout-info">
+                  <h5>Status: Rejected <i class="material-icons" style="color:red">check_circle</i></h5>
+                  <span>No available booking as of now.</span>
+                </div>
+              </div>
+
             </div>
 
 
@@ -48,7 +73,7 @@
                 <!-- /.col -->
               </div>
               <!-- info row -->
-              <div class="row invoice-info">
+              <div class="row invoice-info" style="background-color: #dee2e642;">
                 <div class="col-sm-3 invoice-col">
                 <p class="lead">Owner Details</p>
                   From
@@ -64,17 +89,17 @@
                     <p class="lead">Guest / Customer</p>
                   To
                   <address>
-                    <strong>Jake Duldulao</strong><br>
-                    Block 70 mlot 19 Deca homes Indangan phase 3<br>
-                    Phone: 09959665161<br>
-                    Email: jduldulaogmail.com
+                    <strong>{{fullname}}</strong><br>
+                    {{fullAddress}}<br>
+                    Phone: {{contactNumber}}<br>
+                    Email: {{emailAddress}}
                   </address>
                 </div>
                 <!-- /.col -->
                 <div class="col-sm-3 invoice-col">
-                 <p class="lead">Booking Details</p>
-                  <b>Booking Referrence #: REF-8987238729837-00930</b><br>
-                  <b>Order ID:</b> N/A or REF-908230948988839<br>
+                 <p class="lead">Payment Details</p>
+                  <b>Booking Referrence #: </b> {{b_bookingReferrenceNumber}}<br>
+                  <b>Last Payment Date:</b> N/A<br>
                   <b>Payment:</b> <small class="badge badge-warning"><i class="far fa-clock"></i> Pending</small><br>
                 </div>
                 <div class="col-sm-3 invoice-col">
@@ -106,10 +131,10 @@
                 <div class="col-12 table-responsive">
                     <p class="lead">Booking Details and Order Items:</p>
                     <div class="callout callout-danger">
-                        <h5><i class="fas fa-danger"></i> Booking Referrence #:</h5>
-                        Date Arrival: 08/04/2024 <br>
-                        Number or Person: 3 <br>
-                        Table: 1,2,3
+                        <h5><i class="fas fa-danger"></i> Booking Referrence #: {{b_bookingReferrenceNumber}}</h5>
+                        Date Arrival: {{b_bookingFromDate}} <br>
+                        Number or Person: {{b_numberOfPax}} <br>
+                        Table: N/A
                       </div>
                   <table class="table table-striped">
                     <thead style="
@@ -161,8 +186,9 @@
 
               <!-- this row will not appear when printing -->
               <div class="row no-print">
-                <div class="col-12">
-                  <button type="button" class="btn btn-success float-right"><i class="far fa-credit-card"></i> Submit Booking (For Approval)</button>
+                <div class="col-12" style="text-align: center;">
+                  <button (click)="GoToCart()" style="margin-right: 10px;" type="button" class="btn btn-warning"><i class="far fa-credit-card"></i> Back to cart page</button>
+                  <button type="button" class="btn btn-success"><i class="far fa-credit-card"></i> Submit Booking (For Approval)</button>
                 </div>
               </div>
             </div>

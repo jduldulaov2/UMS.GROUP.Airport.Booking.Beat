@@ -31,7 +31,7 @@ export class ReserveATableComponent {
   if (typeof retrievedObject !== 'undefined' && retrievedObject !== null){
     var parsedObject = JSON.parse(retrievedObject!);
 
-    var fullName = parsedObject.data?.lastName + ', ' + parsedObject.data?.firstName + ' ' +  parsedObject.data?.middleName;
+    var fullName = parsedObject.data?.firstName + ' ' + parsedObject.data?.lastName;
     var emailAddress = parsedObject.data?.emailAddress;
     var contactNumber = parsedObject.data?.contactNumber;
     var fullAddress = parsedObject.data?.street + ' ' + parsedObject.data?.city + ' ' + parsedObject.data?.region + ' ' + parsedObject.data?.zipCode;
