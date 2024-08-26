@@ -13,6 +13,12 @@ public record CreateDraftCartItemsCommand : IRequest<Result<CreateDraftCartItems
 
     public int? FoodId { get; init; }
 
+    public float? CurrentPrice { get; init; }
+
+    public float? CurrrentQuantity { get; init; }
+
+    public float? CurrentTotal { get; init; }
+
     public bool? IsActive { get; init; }
 }
 
@@ -34,6 +40,12 @@ public class CreateDraftCartItemsCommandHandler : IRequestHandler<CreateDraftCar
         entity.BookingReservationId = request.BookingReservationId;
 
         entity.FoodId = request.FoodId;
+
+        entity.CurrentPrice = request.CurrentPrice;
+
+        entity.CurrrentQuantity = request.CurrrentQuantity;
+
+        entity.CurrentTotal = request.CurrentTotal;
 
         entity.IsActive = request.IsActive;
 

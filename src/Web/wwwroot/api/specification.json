@@ -3482,6 +3482,21 @@
             "format": "int32",
             "nullable": true
           },
+          "currentPrice": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "currrentQuantity": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "currentTotal": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
           "isActive": {
             "type": "boolean",
             "nullable": true
@@ -3539,6 +3554,21 @@
             "format": "int32",
             "nullable": true
           },
+          "currentPrice": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "currrentQuantity": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "currentTotal": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
           "isActive": {
             "type": "boolean",
             "nullable": true
@@ -3565,6 +3595,21 @@
           "foodId": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "currentPrice": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "currentQuantity": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "currentTotal": {
+            "type": "number",
+            "format": "float",
             "nullable": true
           },
           "isActive": {

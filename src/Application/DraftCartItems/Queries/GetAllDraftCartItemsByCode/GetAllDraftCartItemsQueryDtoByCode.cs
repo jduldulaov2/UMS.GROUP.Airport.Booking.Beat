@@ -14,5 +14,11 @@ public class GetAllDraftCartItemsQueryDtoByCode
 
     public int? FoodId { get; set; }
 
+    public float? CurrentPrice { get; set; }
+
+    public float? CurrentQuantity { get; set; }
+
+    public float? CurrentTotal { get; set; }
+
     public bool? IsActive { get; set; }
 }

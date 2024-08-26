@@ -27,6 +27,9 @@ public class GetAllDraftCartItemsQueryHandler : IRequestHandler<GetAllDraftCartI
                           Id = DraftCartItems.Id,
                           UniqueId = DraftCartItems.UniqueId,
                           BookingReservationId = DraftCartItems.BookingReservationId,
+                          CurrentPrice = DraftCartItems.CurrentPrice,
+                          CurrentQuantity = DraftCartItems.CurrrentQuantity,
+                          CurrentTotal = DraftCartItems.CurrentTotal,
                           FoodId = DraftCartItems.FoodId,
                           IsActive = DraftCartItems.IsActive == null ? true : DraftCartItems.IsActive
 

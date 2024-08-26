@@ -12,4 +12,10 @@ public class DraftCartItems : BaseAuditableEntity
 
     public int? FoodId { get; set; }
 
+    public float? CurrentPrice { get; set; }
+
+    public float? CurrrentQuantity { get; set; }
+
+    public float? CurrentTotal { get; set; }
+
 }

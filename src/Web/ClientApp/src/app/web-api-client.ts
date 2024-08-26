@@ -6484,6 +6484,9 @@ export interface ICreateDraftCartItemsCommandDto {
 export class CreateDraftCartItemsCommand implements ICreateDraftCartItemsCommand {
     bookingReservationId?: string | undefined;
     foodId?: number | undefined;
+    currentPrice?: number | undefined;
+    currrentQuantity?: number | undefined;
+    currentTotal?: number | undefined;
     isActive?: boolean | undefined;
 
     constructor(data?: ICreateDraftCartItemsCommand) {
@@ -6499,6 +6502,9 @@ export class CreateDraftCartItemsCommand implements ICreateDraftCartItemsCommand
         if (_data) {
             this.bookingReservationId = _data["bookingReservationId"];
             this.foodId = _data["foodId"];
+            this.currentPrice = _data["currentPrice"];
+            this.currrentQuantity = _data["currrentQuantity"];
+            this.currentTotal = _data["currentTotal"];
             this.isActive = _data["isActive"];
         }
     }
@@ -6514,6 +6520,9 @@ export class CreateDraftCartItemsCommand implements ICreateDraftCartItemsCommand
         data = typeof data === 'object' ? data : {};
         data["bookingReservationId"] = this.bookingReservationId;
         data["foodId"] = this.foodId;
+        data["currentPrice"] = this.currentPrice;
+        data["currrentQuantity"] = this.currrentQuantity;
+        data["currentTotal"] = this.currentTotal;
         data["isActive"] = this.isActive;
         return data;
     }
@@ -6522,6 +6531,9 @@ export class CreateDraftCartItemsCommand implements ICreateDraftCartItemsCommand
 export interface ICreateDraftCartItemsCommand {
     bookingReservationId?: string | undefined;
     foodId?: number | undefined;
+    currentPrice?: number | undefined;
+    currrentQuantity?: number | undefined;
+    currentTotal?: number | undefined;
     isActive?: boolean | undefined;
 }
 
@@ -6613,6 +6625,9 @@ export class UpdateDraftCartItemsCommand implements IUpdateDraftCartItemsCommand
     uniqueId?: string | undefined;
     bookingReservationId?: string | undefined;
     foodId?: number | undefined;
+    currentPrice?: number | undefined;
+    currrentQuantity?: number | undefined;
+    currentTotal?: number | undefined;
     isActive?: boolean | undefined;
 
     constructor(data?: IUpdateDraftCartItemsCommand) {
@@ -6629,6 +6644,9 @@ export class UpdateDraftCartItemsCommand implements IUpdateDraftCartItemsCommand
             this.uniqueId = _data["uniqueId"];
             this.bookingReservationId = _data["bookingReservationId"];
             this.foodId = _data["foodId"];
+            this.currentPrice = _data["currentPrice"];
+            this.currrentQuantity = _data["currrentQuantity"];
+            this.currentTotal = _data["currentTotal"];
             this.isActive = _data["isActive"];
         }
     }
@@ -6645,6 +6663,9 @@ export class UpdateDraftCartItemsCommand implements IUpdateDraftCartItemsCommand
         data["uniqueId"] = this.uniqueId;
         data["bookingReservationId"] = this.bookingReservationId;
         data["foodId"] = this.foodId;
+        data["currentPrice"] = this.currentPrice;
+        data["currrentQuantity"] = this.currrentQuantity;
+        data["currentTotal"] = this.currentTotal;
         data["isActive"] = this.isActive;
         return data;
     }
@@ -6654,6 +6675,9 @@ export interface IUpdateDraftCartItemsCommand {
     uniqueId?: string | undefined;
     bookingReservationId?: string | undefined;
     foodId?: number | undefined;
+    currentPrice?: number | undefined;
+    currrentQuantity?: number | undefined;
+    currentTotal?: number | undefined;
     isActive?: boolean | undefined;
 }
 
@@ -6662,6 +6686,9 @@ export class GetAllDraftCartItemsQueryDtoByCode implements IGetAllDraftCartItems
     uniqueId?: string | undefined;
     bookingReservationId?: string | undefined;
     foodId?: number | undefined;
+    currentPrice?: number | undefined;
+    currentQuantity?: number | undefined;
+    currentTotal?: number | undefined;
     isActive?: boolean | undefined;
 
     constructor(data?: IGetAllDraftCartItemsQueryDtoByCode) {
@@ -6679,6 +6706,9 @@ export class GetAllDraftCartItemsQueryDtoByCode implements IGetAllDraftCartItems
             this.uniqueId = _data["uniqueId"];
             this.bookingReservationId = _data["bookingReservationId"];
             this.foodId = _data["foodId"];
+            this.currentPrice = _data["currentPrice"];
+            this.currentQuantity = _data["currentQuantity"];
+            this.currentTotal = _data["currentTotal"];
             this.isActive = _data["isActive"];
         }
     }
@@ -6696,6 +6726,9 @@ export class GetAllDraftCartItemsQueryDtoByCode implements IGetAllDraftCartItems
         data["uniqueId"] = this.uniqueId;
         data["bookingReservationId"] = this.bookingReservationId;
         data["foodId"] = this.foodId;
+        data["currentPrice"] = this.currentPrice;
+        data["currentQuantity"] = this.currentQuantity;
+        data["currentTotal"] = this.currentTotal;
         data["isActive"] = this.isActive;
         return data;
     }
@@ -6706,6 +6739,9 @@ export interface IGetAllDraftCartItemsQueryDtoByCode {
     uniqueId?: string | undefined;
     bookingReservationId?: string | undefined;
     foodId?: number | undefined;
+    currentPrice?: number | undefined;
+    currentQuantity?: number | undefined;
+    currentTotal?: number | undefined;
     isActive?: boolean | undefined;
 }
 
