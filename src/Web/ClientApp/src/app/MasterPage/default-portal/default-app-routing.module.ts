@@ -18,6 +18,7 @@ import { MyCartFromBookingComponent }  from '../../Pages/ClientPortal/my-cart-fr
 import { FoodMenuFromBookingComponent }  from '../../Pages/ClientPortal/food-menu-from-booking/food-menu-from-booking.component';
 import { UserActivityComponent }  from '../../Pages/ClientPortal/user-activity/user-activity.component';
 import { CheckoutFromBookingComponent }  from '../../Pages/ClientPortal/checkout-from-booking/checkout-from-booking.component';
+import { MobileHomeComponent }  from '../../Pages/ClientPortal/mobile-home/mobile-home.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -85,7 +86,11 @@ const routes: Routes = [
   {
     path: 'checkout/booking/:key/detail',
     component: CheckoutFromBookingComponent
-  }
+  },
+  {
+    path: 'home/mobile',
+    component: MobileHomeComponent
+  },
   
 ];
 

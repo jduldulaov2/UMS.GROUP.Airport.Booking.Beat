@@ -40,6 +40,7 @@ export class HeaderClientComponent {
           var loggedInId = result.data?.loggedInId;
           this.ProceedSignOut(loggedInId);
         }else{
+          localStorage.clear();
           location.href = '/login';
         }
       },

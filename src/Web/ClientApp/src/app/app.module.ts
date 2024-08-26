@@ -46,7 +46,7 @@ import { SidebarClientComponent } from './Shared/sidebar-client/sidebar-client.c
 import { FooterClientComponent } from './Shared/footer-client/footer-client.component';
 import { UserActivityComponent }  from './Pages/ClientPortal/user-activity/user-activity.component';
 import { CheckoutFromBookingComponent }  from './Pages/ClientPortal/checkout-from-booking/checkout-from-booking.component';
-
+import { MobileHomeComponent }  from './Pages/ClientPortal/mobile-home/mobile-home.component';
 
 @NgModule({
   declarations: [
@@ -87,7 +87,8 @@ import { CheckoutFromBookingComponent }  from './Pages/ClientPortal/checkout-fro
     SidebarClientComponent,
     FooterClientComponent,
     UserActivityComponent,
-    CheckoutFromBookingComponent
+    CheckoutFromBookingComponent,
+    MobileHomeComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
