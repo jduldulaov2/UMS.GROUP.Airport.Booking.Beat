@@ -44,6 +44,7 @@ import { FoodMenuFromBookingComponent }  from './Pages/ClientPortal/food-menu-fr
 import { HeaderClientComponent } from './Shared/header-client/header-client.component';
 import { SidebarClientComponent } from './Shared/sidebar-client/sidebar-client.component';
 import { FooterClientComponent } from './Shared/footer-client/footer-client.component';
+import { UserActivityComponent }  from './Pages/ClientPortal/user-activity/user-activity.component';
 
 @NgModule({
   declarations: [
@@ -82,7 +83,8 @@ import { FooterClientComponent } from './Shared/footer-client/footer-client.comp
     FoodMenuFromBookingComponent,
     HeaderClientComponent,
     SidebarClientComponent,
-    FooterClientComponent
+    FooterClientComponent,
+    UserActivityComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

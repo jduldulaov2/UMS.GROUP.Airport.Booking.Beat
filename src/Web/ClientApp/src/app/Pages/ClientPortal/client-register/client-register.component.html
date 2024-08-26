@@ -1,138 +1,241 @@
+
 <style>
-    .checkout__input input {
-    color: #1c1c1cbd!important;
-}
+    .section-title h2 {
+      margin: 15px 0 0 0;
+      font-size: 32px;
+      font-weight: 700;
+      color: #5f5950;
+  }
+  
+  .section-title p {
+      margin: 15px auto 0 auto;
+      font-weight: 300;
+  }
+  
+  .curly{
+    font-family: "Satisfy", sans-serif;
+  }
+  
+  .section-title h2 span {
+      color: #ffb03b;
+  }
+  
+  .about .content p {
+      font-size: 15px;
+      color: #848484;
+  }
+  
+  .about .content h3 {
+      font-weight: 400;
+      font-size: 34px;
+      color: #5f5950;
+  }
+  
+  .about .content ul li {
+      position: relative;
+      padding-left: 26px;
+  }
+  
+  .about .content p {
+      font-size: 15px;
+      color: #848484;
+  }
+  .fst-italic {
+      font-style: italic !important;
+  }
+  
+  .about .content ul {
+      list-style: none;
+      padding: 0;
+  }
+  
+  .about .video-box {
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+      min-height: 400px;
+      position: relative;
+  }
+  
+  </style>
+  
+  
+  <head>
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+      <!-- Google fonts-->
+      <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+      <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+    </head>
+  <style>
+    .carousel-caption{
+      bottom: 50%!important;
+    }
+  
+    .text-primary {
+    color: #ffb03b !important;
+  }
+  
+  </style>  
+    
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper" style="padding-top: 55px; ">
+  
+      <section id="about" class="about" style="padding: 15px;">
+        <div class="container-fluid">
+          
+          <div class="row" style="
+          padding: 30px;
+      ">
+            <div class="col-md-9" style="background: #dee2e629;">
+                <div class="row" style="padding: 20px;">
 
-.haserror{
-    border: 1px solid #e74c3c;
-}
-
-</style>
-<main id="main">
-
-    <!-- ======= Breadcrumbs Section ======= -->
-    <section class="breadcrumbs">
-      <div class="container">
-
-        <div class="d-flex justify-content-between align-items-center">
-          <h2>User Registration</h2>
-          <ol>
-            <li><a href="index.html">Home</a></li>
-            <li><span class="li-before">User Registration</span></li>
-          </ol>
-        </div>
-
-      </div>
-    </section><!-- End Breadcrumbs Section -->
-
-    <section class="inner-page" style="padding: 0px 0;">
-
-      <div class="container" style="max-width: 90%!important;">
-            <!-- ======= Menu Section ======= -->
-    <section id="menu" class="menu" style="padding-top: 0px;">
-          <!-- Checkout Section Begin -->
-    <div class="checkout spad">
-      <div>
-          <div class="checkout__form">
-              <h4 class="custom-title-billing">User Registration</h4>
-              <form action="#">
-                  <div class="row">
-                      <div class="col-lg-8 col-md-6" style="background-color: #dee2e636; padding: 30px;">
-                          <div class="row">
-                              <div class="col-lg-6">
-                                  <div class="checkout__input">
-                                      <p>Fist Name<span>*</span></p>
-                                      <input type="text" id="firstname" placeholder="First Name" #firstname>
-                                  </div>
-                              </div>
-                              <div class="col-lg-6">
-                                  <div class="checkout__input">
-                                      <p>Last Name<span>*</span></p>
-                                      <input type="text" id="lastname" placeholder="Last Name"  #lastname>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-lg-6">
-                                <div class="checkout__input">
-                                    <p>Middle Name<span></span></p>
-                                    <input type="text" id="middlename" placeholder="Middle Name"  #middlename>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="checkout__input">
-                                    <p>Contact Number<span>*</span></p>
-                                    <input type="text" id="contactnumber" placeholder="Contact Number"  #contactnumber>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="checkout__input">
-                                    <p>Birth Date<span>*</span></p>
-                                    <input type="text" id="birthdate" placeholder="Birth Date"  #birthdate>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="checkout__input">
-                                    <p>Age<span></span></p>
-                                    <input type="text" id="age" placeholder="Age"  #age>
-                                </div>
-                            </div>
-                        </div>
-                          <div class="checkout__input">
-                              <p>Address<span>*</span></p>
-                              <input type="text" placeholder="Street Address" placeholder="Primary Street Address"  class="checkout__input__add" id="street1" #street1>
-                              <input type="text" placeholder="Apartment, suite, unite ect (optinal)" id="street2" #street2>
-                          </div>
-                          <div class="checkout__input">
-                              <p>Town/City<span>*</span></p>
-                              <input type="text" id="city" placeholder="City"  #city>
-                          </div>
-                          <div class="checkout__input">
-                              <p>Postcode / ZIP<span>*</span></p>
-                              <input type="text" placeholder="Zip code" id="zip" #zip>
-                          </div>
-                          <div class="checkout__input">
-                            <p>Province<span></span></p>
-                            <input type="text" id="province" placeholder="Province" #province>
-                        </div>
-                          
+                    <div class="col-lg-5 align-items-stretch video-box" style='background-image: url("assets/reservation/client/assets/img/about.jpg");'>
+                      <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox play-btn mb-4"></a>
+                    </div>
+      
+                    <div class="col-lg-7 justify-content-center">
+      
+                      <div class="content" style=" padding-left: 20px;">
+                        <h3 class="curly">Eum ipsam laborum deleniti <strong>velit pariatur architecto aut nihil</strong></h3>
+                        <p>
+                          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit
+                        </p>
+                        <p class="fst-italic">
+                          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                          magna aliqua.
+                        </p>
+                        <ul>
+                          <li><i class="bx bx-check-double"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
+                          <li><i class="bx bx-check-double"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
+                          <li><i class="bx bx-check-double"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</li>
+                        </ul>
+                        <p>
+                          Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+                          velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+                          culpa qui officia deserunt mollit anim id est laborum
+                        </p>
                       </div>
-                      <div class="col-lg-4 col-md-6">
-                          <div class="checkout__order">
-                              <h4 class="custom-title-billing">Credentials</h4>
-                              
-                              <div class="">
-                                <label for="acc">
-                                    Create your Credentials?
-                                </label>
-                            </div>
-                            <p>Create an account by entering the information below. If you are a returning customer/guest
-                                please return to <span [routerLink]="['/login']" style="text-decoration: underline; color: #3498db; font-weight: 600; cursor: pointer;">SIGN IN</span> page or click the login menu at the top of the page.</p>
-                            <div class="checkout__input">
-                                <p>Username / Email address<span>*</span></p>
-                                <input type="text" id="emailaddress" placeholder="Email Address" #emailaddress>
-                            </div>
-                            <div class="checkout__input">
-                                <p>Password<span>*</span></p>
-                                <input type="password" id="password" placeholder="Password" #password>
-                            </div>
-                            <div class="checkout__input">
-                              <p>Confirm Password<span>*</span></p>
-                              <input type="password" id="confirmpassword" placeholder="Confirm Password" #confirmpassword>
-                          </div>
-                          
-                              <button type="submit" (click)="CreateUser(firstname.value, lastname.value , middlename.value, contactnumber.value, birthdate.value, age.value, street1.value, street2.value, city.value, zip.value, province.value, emailaddress.value, password.value, confirmpassword.value)" class="site-btn">REGISTER</button>
-                          </div>
-                      </div>
+      
+                    </div>
+      
                   </div>
-              </form>
-          </div>
-      </div>
-    </div>
-    </section><!-- End Menu Section -->
-      </div>
-    </section>
+            </div>
+            <div class="col-md-3" style="background-color: #6c757d17 !important;">
 
-  </main><!-- End #main -->
+                <div class="card" style="margin-top: 20px;">
+                    <div class="card-body login-card-body">
+                        <h4 class="custom-title-billing">Basic Details</h4>
+                    
+                    <div class="">
+                      
+                    </div>
+                      <form action="../../index3.html" method="post">
+                          <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="First Name" #firstname>
+                            <div class="input-group-append">
+                              <div class="input-group-text">
+                                
+                              </div>
+                            </div>
+                          </div>
+                          <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Last Name" #lastname>
+                            <input type="hidden" #middlename>
+                            <input type="hidden" #age>
+                            <input type="hidden" #province>
+                            <div class="input-group-append">
+                              <div class="input-group-text">
+                                
+                              </div>
+                            </div>
+                          </div>
+                          <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Contact Number" #contactnumber>
+                            <div class="input-group-append">
+                              <div class="input-group-text">
+                                
+                              </div>
+                            </div>
+                          </div>
+                          <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Birth Date" #birthdate>
+                            <div class="input-group-append">
+                              <div class="input-group-text">
+                                
+                              </div>
+                            </div>
+                          </div>
+                          <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Primary Address" #street1>
+                            <input type="hidden" #street2>
+                            <div class="input-group-append">
+                              <div class="input-group-text">
+                                
+                              </div>
+                            </div>
+                          </div>
+                          <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="City" #city>
+                            <div class="input-group-append">
+                              <div class="input-group-text">
+                                
+                              </div>
+                            </div>
+                          </div>
+                          <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Zip" #zip>
+                            <div class="input-group-append">
+                              <div class="input-group-text">
+                                
+                              </div>
+                            </div>
+                          </div>
+                          <label for="acc">
+                            <h4 class="custom-title-billing">Credentials</h4>
+                        </label>
+                          <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Email Address" #emailaddress>
+                            <div class="input-group-append">
+                              <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="input-group mb-3">
+                            <input type="password" class="form-control" placeholder="Password" #password>
+                            <div class="input-group-append">
+                              <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="input-group mb-3">
+                              <input type="password" class="form-control" placeholder="Verify Password" #confirmpassword>
+                              <div class="input-group-append">
+                                <div class="input-group-text">
+                                  <span class="fas fa-lock"></span>
+                                </div>
+                              </div>
+                            </div>
+                        <div class="row">
+                          <div class="col-8">
+                            
+                          </div>
+                          <!-- /.col -->
+                          <div class="col-4" style="text-align: right;">
+                            <button (click)="CreateUser(firstname.value, lastname.value , middlename.value, contactnumber.value, birthdate.value, age.value, street1.value, street2.value, city.value, zip.value, province.value, emailaddress.value, password.value, confirmpassword.value)" type="submit" class="btn btn-primary btn-flat">Register</button>
+                          </div>
+                          <!-- /.col -->
+                        </div>
+                      </form>
+                    </div>
+                    <!-- /.login-card-body -->
+                  </div>
+            </div>
+          </div>
+  
+        </div>
+      </section>
+  
+    </div>
+    <!-- /.content-wrapper -->

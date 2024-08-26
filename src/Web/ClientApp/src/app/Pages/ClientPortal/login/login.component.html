@@ -1,120 +1,181 @@
+
 <style>
-    .book-a-table-btn {
-    border-radius: 0px!important;
-    margin: 0 0 0 20px;
-    padding: 10px 30px!important;
+  .section-title h2 {
+    margin: 15px 0 0 0;
+    font-size: 32px;
+    font-weight: 700;
+    color: #5f5950;
 }
 
-.checkout__input input {
-    color: #1c1c1cbd!important;
+.section-title p {
+    margin: 15px auto 0 auto;
+    font-weight: 300;
 }
 
-.haserror{
-    border: 1px solid #e74c3c;
+.curly{
+  font-family: "Satisfy", sans-serif;
+}
+
+.section-title h2 span {
+    color: #ffb03b;
+}
+
+.about .content p {
+    font-size: 15px;
+    color: #848484;
+}
+
+.about .content h3 {
+    font-weight: 400;
+    font-size: 34px;
+    color: #5f5950;
+}
+
+.about .content ul li {
+    position: relative;
+    padding-left: 26px;
+}
+
+.about .content p {
+    font-size: 15px;
+    color: #848484;
+}
+.fst-italic {
+    font-style: italic !important;
+}
+
+.about .content ul {
+    list-style: none;
+    padding: 0;
+}
+
+.about .video-box {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    min-height: 400px;
+    position: relative;
 }
 
 </style>
 
-<main id="main">
 
-    <!-- ======= Breadcrumbs Section ======= -->
-    <section class="breadcrumbs">
-      <div class="container">
+<head>
+  <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+  </head>
+<style>
+  .carousel-caption{
+    bottom: 50%!important;
+  }
 
-        <div class="d-flex justify-content-between align-items-center">
-          <h2>Login and Connect</h2>
-          <ol>
-            <li><a href="index.html">Home</a></li>
-            <li><span class="li-before">Login to Thoracker</span></li>
-          </ol>
+  .text-primary {
+  color: #ffb03b !important;
+}
+
+</style>  
+  
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper" style="padding-top: 55px; ">
+
+    <section id="about" class="about" style="padding: 15px;">
+      <div class="container-fluid">
+        
+        <div class="row" style="
+        padding: 30px;
+    ">
+          <div class="col-md-9" style="background: #dee2e629;">
+              
+            <div class="row" style="padding: 20px;">
+
+              <div class="col-lg-5 align-items-stretch video-box" style='background-image: url("assets/reservation/client/assets/img/about.jpg");'>
+                <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox play-btn mb-4"></a>
+              </div>
+
+              <div class="col-lg-7 justify-content-center">
+
+                <div class="content" style=" padding-left: 20px;">
+                  <h3 class="curly">Eum ipsam laborum deleniti <strong>velit pariatur architecto aut nihil</strong></h3>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit
+                  </p>
+                  <p class="fst-italic">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                    magna aliqua.
+                  </p>
+                  <ul>
+                    <li><i class="bx bx-check-double"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
+                    <li><i class="bx bx-check-double"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
+                    <li><i class="bx bx-check-double"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</li>
+                  </ul>
+                  <p>
+                    Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+                    velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+                    culpa qui officia deserunt mollit anim id est laborum
+                  </p>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+          <div class="col-md-3" style="background-color: #6c757d17 !important;">
+            <div class="card" style="margin-top: 20px;">
+              <div class="card-body login-card-body">
+                <p class="login-box-msg">Login to Start at <span style="font-weight: 700;">Thoracker</span></p>
+          
+                <form action="../../index3.html" method="post">
+                  <div class="input-group mb-3">
+                    <input type="email" class="form-control" placeholder="Email" #username>
+                    <div class="input-group-append">
+                      <div class="input-group-text">
+                        <span class="fas fa-envelope"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="input-group mb-3">
+                    <input type="password" class="form-control" placeholder="Password" #password>
+                    <div class="input-group-append">
+                      <div class="input-group-text">
+                        <span class="fas fa-lock"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-8">
+                      <div class="icheck-primary">
+                        <input type="checkbox" id="remember">
+                        <label for="remember">
+                          Remember Me
+                        </label>
+                      </div>
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-4" style="text-align: right;">
+                      <button (click)="LoginUser(username.value, password.value)" type="submit" class="btn btn-primary btn-flat">Sign In</button>
+                    </div>
+                    <!-- /.col -->
+                  </div>
+                </form>
+        
+          
+                <p class="mb-1">
+                  <a href="forgot-password.html">I forgot my password</a>
+                </p>
+                <p class="mb-0">
+                  <a [routerLink]="['/login/registration']" class="text-center">Register a new membership</a>
+                </p>
+              </div>
+              <!-- /.login-card-body -->
+            </div>
+          </div>
         </div>
 
       </div>
-    </section><!-- End Breadcrumbs Section -->
-
-    <section class="inner-page" style="padding: 0px 0;">
-
-      <div class="container" style="max-width: 90%!important;">
-            <!-- ======= Menu Section ======= -->
-    <section id="menu" class="menu" style="padding-top: 0px;">
-          <!-- Checkout Section Begin -->
-    <div class="checkout spad">
-      <div>
-          <div class="checkout__form">
-              <h4 class="custom-title-billing">Credentials</h4>
-              <form action="#">
-                  <div class="row">
-                      <div class="col-lg-8 col-md-6" style="background-color: #dee2e636; padding: 30px;">
-                        <section id="about" class="about" style="padding: 15px;">
-                            <div class="container-fluid">
-                      
-                              <div class="row">
-                      
-                                <div class="col-lg-5 align-items-stretch video-box" style='background-image: url("https://static.wixstatic.com/media/b42ace_fe099a0b1e04426587850eb4e532ce09~mv2.jpg/v1/fill/w_468,h_610,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/b42ace_fe099a0b1e04426587850eb4e532ce09~mv2.jpg");'>
-                                  <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox play-btn mb-4"></a>
-                                </div>
-                      
-                                <div class="col-lg-7 d-flex flex-column justify-content-center align-items-stretch">
-                      
-                                  <div class="content">
-                                    <h3>Eum ipsam laborum deleniti <strong>velit pariatur architecto aut nihil</strong></h3>
-                                    <p>
-                                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit
-                                    </p>
-                                    <p class="fst-italic">
-                                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                                      magna aliqua.
-                                    </p>
-                                    <ul>
-                                      <li><i class="bx bx-check-double"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-                                      <li><i class="bx bx-check-double"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-                                      <li><i class="bx bx-check-double"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</li>
-                                    </ul>
-                                    <p>
-                                      Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                                      velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                                      culpa qui officia deserunt mollit anim id est laborum
-                                    </p>
-                                  </div>
-                      
-                                </div>
-                      
-                              </div>
-                      
-                            </div>
-                          </section>
-                      </div>
-                      <div class="col-lg-4 col-md-6">
-                          <div class="checkout__order" >
-                              <h4 class="custom-title-billing">Login Credentials</h4>
-                              <div class="checkout__input">
-                                <p>Username / Email Address<span>*</span></p>
-                                <input type="text" id="username" placeholder="Username / Email address"  #username>
-                            </div>
-                            <div class="checkout__input">
-                                <p>Password<span>*</span></p>
-                                <input type="password" id="password" placeholder="Enter password"  #password>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div style="text-align: right;">
-                                        <div class="row">
-                                            <div class="col-md-4" style="text-align: left;"><p>Forgot Password?</p></div>
-                                            <div class="col-md-8" style="text-align: right;"><a [routerLink]="['/login/registration']" class="book-a-table-btn scrollto" style="background: #ffb03b;"> Register Now</a>
-                                              <a (click)="LoginUser(username.value, password.value)" class="book-a-table-btn scrollto" style="background: #ffb03b; cursor: pointer;"> Sign In</a></div>
-                                        </div>
-                                      </div>
-                                </div>
-                            </div> 
-                          </div>
-                      </div>
-                  </div>
-              </form>
-          </div>
-      </div>
-    </div>
-    </section><!-- End Menu Section -->
-      </div>
     </section>
 
-  </main><!-- End #main -->
+  </div>
+  <!-- /.content-wrapper -->
+   

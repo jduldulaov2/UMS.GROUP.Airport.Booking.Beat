@@ -1,85 +1,108 @@
-<style>
-    .book-a-table .php-email-form button[type=submit] {
-        margin-right: 30px!important;
-        border-radius: 0px!important;
-    }
 
-    </style>
-    
-    <main id="main">
-    
-        <!-- ======= Breadcrumbs Section ======= -->
-        <section class="breadcrumbs">
-    
-          
-          <div class="container" style="max-width: 1320px;">
-    
-            <div class="d-flex justify-content-between align-items-center">
-              <h2 class="curly">Home > Welcome!</h2>
-              <ol>
-                <li><a href="index.html">Home</a></li>
-                <li><span class="li-before">User's Home Page</span></li>
-              </ol>
-            </div>
-          </div>
-        </section><!-- End Breadcrumbs Section -->
-    
-    
-        <section class="inner-page book-a-table booking" style="padding-top: 0px;">
-          
-          <div class="container" style="max-width: 90%;" >
-    
-            <div class="section-title" style="background: linear-gradient(0deg, rgb(232 206 121 / 82%) 0%, rgb(236 217 151 / 21%) 100%);">
-              <div style="padding: 10px;"><h2 class="curly">Login <span>Successfull</span></h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p></div>
-            </div>
-            
-            <div class="php-email-form" style="
-            min-height: 500px;
-        ">
-              <div class="text-center">
-                <p>Welcome! Jake. You are now successfully logged in.</p>
-                <button [routerLink]="['/home']" type="submit">Go back to Home Page</button> 
-                <button [routerLink]="['/reserve-a-table']" type="submit">Book a table</button>
-                <button [routerLink]="['/food-menu']" type="submit">Create an Order</button>
-            </div>
-            </div>
-    
-          </div>
-        </section>
-    
-      </main><!-- End #main -->
-    
-        <!-- Modal -->
-    <div id="myModal" class="modal fade" role="dialog">
-      <div class="modal-dialog">
-    
-        <!-- Modal content-->
-        <div class="modal-content">
-          <div class="modal-body">
-            <ul class="nav nav-tabs" role="tablist">
-              <li class="nav-item" role="presentation">
-                <a class="nav-link active" id="simple-tab-0" data-bs-toggle="tab" href="#simple-tabpanel-0" role="tab" aria-controls="simple-tabpanel-0" aria-selected="true">Inside Restaurant</a>
-              </li>
-              <li class="nav-item" role="presentation">
-                <a class="nav-link" id="simple-tab-1" data-bs-toggle="tab" href="#simple-tabpanel-1" role="tab" aria-controls="simple-tabpanel-1" aria-selected="false">Terrese</a>
-              </li>
-            </ul>
-            <div class="tab-content pt-5" id="tab-content">
-              <div class="tab-pane active" id="simple-tabpanel-0" role="tabpanel" aria-labelledby="simple-tab-0">
-                <p><img src="assets/reservation/client/assets/img/RestaurantPlanDraftFinal.png" alt="" class="img-fluid"></p>
-              </div>
-              <div class="tab-pane" id="simple-tabpanel-1" role="tabpanel" aria-labelledby="simple-tab-1">
-                <p><img src="assets/reservation/client/assets/img/TerreseDraft.png" alt="" class="img-fluid"></p>
-              </div>
-            </div>
-            
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-default" data-dismiss="modal">Select</button>
-          </div>
-        </div>
-    
+<style>
+  .section-title h2 {
+    margin: 15px 0 0 0;
+    font-size: 32px;
+    font-weight: 700;
+    color: #5f5950;
+}
+
+.section-title p {
+    margin: 15px auto 0 auto;
+    font-weight: 300;
+}
+
+.curly{
+  font-family: "Satisfy", sans-serif;
+}
+
+.section-title h2 span {
+    color: #ffb03b;
+}
+
+.about .content p {
+    font-size: 15px;
+    color: #848484;
+}
+
+.about .content h3 {
+    font-weight: 400;
+    font-size: 34px;
+    color: #5f5950;
+}
+
+.about .content ul li {
+    position: relative;
+    padding-left: 26px;
+}
+
+.about .content p {
+    font-size: 15px;
+    color: #848484;
+}
+.fst-italic {
+    font-style: italic !important;
+}
+
+.about .content ul {
+    list-style: none;
+    padding: 0;
+}
+
+.about .video-box {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    min-height: 400px;
+    position: relative;
+}
+
+</style>
+
+
+<head>
+  <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+  </head>
+<style>
+  .carousel-caption{
+    bottom: 50%!important;
+  }
+
+  .text-primary {
+  color: #ffb03b !important;
+}
+
+</style>  
+  
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper" style="padding-top: 55px; ">
+    <div class="section-title" style="background: linear-gradient(0deg, rgb(232 206 121 / 82%) 0%, rgb(236 217 151 / 21%) 100%);">
+      <div style="padding-top: 50px; padding-bottom: 50px; text-align: center;"><h2 class="curly">Login <span>Successfull</span></h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
       </div>
     </div>
+
+    <section id="about" class="about" style="padding: 15px;">
+      <div class="container-fluid">
+
+        <div class="row">
+
+          <div class="col-md-12" style="text-align: center;">
+            <div class="callout callout-info"><h5><i class="fas fa-info"></i> Login Complate!</h5> Welcome <b>Jake</b> <br> To continue, you can book a table and create an order.</div>
+
+            <button  type="submit" [routerLink]="['/home']" class="btn bg-gradient-warning btn-flat" style="margin-right: 20px;" >Go back to Home Page</button>
+            <button  type="submit" [routerLink]="['/reserve-a-table']" class="btn bg-gradient-warning btn-flat" style="margin-right: 20px;" >Book a table</button>
+            <button  type="submit" [routerLink]="['/food-menu']" class="btn bg-gradient-warning btn-flat" style="margin-right: 20px;" >Create an Order</button>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+  <!-- /.content-wrapper -->
+  
