@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { AuthClient } from '../../../web-api-client';
+import { ActivatedRoute, Router } from '@angular/router';
 declare var $: any;
+
 
 @Component({
   selector: 'app-mobile-home',
@@ -9,7 +11,8 @@ declare var $: any;
 })
 export class MobileHomeComponent {
 
-  constructor(private authClient: AuthClient) {}
+  constructor(private authClient: AuthClient, private router: Router,
+    private route: ActivatedRoute) {}
   
   ngOnInit(){
     $("html, body").animate({ scrollTop: 0 }, "fast");
@@ -30,6 +33,27 @@ export class MobileHomeComponent {
     }else{
       this.IsLoggedIn = false;
     }
+  }
+
+  OpenCheckout(){
+    var bookingnumber = localStorage.getItem("bookingnumber");
+    if (typeof bookingnumber !== 'undefined' && bookingnumber !== null){
+      this.router.navigate(['/checkout/booking',bookingnumber,'detail']);
+      this.router
+    }else{
+      this.Notification("Checkout page is still empty. Create a booking/order first.","error");
+    }
+
+  }
+
+  OpenCart(){
+    var bookingnumber = localStorage.getItem("bookingnumber");
+    if (typeof bookingnumber !== 'undefined' && bookingnumber !== null){
+      this.router.navigate(['/my-cart/booking',bookingnumber,'detail']);
+    }else{
+      this.Notification("Cart page is still empty. Create a booking/order first.","error");
+    }
+
   }
 
   SignOut(){
@@ -56,6 +80,24 @@ export class MobileHomeComponent {
       },
       error: error => console.error(error)
     });
+  }
+
+  Notification(message: any, type: any){
+    if(type == "error"){
+      $(".error-message").addClass("display-message");
+      $(".success-message").removeClass("display-message");
+      $(".error-message").html(message);
+    }else{
+      $(".error-message").removeClass("display-message");
+      $(".success-message").addClass("display-message");
+      $(".success-message").html(message);
+    }
+
+    setTimeout(() => {
+      $(".success-message").removeClass("display-message");
+      $(".error-message").removeClass("display-message");
+    }, 2000);
+
   }
 
 }

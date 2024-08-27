@@ -92,7 +92,37 @@
 .inner i{
     color: brown;
 }
+
+.display-message{
+  display: block!important;
+}
+
   </style>
+  
+  <div class="">
+    <div class="error-message" style="display:none;
+    position: fixed;
+    top: 50%;
+    width: 100%;
+    z-index: 99999;
+    background: #d5182a !important;
+    color: white !important;
+    padding: 22px;
+    text-align: center;"></div> 
+  </div>
+  
+  <div class="">
+    <div class="success-message" style="display:none;
+    position: fixed;
+    top: 50%;
+    width: 100%;
+    z-index: 99999;
+    background: #28a745 !important;
+    color: white !important;
+    padding: 22px;
+    text-align: center;"></div> 
+  </div> 
+
   
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper" style="padding-top: 55px; ">
@@ -294,7 +324,7 @@
                       <a  class="small-box-footer">Book a Table <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                   </div>
-                  <div class="col-lg-3 col-6" [routerLink]="['/checkout']">
+                  <div class="col-lg-3 col-6" (click)="OpenCheckout()">
                     <!-- small box -->
                     <div class="small-box bg-warning">
                       <div class="inner">
@@ -307,7 +337,7 @@
                       <a  class="small-box-footer">Checkout<i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                   </div>
-                  <div class="col-lg-3 col-6">
+                  <div class="col-lg-3 col-6" (click)="OpenCart()">
                     <!-- small box -->
                     <div class="small-box bg-warning">
                       <div class="inner">

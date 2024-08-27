@@ -2,7 +2,37 @@
     .payment-image img{
         padding: 5px;
     }
+
+    .display-message{
+  display: block!important;
+}
+
 </style>
+
+<div class="">
+  <div class="error-message" style="display:none;
+  position: fixed;
+  top: 50%;
+  width: 100%;
+  z-index: 99999;
+  background: #d5182a !important;
+  color: white !important;
+  padding: 22px;
+  text-align: center;"></div> 
+</div>
+
+<div class="">
+  <div class="success-message" style="display:none;
+  position: fixed;
+  top: 50%;
+  width: 100%;
+  z-index: 99999;
+  background: #28a745 !important;
+  color: white !important;
+  padding: 22px;
+  text-align: center;"></div> 
+</div> 
+
 
 <button style="width: 100%; margin-bottom: 5px; position: fixed; bottom: -5px; width: 100%; z-index: 99999; background: brown!important; color: white!important;" [routerLink]="['/home/mobile']" type="submit" class="btn bg-gradient-warning btn-flat d-block d-md-none">Go to Dashboard</button>  
 
@@ -56,6 +86,13 @@
                 </div>
               </div>
 
+              <div *ngIf="b_bookingStatusID == 3" class="col-md-3">
+                <div class="callout callout-info">
+                  <h5>Status: <span style="background-color: #3c8dbc4a; padding: 5px;">Waiting for Approval</span> </h5>
+                  <span>Booking as still in pending status.</span>
+                </div>
+              </div>
+
             </div>
 
 
@@ -105,7 +142,7 @@
                   <b>Payment:</b> <small class="badge badge-warning"><i class="far fa-clock"></i> Pending</small><br>
                 </div>
                 <div class="col-sm-3 invoice-col">
-                    <p class="lead">Amount Due 2/22/2014</p>
+                    <p class="lead">Payment to be Paid</p>
       
                         <div class="table-responsive">
                           <table class="table">
@@ -119,7 +156,7 @@
                             </tr>
                             <tr style="background: #ff00000d;">
                               <th>Total:</th>
-                              <td>{{getTotalAmount}}</td>
+                              <td id="booking_total_amount">{{getTotalAmount}}</td>
                             </tr>
                           </table>
                         </div>
@@ -138,7 +175,7 @@
                         Number or Person: {{b_numberOfPax}} <br>
                         Table: N/A
                       </div>
-                  <table class="table table-striped">
+                  <table *ngIf="hasOrder == true" class="table table-striped">
                     <thead style="
                     background: beige;
                 ">
@@ -174,7 +211,7 @@
                         Number or Person: {{b_numberOfPax}} <br>
                         Table: N/A
                       </div>
-                  <table class="table table-striped">
+                  <table *ngIf="hasOrder == true" class="table table-striped">
                     <thead style="
                     background: beige;
                 ">
@@ -225,14 +262,20 @@
               <div class="row no-print d-none d-md-block">
                 <div class="col-12" style="text-align: center;">
                   <button (click)="GoToCart()" style="margin-right: 10px;" type="button" class="btn btn-warning"><i class="fas fa-cart-arrow-down"></i> Back to cart page</button>
-                  <button type="button" class="btn btn-success"><i class="far fa-credit-card"></i> Submit Booking (For Approval)</button>
+                  <button *ngIf="b_bookingStatusID == 0"  type="button" (click)="SendBookingForApproval()" class="btn btn-success"><i class="far fa-credit-card"></i> Submit Booking (For Approval)</button>
+                  <button disabled *ngIf="b_bookingStatusID == 3"  type="button" class="btn btn-success"><i class="far fa-credit-card"></i> For Approval</button>
+                  <button disabled *ngIf="b_bookingStatusID == 1"  type="button" class="btn btn-success"><i class="far fa-credit-card"></i> Booking Approved</button>
+                  <button  *ngIf="b_bookingStatusID == 2"  (click)="SendBookingForApproval()" type="button" class="btn btn-success"><i class="far fa-credit-card"></i> Re-Submit Booking (For Approval)</button>
                 </div>
               </div>
 
               <div class="row no-print d-block d-md-none">
                 <div class="col-12" style="text-align: center;">
                   <button style="width: 100%; margin-bottom: 5px;" (click)="GoToCart()" type="button" class="btn btn-warning"><i class="fas fa-cart-arrow-down"></i> Back to Cart page</button>
-                  <button style="width: 100%; margin-bottom: 5px;" type="button" class="btn btn-success"><i class="far fa-credit-card"></i> Submit Booking (For Approval)</button>
+                  <button *ngIf="b_bookingStatusID == 0"  style="width: 100%; margin-bottom: 5px;" (click)="SendBookingForApproval()" type="button" class="btn btn-success"><i class="far fa-credit-card"></i> Submit Booking (For Approval)</button>
+                  <button disabled *ngIf="b_bookingStatusID == 3"  style="width: 100%; margin-bottom: 5px;"  type="button" class="btn btn-success"><i class="far fa-credit-card"></i> For Approval</button>
+                  <button disabled *ngIf="b_bookingStatusID == 1"  style="width: 100%; margin-bottom: 5px;"  type="button" class="btn btn-success"><i class="far fa-credit-card"></i> Booking Approved</button>
+                  <button  *ngIf="b_bookingStatusID == 2"  style="width: 100%; margin-bottom: 5px;" (click)="SendBookingForApproval()" type="button" class="btn btn-success"><i class="far fa-credit-card"></i> Re-Submit Booking (For Approval)</button>
                 </div>
               </div>
 

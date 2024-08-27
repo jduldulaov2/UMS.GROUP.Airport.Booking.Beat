@@ -1,190 +1,171 @@
+
+
+<head>
+  <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+  </head>
 <style>
-    .payment-image img{
-        padding: 5px;
-    }
-</style>
+  .carousel-caption{
+    bottom: 50%!important;
+  }
 
-<div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>Invoice</h1>
-          </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Invoice</li>
-            </ol>
-          </div>
-        </div>
-      </div><!-- /.container-fluid -->
-    </section>
+  .text-primary {
+  color: #ffb03b !important;}
 
-    <section class="content">
+  .section-title h2 {
+    margin: 15px 0 0 0;
+    font-size: 32px;
+    font-weight: 700;
+    color: #5f5950;
+}
+
+.section-title p {
+    margin: 15px auto 0 auto;
+    font-weight: 300;
+}
+
+.curly{
+  font-family: "Satisfy", sans-serif;
+}
+
+.section-title h2 span {
+    color: #ffb03b;
+}
+
+.about .content p {
+    font-size: 15px;
+    color: #848484;
+}
+
+.about .content h3 {
+    font-weight: 400;
+    font-size: 34px;
+    color: #5f5950;
+}
+
+.about .content ul li {
+    position: relative;
+    padding-left: 26px;
+}
+
+.about .content p {
+    font-size: 15px;
+    color: #848484;
+}
+.fst-italic {
+    font-style: italic !important;
+}
+
+.about .content ul {
+    list-style: none;
+    padding: 0;
+}
+
+.about .video-box {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    min-height: 400px;
+    position: relative;
+}
+
+.menus {
+      width: 100%;
+      margin-bottom: 0px;
+      padding-bottom: 0px;
+      border: 0px solid #ffa323;
+      padding: 30px 20px;
+      border-radius: 0px;
+  }
+
+  .menus .menu-img {
+    border-radius: 0%!important;
+    background: rgb(211, 207, 207);
+}
+
+.pro-qty {
+    width: 0px !important;
+}
+
+.custom-quantity{
+  height: 100%;
+    width: 100%;
+    font-size: 16px;
+    color: #6f6f6f;
+    width: 50px;
+    border: none;
+    background: #f8f9fa;
+    text-align: center;
+    padding: 13px;
+}
+
+.custom-quantity-deduct{
+  height: 100%;
+    width: 100%;
+    font-size: 16px;
+    color: #6f6f6f;
+    width: 50px;
+    border: none;
+    background: #dee2e6;
+    text-align: center;
+    padding-top: 13px;
+    padding-bottom: 13px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: solid 1px #80808040;
+    cursor: pointer;
+}
+
+.custom-quantity-add{
+  height: 100%;
+    width: 100%;
+    font-size: 16px;
+    color: #6f6f6f;
+    width: 50px;
+    border: none;
+    background: #dee2e6;
+    text-align: center;
+    padding-top: 13px;
+    padding-bottom: 13px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: solid 1px #80808040;
+    cursor: pointer;
+}
+
+.book-a-table-btn {
+    border-radius: 0px!important;
+}
+
+
+</style>  
+  
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper" style="padding-top: 55px; ">
+    
+    <div class="section-title" style="background: linear-gradient(0deg, rgb(232 206 121 / 82%) 0%, rgb(236 217 151 / 21%) 100%);">
+      <div style="padding-top: 50px; padding-bottom: 50px; text-align: center;"><h2 class="curly">Checkout <span></span></h2>
+        <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p>
+      </div>
+    </div>
+
+    <section id="about" class="about" style="padding: 15px;">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-12">
-            <div class="callout callout-info">
-              <h5><i class="fas fa-info"></i> Note:</h5>
-              This page has been enhanced for printing. Click the print button at the bottom of the invoice to test.
+          <div class="col-lg-12 justify-content-center">
+            <div class="callout callout-warning">
+              <h5>Empty Checkout</h5>
+
+              <p>Checkout is still empty. You can add items by creating an order/table booking.</p>
             </div>
+          </div>
+          
+        </div>
+       
+      </div>
 
-
-            <!-- Main content -->
-            <div class="invoice p-3 mb-3">
-              <!-- title row -->
-              <div class="row" style="
-              background: beige;
-              padding: 5px;
-          ">
-                <div class="col-12">
-                  <h4>
-                    <i class="fas fa-globe"></i> Thoracker
-                    <small class="float-right">Date: 2/10/2014</small>
-                  </h4>
-                </div>
-                <!-- /.col -->
-              </div>
-              <!-- info row -->
-              <div class="row invoice-info">
-                <div class="col-sm-3 invoice-col">
-                <p class="lead">Owner Details</p>
-                  From
-                  <address>
-                    <strong>Thoracker Restaurant</strong><br>
-                    Address1<br>
-                    Phone: 09959665161<br>
-                    Email: thorackergmail.com
-                  </address>
-                </div>
-                <!-- /.col -->
-                <div class="col-sm-3 invoice-col">
-                    <p class="lead">Guest / Customer</p>
-                  To
-                  <address>
-                    <strong>Jake Duldulao</strong><br>
-                    Block 70 mlot 19 Deca homes Indangan phase 3<br>
-                    Phone: 09959665161<br>
-                    Email: jduldulaogmail.com
-                  </address>
-                </div>
-                <!-- /.col -->
-                <div class="col-sm-3 invoice-col">
-                 <p class="lead">Booking Details</p>
-                  <b>Booking Referrence #: REF-8987238729837-00930</b><br>
-                  <b>Order ID:</b> N/A or REF-908230948988839<br>
-                  <b>Payment:</b> <small class="badge badge-warning"><i class="far fa-clock"></i> Pending</small><br>
-                </div>
-                <div class="col-sm-3 invoice-col">
-                    <p class="lead">Amount Due 2/22/2014</p>
-      
-                        <div class="table-responsive">
-                          <table class="table">
-                            <tr>
-                              <th style="width:50%">Subtotal:</th>
-                              <td>$250.30</td>
-                            </tr>
-                            <tr>
-                              <th>Tax</th>
-                              <td>$0.00</td>
-                            </tr>
-                            <tr>
-                              <th>Total:</th>
-                              <td>$265.24</td>
-                            </tr>
-                          </table>
-                        </div>
-                </div>
-                <!-- /.col -->
-              </div>
-              <!-- /.row -->
-
-              <!-- Table row -->
-              <div class="row">
-                <div class="col-12 table-responsive">
-                    <p class="lead">Booking Details and Order Items:</p>
-                    <div class="callout callout-danger">
-                        <h5><i class="fas fa-danger"></i> Booking Referrence #:</h5>
-                        Date Arrival: 08/04/2024 <br>
-                        Number or Person: 3 <br>
-                        Table: 1,2,3
-                      </div>
-                  <table class="table table-striped">
-                    <thead style="
-                    background: beige;
-                ">
-                    <tr>
-                      <th>Qty</th>
-                      <th>Product</th>
-                      <th>Description</th>
-                      <th>Subtotal</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td>Call of Duty</td>
-                      <td>El snort testosterone trophy driving gloves handsome</td>
-                      <td>$64.50</td>
-                    </tr>
-                    <tr>
-                      <td>1</td>
-                      <td>Need for Speed IV</td>
-                      <td>Wes Anderson umami biodiesel</td>
-                      <td>$50.00</td>
-                    </tr>
-                    <tr>
-                      <td>1</td>
-                      <td>Monsters DVD</td>
-                      <td>Terry Richardson helvetica tousled street art master</td>
-                      <td>$10.70</td>
-                    </tr>
-                    <tr>
-                      <td>1</td>
-                      <td>Grown Ups Blue Ray</td>
-                      <td>Tousled lomo letterpress</td>
-                      <td>$25.99</td>
-                    </tr>
-                    </tbody>
-                  </table>
-                </div>
-                <!-- /.col -->
-              </div>
-              <!-- /.row -->
-
-              <div class="row payment-image">
-                <!-- accepted payments column -->
-                <div class="col-6">
-                  <p class="lead">Payment Methods:</p>
-                  <img src="assets/reservation/admin/dist/img/credit/visa.png" alt="Visa">
-                  <img src="assets/reservation/admin/dist/img/credit/mastercard.png" alt="Mastercard">
-                  <img src="assets/reservation/admin/dist/img/credit/american-express.png" alt="American Express">
-                  <img src="assets/reservation/admin/dist/img/credit/paypal2.png" alt="Paypal">
-
-                  <p class="text-muted well well-sm shadow-none" style="margin-top: 10px;">
-                    Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles, weebly ning heekya handango imeem
-                    plugg
-                    dopplr jibjab, movity jajah plickers sifteo edmodo ifttt zimbra.
-                  </p>
-                </div>
-                <!-- /.col -->
-                <!-- /.col -->
-              </div>
-              <!-- /.row -->
-
-              <!-- this row will not appear when printing -->
-              <div class="row no-print">
-                <div class="col-12">
-                  <button type="button" class="btn btn-success float-right"><i class="far fa-credit-card"></i> Submit Booking Payment</button>
-                </div>
-              </div>
-            </div>
-            <!-- /.invoice -->
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
     </section>
-    <!-- /.content -->
+
   </div>

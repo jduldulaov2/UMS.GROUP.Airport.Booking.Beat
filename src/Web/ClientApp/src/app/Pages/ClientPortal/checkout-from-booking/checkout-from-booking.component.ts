@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DraftCartItemsClient, GetAllDraftCartItemsQueryDtoByCode, UpdateDraftCartItemsCommand, RestaurantBookingsClient, GetAllRestaurantBookingByIdQueryDto } from '../../../web-api-client';
+import { DraftCartItemsClient, GetAllDraftCartItemsQueryDtoByCode, UpdateDraftCartItemsCommand, RestaurantBookingsClient, GetAllRestaurantBookingByIdQueryDto, UpdateRestaurantBookingCommand } from '../../../web-api-client';
 import { ActivatedRoute, Router } from '@angular/router';
 declare var $: any;
 
@@ -102,6 +102,59 @@ export class CheckoutFromBookingComponent {
     });
   }
 
+  SendBookingForApproval(){
+    
+    var code_id = this.route.snapshot.paramMap.get('key');
+    const list = {
+      "uniqueId": this.b_uniqueId,
+      "bookingReferrenceNumber": this.b_bookingReferrenceNumber,
+      "bookingFromDate": this.b_bookingFromDate,
+      "bookingToDate": this.b_bookingToDate,
+      "bookingSource": this.b_bookingSource,
+      "bookingEstimatedArrivalTime": this.b_bookingEstimatedArrivalTime,
+      "bookingEstimatedDepartureTime": this.b_bookingEstimatedDepartureTime,
+      "bookingStatusID": 3, //for approval
+      "bookingPaymentStatusID": this.b_bookingPaymentStatusID,
+      "bookingChargesAmount": this.b_bookingChargesAmount,
+      "bookingExtrasAmount": this.b_bookingExtrasAmount,
+      "bookingPromoAmount": this.b_bookingPromoAmount,
+      "bookingTaxAmount": this.b_bookingTaxAmount,
+      "bookingPaymentSurchargeAmount": this.b_bookingPaymentSurchargeAmount,
+      "bookingTotalAmount": this.b_bookingTotalAmount,
+      "bookingPaidAmount": this.b_bookingPaidAmount,
+      "bookingOutstandingBalanceAmount": this.b_bookingOutstandingBalanceAmount,
+      "bookingNotes": this.b_bookingNotes,
+      "paymentMethod": this.b_paymentMethod,
+      "restaurantID": this.b_restaurantID,
+      "guestID": this.b_guestID,
+      "orderID": this.b_orderID,
+      "isActive": this.b_isActive,
+      "guestName": this.b_guestName,
+      "restaurantName": this.b_restaurantName,
+      "numberOfPax": this.b_numberOfPax
+    };
+
+    this.bookingClient.updateRestaurantBooking(list as UpdateRestaurantBookingCommand).subscribe(
+      result => {
+        if(result.resultType == 1){
+          this.Notification("Booking as been submitted. Please wait for the response approval from the restaurant.", "success");
+          setTimeout(() => {
+            this.getBookingById(code_id);
+          }, 2000);
+          
+        }else{
+          this.Notification("Something went wrong. Check the validation error/s.", "error");
+          //this.loader.ShowToast("Something went wrong. Check the validation error/s.", "error");
+        }
+      },
+      error => {
+        const errors = JSON.parse(error.response).errors;
+        this.Notification("Something went wrong. Check the validation error/s.", "error");
+      }
+    );
+
+  }
+
   GetInitialInfo(){
     // READ STRING FROM LOCAL STORAGE
   var retrievedObject = localStorage.getItem('loggedindetail');
@@ -139,6 +192,24 @@ export class CheckoutFromBookingComponent {
       },
       error: error => console.error(error)
     });
+  }
+
+  Notification(message: any, type: any){
+    if(type == "error"){
+      $(".error-message").addClass("display-message");
+      $(".success-message").removeClass("display-message");
+      $(".error-message").html(message);
+    }else{
+      $(".error-message").removeClass("display-message");
+      $(".success-message").addClass("display-message");
+      $(".success-message").html(message);
+    }
+
+    setTimeout(() => {
+      $(".success-message").removeClass("display-message");
+      $(".error-message").removeClass("display-message");
+    }, 2000);
+
   }
 
 

@@ -146,6 +146,8 @@ export class ReserveATableComponent {
       this.restaurantBookingClient.createRestaurantBooking(list as CreateRestaurantBookingCommand).subscribe(
         result => {
           if(result.resultType == 1){
+            let booking_id:string = result.data?.id!; 
+            localStorage.setItem('bookingnumber', booking_id);
             this.router.navigate(['/my-cart/booking/',result.data?.id,'detail']);
           }else{
             this.Notification(result.message, "error");
