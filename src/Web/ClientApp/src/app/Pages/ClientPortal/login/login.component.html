@@ -75,8 +75,40 @@
   color: #ffb03b !important;
 }
 
+.display-message{
+  display: block!important;
+}
+
 </style>  
-  
+
+<div class="">
+  <div class="error-message" style="display:none;
+  position: fixed;
+  top: 50%;
+  width: 100%;
+  z-index: 99999;
+  background: #d5182a !important;
+  color: white !important;
+  padding: 22px;
+  text-align: center;"></div> 
+</div>
+
+<div class="">
+  <div class="success-message" style="display:none;
+  position: fixed;
+  top: 50%;
+  width: 100%;
+  z-index: 99999;
+  background: #28a745 !important;
+  color: white !important;
+  padding: 22px;
+  text-align: center;"></div> 
+</div> 
+
+
+<button style="width: 100%; margin-bottom: 5px; position: fixed; bottom: 0; width: 100%; z-index: 99999; background: brown!important; color: white!important;" [routerLink]="['/home/mobile']" type="submit" class="btn bg-gradient-warning btn-flat d-block d-md-none">Go to Dashboard</button>  
+
+
 <div class="content-wrapper d-block d-md-none" style="padding-top: 55px; ">
   <div class="section-title" style="background: linear-gradient(0deg, rgb(232 206 121 / 82%) 0%, rgb(236 217 151 / 21%) 100%);">
     <div style="padding-top: 10px;padding-bottom: 15px;text-align: center;"><h2>Login <span> Panel</span></h2>
@@ -92,7 +124,7 @@
             <div class="card-body login-card-body">
               <p class="login-box-msg">Login to Start at <span style="font-weight: 700;">Thoracker</span></p>
         
-              <form action="../../index3.html" method="post">
+              <form method="post">
                 <div class="input-group mb-3">
                   <input type="email" class="form-control" placeholder="Email" #username>
                   <div class="input-group-append">
@@ -110,29 +142,17 @@
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-8">
-                    <div class="icheck-primary">
-                      <input type="checkbox" id="remember">
-                      <label for="remember">
-                        Remember Me
-                      </label>
-                    </div>
-                  </div>
                   <!-- /.col -->
-                  <div class="col-4" style="text-align: right;">
-                    <button (click)="LoginUser(username.value, password.value)" type="submit" class="btn btn-primary btn-flat">Sign In</button>
+                  <div class="col-12" style="text-align: center;">
+                    <button style="width: 100%;" class="btn bg-gradient-warning btn-flat"  (click)="LoginUser(username.value, password.value)"  type="submit">Sign In</button> 
+                    
+                  </div>
+                  <div class="col-12" style="text-align: center; margin-top: 5px;">
+                    <button style="width: 100%;" class="btn bg-gradient-warning btn-flat"  [routerLink]="['/login/registration']" type="submit">Register Membership</button> 
                   </div>
                   <!-- /.col -->
                 </div>
               </form>
-      
-        
-              <p class="mb-1">
-                <a href="forgot-password.html">I forgot my password</a>
-              </p>
-              <p class="mb-0">
-                <a [routerLink]="['/login/registration']" class="text-center">Register a new membership</a>
-              </p>
             </div>
             <!-- /.login-card-body -->
           </div>
@@ -193,7 +213,7 @@
               <div class="card-body login-card-body">
                 <p class="login-box-msg">Login to Start at <span style="font-weight: 700;">Thoracker</span></p>
           
-                <form action="../../index3.html" method="post">
+                <form  method="post">
                   <div class="input-group mb-3">
                     <input type="email" class="form-control" placeholder="Email" #username>
                     <div class="input-group-append">

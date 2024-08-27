@@ -57,6 +57,11 @@
       position: relative;
   }
   
+  .display-message{
+  display: block!important;
+}
+
+
   </style>
   
   
@@ -76,16 +81,41 @@
   }
   
   </style>  
-    
+  
+  <div class="">
+    <div class="error-message" style="display:none;
+    position: fixed;
+    top: 50%;
+    width: 100%;
+    z-index: 99999;
+    background: #d5182a !important;
+    color: white !important;
+    padding: 22px;
+    text-align: center;"></div> 
+  </div>
+  
+  <div class="">
+    <div class="success-message" style="display:none;
+    position: fixed;
+    top: 50%;
+    width: 100%;
+    z-index: 99999;
+    background: #28a745 !important;
+    color: white !important;
+    padding: 22px;
+    text-align: center;"></div> 
+  </div> 
+
+  
+  <button style="width: 100%; margin-bottom: 5px; position: fixed; bottom: -5px; width: 100%; z-index: 99999; background: brown!important; color: white!important;" [routerLink]="['/home/mobile']" type="submit" class="btn bg-gradient-warning btn-flat d-block d-md-none">Go to Dashboard</button> 
+
     <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper" style="padding-top: 55px; ">
+    <div class="content-wrapper d-none d-md-block" style="padding-top: 55px; ">
   
       <section id="about" class="about" style="padding: 15px;">
         <div class="container-fluid">
           
-          <div class="row" style="
-          padding: 30px;
-      ">
+          <div class="row" style="padding: 30px;">
             <div class="col-md-9" style="background: #dee2e629;">
                 <div class="row" style="padding: 20px;">
 
@@ -224,6 +254,137 @@
                           <!-- /.col -->
                           <div class="col-4" style="text-align: right;">
                             <button (click)="CreateUser(firstname.value, lastname.value , middlename.value, contactnumber.value, birthdate.value, age.value, street1.value, street2.value, city.value, zip.value, province.value, emailaddress.value, password.value, confirmpassword.value)" type="submit" class="btn btn-primary btn-flat">Register</button>
+                          </div>
+                          <!-- /.col -->
+                        </div>
+                      </form>
+                    </div>
+                    <!-- /.login-card-body -->
+                  </div>
+            </div>
+          </div>
+  
+        </div>
+      </section>
+  
+    </div>
+
+    <div class="content-wrapper d-block d-md-none" style="padding-top: 55px; ">
+      
+      <div class="section-title" style="background: linear-gradient(0deg, rgb(232 206 121 / 82%) 0%, rgb(236 217 151 / 21%) 100%);">
+        <div style="padding-top: 10px;padding-bottom: 15px;text-align: center;"><h2>Registration <span> Panel</span></h2>
+          <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p>
+        </div>
+      </div>
+
+      <section id="about" class="about" style="padding: 15px;">
+        <div class="container-fluid">
+          
+          <div class="row" style="padding: 0px;">
+            <div class="col-md-12" style="background-color: #6c757d17 !important;">
+
+                <div class="card" style="margin-top: 20px;">
+                    <div class="card-body login-card-body">
+                        <h4 class="custom-title-billing">Basic Details</h4>
+                    
+                    <div class="">
+                      
+                    </div>
+                      <form  method="post">
+                          <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="First Name" #firstname1>
+                            <div class="input-group-append">
+                              <div class="input-group-text">
+                                
+                              </div>
+                            </div>
+                          </div>
+                          <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Last Name" #lastname1>
+                            <input type="hidden" #middlename1>
+                            <input type="hidden" #age1>
+                            <input type="hidden" #province1>
+                            <div class="input-group-append">
+                              <div class="input-group-text">
+                                
+                              </div>
+                            </div>
+                          </div>
+                          <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Contact Number" #contactnumber1>
+                            <div class="input-group-append">
+                              <div class="input-group-text">
+                                
+                              </div>
+                            </div>
+                          </div>
+                          <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Birth Date" #birthdate1>
+                            <div class="input-group-append">
+                              <div class="input-group-text">
+                                
+                              </div>
+                            </div>
+                          </div>
+                          <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Primary Address" #street11>
+                            <input type="hidden" #street21>
+                            <div class="input-group-append">
+                              <div class="input-group-text">
+                                
+                              </div>
+                            </div>
+                          </div>
+                          <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="City" #city1>
+                            <div class="input-group-append">
+                              <div class="input-group-text">
+                                
+                              </div>
+                            </div>
+                          </div>
+                          <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Zip" #zip1>
+                            <div class="input-group-append">
+                              <div class="input-group-text">
+                                
+                              </div>
+                            </div>
+                          </div>
+                          <label for="acc">
+                            <h4 class="custom-title-billing">Credentials</h4>
+                        </label>
+                          <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Email Address" #emailaddress1>
+                            <div class="input-group-append">
+                              <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="input-group mb-3">
+                            <input type="password" class="form-control" placeholder="Password" #password1>
+                            <div class="input-group-append">
+                              <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="input-group mb-3">
+                              <input type="password" class="form-control" placeholder="Verify Password" #confirmpassword1>
+                              <div class="input-group-append">
+                                <div class="input-group-text">
+                                  <span class="fas fa-lock"></span>
+                                </div>
+                              </div>
+                            </div>
+                        <div class="row">
+                          <!-- /.col -->
+                          <div class="col-12" style="text-align: center;">
+                            <button style="width: 100%;" (click)="CreateUser(firstname1.value, lastname1.value , middlename1.value, contactnumber1.value, birthdate1.value, age1.value, street11.value, street21.value, city1.value, zip1.value, province1.value, emailaddress1.value, password1.value, confirmpassword1.value)" type="submit" class="btn btn-primary btn-flat">Register</button>
+                          </div>
+                          <div class="col-12" style="text-align: center; margin-top: 5px;">
+                            <button style="width: 100%;" [routerLink]="['/login']"type="submit" class="btn btn-primary btn-flat">Go to Login</button>
                           </div>
                           <!-- /.col -->
                         </div>

@@ -65,6 +65,7 @@
     height: 45px !important;
 }
 
+
 </style>
 
 
@@ -83,8 +84,40 @@
   color: #ffb03b !important;
 }
 
+.display-message{
+  display: block!important;
+}
+
 </style>  
-  
+<div class="">
+  <div class="error-message" style="display:none;
+  position: fixed;
+  top: 50%;
+  width: 100%;
+  z-index: 99999;
+  background: #d5182a !important;
+  color: white !important;
+  padding: 22px;
+  text-align: center;"></div> 
+</div>
+
+<div class="">
+  <div class="success-message" style="display:none;
+  position: fixed;
+  top: 50%;
+  width: 100%;
+  z-index: 99999;
+  background: #28a745 !important;
+  color: white !important;
+  padding: 22px;
+  text-align: center;"></div> 
+</div>
+
+
+
+
+<button style="width: 100%; margin-bottom: 5px; position: fixed; bottom: -5px; width: 100%; z-index: 99999; background: brown!important; color: white!important;" [routerLink]="['/home/mobile']" type="submit" class="btn bg-gradient-warning btn-flat d-block d-md-none">Go to Dashboard</button>  
+
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper" style="padding-top: 55px; ">
     
@@ -95,24 +128,43 @@
     </div>
     
     <section id="about" class="about" style="padding: 15px;">
-      <div class="container-fluid">
+
+      <div *ngIf="IsLoggedIn == false">
+        <div class="callout callout-warning">
+          <h5>Note:</h5>
+          You need to login before creating a booking. If you are not yet registered then click the Register button below.<br> If you are a current member then click the login.
+        </div>
+         
+        <div class="d-block d-md-none">
+          <button style="width: 100%; margin-bottom: 5px;" [routerLink]="['/login/registration']" type="submit" class="btn bg-gradient-warning btn-flat">Register Now</button>
+          <button style="width: 100%; margin-bottom: 5px;" [routerLink]="['/login']" type="submit" class="btn bg-gradient-warning btn-flat">Go to Login</button>    
+        </div>
+        <div class="d-none d-md-block">
+          <div class="text-center">
+            <button style="margin-right: 10px;" [routerLink]="['/login/registration']" type="submit" class="btn bg-gradient-warning btn-flat">Register Now</button>
+          <button [routerLink]="['/login']" type="submit" class="btn bg-gradient-warning btn-flat">Go to Login</button>  
+            </div>
+        </div>
+      </div>
+
+      <div *ngIf="IsLoggedIn == true" class="container-fluid">
         <div class="row">
           <div class="col-lg-12 justify-content-center">
             <div class="php-email-form">
               <div class="row">
                 <div class="col-lg-4 col-md-6 form-group">
                   <label>Full Name</label>
-                  <input type="text" name="name" class="form-control" id="fullname" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" #fullname disabled>
+                  <input type="text" name="name" class="form-control" id="fullname" placeholder="Your Name" value={{fullName}} data-rule="minlen:4" data-msg="Please enter at least 4 chars" #fullname disabled>
                   <div class="validate"></div>
                 </div>
                 <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0">
                   <label>Email Address</label>
-                  <input type="email" class="form-control" name="email" id="emailaddress" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" #emailaddress disabled>
+                  <input type="email" class="form-control" name="email" id="emailaddress" placeholder="Your Email" value={{emailAddress}} data-rule="email" data-msg="Please enter a valid email" #emailaddress disabled>
                   <div class="validate"></div>
                 </div>
                 <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0">
                   <label>Phone / Contact Number</label>
-                  <input type="text" class="form-control" name="phone" id="phonenumber" placeholder="Your Phone" data-rule="minlen:4" data-msg="Please enter at least 4 chars" #phonenumber disabled>
+                  <input type="text" class="form-control" name="phone" id="phonenumber" placeholder="Your Phone" value={{contactNumber}} data-rule="minlen:4" data-msg="Please enter at least 4 chars" #phonenumber disabled>
                   <div class="validate"></div>
                 </div>
                 <div class="col-lg-4 col-md-6 form-group mt-3">
@@ -147,7 +199,6 @@
                   <button class="btn bg-gradient-warning btn-flat"  (click)="ReserveATable(fullname.value, emailaddress.value, phonenumber.value, bookingdate.value, bookingtime.value, numberofpeople.value, message.value)"  type="submit">Prepare Booking</button> 
                 </div>
                 <div class="d-block d-md-none">
-                  <button style="width: 100%; margin-bottom: 5px;" [routerLink]="['/home/mobile']" type="submit" class="btn bg-gradient-warning btn-flat">Home Page</button>
                   <button style="width: 100%; margin-bottom: 5px;" type="submit" class="btn bg-gradient-warning btn-flat" data-toggle="modal" data-target="#modal-xl" >Select Desired Table/s</button>
                   <button style="width: 100%; margin-bottom: 5px;" class="btn bg-gradient-warning btn-flat"  (click)="ReserveATable(fullname.value, emailaddress.value, phonenumber.value, bookingdate.value, bookingtime.value, numberofpeople.value, message.value)"  type="submit">Prepare Booking</button> 
                 </div>

@@ -13,6 +13,10 @@ export class LoginComponent {
 
   constructor(private authClient: AuthClient, private router: Router, private route: ActivatedRoute) {}
 
+  ngOnInit(){
+    $("html, body").animate({ scrollTop: 0 }, "fast");
+  }
+
   LoginUser(username: any, password: any){
       this.authClient.login(username, password, false, false).subscribe({
         next: result => {
@@ -23,12 +27,29 @@ export class LoginComponent {
             localStorage.setItem('loggedindetail', JSON.stringify(result));
             location.href = '/admin/my-dashboard';
           }else{
-            alert("Username or password is incorrect.");
-            //$("#alert").show();
+            this.Notification("Username or password is incorrect.", "error")
           }
         },
         error: error => console.error(error)
       });
+  }
+
+  Notification(message: any, type: any){
+    if(type == "error"){
+      $(".error-message").addClass("display-message");
+      $(".success-message").removeClass("display-message");
+      $(".error-message").html(message);
+    }else{
+      $(".error-message").removeClass("display-message");
+      $(".success-message").addClass("display-message");
+      $(".success-message").html(message);
+    }
+
+    setTimeout(() => {
+      $(".success-message").removeClass("display-message");
+      $(".error-message").removeClass("display-message");
+    }, 2000);
+
   }
 
 }

@@ -13,10 +13,12 @@ export class FoodMenuComponent {
     private foodsClient: FoodsClient
   ) {
   }
+  IsLoggedIn: any;
 
   ngOnInit(){
     $("html, body").animate({ scrollTop: 0 }, "fast");
     this.getFoodList();
+    this.GetLogin();
   }
 
   getFoodList(): void {
@@ -42,5 +44,19 @@ export class FoodMenuComponent {
   GetFilter(){
     this.getFoodList();
   }
+
+  GetLogin(){
+    // READ STRING FROM LOCAL STORAGE
+var retrievedObject = localStorage.getItem('loggedindetail');
+
+if (typeof retrievedObject !== 'undefined' && retrievedObject !== null){
+  // CONVERT STRING TO REGULAR JS OBJECT
+  var parsedObject = JSON.parse(retrievedObject!);
+  
+  this.IsLoggedIn = true;
+}else{
+  this.IsLoggedIn = false;
+}
+}
 
 }

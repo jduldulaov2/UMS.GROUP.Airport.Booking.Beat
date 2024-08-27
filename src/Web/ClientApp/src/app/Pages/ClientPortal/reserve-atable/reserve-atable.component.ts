@@ -10,6 +10,9 @@ declare var $: any;
 })
 export class ReserveATableComponent {
 
+  IsLoggedIn: any;
+  user_code!: any;
+
   constructor(
     private router: Router,
     private restaurantBookingClient: RestaurantBookingsClient,
@@ -20,10 +23,28 @@ export class ReserveATableComponent {
   ngOnInit(){
     $("html, body").animate({ scrollTop: 0 }, "fast");
     this.GetInitialInfo();
+    this.GetLogin();
+    this.GetInitialInfo2();
   }
   
 
-  user_code!: any;
+  fullName: any;
+  emailAddress: any;
+  contactNumber: any;
+  fullAddress: any;
+
+  GetInitialInfo2(){
+    // READ STRING FROM LOCAL STORAGE
+  var retrievedObject = localStorage.getItem('loggedindetail');
+
+  if (typeof retrievedObject !== 'undefined' && retrievedObject !== null){
+    var parsedObject = JSON.parse(retrievedObject!);
+    this.fullName = parsedObject.data?.firstName + ' ' + parsedObject.data?.lastName;
+    this.emailAddress = parsedObject.data?.emailAddress;
+    this.contactNumber = parsedObject.data?.contactNumber;
+    this.fullAddress = parsedObject.data?.street + ' ' + parsedObject.data?.city + ' ' + parsedObject.data?.region + ' ' + parsedObject.data?.zipCode;
+    }
+  }
 
   GetInitialInfo(){
     // READ STRING FROM LOCAL STORAGE
@@ -39,11 +60,18 @@ export class ReserveATableComponent {
     var user_id = parsedObject.data?.id;
     this.user_code = user_id;
 
-    $("#fullname").val(fullName);
-    $("#emailaddress").val(emailAddress);
-    $("#phonenumber").val(contactNumber);
-
     }
+  }
+
+  GetLogin(){
+      // READ STRING FROM LOCAL STORAGE
+  var retrievedObject = localStorage.getItem('loggedindetail');
+
+  if (typeof retrievedObject !== 'undefined' && retrievedObject !== null){
+    this.IsLoggedIn = true;
+  }else{
+    this.IsLoggedIn = false;
+  }
   }
 
   ReserveATable(fullname: any, 
@@ -118,12 +146,9 @@ export class ReserveATableComponent {
       this.restaurantBookingClient.createRestaurantBooking(list as CreateRestaurantBookingCommand).subscribe(
         result => {
           if(result.resultType == 1){
-            //alert(result.data?.id);
-            //this.loader.ShowToast("New Airport has been successfully added.", "success");
-            //this.router.navigate(['login/registration-confirmation']); my-cart/booking/19283098230840982908908r/detail
             this.router.navigate(['/my-cart/booking/',result.data?.id,'detail']);
           }else{
-            alert(result.message);
+            this.Notification(result.message, "error");
             //this.loader.DisplayErrorMessage(result.message);
             //this.loader.ShowToast("Something went wrong. Check the validation error/s.", "error");
           }
@@ -131,16 +156,31 @@ export class ReserveATableComponent {
         error => {
           const errors = JSON.parse(error.response).errors;
           alert(errors);
-          //this.loader.DisplayErrorMessage(errors);
-          //this.loader.ShowToast("Something went wrong. Check the validation error/s.", "error");
+          this.Notification(errors, "error");
         }
       );
     }else{
-      alert("Some fields are required.");
-      //this.loader.DisplayErrorMessage(errorMessage);
-      //this.loader.ShowToast("Something went wrong. Check the validation error/s.", "error");
+      this.Notification("Some fields are required.", "error");
     }
 
+
+  }
+
+  Notification(message: any, type: any){
+    if(type == "error"){
+      $(".error-message").addClass("display-message");
+      $(".success-message").removeClass("display-message");
+      $(".error-message").html(message);
+    }else{
+      $(".error-message").removeClass("display-message");
+      $(".success-message").addClass("display-message");
+      $(".success-message").html(message);
+    }
+
+    setTimeout(() => {
+      $(".success-message").removeClass("display-message");
+      $(".error-message").removeClass("display-message");
+    }, 2000);
 
   }
 

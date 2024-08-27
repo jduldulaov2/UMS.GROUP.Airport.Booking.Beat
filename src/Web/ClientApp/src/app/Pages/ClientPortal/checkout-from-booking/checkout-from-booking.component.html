@@ -4,6 +4,8 @@
     }
 </style>
 
+<button style="width: 100%; margin-bottom: 5px; position: fixed; bottom: -5px; width: 100%; z-index: 99999; background: brown!important; color: white!important;" [routerLink]="['/home/mobile']" type="submit" class="btn bg-gradient-warning btn-flat d-block d-md-none">Go to Dashboard</button>  
+
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -79,8 +81,8 @@
                   From
                   <address>
                     <strong>Thoracker Restaurant</strong><br>
-                    Address1<br>
-                    Phone: 09959665161<br>
+                    Kranichweg 6, Muri bei Bern 3074 Switzerland<br>
+                    Phone: +41 31 951 31 67<br>
                     Email: thorackergmail.com
                   </address>
                 </div>
@@ -127,7 +129,7 @@
               <!-- /.row -->
 
               <!-- Table row -->
-              <div class="row">
+              <div class="row d-none d-md-block">
                 <div class="col-12 table-responsive">
                     <p class="lead">Booking Details and Order Items:</p>
                     <div class="callout callout-danger">
@@ -162,6 +164,41 @@
                 </div>
                 <!-- /.col -->
               </div>
+
+              <div class="row d-block d-md-none">
+                <div class="col-12 table-responsive">
+                    <p class="lead">Booking Details and Order Items:</p>
+                    <div class="callout callout-danger">
+                        <h5><i class="fas fa-danger"></i> Booking Referrence #: {{b_bookingReferrenceNumber}}</h5>
+                        Date Arrival: {{b_bookingFromDate}} <br>
+                        Number or Person: {{b_numberOfPax}} <br>
+                        Table: N/A
+                      </div>
+                  <table class="table table-striped">
+                    <thead style="
+                    background: beige;
+                ">
+                    <tr>
+                      <th>Product</th>
+                      <th>Price</th>
+                      <th>Qty</th>
+                      <th>Subtotal</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let item of cartDto">
+                      
+                      <td>{{item.foodName}}</td>
+                      <td>{{item.currentPrice}}</td>
+                      <td>{{item.currentQuantity}}</td>
+                      <td>{{item.currentTotal}}</td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <!-- /.col -->
+              </div>
+              
               <!-- /.row -->
 
               <div class="row payment-image">
@@ -187,15 +224,14 @@
               <!-- this row will not appear when printing -->
               <div class="row no-print d-none d-md-block">
                 <div class="col-12" style="text-align: center;">
-                  <button (click)="GoToCart()" style="margin-right: 10px;" type="button" class="btn btn-warning"><i class="far fa-credit-card"></i> Back to cart page</button>
+                  <button (click)="GoToCart()" style="margin-right: 10px;" type="button" class="btn btn-warning"><i class="fas fa-cart-arrow-down"></i> Back to cart page</button>
                   <button type="button" class="btn btn-success"><i class="far fa-credit-card"></i> Submit Booking (For Approval)</button>
                 </div>
               </div>
 
               <div class="row no-print d-block d-md-none">
                 <div class="col-12" style="text-align: center;">
-                  <button style="width: 100%; margin-bottom: 5px;" [routerLink]="['/home/mobile']" type="button" class="btn btn-warning"><i class="far fa-credit-card"></i> Back to Home page</button>
-                  <button style="width: 100%; margin-bottom: 5px;" (click)="GoToCart()" type="button" class="btn btn-warning"><i class="far fa-credit-card"></i> Back to Cart page</button>
+                  <button style="width: 100%; margin-bottom: 5px;" (click)="GoToCart()" type="button" class="btn btn-warning"><i class="fas fa-cart-arrow-down"></i> Back to Cart page</button>
                   <button style="width: 100%; margin-bottom: 5px;" type="button" class="btn btn-success"><i class="far fa-credit-card"></i> Submit Booking (For Approval)</button>
                 </div>
               </div>

@@ -77,6 +77,8 @@
 
 </style>  
   
+<button style="width: 100%; margin-bottom: 5px; position: fixed; bottom: -5px; width: 100%; z-index: 99999; background: brown!important; color: white!important;" [routerLink]="['/home/mobile']" type="submit" class="btn bg-gradient-warning btn-flat d-block d-md-none">Go to Dashboard</button> 
+
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper" style="padding-top: 55px; ">
     <div class="section-title" style="background: linear-gradient(0deg, rgb(232 206 121 / 82%) 0%, rgb(236 217 151 / 21%) 100%);">
@@ -91,7 +93,7 @@
         <div class="row">
 
           <div class="col-md-12" style="text-align: center;">
-            <div class="callout callout-info"><h5><i class="fas fa-info"></i> Login Complate!</h5> Welcome <b>Jake</b> <br> To continue, you can book a table and create an order.</div>
+            <div class="callout callout-info"><h5><i class="fas fa-info"></i> Login Complate!</h5> Welcome <b>{{fullname}}</b> <br> To continue, you can book a table and create an order.</div>
 
             <button  type="submit" [routerLink]="['/home']" class="btn bg-gradient-warning btn-flat" style="margin-right: 20px;" >Go back to Home Page</button>
             <button  type="submit" [routerLink]="['/reserve-a-table']" class="btn bg-gradient-warning btn-flat" style="margin-right: 20px;" >Book a table</button>
@@ -109,14 +111,13 @@
         <div class="row">
 
           <div class="col-md-12" style="text-align: center;">
-            <div class="callout callout-info"><h5><i class="fas fa-info"></i> Login Complate!</h5> Welcome <b>Jake</b> <br> To continue, you can book a table and create an order.</div>
+            <div class="callout callout-info"><h5><i class="fas fa-info"></i> Login Complate!</h5> Welcome <b>{{fullname}}</b> <br> To continue, you can book a table and create an order.</div>
           </div>
 
         </div>
 
         <div class="row">
             <div class="col-md-12">
-              <button style="width: 100%; margin-bottom: 5px;" type="submit" [routerLink]="['/home/mobile']" class="btn bg-gradient-warning btn-flat">Go back to Home Page</button>
               <button style="width: 100%; margin-bottom: 5px;" type="submit" [routerLink]="['/reserve-a-table']" class="btn bg-gradient-warning btn-flat">Book a table</button>
               <button style="width: 100%; margin-bottom: 5px;" type="submit" [routerLink]="['/food-menu']" class="btn bg-gradient-warning btn-flat">Create an Order</button>
             </div>

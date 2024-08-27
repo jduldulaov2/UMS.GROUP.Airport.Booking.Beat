@@ -114,30 +114,49 @@ export class ClientRegisterComponent {
     }
   
     if(errorMessage == ''){
-      this.usersClient.createIdentityUser(list as CreateUserCommand).subscribe(
-        result => {
-          if(result.resultType == 1){
-            //this.loader.ShowToast("New Airport has been successfully added.", "success");
-            this.router.navigate(['login/registration-confirmation']);
-          }else{
-            alert(result.message);
-            //this.loader.DisplayErrorMessage(result.message);
-            //this.loader.ShowToast("Something went wrong. Check the validation error/s.", "error");
+      if(password != confirmpassword){
+        this.Notification("Password did not match","error");
+      }else{
+        this.usersClient.createIdentityUser(list as CreateUserCommand).subscribe(
+          result => {
+            if(result.data?.id == null){
+              this.Notification("Please enter a strong password","error");
+            }else{
+              if(result.resultType == 1){
+                //this.loader.ShowToast("New Airport has been successfully added.", "success");
+                this.router.navigate(['login/registration-confirmation']);
+              }else{
+                this.Notification(result.message,"error");
+              }
+            }
+          },
+          error => {
+            const errors = JSON.parse(error.response).errors;
+            this.Notification(errors,"error");
           }
-        },
-        error => {
-          const errors = JSON.parse(error.response).errors;
-          alert(errors);
-          //this.loader.DisplayErrorMessage(errors);
-          //this.loader.ShowToast("Something went wrong. Check the validation error/s.", "error");
-        }
-      );
+        );
+      }
+      
     }else{
-      alert("Some fields are required.");
-      //this.loader.DisplayErrorMessage(errorMessage);
-      //this.loader.ShowToast("Something went wrong. Check the validation error/s.", "error");
+      this.Notification("Some fields are required.","error");
+    }
+  }
+
+  Notification(message: any, type: any){
+    if(type == "error"){
+      $(".error-message").addClass("display-message");
+      $(".success-message").removeClass("display-message");
+      $(".error-message").html(message);
+    }else{
+      $(".error-message").removeClass("display-message");
+      $(".success-message").addClass("display-message");
+      $(".success-message").html(message);
     }
 
+    setTimeout(() => {
+      $(".success-message").removeClass("display-message");
+      $(".error-message").removeClass("display-message");
+    }, 2000);
 
   }
 

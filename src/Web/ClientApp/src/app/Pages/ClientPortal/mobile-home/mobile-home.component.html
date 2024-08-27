@@ -103,7 +103,7 @@
             </div>
           </div>
 
-      <section id="about" class="about" style="padding: 30px;">
+      <section *ngIf="IsLoggedIn == false" id="about" class="about" style="padding: 30px;">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-3 col-6" style="cursor: pointer;" [routerLink]="['/home']">
@@ -116,7 +116,7 @@
                     <div class="icon">
                       <i class="ion ion-person-add"></i>
                     </div>
-                    <a href="#" class="small-box-footer">Home <i class="fas fa-arrow-circle-right"></i></a>
+                    <a  class="small-box-footer">Home <i class="fas fa-arrow-circle-right"></i></a>
                   </div>
                 </div>
                 <div class="col-lg-3 col-6" style="cursor: pointer;" [routerLink]="['/about-us']">
@@ -129,7 +129,7 @@
                       <div class="icon">
                         <i class="ion ion-person-add"></i>
                       </div>
-                      <a href="#" class="small-box-footer">About <i class="fas fa-arrow-circle-right"></i></a>
+                      <a  class="small-box-footer">About <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                   </div>
                   <div class="col-lg-3 col-6" style="cursor: pointer;" [routerLink]="['/food-menu']">
@@ -142,7 +142,7 @@
                       <div class="icon">
                         <i class="ion ion-person-add"></i>
                       </div>
-                      <a href="#" class="small-box-footer">Menu <i class="fas fa-arrow-circle-right"></i></a>
+                      <a  class="small-box-footer">Menu <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                   </div>
                   <div class="col-lg-3 col-6" style="cursor: pointer;" [routerLink]="['/special-menu']">
@@ -155,7 +155,7 @@
                       <div class="icon">
                         <i class="ion ion-person-add"></i>
                       </div>
-                      <a href="#" class="small-box-footer">Specials <i class="fas fa-arrow-circle-right"></i></a>
+                      <a  class="small-box-footer">Specials <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                   </div>
                 <!-- ./col -->
@@ -167,20 +167,20 @@
                   <!-- small box -->
                   <div class="small-box bg-warning">
                     <div class="inner">
-                      <i class='fas fa-home' style='font-size:48px;'></i>
+                      <i class='fas fa-envelope-open-text' style='font-size:48px;'></i>
                       <p>Contact</p>
                     </div>
                     <div class="icon">
                       <i class="ion ion-person-add"></i>
                     </div>
-                    <a href="#" class="small-box-footer">Contact <i class="fas fa-arrow-circle-right"></i></a>
+                    <a  class="small-box-footer">Contact <i class="fas fa-arrow-circle-right"></i></a>
                   </div>
                 </div>
                 <div class="col-lg-3 col-6"  style="cursor: pointer;" [routerLink]="['/reserve-a-table']">
                     <!-- small box -->
                     <div class="small-box bg-warning">
                       <div class="inner">
-                        <i class='fas fa-atlas' style='font-size:48px;'></i>
+                        <i class='fas fa-file-import' style='font-size:48px;'></i>
                         <p>Book a Table</p>
                       </div>
                       <div class="icon">
@@ -193,7 +193,7 @@
                     <!-- small box -->
                     <div class="small-box bg-warning">
                       <div class="inner">
-                        <i class='fa fa-book' style='font-size:48px;'></i>
+                        <i class='fas fa-address-card' style='font-size:48px;'></i>
                         <p>Login</p>
                       </div>
                       <div class="icon">
@@ -202,47 +202,152 @@
                       <a  class="small-box-footer">Login <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                   </div>
-                  <div class="col-lg-3 col-6">
+                <!-- ./col -->
+                <!-- ./col -->
+            </div>
+        </div>
+      </section>
+
+      <section *ngIf="IsLoggedIn == true" id="about" class="about" style="padding: 30px;">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-3 col-6" style="cursor: pointer;" [routerLink]="['/home']">
+                  <!-- small box -->
+                  <div class="small-box bg-warning">
+                    <div class="inner">
+                      <i class='fas fa-home' style='font-size:48px;'></i>
+                      <p>Home</p>
+                    </div>
+                    <div class="icon">
+                      <i class="ion ion-person-add"></i>
+                    </div>
+                    <a  class="small-box-footer">Home <i class="fas fa-arrow-circle-right"></i></a>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-6" style="cursor: pointer;" [routerLink]="['/about-us']">
+                    <!-- small box -->
+                    <div class="small-box bg-warning">
+                      <div class="inner">
+                        <i class='fas fa-atlas' style='font-size:48px;'></i>
+                        <p>About</p>
+                      </div>
+                      <div class="icon">
+                        <i class="ion ion-person-add"></i>
+                      </div>
+                      <a  class="small-box-footer">About <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                  </div>
+                  <div class="col-lg-3 col-6" style="cursor: pointer;" [routerLink]="['/food-menu']">
                     <!-- small box -->
                     <div class="small-box bg-warning">
                       <div class="inner">
                         <i class='fa fa-book' style='font-size:48px;'></i>
+                        <p>Menu</p>
+                      </div>
+                      <div class="icon">
+                        <i class="ion ion-person-add"></i>
+                      </div>
+                      <a  class="small-box-footer">Menu <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                  </div>
+                  <div class="col-lg-3 col-6" style="cursor: pointer;" [routerLink]="['/special-menu']">
+                    <!-- small box -->
+                    <div class="small-box bg-warning">
+                      <div class="inner">
+                        <i class='fas fa-box-open' style='font-size:48px;'></i>
+                        <p>Specials</p>
+                      </div>
+                      <div class="icon">
+                        <i class="ion ion-person-add"></i>
+                      </div>
+                      <a  class="small-box-footer">Specials <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                  </div>
+                <!-- ./col -->
+                <!-- ./col -->
+            </div>
+
+            <div class="row">
+                <div class="col-lg-3 col-6" style="cursor: pointer;" [routerLink]="['/contact-us']">
+                  <!-- small box -->
+                  <div class="small-box bg-warning">
+                    <div class="inner">
+                      <i class='fas fa-envelope-open-text' style='font-size:48px;'></i>
+                      <p>Contact</p>
+                    </div>
+                    <div class="icon">
+                      <i class="ion ion-person-add"></i>
+                    </div>
+                    <a  class="small-box-footer">Contact <i class="fas fa-arrow-circle-right"></i></a>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-6"  style="cursor: pointer;" [routerLink]="['/reserve-a-table']">
+                    <!-- small box -->
+                    <div class="small-box bg-warning">
+                      <div class="inner">
+                        <i class='fas fa-file-import' style='font-size:48px;'></i>
+                        <p>Book a Table</p>
+                      </div>
+                      <div class="icon">
+                        <i class="ion ion-person-add"></i>
+                      </div>
+                      <a  class="small-box-footer">Book a Table <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                  </div>
+                  <div class="col-lg-3 col-6" [routerLink]="['/checkout']">
+                    <!-- small box -->
+                    <div class="small-box bg-warning">
+                      <div class="inner">
+                        <i class='fas fa-file-invoice' style='font-size:48px;'></i>
+                        <p>Checkout</p>
+                      </div>
+                      <div class="icon">
+                        <i class="ion ion-person-add"></i>
+                      </div>
+                      <a  class="small-box-footer">Checkout<i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                  </div>
+                  <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-warning">
+                      <div class="inner">
+                        <i class='fas fa-cart-arrow-down' style='font-size:48px;'></i>
                         <p>My Cart</p>
                       </div>
                       <div class="icon">
                         <i class="ion ion-person-add"></i>
                       </div>
-                      <a href="#" class="small-box-footer">My Cart <i class="fas fa-arrow-circle-right"></i></a>
+                      <a  class="small-box-footer">My Cart <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                   </div>
                 <!-- ./col -->
                 <!-- ./col -->
             </div>
             <div class="row">
-                  <div class="col-lg-3 col-6" [routerLink]="['/checkout']">
-                    <!-- small box -->
-                    <div class="small-box bg-warning">
-                      <div class="inner">
-                        <i class='fa fa-book' style='font-size:48px;'></i>
-                        <p>Checkout</p>
-                      </div>
-                      <div class="icon">
-                        <i class="ion ion-person-add"></i>
-                      </div>
-                      <a href="#" class="small-box-footer">Checkout<i class="fas fa-arrow-circle-right"></i></a>
-                    </div>
-                  </div>
                   <div [routerLink]="['/my-activity']" class="col-lg-3 col-6">
                     <!-- small box -->
                     <div class="small-box bg-warning">
                       <div class="inner">
-                        <i class='fa fa-book' style='font-size:48px;'></i>
+                        <i class='fas fa-book-open' style='font-size:48px;'></i>
                         <p>My Activities</p>
                       </div>
                       <div class="icon">
                         <i class="ion ion-person-add"></i>
                       </div>
-                      <a href="#" class="small-box-footer">My Activities<i class="fas fa-arrow-circle-right"></i></a>
+                      <a  class="small-box-footer">My Activities<i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                  </div>
+                  <div class="col-lg-3 col-6" (click)="SignOut()">
+                    <!-- small box -->
+                    <div class="small-box bg-warning">
+                      <div class="inner">
+                        <i class='fas fa-arrow-alt-circle-right' style='font-size:48px;'></i>
+                        <p>Logout</p>
+                      </div>
+                      <div class="icon">
+                        <i class="ion ion-person-add"></i>
+                      </div>
+                      <a  class="small-box-footer">Logout<i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                   </div>
             </div>

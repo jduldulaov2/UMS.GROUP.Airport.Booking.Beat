@@ -101,7 +101,9 @@
 }
 
 </style>  
-  
+
+<button style="width: 100%; margin-bottom: 5px; position: fixed; bottom: -5px; width: 100%; z-index: 99999; background: brown!important; color: white!important;" [routerLink]="['/home/mobile']" type="submit" class="btn bg-gradient-warning btn-flat d-block d-md-none">Go to Dashboard</button>  
+
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper" style="padding-top: 55px; ">
     
@@ -116,34 +118,58 @@
       <div class="row">
         <div class="col-md-12">
           <div class="card card-primary card-tabs">
-            <div class="card-header p-0 pt-1">
+            <div class="p-0 pt-1 d-block d-md-none">
+              <div class="btn-group" style="width: 100%;">
+                <button type="button" class="btn btn-warning btn-flat">Select Food Category</button>
+                <button style="    background: brown;
+    color: white;" type="button" class="btn btn-warning btn-flat dropdown-toggle dropdown-icon" data-toggle="dropdown">
+                  <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <div class="dropdown-menu" role="menu">
+                  <a (click)="GetFilter()" class="dropdown-item">ALL Foods</a>
+                  <a (click)="getFoodListById(4)" class="dropdown-item">INSALATE / SALATE</a>
+                  <a (click)="getFoodListById(5)" class="dropdown-item">ANTIPASTI / VORSPEISEN</a>
+                  <a (click)="getFoodListById(6)" class="dropdown-item">RISOTTO</a>
+                  <a (click)="getFoodListById(7)" class="dropdown-item">PASTA / TEIGWAREN</a>
+                  <a (click)="getFoodListById(8)" class="dropdown-item">PIZZA I PINSA DEL FORNO A LEGNA..</a>
+                  <a (click)="getFoodListById(9)" class="dropdown-item">GRATIN</a>
+                  <a (click)="getFoodListById(10)" class="dropdown-item">SOMMER</a>
+                </div>
+              </div>
+            </div>
+            <div class="card-header p-0 pt-1 d-none d-md-block">
               <ul class="nav nav-tabs" id="custom-tabs-five-tab" role="tablist">
                 <li class="nav-item">
-                  <a (click)="GetFilter()" class="nav-link active" id="custom-tabs-five-normal-tab" data-toggle="pill" href="#GETALL" role="tab" aria-controls="custom-tabs-five-normal" aria-selected="true">ALL Foods</a>
+                  <a (click)="GetFilter()" class="nav-link active" id="custom-tabs-five-normal-tab" data-toggle="pill" href="#GETALL" 
+                  role="tab" aria-controls="custom-tabs-five-normal" aria-selected="true">ALL Foods</a>
                 </li>
                 <li class="nav-item">
-                  <a (click)="getFoodListById(4)" class="nav-link" id="custom-tabs-five-normal-tab" data-toggle="pill" href="#INSALATE" role="tab" aria-controls="custom-tabs-five-normal" aria-selected="true">INSALATE / SALATE</a>
+                  <a (click)="getFoodListById(4)" class="nav-link" id="custom-tabs-five-normal-tab" data-toggle="pill" href="#INSALATE" 
+                  role="tab" aria-controls="custom-tabs-five-normal" aria-selected="true">INSALATE / SALATE</a>
                 </li>
                 <li class="nav-item">
-                  <a (click)="getFoodListById(4)" class="nav-link" id="custom-tabs-five-normal-tab" data-toggle="pill" href="#INSALATE" role="tab" aria-controls="custom-tabs-five-normal" aria-selected="true">INSALATE / SALATE</a>
+                  <a (click)="getFoodListById(5)" class="nav-link" id="custom-tabs-five-normal-tab" data-toggle="pill" href="#ANTIPASTI" 
+                  role="tab" aria-controls="custom-tabs-five-normal" aria-selected="false">ANTIPASTI / VORSPEISEN</a>
                 </li>
                 <li class="nav-item">
-                  <a (click)="getFoodListById(5)" class="nav-link" id="custom-tabs-five-normal-tab" data-toggle="pill" href="#ANTIPASTI" role="tab" aria-controls="custom-tabs-five-normal" aria-selected="false">ANTIPASTI / VORSPEISEN</a>
+                  <a (click)="getFoodListById(6)" class="nav-link" id="custom-tabs-five-normal-tab" data-toggle="pill" href="#RISOTTO" 
+                  role="tab" aria-controls="custom-tabs-five-normal" aria-selected="false">RISOTTO</a>
                 </li>
                 <li class="nav-item">
-                  <a (click)="getFoodListById(6)" class="nav-link" id="custom-tabs-five-normal-tab" data-toggle="pill" href="#RISOTTO" role="tab" aria-controls="custom-tabs-five-normal" aria-selected="false">RISOTTO</a>
+                  <a (click)="getFoodListById(7)" class="nav-link" id="custom-tabs-five-normal-tab" data-toggle="pill" href="#PASTA" 
+                  role="tab" aria-controls="custom-tabs-five-normal" aria-selected="false">PASTA / TEIGWAREN</a>
                 </li>
                 <li class="nav-item">
-                  <a (click)="getFoodListById(7)" class="nav-link" id="custom-tabs-five-normal-tab" data-toggle="pill" href="#PASTA" role="tab" aria-controls="custom-tabs-five-normal" aria-selected="false">PASTA / TEIGWAREN</a>
+                  <a (click)="getFoodListById(8)" class="nav-link" id="custom-tabs-five-normal-tab" data-toggle="pill" href="#PIZZA" 
+                  role="tab" aria-controls="custom-tabs-five-normal" aria-selected="false">PIZZA I PINSA DEL FORNO A LEGNA / PIZZA UND PINSA AUS DEM HOLZOFEN</a>
                 </li>
                 <li class="nav-item">
-                  <a (click)="getFoodListById(8)" class="nav-link" id="custom-tabs-five-normal-tab" data-toggle="pill" href="#PIZZA" role="tab" aria-controls="custom-tabs-five-normal" aria-selected="false">PIZZA I PINSA DEL FORNO A LEGNA / PIZZA UND PINSA AUS DEM HOLZOFEN</a>
+                  <a (click)="getFoodListById(9)" class="nav-link" id="custom-tabs-five-normal-tab" data-toggle="pill" href="#GRATIN" 
+                  role="tab" aria-controls="custom-tabs-five-normal" aria-selected="false">GRATIN</a>
                 </li>
                 <li class="nav-item">
-                  <a (click)="getFoodListById(9)" class="nav-link" id="custom-tabs-five-normal-tab" data-toggle="pill" href="#GRATIN" role="tab" aria-controls="custom-tabs-five-normal" aria-selected="false">GRATIN</a>
-                </li>
-                <li class="nav-item">
-                  <a (click)="getFoodListById(10)" class="nav-link" id="custom-tabs-five-normal-tab" data-toggle="pill" href="#SOMMER" role="tab" aria-controls="custom-tabs-five-normal" aria-selected="false">SOMMER</a>
+                  <a (click)="getFoodListById(10)" class="nav-link" id="custom-tabs-five-normal-tab" data-toggle="pill" href="#SOMMER" 
+                  role="tab" aria-controls="custom-tabs-five-normal" aria-selected="false">SOMMER</a>
                 </li>
               </ul>
             </div>
@@ -159,7 +185,7 @@
                             <span class="info-box-text"><span style="font-weight: bold;">Food:</span> {{item.foodName}}</span>
                             <span class="info-box-text"><span style="font-weight: bold;">Price:</span> {{item.foodPrice}}</span>
                             <span class="info-box-text"><span style="font-weight: bold;">Description:</span>: {{item.foodDescription}}</span>
-                            <div style="text-align: right;"><button type="button" class="btn btn-warning btn-warning-custom" style="width: 130px"> <i class="fa fa-cart-plus"></i> Add to Cart</button></div>
+                            <div *ngIf="IsLoggedIn == true" style="text-align: right;"><button type="button" class="btn btn-warning btn-warning-custom" style="width: 130px"> <i class="fa fa-cart-plus"></i> Add to Cart</button></div>
                           </div>
                         </div>
                       </div>
@@ -176,7 +202,7 @@
                             <span class="info-box-text"><span style="font-weight: bold;">Food:</span> {{item.foodName}}</span>
                             <span class="info-box-text"><span style="font-weight: bold;">Price:</span> {{item.foodPrice}}</span>
                             <span class="info-box-text"><span style="font-weight: bold;">Description:</span>: {{item.foodDescription}}</span>
-                            <div style="text-align: right;"><button type="button" class="btn btn-warning btn-warning-custom" style="width: 130px"> <i class="fa fa-cart-plus"></i> Add to Cart</button></div>
+                            <div *ngIf="IsLoggedIn == true" style="text-align: right;"><button type="button" class="btn btn-warning btn-warning-custom" style="width: 130px"> <i class="fa fa-cart-plus"></i> Add to Cart</button></div>
                           </div>
                         </div>
                       </div>
@@ -194,7 +220,7 @@
                               <span class="info-box-text"><span style="font-weight: bold;">Food:</span> {{item.foodName}}</span>
                               <span class="info-box-text"><span style="font-weight: bold;">Price:</span> {{item.foodPrice}}</span>
                               <span class="info-box-text"><span style="font-weight: bold;">Description:</span>: {{item.foodDescription}}</span>
-                              <div style="text-align: right;"><button type="button" class="btn btn-warning btn-warning-custom" style="width: 130px"> <i class="fa fa-cart-plus"></i> Add to Cart</button></div>
+                              <div *ngIf="IsLoggedIn == true" style="text-align: right;"><button type="button" class="btn btn-warning btn-warning-custom" style="width: 130px"> <i class="fa fa-cart-plus"></i> Add to Cart</button></div>
                             </div>
                           </div>
                         </div>
@@ -213,7 +239,7 @@
                               <span class="info-box-text"><span style="font-weight: bold;">Food:</span> {{item.foodName}}</span>
                               <span class="info-box-text"><span style="font-weight: bold;">Price:</span> {{item.foodPrice}}</span>
                               <span class="info-box-text"><span style="font-weight: bold;">Description:</span>: {{item.foodDescription}}</span>
-                              <div style="text-align: right;"><button type="button" class="btn btn-warning btn-warning-custom" style="width: 130px"> <i class="fa fa-cart-plus"></i> Add to Cart</button></div>
+                              <div *ngIf="IsLoggedIn == true" style="text-align: right;"><button type="button" class="btn btn-warning btn-warning-custom" style="width: 130px"> <i class="fa fa-cart-plus"></i> Add to Cart</button></div>
                             </div>
                           </div>
                         </div>
@@ -232,7 +258,7 @@
                               <span class="info-box-text"><span style="font-weight: bold;">Food:</span> {{item.foodName}}</span>
                               <span class="info-box-text"><span style="font-weight: bold;">Price:</span> {{item.foodPrice}}</span>
                               <span class="info-box-text"><span style="font-weight: bold;">Description:</span>: {{item.foodDescription}}</span>
-                              <div style="text-align: right;"><button type="button" class="btn btn-warning btn-warning-custom" style="width: 130px"> <i class="fa fa-cart-plus"></i> Add to Cart</button></div>
+                              <div *ngIf="IsLoggedIn == true" style="text-align: right;"><button type="button" class="btn btn-warning btn-warning-custom" style="width: 130px"> <i class="fa fa-cart-plus"></i> Add to Cart</button></div>
                             </div>
                           </div>
                         </div>
@@ -251,7 +277,7 @@
                               <span class="info-box-text"><span style="font-weight: bold;">Food:</span> {{item.foodName}}</span>
                               <span class="info-box-text"><span style="font-weight: bold;">Price:</span> {{item.foodPrice}}</span>
                               <span class="info-box-text"><span style="font-weight: bold;">Description:</span>: {{item.foodDescription}}</span>
-                              <div style="text-align: right;"><button type="button" class="btn btn-warning btn-warning-custom" style="width: 130px"> <i class="fa fa-cart-plus"></i> Add to Cart</button></div>
+                              <div *ngIf="IsLoggedIn == true" style="text-align: right;"><button type="button" class="btn btn-warning btn-warning-custom" style="width: 130px"> <i class="fa fa-cart-plus"></i> Add to Cart</button></div>
                             </div>
                           </div>
                         </div>
@@ -270,7 +296,7 @@
                               <span class="info-box-text"><span style="font-weight: bold;">Food:</span> {{item.foodName}}</span>
                               <span class="info-box-text"><span style="font-weight: bold;">Price:</span> {{item.foodPrice}}</span>
                               <span class="info-box-text"><span style="font-weight: bold;">Description:</span>: {{item.foodDescription}}</span>
-                              <div style="text-align: right;"><button type="button" class="btn btn-warning btn-warning-custom" style="width: 130px"> <i class="fa fa-cart-plus"></i> Add to Cart</button></div>
+                              <div *ngIf="IsLoggedIn == true" style="text-align: right;"><button type="button" class="btn btn-warning btn-warning-custom" style="width: 130px"> <i class="fa fa-cart-plus"></i> Add to Cart</button></div>
                             </div>
                           </div>
                         </div>
@@ -289,7 +315,7 @@
                               <span class="info-box-text"><span style="font-weight: bold;">Food:</span> {{item.foodName}}</span>
                               <span class="info-box-text"><span style="font-weight: bold;">Price:</span> {{item.foodPrice}}</span>
                               <span class="info-box-text"><span style="font-weight: bold;">Description:</span>: {{item.foodDescription}}</span>
-                              <div style="text-align: right;"><button type="button" class="btn btn-warning btn-warning-custom" style="width: 130px"> <i class="fa fa-cart-plus"></i> Add to Cart</button></div>
+                              <div *ngIf="IsLoggedIn == true" style="text-align: right;"><button type="button" class="btn btn-warning btn-warning-custom" style="width: 130px"> <i class="fa fa-cart-plus"></i> Add to Cart</button></div>
                             </div>
                           </div>
                         </div>

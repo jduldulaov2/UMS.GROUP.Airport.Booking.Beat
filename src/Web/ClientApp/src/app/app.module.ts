@@ -48,6 +48,9 @@ import { UserActivityComponent }  from './Pages/ClientPortal/user-activity/user-
 import { CheckoutFromBookingComponent }  from './Pages/ClientPortal/checkout-from-booking/checkout-from-booking.component';
 import { MobileHomeComponent }  from './Pages/ClientPortal/mobile-home/mobile-home.component';
 import { ReserveATableComponent }  from './Pages/ClientPortal/reserve-atable/reserve-atable.component';
+import { AboutComponent }  from './Pages/ClientPortal/about/about.component';
+import { SpecialMenuComponent }  from './Pages/ClientPortal/special-menu/special-menu.component';
+import { ContactUsComponent }  from './Pages/ClientPortal/contact-us/contact-us.component';
 
 @NgModule({
   declarations: [
@@ -90,7 +93,10 @@ import { ReserveATableComponent }  from './Pages/ClientPortal/reserve-atable/res
     UserActivityComponent,
     CheckoutFromBookingComponent,
     MobileHomeComponent,
-    ReserveATableComponent
+    ReserveATableComponent,
+    AboutComponent,
+    SpecialMenuComponent,
+    ContactUsComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
