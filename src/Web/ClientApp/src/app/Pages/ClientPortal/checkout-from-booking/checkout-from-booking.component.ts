@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DraftCartItemsClient, GetAllDraftCartItemsQueryDtoByCode, UpdateDraftCartItemsCommand, RestaurantBookingsClient, GetAllRestaurantBookingByIdQueryDto, UpdateRestaurantBookingCommand } from '../../../web-api-client';
+import { AuthClient, SendEmailDto, DraftCartItemsClient, GetAllDraftCartItemsQueryDtoByCode, UpdateDraftCartItemsCommand, RestaurantBookingsClient, GetAllRestaurantBookingByIdQueryDto, UpdateRestaurantBookingCommand } from '../../../web-api-client';
 import { ActivatedRoute, Router } from '@angular/router';
 declare var $: any;
 
@@ -51,7 +51,8 @@ export class CheckoutFromBookingComponent {
     private router: Router,
     private route: ActivatedRoute,
     private cartClient: DraftCartItemsClient,
-    private bookingClient: RestaurantBookingsClient
+    private bookingClient: RestaurantBookingsClient,
+    private authClient: AuthClient
   ) {
   }
 
@@ -138,6 +139,22 @@ export class CheckoutFromBookingComponent {
       result => {
         if(result.resultType == 1){
           this.Notification("Booking as been submitted. Please wait for the response approval from the restaurant.", "success");
+          this.authClient.sendEmail('thorackerrestaurant@gmail.com', 
+            this.emailAddress, 
+            'liepweijlwnyucjq',
+            'Thank you for sending your booking with referrence #: ' + this.b_bookingReferrenceNumber + '.<br><br>We will review the booking details and get back to you ASAP. <br><br><br>Best Regards!<br><br><br> Thoracker Admin',
+            'smtp.gmail.com',
+            'Reservation (For Approval): ' + this.b_bookingReferrenceNumber, 
+            587
+            ).subscribe(
+            result => {
+              
+            },
+            error => {
+              const errors = JSON.parse(error.response).errors;
+              this.Notification("Something went wrong. Check the validation error/s.", "error");
+            }
+          );
           setTimeout(() => {
             this.getBookingById(code_id);
           }, 2000);
@@ -152,7 +169,6 @@ export class CheckoutFromBookingComponent {
         this.Notification("Something went wrong. Check the validation error/s.", "error");
       }
     );
-
   }
 
   GetInitialInfo(){
