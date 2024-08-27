@@ -1,4 +1,5 @@
-﻿using UMS.GROUP.Airport.Booking.Application.Auth.Commands.Login;
+﻿using UMS.GROUP.Airport.Booking.Application.Auth.Commands.Email;
+using UMS.GROUP.Airport.Booking.Application.Auth.Commands.Login;
 using UMS.GROUP.Airport.Booking.Application.Auth.Commands.Logout;
 using UMS.GROUP.Airport.Booking.Application.Auth.Queries.GetLoggedIn;
 using UMS.GROUP.Airport.Booking.Application.Common.Models;
@@ -13,6 +14,7 @@ public class Auth : EndpointGroupBase
             .MapGet(Login, "Login")
             .MapGet(LogOut, "LogOut")
             .MapGet(GeLoggedIn, "GeLoggedIn")
+            .MapPost(SendEmail, "SendEmail")
             ;
     }
 
@@ -27,6 +29,11 @@ public class Auth : EndpointGroupBase
     }
 
     public async Task<Result<GetLoggedInQueryDto>> GeLoggedIn(ISender sender, [AsParameters] GetLoggedInQuery query)
+    {
+        return await sender.Send(query);
+    }
+
+    public async Task<Result<SendEmailDto>> SendEmail(ISender sender, [AsParameters] SendEmailCommand query)
     {
         return await sender.Send(query);
     }

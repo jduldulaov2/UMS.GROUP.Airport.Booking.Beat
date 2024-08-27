@@ -595,6 +595,7 @@ export interface IAuthClient {
     login(userName: string | null | undefined, password: string | null | undefined, isPersistent: boolean, lockOutOnFailure: boolean): Observable<ResultOfLoginDto>;
     logOut(userId: string | null | undefined): Observable<ResultOfLogoutDto>;
     geLoggedIn(): Observable<ResultOfGetLoggedInQueryDto>;
+    sendEmail(fromEmail: string | null | undefined, toEmail: string | null | undefined, password: string | null | undefined, emailBody: string | null | undefined, emailHost: string | null | undefined, emailSubject: string | null | undefined, emailPort: number): Observable<ResultOfSendEmailDto>;
 }
 
 @Injectable({
@@ -758,6 +759,70 @@ export class AuthClient implements IAuthClient {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
             result200 = ResultOfGetLoggedInQueryDto.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    sendEmail(fromEmail: string | null | undefined, toEmail: string | null | undefined, password: string | null | undefined, emailBody: string | null | undefined, emailHost: string | null | undefined, emailSubject: string | null | undefined, emailPort: number): Observable<ResultOfSendEmailDto> {
+        let url_ = this.baseUrl + "/api/Auth/SendEmail?";
+        if (fromEmail !== undefined && fromEmail !== null)
+            url_ += "FromEmail=" + encodeURIComponent("" + fromEmail) + "&";
+        if (toEmail !== undefined && toEmail !== null)
+            url_ += "ToEmail=" + encodeURIComponent("" + toEmail) + "&";
+        if (password !== undefined && password !== null)
+            url_ += "Password=" + encodeURIComponent("" + password) + "&";
+        if (emailBody !== undefined && emailBody !== null)
+            url_ += "EmailBody=" + encodeURIComponent("" + emailBody) + "&";
+        if (emailHost !== undefined && emailHost !== null)
+            url_ += "EmailHost=" + encodeURIComponent("" + emailHost) + "&";
+        if (emailSubject !== undefined && emailSubject !== null)
+            url_ += "EmailSubject=" + encodeURIComponent("" + emailSubject) + "&";
+        if (emailPort === undefined || emailPort === null)
+            throw new Error("The parameter 'emailPort' must be defined and cannot be null.");
+        else
+            url_ += "EmailPort=" + encodeURIComponent("" + emailPort) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processSendEmail(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processSendEmail(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<ResultOfSendEmailDto>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<ResultOfSendEmailDto>;
+        }));
+    }
+
+    protected processSendEmail(response: HttpResponseBase): Observable<ResultOfSendEmailDto> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ResultOfSendEmailDto.fromJS(resultData200);
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -5231,6 +5296,134 @@ export class GetLoggedInQueryDto implements IGetLoggedInQueryDto {
 
 export interface IGetLoggedInQueryDto {
     loggedInId?: string | undefined;
+}
+
+export class ResultOfSendEmailDto implements IResultOfSendEmailDto {
+    data?: SendEmailDto | undefined;
+    message?: string;
+    resultType?: ResultType;
+
+    constructor(data?: IResultOfSendEmailDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.data = _data["data"] ? SendEmailDto.fromJS(_data["data"]) : <any>undefined;
+            this.message = _data["message"];
+            this.resultType = _data["resultType"];
+        }
+    }
+
+    static fromJS(data: any): ResultOfSendEmailDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new ResultOfSendEmailDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["data"] = this.data ? this.data.toJSON() : <any>undefined;
+        data["message"] = this.message;
+        data["resultType"] = this.resultType;
+        return data;
+    }
+}
+
+export interface IResultOfSendEmailDto {
+    data?: SendEmailDto | undefined;
+    message?: string;
+    resultType?: ResultType;
+}
+
+export class SendEmailDto implements ISendEmailDto {
+    id?: string | undefined;
+    userName?: string | undefined;
+    lastName?: string | undefined;
+    firstName?: string | undefined;
+    middleName?: string | undefined;
+    emailAddress?: string | undefined;
+    isAdminAccount?: boolean | undefined;
+    street?: string | undefined;
+    city?: string | undefined;
+    province?: string | undefined;
+    region?: string | undefined;
+    zipCode?: string | undefined;
+    contactNumber?: string | undefined;
+
+    constructor(data?: ISendEmailDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.userName = _data["userName"];
+            this.lastName = _data["lastName"];
+            this.firstName = _data["firstName"];
+            this.middleName = _data["middleName"];
+            this.emailAddress = _data["emailAddress"];
+            this.isAdminAccount = _data["isAdminAccount"];
+            this.street = _data["street"];
+            this.city = _data["city"];
+            this.province = _data["province"];
+            this.region = _data["region"];
+            this.zipCode = _data["zipCode"];
+            this.contactNumber = _data["contactNumber"];
+        }
+    }
+
+    static fromJS(data: any): SendEmailDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new SendEmailDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["userName"] = this.userName;
+        data["lastName"] = this.lastName;
+        data["firstName"] = this.firstName;
+        data["middleName"] = this.middleName;
+        data["emailAddress"] = this.emailAddress;
+        data["isAdminAccount"] = this.isAdminAccount;
+        data["street"] = this.street;
+        data["city"] = this.city;
+        data["province"] = this.province;
+        data["region"] = this.region;
+        data["zipCode"] = this.zipCode;
+        data["contactNumber"] = this.contactNumber;
+        return data;
+    }
+}
+
+export interface ISendEmailDto {
+    id?: string | undefined;
+    userName?: string | undefined;
+    lastName?: string | undefined;
+    firstName?: string | undefined;
+    middleName?: string | undefined;
+    emailAddress?: string | undefined;
+    isAdminAccount?: boolean | undefined;
+    street?: string | undefined;
+    city?: string | undefined;
+    province?: string | undefined;
+    region?: string | undefined;
+    zipCode?: string | undefined;
+    contactNumber?: string | undefined;
 }
 
 export class GetAllBookingQueryDto implements IGetAllBookingQueryDto {
