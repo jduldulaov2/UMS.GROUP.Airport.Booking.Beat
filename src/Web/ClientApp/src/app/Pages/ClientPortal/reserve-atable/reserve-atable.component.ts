@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RestaurantBookingsClient, CreateRestaurantBookingCommand} from '../../../web-api-client';
+import { RestaurantTablesClient, GetAllRestaurantTableQueryDto, RestaurantBookingsClient, CreateRestaurantBookingCommand} from '../../../web-api-client';
 import { ActivatedRoute, Router } from '@angular/router';
 declare var $: any;
 
@@ -9,14 +9,16 @@ declare var $: any;
   styleUrls: ['./reserve-atable.component.css']
 })
 export class ReserveATableComponent {
-
+  public getAllRestaurantTableQueryDto: GetAllRestaurantTableQueryDto[] = [];
   IsLoggedIn: any;
   user_code!: any;
 
   constructor(
     private router: Router,
     private restaurantBookingClient: RestaurantBookingsClient,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private restaurantTablesClient: RestaurantTablesClient
+    
   ) {
   }
 
@@ -25,6 +27,7 @@ export class ReserveATableComponent {
     this.GetInitialInfo();
     this.GetLogin();
     this.GetInitialInfo2();
+    this.getTableList();
   }
   
 
@@ -72,6 +75,23 @@ export class ReserveATableComponent {
   }else{
     this.IsLoggedIn = false;
   }
+  }
+
+  getTableList(): void {
+    this.restaurantTablesClient.getAllRestaurantTable().subscribe({
+      next: result => {
+        this.getAllRestaurantTableQueryDto = result;
+        console.log(result);
+        setTimeout(() => {
+          $('.select2').select2();
+        }, 1000);
+      },
+      error: error => console.error(error)
+    });
+  }
+
+  GetTable(){
+    $('#entertable').val($('#TableList').val());
   }
 
   ReserveATable(fullname: any, 

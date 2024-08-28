@@ -65,6 +65,11 @@
     height: 45px !important;
 }
 
+.select2-container--default .select2-purple .select2-selection--multiple .select2-selection__choice, .select2-purple .select2-container--default .select2-selection--multiple .select2-selection__choice {
+    background-color: #f39c12!important;
+    border-color: #f39c12!important;
+    color: #fff!important;
+}
 
 </style>
 
@@ -189,6 +194,11 @@
                 </div>
               </div>
               <div class="form-group mt-3">
+                <label>Table Selection <span style="font-weight: normal!important;"> (<i>Or click button 'Select Desired Table/s')</i></span></label>
+                <input type="text" class="form-control" name="people" id="entertable" placeholder="Enter Table">
+                <div class="validate"></div>
+              </div>
+              <div class="form-group mt-3">
                 <label>Message</label>
                 <textarea class="form-control" style="height: 150px !important;" id="exampleFormControlTextarea1" placeholder="Message" rows="3" #message></textarea>
                 <div class="validate"></div>
@@ -218,14 +228,25 @@
   <div class="modal fade" id="modal-xl">
     <div class="modal-dialog modal-xl">
       <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Select Table Location</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
         <div class="modal-body">
           <div class="col-md-12">
+            <div class="form-group">
+              <label>Select Table Location</label>
+              <div class="row">
+                <div class="col-md-9">
+                  <div class="select2-green">
+                    <select id="TableList" class="select2" multiple="multiple" data-placeholder="Select a Table" style="width: 100%;">
+                      <option *ngFor="let item of getAllRestaurantTableQueryDto"> {{item.tableName}}</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-3" style="text-align: right;">
+                  <button style="margin-right: 5px;" class="btn bg-gradient-warning btn-flat" data-dismiss="modal" type="submit">Close</button> 
+                  <button (click)="GetTable()" class="btn bg-gradient-warning btn-flat" data-dismiss="modal" type="submit">Save changes</button> 
+                </div>
+              </div>
+              
+            </div>
             <div class="card card-primary card-tabs">
               <div class="card-header p-0 pt-1">
                 <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
@@ -239,21 +260,17 @@
               </div>
               <div class="card-body">
                 <div class="tab-content" id="custom-tabs-one-tabContent">
-                  <div class="tab-pane fade show active" id="custom-tabs-one-home" role="tabpanel" aria-labelledby="custom-tabs-one-home-tab">
-                    <p><img src="assets/reservation/client/assets/img/RestaurantPlanDraftFinal.png" alt="" class="img-fluid"></p>
+                  <div style="text-align: center;" class="tab-pane fade show active" id="custom-tabs-one-home" role="tabpanel" aria-labelledby="custom-tabs-one-home-tab">
+                    <p><img src="assets/reservation/client/assets/img/RestaurantPlanDraftFinal.png" alt="" style="width: 90%;" class="img-fluid"></p>
                   </div>
-                  <div class="tab-pane fade" id="custom-tabs-one-profile" role="tabpanel" aria-labelledby="custom-tabs-one-profile-tab">
-                    <p><img src="assets/reservation/client/assets/img/TerreseDraft.png" alt="" class="img-fluid"></p>
+                  <div style="text-align: center;" class="tab-pane fade" id="custom-tabs-one-profile" role="tabpanel" aria-labelledby="custom-tabs-one-profile-tab">
+                    <p><img src="assets/reservation/client/assets/img/TerreseDraft.png" alt="" style="width: 90%;" class="img-fluid"></p>
                   </div>
                 </div>
               </div>
               <!-- /.card -->
             </div>
           </div>
-        </div>
-        <div class="modal-footer justify-content-between">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
         </div>
       </div>
       <!-- /.modal-content -->

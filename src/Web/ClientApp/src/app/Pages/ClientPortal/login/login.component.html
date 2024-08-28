@@ -126,7 +126,7 @@
         
               <form method="post">
                 <div class="input-group mb-3">
-                  <input type="email" class="form-control" placeholder="Email" #username>
+                  <input type="email" class="form-control" placeholder="Email" #username2>
                   <div class="input-group-append">
                     <div class="input-group-text">
                       <span class="fas fa-envelope"></span>
@@ -134,7 +134,7 @@
                   </div>
                 </div>
                 <div class="input-group mb-3">
-                  <input type="password" class="form-control" placeholder="Password" #password>
+                  <input type="password" class="form-control" placeholder="Password" #password2>
                   <div class="input-group-append">
                     <div class="input-group-text">
                       <span class="fas fa-lock"></span>
@@ -144,7 +144,7 @@
                 <div class="row">
                   <!-- /.col -->
                   <div class="col-12" style="text-align: center;">
-                    <button style="width: 100%;" class="btn bg-gradient-warning btn-flat"  (click)="LoginUser(username.value, password.value)"  type="submit">Sign In</button> 
+                    <button style="width: 100%;" class="btn bg-gradient-warning btn-flat"  (click)="LoginUser(username2.value, password2.value)"  type="submit">Sign In</button> 
                     
                   </div>
                   <div class="col-12" style="text-align: center; margin-top: 5px;">
@@ -215,7 +215,7 @@
           
                 <form  method="post">
                   <div class="input-group mb-3">
-                    <input type="email" class="form-control" placeholder="Email" #username>
+                    <input type="email" class="form-control" placeholder="Email" #username1>
                     <div class="input-group-append">
                       <div class="input-group-text">
                         <span class="fas fa-envelope"></span>
@@ -223,7 +223,7 @@
                     </div>
                   </div>
                   <div class="input-group mb-3">
-                    <input type="password" class="form-control" placeholder="Password" #password>
+                    <input type="password" class="form-control" placeholder="Password" #password1>
                     <div class="input-group-append">
                       <div class="input-group-text">
                         <span class="fas fa-lock"></span>
@@ -241,7 +241,7 @@
                     </div>
                     <!-- /.col -->
                     <div class="col-4" style="text-align: right;">
-                      <button (click)="LoginUser(username.value, password.value)" type="submit" class="btn btn-primary btn-flat">Sign In</button>
+                      <button (click)="LoginUser(username1.value, password1.value)" type="submit" class="btn btn-primary btn-flat">Sign In</button>
                     </div>
                     <!-- /.col -->
                   </div>
