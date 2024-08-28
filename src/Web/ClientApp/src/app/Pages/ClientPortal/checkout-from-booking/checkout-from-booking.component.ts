@@ -145,7 +145,16 @@ export class CheckoutFromBookingComponent {
           this.authClient.sendEmail('thorackerrestaurant@gmail.com', 
             this.emailAddress, 
             'liepweijlwnyucjq',
-            'Thank you for sending your booking with referrence #: ' + this.b_bookingReferrenceNumber + '.<br><br>We will review the booking details and get back to you ASAP. <br><br><br>Best Regards!<br><br><br> Thoracker Admin',
+            'Hi <b>'+ this.fullname + '</b><br><br>' 
+            +'Thank you for sending your booking with referrence #: <b>' + this.b_bookingReferrenceNumber 
+            +'</b>.<br><br>We will review the booking details and get back to you ASAP. <br><br>'+
+            '-------Summary------<br>' + 
+            '<b>Selected Tables: </b>' + this.b_selectedTables + '<br>'+ 
+            '<b>Date of Arrival: </b>' + this.b_bookingFromDate + '<br>'+ 
+            '<b>Time of Arrival: </b>' + this.b_bookingEstimatedArrivalTime + '<br>'+ 
+            '<b>Booking Status: </b> <span style="color: red;">For Approval</span> <br>'+ 
+            '<br>'+ 
+            +'<br>Best Regards!<br><br><br> Thoracker Admin',
             'smtp.gmail.com',
             'Reservation (For Approval): ' + this.b_bookingReferrenceNumber, 
             587
@@ -158,6 +167,36 @@ export class CheckoutFromBookingComponent {
               this.Notification("Something went wrong. Check the validation error/s.", "error");
             }
           );
+
+          this.authClient.sendEmail('thorackerrestaurant@gmail.com', 
+            'thorackerrestaurant@gmail.com', 
+            'liepweijlwnyucjq',
+            'Hi <b> System Administrator</b><br><br>' 
+            +'There is a new booking with referrence #: <b>' + this.b_bookingReferrenceNumber 
+            +'</b>.<br><br>Please review. <br><br>'+
+            '-------Booking Summary------<br>' + 
+            '<b>Name of Guest: </b>' + this.fullname + '<br>'+ 
+            '<b>Address: </b>' + this.fullAddress + '<br>'+ 
+            '<b>Contact Number: </b>' + this.contactNumber + '<br>'+ 
+            '<b>Selected Tables: </b>' + this.b_selectedTables + '<br>'+ 
+            '<b>Date of Arrival: </b>' + this.b_bookingFromDate + '<br>'+ 
+            '<b>Time of Arrival: </b>' + this.b_bookingEstimatedArrivalTime + '<br>'+ 
+            '<b>Booking Status: </b> <span style="color: red;">For Approval</span> <br>'+ 
+            '<br>'+ 
+            +'<br>Best Regards!<br><br><br> Thoracker Admin',
+            'smtp.gmail.com',
+            'Reservation (For Approval): ' + this.b_bookingReferrenceNumber, 
+            587
+            ).subscribe(
+            result => {
+              
+            },
+            error => {
+              const errors = JSON.parse(error.response).errors;
+              this.Notification("Something went wrong. Check the validation error/s.", "error");
+            }
+          );
+
           setTimeout(() => {
             this.getBookingById(code_id);
           }, 2000);

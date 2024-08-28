@@ -173,7 +173,7 @@
                         <h5><i class="fas fa-danger"></i> Booking Referrence #: {{b_bookingReferrenceNumber}}</h5>
                         Date Arrival: {{b_bookingFromDate}} <br>
                         Number or Person: {{b_numberOfPax}} <br>
-                        Table: N/A
+                        Table: {{b_selectedTables}}
                       </div>
                   <table *ngIf="hasOrder == true" class="table table-striped">
                     <thead style="
@@ -209,7 +209,7 @@
                         <h5><i class="fas fa-danger"></i> Booking Referrence #: {{b_bookingReferrenceNumber}}</h5>
                         Date Arrival: {{b_bookingFromDate}} <br>
                         Number or Person: {{b_numberOfPax}} <br>
-                        Table: N/A
+                        Table:  {{b_selectedTables}}
                       </div>
                   <table *ngIf="hasOrder == true" class="table table-striped">
                     <thead style="

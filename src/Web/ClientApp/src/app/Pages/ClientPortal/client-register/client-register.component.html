@@ -188,12 +188,12 @@
                             </div>
                           </div>
                           <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Birth Date" #birthdate>
-                            <div class="input-group-append">
-                              <div class="input-group-text">
-                                
+                            <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                              <input type="text" class="form-control datetimepicker-input" #birthdate placeholder="Date" data-target="#reservationdate"/>
+                              <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                                  <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                               </div>
-                            </div>
+                          </div>
                           </div>
                           <div class="input-group mb-3">
                             <input type="text" class="form-control" placeholder="Primary Address" #street1>
@@ -319,12 +319,12 @@
                             </div>
                           </div>
                           <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Birth Date" #birthdate1>
-                            <div class="input-group-append">
-                              <div class="input-group-text">
-                                
+                            <div class="input-group date" id="reservationdate2" data-target-input="nearest">
+                              <input type="text" class="form-control datetimepicker-input" #birthdate1 placeholder="Date" data-target="#reservationdate2"/>
+                              <div class="input-group-append" data-target="#reservationdate2" data-toggle="datetimepicker">
+                                  <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                               </div>
-                            </div>
+                          </div>
                           </div>
                           <div class="input-group mb-3">
                             <input type="text" class="form-control" placeholder="Primary Address" #street11>

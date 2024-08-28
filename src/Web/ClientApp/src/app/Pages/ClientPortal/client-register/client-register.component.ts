@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UsersClient, CreateUserCommand} from '../../../web-api-client';
+import { AuthClient, UsersClient, CreateUserCommand} from '../../../web-api-client';
 import { SpinnerServiceService } from '../../../Services/Shared/spinner-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
 declare var $: any;
@@ -15,8 +15,25 @@ export class ClientRegisterComponent {
     private router: Router,
     private usersClient: UsersClient,
     private loader: SpinnerServiceService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private authClient: AuthClient
   ) {
+  }
+
+  ngOnInit(){
+    $("html, body").animate({ scrollTop: 0 }, "fast");
+    this.initializeComponent();
+  }
+  
+  initializeComponent(): void {
+    setTimeout(() => {
+      $('#reservationdate').datetimepicker({
+          format: 'DD.MM.yyyy'
+      });
+      $('#reservationdate2').datetimepicker({
+        format: 'DD.MM.yyyy'
+    });
+    }, 1000);
   }
 
   CreateUser(firstname: any, 
@@ -124,6 +141,50 @@ export class ClientRegisterComponent {
             }else{
               if(result.resultType == 1){
                 //this.loader.ShowToast("New Airport has been successfully added.", "success");
+
+                this.authClient.sendEmail('thorackerrestaurant@gmail.com', 
+                  emailaddress, 
+                  'liepweijlwnyucjq',
+                  'Hi <b>'+ firstname + ' ' + lastname + '</b><br><br>' +
+                  'Welcome! You are now registered at Thoracker Restaurant.<br><br>'+
+                  'You can now start Booking online. <br><br>'+
+                  'Best Regards!<br><br><br> Thoracker System Administrator',
+                  'smtp.gmail.com',
+                  'Registration Successfull at Thoracker Restaurant', 
+                  587
+                  ).subscribe(
+                  result => {
+                    
+                  },
+                  error => {
+                    const errors = JSON.parse(error.response).errors;
+                    this.Notification("Something went wrong. Check the validation error/s.", "error");
+                  }
+                );
+      
+                this.authClient.sendEmail('thorackerrestaurant@gmail.com', 
+                  'thorackerrestaurant@gmail.com', 
+                  'liepweijlwnyucjq',
+                  'Hi <b> System Administrator</b><br><br>'+
+                  'There is a new registration from the App.<br><br>'+
+                  '------Summary------ <br><br>'+
+                  'Full Name: ' +firstname + ' ' + lastname +'  <br><br>'+
+                  'Address: ' + street1 + ' ' + street2 + ' ' + city + ' ' + zip + ' <br><br>'+
+                  'Birth Date: '+ birthdate +' <br><br>'+
+                  'Best Regards!<br><br><br> Thoracker System Administrator - No reply',
+                  'smtp.gmail.com',
+                  'New Registration Ref#: ' + result.data?.id, 
+                  587
+                  ).subscribe(
+                  result => {
+                    
+                  },
+                  error => {
+                    const errors = JSON.parse(error.response).errors;
+                    this.Notification("Something went wrong. Check the validation error/s.", "error");
+                  }
+                );
+
                 this.router.navigate(['login/registration-confirmation']);
               }else{
                 this.Notification(result.message,"error");

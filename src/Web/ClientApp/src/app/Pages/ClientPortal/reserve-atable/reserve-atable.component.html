@@ -174,15 +174,22 @@
                 </div>
                 <div class="col-lg-4 col-md-6 form-group mt-3">
                   <label>Booking Date</label>
-                  <input type="date" name="date" class="form-control" id="bookingdate" placeholder="Date" data-rule="minlen:4" #bookingdate data-msg="Please enter at least 4 chars">
+                  <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                      <input type="text" class="form-control datetimepicker-input" placeholder="Date" data-target="#reservationdate" #bookingdate/>
+                      <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                          <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                      </div>
+                  </div>
                   <div class="validate"></div>
                 </div>
                 <div class="col-lg-4 col-md-6 form-group mt-3">
                   <label>Booking Time</label>
                   <div class="input-group date" id="timepicker" data-target-input="nearest">
-                    <input type="time" class="form-control" #bookingtime/>
-                    <div class="input-group-append" data-target="#timepicker" data-toggle="datetimepicker">
-                        <div class="input-group-text"><i class="far fa-clock"></i></div>
+                    <div class="input-group date" id="timepicker" data-target-input="nearest">
+                      <input type="text" class="form-control datetimepicker-input" placeholder="HH:mm" data-target="#timepicker" #bookingtime/>
+                      <div class="input-group-append" data-target="#timepicker" data-toggle="datetimepicker">
+                          <div class="input-group-text"><i class="far fa-clock"></i></div>
+                      </div>
                     </div>
                     </div>
                   <div class="validate"></div>
@@ -213,6 +220,9 @@
                   <button style="width: 100%; margin-bottom: 5px;" class="btn bg-gradient-warning btn-flat"  (click)="ReserveATable(fullname.value, emailaddress.value, phonenumber.value, bookingdate.value, bookingtime.value, numberofpeople.value, message.value, selectedtables.value)"  type="submit">Prepare Booking</button> 
                 </div>
                 </div>
+
+                
+
             </div>
           </div>
         </div>

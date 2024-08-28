@@ -84,6 +84,12 @@ export class ReserveATableComponent {
         console.log(result);
         setTimeout(() => {
           $('.select2').select2();
+          $('#timepicker').datetimepicker({
+            format: 'HH:mm'
+          })
+          $('#reservationdate').datetimepicker({
+              format: 'DD.MM.yyyy'
+          });
         }, 1000);
       },
       error: error => console.error(error)
