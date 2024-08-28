@@ -39,5 +39,7 @@ public interface IApplicationDbContext
 
     DbSet<DraftCartItems> DraftCartItems { get; }
 
+    DbSet<RestaurantUserLog> RestaurantUserLog { get; }
+
     Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 }
