@@ -54,4 +54,6 @@ public class RestaurantBooking : BaseAuditableEntity
     public string? RestaurantName { get; set; }
 
     public int? NumberOfPax { get; set; }
+
+    public string? SelectedTables { get; set; }
 }

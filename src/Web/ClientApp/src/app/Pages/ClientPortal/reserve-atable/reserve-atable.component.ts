@@ -100,7 +100,8 @@ export class ReserveATableComponent {
     bookingdate: any, 
     bookingtime: any, 
     numberofpeople: any,
-    message: any){
+    message: any,
+    selectedtables: any){
       
     var errorMessage = '';
  
@@ -132,7 +133,8 @@ export class ReserveATableComponent {
       "guestName": fullname,
       "restaurantName": "Thoracker",
       "isActive": true,
-      "numberOfPax": numberofpeople
+      "numberOfPax": numberofpeople,
+      "selectedTables": selectedtables
     };
 
     $("#firstname").removeClass("haserror");
@@ -148,17 +150,18 @@ export class ReserveATableComponent {
 
     if(bookingdate == ''){
       errorMessage += "bookingdate is required<br>";
-      $("#bookingdate").addClass("haserror");
     }
 
     if(bookingtime == ''){
       errorMessage += "bookingtime is required<br>";
-      $("#bookingtime").addClass("haserror");
     }
 
     if(numberofpeople == ''){
       errorMessage += "numberofpeople number is required<br>";
-      $("#numberofpeople").addClass("haserror");
+    }
+
+    if(selectedtables == ''){
+      errorMessage += "Table selection is required<br>";
     }
 
   

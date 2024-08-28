@@ -50,7 +50,8 @@ public class GetAllRestaurantBookingQueryHandler : IRequestHandler<GetAllRestaur
                             IsActive = restaurantbooking.IsActive,
                             GuestName = restaurantbooking.GuestName,
                             RestaurantName = restaurantbooking.RestaurantName,
-                            NumberOfPax = restaurantbooking.NumberOfPax
+                            NumberOfPax = restaurantbooking.NumberOfPax,
+                            SelectedTables = restaurantbooking.SelectedTables
 
                       }).ToListAsync();
     }

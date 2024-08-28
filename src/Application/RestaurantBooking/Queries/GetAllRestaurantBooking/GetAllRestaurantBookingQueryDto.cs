@@ -59,4 +59,6 @@ public class GetAllRestaurantBookingQueryDto
     public bool? IsActive { get; set; }
 
     public int? NumberOfPax { get; set; }
+
+    public string? SelectedTables { get; set; }
 }

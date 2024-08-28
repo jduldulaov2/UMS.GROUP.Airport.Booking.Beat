@@ -46,6 +46,7 @@ export class CheckoutFromBookingComponent {
   b_restaurantName: any;
   b_isActive: any;
   b_numberOfPax: any;
+  b_selectedTables:any;
 
   constructor(
     private router: Router,
@@ -98,6 +99,7 @@ export class CheckoutFromBookingComponent {
         this.b_restaurantName = result.data?.restaurantName;
         this.b_isActive = result.data?.isActive ;
         this.b_numberOfPax = result.data?.numberOfPax;
+        this.b_selectedTables = result.data?.selectedTables;
       },
       error: error => console.error(error)
     });
@@ -132,7 +134,8 @@ export class CheckoutFromBookingComponent {
       "isActive": this.b_isActive,
       "guestName": this.b_guestName,
       "restaurantName": this.b_restaurantName,
-      "numberOfPax": this.b_numberOfPax
+      "numberOfPax": this.b_numberOfPax,
+      "selectedTables": this.b_selectedTables
     };
 
     this.bookingClient.updateRestaurantBooking(list as UpdateRestaurantBookingCommand).subscribe(

@@ -57,7 +57,8 @@ public class GetRestaurantBookingByIdQueryHandler : IRequestHandler<GetAllRestau
                     IsActive = result.IsActive,
                     GuestName = result.GuestName,
                     RestaurantName = result.RestaurantName,
-                    NumberOfPax = result.NumberOfPax
+                    NumberOfPax = result.NumberOfPax,
+                    SelectedTables = result.SelectedTables
                 },
                 Message = "success",
                 ResultType = ResultType.Success,

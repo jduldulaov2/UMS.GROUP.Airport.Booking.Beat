@@ -195,7 +195,7 @@
               </div>
               <div class="form-group mt-3">
                 <label>Table Selection <span style="font-weight: normal!important;"> (<i>Or click button 'Select Desired Table/s')</i></span></label>
-                <input type="text" class="form-control" name="people" id="entertable" placeholder="Enter Table">
+                <input type="text" class="form-control" name="people" id="entertable" placeholder="Enter Table" #selectedtables >
                 <div class="validate"></div>
               </div>
               <div class="form-group mt-3">
@@ -206,11 +206,11 @@
               <div class="text-center">
                 <div class="d-none d-md-block">
                   <button type="submit" class="btn bg-gradient-warning btn-flat" data-toggle="modal" data-target="#modal-xl" style="margin-right: 20px;">Select Desired Table/s</button>
-                  <button class="btn bg-gradient-warning btn-flat"  (click)="ReserveATable(fullname.value, emailaddress.value, phonenumber.value, bookingdate.value, bookingtime.value, numberofpeople.value, message.value)"  type="submit">Prepare Booking</button> 
+                  <button class="btn bg-gradient-warning btn-flat"  (click)="ReserveATable(fullname.value, emailaddress.value, phonenumber.value, bookingdate.value, bookingtime.value, numberofpeople.value, message.value, selectedtables.value)"  type="submit">Prepare Booking</button> 
                 </div>
                 <div class="d-block d-md-none">
                   <button style="width: 100%; margin-bottom: 5px;" type="submit" class="btn bg-gradient-warning btn-flat" data-toggle="modal" data-target="#modal-xl" >Select Desired Table/s</button>
-                  <button style="width: 100%; margin-bottom: 5px;" class="btn bg-gradient-warning btn-flat"  (click)="ReserveATable(fullname.value, emailaddress.value, phonenumber.value, bookingdate.value, bookingtime.value, numberofpeople.value, message.value)"  type="submit">Prepare Booking</button> 
+                  <button style="width: 100%; margin-bottom: 5px;" class="btn bg-gradient-warning btn-flat"  (click)="ReserveATable(fullname.value, emailaddress.value, phonenumber.value, bookingdate.value, bookingtime.value, numberofpeople.value, message.value, selectedtables.value)"  type="submit">Prepare Booking</button> 
                 </div>
                 </div>
             </div>

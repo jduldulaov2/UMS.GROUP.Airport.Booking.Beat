@@ -8980,6 +8980,7 @@ export class CreateRestaurantBookingCommand implements ICreateRestaurantBookingC
     restaurantName?: string | undefined;
     isActive?: boolean | undefined;
     numberOfPax?: number | undefined;
+    selectedTables?: string | undefined;
 
     constructor(data?: ICreateRestaurantBookingCommand) {
         if (data) {
@@ -9017,6 +9018,7 @@ export class CreateRestaurantBookingCommand implements ICreateRestaurantBookingC
             this.restaurantName = _data["restaurantName"];
             this.isActive = _data["isActive"];
             this.numberOfPax = _data["numberOfPax"];
+            this.selectedTables = _data["selectedTables"];
         }
     }
 
@@ -9054,6 +9056,7 @@ export class CreateRestaurantBookingCommand implements ICreateRestaurantBookingC
         data["restaurantName"] = this.restaurantName;
         data["isActive"] = this.isActive;
         data["numberOfPax"] = this.numberOfPax;
+        data["selectedTables"] = this.selectedTables;
         return data;
     }
 }
@@ -9084,6 +9087,7 @@ export interface ICreateRestaurantBookingCommand {
     restaurantName?: string | undefined;
     isActive?: boolean | undefined;
     numberOfPax?: number | undefined;
+    selectedTables?: string | undefined;
 }
 
 export class ResultOfUpdateRestaurantBookingCommandDto implements IResultOfUpdateRestaurantBookingCommandDto {
@@ -9201,6 +9205,7 @@ export class UpdateRestaurantBookingCommand implements IUpdateRestaurantBookingC
     guestName?: string | undefined;
     restaurantName?: string | undefined;
     numberOfPax?: number | undefined;
+    selectedTables?: string | undefined;
 
     constructor(data?: IUpdateRestaurantBookingCommand) {
         if (data) {
@@ -9239,6 +9244,7 @@ export class UpdateRestaurantBookingCommand implements IUpdateRestaurantBookingC
             this.guestName = _data["guestName"];
             this.restaurantName = _data["restaurantName"];
             this.numberOfPax = _data["numberOfPax"];
+            this.selectedTables = _data["selectedTables"];
         }
     }
 
@@ -9277,6 +9283,7 @@ export class UpdateRestaurantBookingCommand implements IUpdateRestaurantBookingC
         data["guestName"] = this.guestName;
         data["restaurantName"] = this.restaurantName;
         data["numberOfPax"] = this.numberOfPax;
+        data["selectedTables"] = this.selectedTables;
         return data;
     }
 }
@@ -9308,6 +9315,7 @@ export interface IUpdateRestaurantBookingCommand {
     guestName?: string | undefined;
     restaurantName?: string | undefined;
     numberOfPax?: number | undefined;
+    selectedTables?: string | undefined;
 }
 
 export class GetAllRestaurantBookingQueryDto implements IGetAllRestaurantBookingQueryDto {
@@ -9338,6 +9346,7 @@ export class GetAllRestaurantBookingQueryDto implements IGetAllRestaurantBooking
     restaurantName?: string | undefined;
     isActive?: boolean | undefined;
     numberOfPax?: number | undefined;
+    selectedTables?: string | undefined;
 
     constructor(data?: IGetAllRestaurantBookingQueryDto) {
         if (data) {
@@ -9377,6 +9386,7 @@ export class GetAllRestaurantBookingQueryDto implements IGetAllRestaurantBooking
             this.restaurantName = _data["restaurantName"];
             this.isActive = _data["isActive"];
             this.numberOfPax = _data["numberOfPax"];
+            this.selectedTables = _data["selectedTables"];
         }
     }
 
@@ -9416,6 +9426,7 @@ export class GetAllRestaurantBookingQueryDto implements IGetAllRestaurantBooking
         data["restaurantName"] = this.restaurantName;
         data["isActive"] = this.isActive;
         data["numberOfPax"] = this.numberOfPax;
+        data["selectedTables"] = this.selectedTables;
         return data;
     }
 }
@@ -9448,6 +9459,7 @@ export interface IGetAllRestaurantBookingQueryDto {
     restaurantName?: string | undefined;
     isActive?: boolean | undefined;
     numberOfPax?: number | undefined;
+    selectedTables?: string | undefined;
 }
 
 export class ResultOfGetAllRestaurantBookingByIdQueryDto implements IResultOfGetAllRestaurantBookingByIdQueryDto {
@@ -9522,6 +9534,7 @@ export class GetAllRestaurantBookingByIdQueryDto implements IGetAllRestaurantBoo
     restaurantName?: string | undefined;
     isActive?: boolean | undefined;
     numberOfPax?: number | undefined;
+    selectedTables?: string | undefined;
 
     constructor(data?: IGetAllRestaurantBookingByIdQueryDto) {
         if (data) {
@@ -9561,6 +9574,7 @@ export class GetAllRestaurantBookingByIdQueryDto implements IGetAllRestaurantBoo
             this.restaurantName = _data["restaurantName"];
             this.isActive = _data["isActive"];
             this.numberOfPax = _data["numberOfPax"];
+            this.selectedTables = _data["selectedTables"];
         }
     }
 
@@ -9600,6 +9614,7 @@ export class GetAllRestaurantBookingByIdQueryDto implements IGetAllRestaurantBoo
         data["restaurantName"] = this.restaurantName;
         data["isActive"] = this.isActive;
         data["numberOfPax"] = this.numberOfPax;
+        data["selectedTables"] = this.selectedTables;
         return data;
     }
 }
@@ -9632,6 +9647,7 @@ export interface IGetAllRestaurantBookingByIdQueryDto {
     restaurantName?: string | undefined;
     isActive?: boolean | undefined;
     numberOfPax?: number | undefined;
+    selectedTables?: string | undefined;
 }
 
 export class ResultOfCreateRestaurantOrderCommandDto implements IResultOfCreateRestaurantOrderCommandDto {

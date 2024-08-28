@@ -59,6 +59,8 @@ public record UpdateRestaurantBookingCommand : IRequest<Result<UpdateRestaurantB
     public string? RestaurantName { get; init; }
 
     public int? NumberOfPax { get; init; }
+
+    public string? SelectedTables { get; init; }
 }
 
 public class UpdateRestaurantBookingCommandHandler : IRequestHandler<UpdateRestaurantBookingCommand, Result<UpdateRestaurantBookingCommandDto>>
@@ -105,6 +107,7 @@ public class UpdateRestaurantBookingCommandHandler : IRequestHandler<UpdateResta
                 entity.GuestName = request.GuestName;
                 entity.RestaurantName = request.RestaurantName;
                 entity.NumberOfPax = request.NumberOfPax;
+                entity.SelectedTables = request.SelectedTables;
 
                 _context.RestaurantBooking.Update(entity);
 
