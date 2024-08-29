@@ -1,4 +1,17 @@
 <!-- Content Wrapper. Contains page content -->
+<style>
+  .card-body-custom {
+    background: linear-gradient(0deg, rgb(232 206 121 / 0%) 0%, rgb(236 217 151 / 21%) 100%) !important;
+}
+
+.btn-primary {
+    color: #fff !important;
+    background-color: #3c8dbc!important;
+    border-color: #3c8dbc!important;
+    box-shadow: none !important;
+}
+
+</style>
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -22,18 +35,6 @@
 
       <!-- Default box -->
       <div class="card">
-        <div class="card-header">
-          <h3 class="card-title">Customer/User List</h3>
-
-          <div class="card-tools">
-            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-              <i class="fas fa-minus"></i>
-            </button>
-            <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
-              <i class="fas fa-times"></i>
-            </button>
-          </div>
-        </div>
         <div class="card-body card-body-search card-body-search-custom">
           <div class="row">
             <div class="col-md-5">
@@ -62,322 +63,38 @@
           <!-- /.row -->
         </div>
         <div class="card-body p-0">
-          <table class="table table-striped projects">
-              <thead class="custom-bg-2">
-                  <tr>
-                      <th class="custom-bg-2">
-                          Initial
-                      </th>
-                      <th class="custom-bg-2">
-                          Customer Name
-                      </th>
-                      <th class="custom-bg-2">
-                          Full Address
-                      </th>
-                      <th class="custom-bg-2">
-                          Age
-                      </th>
-                      <th class="custom-bg-2">
-                          Contact Number
-                      </th>
-                      <th class="custom-bg-2">
-                          Email Address
-                       </th>
-                      <th class="custom-bg-2">
-                          Registration/Added Date
-                      </th>
-                      <th class="custom-bg-2">
-                          Status
-                      </th>
-                      <th class="custom-bg-2">
-                          Action
-                      </th>
-                  </tr>
-              </thead>
-              <tbody>
-                  <tr>
-                      <td class="custom-bg-1">
-                          <div class="members-avatar" style="background: #E93B8B;">		
-                                MM
-                           </div>
-                      </td>
-                      <td class="custom-bg-1">
-                          Jake V. Duldulao
-                      </td>
-                      <td>
-                          Block 70 Lot 19 Deca Homes Indangan Phase 3 Pilippines
-                      </td>
-                      <td>
-                        34
-                      </td>
-                      <td>
-                          09959665161
-                      </td>
-                      <td>
-                        jduldulaoemail.com
-                    </td>
-                      <td>
-                        August 1, 2024
-                    </td>
-                      <td>
-                        <span class="badge badge-success">Verified</span>
-                      </td>
-                      <td class="project-actions text-right">
-                          <a class="btn btn-primary btn-sm" [routerLink]="['/admin/manage-customer/1/detail']">
-                              <i class="fas fa-folder">
-                              </i>
-                              View Details
-                          </a>
-                      </td>
-                  </tr>
-                  <tr>
-                    <td class="custom-bg-1">
-                        <div class="members-avatar" style="background: #AF77E3;">		
-                            RA
-                        </div>
-                    </td>
-                    <td class="custom-bg-1">
-                        Jake V. Duldulao
-                    </td>
-                    <td>
-                        Block 70 Lot 19 Deca Homes Indangan Phase 3 Pilippines
-                    </td>
-                    <td>
-                      34
-                    </td>
-                    <td>
-                        09959665161
-                    </td>
-                    <td>
-                      jduldulaotest-email.com
-                  </td>
-                    <td>
-                      August 1, 2024
-                  </td>
-                    <td>
-                      <span class="badge badge-success">Verified</span>
-                    </td>
-                    <td class="project-actions text-right">
-                        <a class="btn btn-primary btn-sm" href="#">
-                            <i class="fas fa-folder">
-                            </i>
-                            View Details
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                  <td class="custom-bg-1">
-                    <div class="members-avatar" style="background: #5985DE;">		
-                        MM
+
+          <div class="row">
+            <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column" *ngFor="let item of usersDto">
+              <div class="card bg-light d-flex flex-fill">
+                <div class="card-header text-muted border-bottom-0" style="background: #343a40 !important;">
+                  {{item.emailAddress}}
+                </div>
+                <div class="card-body pt-0" style="background: linear-gradient(0deg, #17a2b84f 0%, rgb(236 217 151 / 21%) 100%) !important;">
+                  <div class="row" style="padding: 20px">
+                    <div class="col-7">
+                      <h2 class="lead"><b>{{item.firstName}} {{item.lastName}}</b></h2>
+                      <p class="text-muted text-sm"><b>{{item.contactNumber}} </b>  {{item.birthDate}} </p>
+                      <ul class="ml-4 mb-0 fa-ul text-muted">
+                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span> Address: {{item.street}} {{item.city}} {{item.province}} {{item.zipCode}}</li>
+                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> Phone #: {{item.contactNumber}}</li>
+                      </ul>
                     </div>
-                  </td>
-                  <td class="custom-bg-1">
-                      Jake V. Duldulao
-                  </td>
-                  <td>
-                      Block 70 Lot 19 Deca Homes Indangan Phase 3 Pilippines
-                  </td>
-                  <td>
-                    34
-                  </td>
-                  <td>
-                      09959665161
-                  </td>
-                  <td>
-                    jduldulaotest-email.com
-                </td>
-                  <td>
-                    August 1, 2024
-                </td>
-                  <td>
-                    <span class="badge badge-success">Verified</span>
-                  </td>
-                  <td class="project-actions text-right">
-                      <a class="btn btn-primary btn-sm" href="#">
-                          <i class="fas fa-folder">
-                          </i>
-                          View Details
-                      </a>
-                  </td>
-              </tr>
-              <tr>
-                <td class="custom-bg-1">
-                    <div class="members-avatar" style="background: #7ED37B;">		
-                        MB
+                    <div class="col-5 text-center">
+                      <img style="width: 100%;" src="assets/reservation/admin/dist/img/empty-profile.png" alt="" class="img-account-profile  mb-2">
                     </div>
-                </td>
-                <td class="custom-bg-1">
-                    Jake V. Duldulao
-                </td>
-                <td>
-                    Block 70 Lot 19 Deca Homes Indangan Phase 3 Pilippines
-                </td>
-                <td>
-                  34
-                </td>
-                <td>
-                    09959665161
-                </td>
-                <td>
-                  jduldulaotest-email.com
-              </td>
-                <td>
-                  August 1, 2024
-              </td>
-                <td>
-                  <span class="badge badge-success">Verified</span>
-                </td>
-                <td class="project-actions text-right">
-                    <a class="btn btn-primary btn-sm" href="#">
-                        <i class="fas fa-folder">
-                        </i>
-                        View Details
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <div class="text-right">
+                    <a [routerLink]="['/admin/manage-customer/1/detail']" class="btn btn-sm btn-primary">
+                      <i class="fas fa-user"></i> View Profile
                     </a>
-                </td>
-            </tr>
-            <tr>
-              <td class="custom-bg-1">
-                <div class="members-avatar" style="background: #2ED6EE;">		
-                    JD
+                  </div>
                 </div>
-              </td>
-              <td class="custom-bg-1">
-                  Jake V. Duldulao
-              </td>
-              <td>
-                  Block 70 Lot 19 Deca Homes Indangan Phase 3 Pilippines
-              </td>
-              <td>
-                34
-              </td>
-              <td>
-                  09959665161
-              </td>
-              <td>
-                jduldulaotest-email.com
-            </td>
-              <td>
-                August 1, 2024
-            </td>
-              <td>
-                <span class="badge badge-success">Verified</span>
-              </td>
-              <td class="project-actions text-right">
-                  <a class="btn btn-primary btn-sm" href="#">
-                      <i class="fas fa-folder">
-                      </i>
-                      View Details
-                  </a>
-              </td>
-          </tr>
-          <tr>
-            <td class="custom-bg-1">
-                <div class="members-avatar" style="background: #3F8FAB;">		
-                    RA
-                </div>
-            </td>
-            <td class="custom-bg-1">
-                Jake V. Duldulao
-            </td>
-            <td>
-                Block 70 Lot 19 Deca Homes Indangan Phase 3 Pilippines
-            </td>
-            <td>
-              34
-            </td>
-            <td>
-                09959665161
-            </td>
-            <td>
-              jduldulaotest-email.com
-          </td>
-            <td>
-              August 1, 2024
-          </td>
-            <td>
-              <span class="badge badge-success">Verified</span>
-            </td>
-            <td class="project-actions text-right">
-                <a class="btn btn-primary btn-sm" href="#">
-                    <i class="fas fa-folder">
-                    </i>
-                    View Details
-                </a>
-            </td>
-        </tr>
-        <tr>
-          <td class="custom-bg-1">
-            <div class="members-avatar">		
-                DD
+              </div>
             </div>
-          </td>
-          <td class="custom-bg-1">
-              Jake V. Duldulao
-          </td>
-          <td>
-              Block 70 Lot 19 Deca Homes Indangan Phase 3 Pilippines
-          </td>
-          <td>
-            34
-          </td>
-          <td>
-              09959665161
-          </td>
-          <td>
-            jduldulaotest-email.com
-        </td>
-          <td>
-            August 1, 2024
-        </td>
-          <td>
-            <span class="badge badge-success">Verified</span>
-          </td>
-          <td class="project-actions text-right">
-              <a class="btn btn-primary btn-sm" href="#">
-                  <i class="fas fa-folder">
-                  </i>
-                  View Details
-              </a>
-          </td>
-      </tr>
-      <tr>
-        <td class="custom-bg-1">
-            <div class="members-avatar" style="background: #E93B8B;">		
-                MP
-            </div>
-        </td>
-        <td class="custom-bg-1">
-            Jake V. Duldulao
-        </td>
-        <td>
-            Block 70 Lot 19 Deca Homes Indangan Phase 3 Pilippines
-        </td>
-        <td>
-          34
-        </td>
-        <td>
-            09959665161
-        </td>
-        <td>
-          jduldulaotest-email.com
-      </td>
-        <td>
-          August 1, 2024
-      </td>
-        <td>
-          <span class="badge badge-success">Verified</span>
-        </td>
-        <td class="project-actions text-right">
-            <a class="btn btn-primary btn-sm" href="#">
-                <i class="fas fa-folder">
-                </i>
-                View Details
-            </a>
-        </td>
-    </tr>
-    
-              </tbody>
-          </table>
+          </div>
           <div class="card-footer custom-bg-2">
             <nav aria-label="Contacts Page Navigation">
               <ul class="pagination justify-content-center m-0">
