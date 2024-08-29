@@ -4,12 +4,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 declare var $: any;
 
 @Component({
-  selector: 'app-manage-table-detail',
-  templateUrl: './manage-table-detail.component.html',
-  styleUrls: ['./manage-table-detail.component.css']
+  selector: 'app-manage-table',
+  templateUrl: './manage-table.component.html',
+  styleUrls: ['./manage-table.component.css']
 })
-export class ManageTableDetailComponent {
-  
+export class ManageTableComponent {
+
   public getAllRestaurantTableQueryDto: GetAllRestaurantTableQueryDto[] = [];
 
   constructor(

@@ -52,6 +52,7 @@ import { AboutComponent }  from './Pages/ClientPortal/about/about.component';
 import { SpecialMenuComponent }  from './Pages/ClientPortal/special-menu/special-menu.component';
 import { ContactUsComponent }  from './Pages/ClientPortal/contact-us/contact-us.component';
 import { ManageDashboardDetailComponent } from './Pages/AdminPortal/manage-dashboard-detail/manage-dashboard-detail.component';
+import { ManageTableComponent } from './Pages/AdminPortal/manage-table/manage-table.component';
 
 @NgModule({
   declarations: [
@@ -98,7 +99,8 @@ import { ManageDashboardDetailComponent } from './Pages/AdminPortal/manage-dashb
     AboutComponent,
     SpecialMenuComponent,
     ContactUsComponent,
-    ManageDashboardDetailComponent
+    ManageDashboardDetailComponent,
+    ManageTableComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

@@ -82,14 +82,12 @@
                     </div>
                     <div class="col-5 text-center">
                       <img style="width: 100%;" src="assets/reservation/admin/dist/img/empty-profile.png" alt="" class="img-account-profile  mb-2">
+                      <div class="text-center">
+                        <a [routerLink]="['/admin/manage-customer',item.id,'detail']"  class="btn btn-sm btn-primary">
+                          <i class="fas fa-user"></i> View Profile
+                        </a>
+                      </div>
                     </div>
-                  </div>
-                </div>
-                <div class="card-footer">
-                  <div class="text-right">
-                    <a [routerLink]="['/admin/manage-customer/1/detail']" class="btn btn-sm btn-primary">
-                      <i class="fas fa-user"></i> View Profile
-                    </a>
                   </div>
                 </div>
               </div>

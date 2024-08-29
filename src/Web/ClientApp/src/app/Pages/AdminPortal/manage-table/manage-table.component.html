@@ -1,16 +1,16 @@
-<!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
+ <!-- Content Wrapper. Contains page content -->
+ <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Food Items</h1>
+            <h1>Manage Table</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Food Items</li>
+              <li class="breadcrumb-item active">Manage Tables</li>
             </ol>
           </div>
         </div>
@@ -23,7 +23,7 @@
       <!-- Default box -->
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Food List</h3>
+          <h3 class="card-title">Table List</h3>
 
           <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -43,9 +43,9 @@
             <!-- /.col -->
             <div class="col-md-5">
               <div class="form-group">
-                <label>Search Food Name:</label>
+                <label>Table Name:</label>
                   <div class="input-group date" id="reservationdate2" data-target-input="nearest">
-                      <input type="text" class="form-control" placeholder="Search Food Name" data-target="#reservationdate2"/>
+                      <input type="text" class="form-control" placeholder="Role Name" data-target="#reservationdate2"/>
                   </div>
               </div>
               <!-- /.form-group -->
@@ -66,19 +66,13 @@
               <thead class="custom-bg-2">
                   <tr>
                       <th class="custom-bg-2">
-                        Category Name
+                          Table Name
                       </th>
                       <th class="custom-bg-2">
-                        Food Name
-                      </th>
+                        Table Location
+                    </th>
                       <th class="custom-bg-2">
-                          Description
-                      </th>
-                      <th class="custom-bg-2">
-                          Price
-                      </th>
-                      <th class="custom-bg-2">
-                          Status / Availability
+                          Created Date
                       </th>
                       <th class="custom-bg-2">
                           Action
@@ -86,27 +80,21 @@
                   </tr>
               </thead>
               <tbody>
-                  <tr *ngFor="let item of getAllFoodQueryDto">
+                  <tr *ngFor="let item of getAllRestaurantTableQueryDto">
                       <td class="custom-bg-1">
-                        {{item.foodCategoryName}}
+                        {{item.tableName}}
                       </td>
                       <td>
-                        {{item.foodName}}
+                        {{item.tableLocation}}
                       </td>
                       <td>
-                        {{item.foodDescription}}
+                        <span class="badge badge-success">Active</span>
                       </td>
-                      <td class="custom-bg-3">
-                        {{item.foodPrice}}
-                      </td>
-                      <td>
-                        <span class="badge badge-success">Available</span>
-                    </td>
                       <td class="project-actions text-right">
                           <a class="btn btn-primary btn-sm"  data-toggle="modal" data-target="#modal-lg">
                               <i class="fas fa-folder">
                               </i>
-                              View Food Details
+                              View Details
                           </a>
                       </td>
                   </tr>
@@ -140,7 +128,7 @@
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header card-header">
-          <h4 class="modal-title">Edit Role</h4>
+          <h4 class="modal-title">Edit Table</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -150,27 +138,20 @@
             <div class="col-xl-12">
                 <!-- Account details card-->
                 <div class="card mb-4">
-                    <div class="card-body card-body-2">
+                    <div class="card-body">
                         <form>
                             <!-- Form Group (username)-->
                             <div class="mb-3">
-                                <label class="small mb-1" for="inputUsername">Food Category</label>
-                                <div class="form-group">
-                                  <select class="form-control select2bs4" style="width: 100%;">
-                                  </select>
-                                </div>
+                                <label class="small mb-1" for="inputUsername">Table Name</label>
+                                <input class="form-control" id="inputUsername" type="text" placeholder="Table Name">
                             </div>
                             <div class="mb-3">
-                                <label class="small mb-1" for="inputUsername">Food Name</label>
-                                <input class="form-control" id="inputUsername" type="text" placeholder="Name">
-                            </div>
-                            <div class="mb-3">
-                              <label class="small mb-1" for="inputPassword">Food Description</label>
+                              <label class="small mb-1" for="inputPassword">Table Description</label>
                               <input class="form-control" id="inputPassword" type="text" placeholder="Description">
                           </div>
                           <div class="mb-3">
-                            <label class="small mb-1" for="inputPassword">Price</label>
-                            <input class="form-control" id="inputPassword" type="text" placeholder="Price">
+                            <label class="small mb-1" for="inputPassword">Table Location</label>
+                            <input class="form-control" id="inputPassword" type="text" placeholder="Table Location">
                         </div>
                         </form>
                     </div>
