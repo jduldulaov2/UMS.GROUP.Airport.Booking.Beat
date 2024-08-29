@@ -1,3 +1,21 @@
+<style>
+    .todo-list>li .badge {
+      font-size: 1rem!important;
+  }
+
+  .btn-primary {
+    /* color: #fff !important; */
+    /* background-color: #ffb03b; */
+    /* border-color: #ffb03b; */
+    /* box-shadow: none !important; */
+    color: #fff!important;
+    background-color: #6c757d!important;
+    border-color: #6c757d!important;
+    box-shadow: none!important;
+}
+
+  </style>
+  
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -103,296 +121,45 @@
                   </tr>
               </thead>
               <tbody>
-                  <tr>
+                  <tr *ngFor="let item of getAllRestaurantBookingQueryDto">
                       <td class="custom-bg-1">
                           <a>
-                              Table 00001
+                              {{item.bookingReferrenceNumber}}
                           </a>
                           <br/>
                           <small>
-                              1112-333443-22334
+                            {{item.selectedTables}}
                           </small>
                       </td>
                       <td>
-                          August 10, 2024
+                        {{item.bookingFromDate}}  {{item.bookingEstimatedArrivalTime}}
                       </td>
                       <td>
-                          Jake V. Duldulao
+                        {{item.guestName}}
                       </td>
                       <td>
                           Thoracker
                       </td>
                       <td>
-                          $1,200.00
+                        {{item.bookingTotalAmount}}
                       </td>
                       <td class="project-state">
-                          <span class="badge badge-success">Confirmed</span>
+                          <span style="font-size: 16px!important;" *ngIf="item.bookingStatusID == 0" class="badge badge-warning">Unsubmitted</span>
+                          <span style="font-size: 16px!important;" *ngIf="item.bookingStatusID == 1" class="badge badge-success">Booking Approved</span>
+                          <span style="font-size: 16px!important;" *ngIf="item.bookingStatusID == 2" class="badge badge-danger">Booking Rejected</span>
+                          <span style="font-size: 16px!important;" *ngIf="item.bookingStatusID == 3" class="badge badge-info">Waiting for Approval</span>
                       </td>
                       <td class="project-state">
-                          <span class="badge badge-success">Paid</span>
+                          <span style="font-size: 16px!important;" class="badge badge-warning">Pending</span>
                       </td>
                       <td class="project-actions text-right">
-                        <!-- <a class="btn btn-primary btn-sm" [routerLink]="['/portal/manage-bookings',item.uniqueId,'detail']"></a> -->
-                          <a class="btn btn-primary btn-sm" [routerLink]="['/admin/manage-booking/1/detail']">
+                          <a class="btn btn-primary btn-sm" [routerLink]="['/admin/manage-booking',item.uniqueId,'detail']" >
                               <i class="fas fa-folder">
                               </i>
                               View Booking Detail
                           </a>
                       </td>
                   </tr>
-                  <tr>
-                      <td class="custom-bg-1">
-                          <a>
-                              Table 00001
-                          </a>
-                          <br/>
-                          <small>
-                              1112-333443-22334
-                          </small>
-                      </td>
-                      <td>
-                          August 10, 2024
-                      </td>
-                      <td>
-                          Jake V. Duldulao
-                      </td>
-                      <td>
-                          Thoracker
-                      </td>
-                      <td>
-                          $1,200.00
-                      </td>
-                      <td class="project-state">
-                          <span class="badge badge-success">Confirmed</span>
-                      </td>
-                      <td class="project-state">
-                          <span class="badge badge-success">Paid</span>
-                      </td>
-                      <td class="project-actions text-right">
-                          <a class="btn btn-primary btn-sm" href="#">
-                              <i class="fas fa-folder">
-                              </i>
-                              View Booking Detail
-                          </a>
-                      </td>
-                  </tr>
-                  <tr>
-                      <td class="custom-bg-1">
-                          <a>
-                              Table 00001
-                          </a>
-                          <br/>
-                          <small>
-                              1112-333443-22334
-                          </small>
-                      </td>
-                      <td>
-                          August 10, 2024
-                      </td>
-                      <td>
-                          Jake V. Duldulao
-                      </td>
-                      <td>
-                          Thoracker
-                      </td>
-                      <td>
-                          $1,200.00
-                      </td>
-                      <td class="project-state">
-                          <span class="badge badge-success">Confirmed</span>
-                      </td>
-                      <td class="project-state">
-                          <span class="badge badge-success">Paid</span>
-                      </td>
-                      <td class="project-actions text-right">
-                          <a class="btn btn-primary btn-sm" href="#">
-                              <i class="fas fa-folder">
-                              </i>
-                              View Booking Detail
-                          </a>
-                      </td>
-                  </tr>
-                  <tr>
-                      <td class="custom-bg-1">
-                          <a>
-                              Table 00001
-                          </a>
-                          <br/>
-                          <small>
-                              1112-333443-22334
-                          </small>
-                      </td>
-                      <td>
-                          August 10, 2024
-                      </td>
-                      <td>
-                          Jake V. Duldulao
-                      </td>
-                      <td>
-                          Thoracker
-                      </td>
-                      <td>
-                          $1,200.00
-                      </td>
-                      <td class="project-state">
-                          <span class="badge badge-success">Confirmed</span>
-                      </td>
-                      <td class="project-state">
-                          <span class="badge badge-success">Paid</span>
-                      </td>
-                      <td class="project-actions text-right">
-                          <a class="btn btn-primary btn-sm" href="#">
-                              <i class="fas fa-folder">
-                              </i>
-                              View Booking Detail
-                          </a>
-                      </td>
-                  </tr>
-                  <tr>
-                      <td class="custom-bg-1">
-                          <a>
-                              Table 00001
-                          </a>
-                          <br/>
-                          <small>
-                              1112-333443-22334
-                          </small>
-                      </td>
-                      <td>
-                          August 10, 2024
-                      </td>
-                      <td>
-                          Jake V. Duldulao
-                      </td>
-                      <td>
-                          Thoracker
-                      </td>
-                      <td>
-                          $1,200.00
-                      </td>
-                      <td class="project-state">
-                          <span class="badge badge-success">Confirmed</span>
-                      </td>
-                      <td class="project-state">
-                          <span class="badge badge-success">Paid</span>
-                      </td>
-                      <td class="project-actions text-right">
-                          <a class="btn btn-primary btn-sm" href="#">
-                              <i class="fas fa-folder">
-                              </i>
-                              View Booking Detail
-                          </a>
-                      </td>
-                  </tr>
-                  <tr>
-                      <td class="custom-bg-1">
-                          <a>
-                              Table 00001
-                          </a>
-                          <br/>
-                          <small>
-                              1112-333443-22334
-                          </small>
-                      </td>
-                      <td>
-                          August 10, 2024
-                      </td>
-                      <td>
-                          Jake V. Duldulao
-                      </td>
-                      <td>
-                          Thoracker
-                      </td>
-                      <td>
-                          $1,200.00
-                      </td>
-                      <td class="project-state">
-                          <span class="badge badge-success">Confirmed</span>
-                      </td>
-                      <td class="project-state">
-                          <span class="badge badge-success">Paid</span>
-                      </td>
-                      <td class="project-actions text-right">
-                          <a class="btn btn-primary btn-sm" href="#">
-                              <i class="fas fa-folder">
-                              </i>
-                              View Booking Detail
-                          </a>
-                      </td>
-                  </tr>
-                  <tr>
-                      <td class="custom-bg-1">
-                          <a>
-                              Table 00001
-                          </a>
-                          <br/>
-                          <small>
-                              1112-333443-22334
-                          </small>
-                      </td>
-                      <td>
-                          August 10, 2024
-                      </td>
-                      <td>
-                          Jake V. Duldulao
-                      </td>
-                      <td>
-                          Thoracker
-                      </td>
-                      <td>
-                          $1,200.00
-                      </td>
-                      <td class="project-state">
-                          <span class="badge badge-success">Confirmed</span>
-                      </td>
-                      <td class="project-state">
-                          <span class="badge badge-success">Paid</span>
-                      </td>
-                      <td class="project-actions text-right">
-                          <a class="btn btn-primary btn-sm" href="#">
-                              <i class="fas fa-folder">
-                              </i>
-                              View Booking Detail
-                          </a>
-                      </td>
-                  </tr>
-                  <tr>
-                      <td class="custom-bg-1">
-                          <a>
-                              Table 00001
-                          </a>
-                          <br/>
-                          <small>
-                              1112-333443-22334
-                          </small>
-                      </td>
-                      <td>
-                          August 10, 2024
-                      </td>
-                      <td>
-                          Jake V. Duldulao
-                      </td>
-                      <td>
-                          Thoracker
-                      </td>
-                      <td>
-                          $1,200.00
-                      </td>
-                      <td class="project-state">
-                          <span class="badge badge-success">Confirmed</span>
-                      </td>
-                      <td class="project-state">
-                          <span class="badge badge-success">Paid</span>
-                      </td>
-                      <td class="project-actions text-right">
-                          <a class="btn btn-primary btn-sm" href="#">
-                              <i class="fas fa-folder">
-                              </i>
-                              View Booking Detail
-                          </a>
-                      </td>
-                  </tr>
-
               </tbody>
           </table>
           <div class="card-footer custom-bg-2">

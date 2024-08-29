@@ -37,6 +37,7 @@ public class GetRestaurantUserLogByIdQueryHandler : IRequestHandler<GetAllRestau
                     FullName = result.FullName,
                     BookingLogs = result.BookingLogs,
                     BookingStatusId = result.BookingStatusId,
+                    BookingUniqueId = result.BookingUniqueId,
                     IsActive = result.IsActive == null ? true : result.IsActive
                 },
                 Message = "success",

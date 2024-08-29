@@ -66,13 +66,7 @@
               <thead class="custom-bg-2">
                   <tr>
                       <th class="custom-bg-2">
-                          ID
-                      </th>
-                      <th class="custom-bg-2">
                           Category Name
-                      </th>
-                      <th class="custom-bg-2">
-                          Category Description
                       </th>
                       <th class="custom-bg-2">
                           Created Date
@@ -86,18 +80,12 @@
                   </tr>
               </thead>
               <tbody>
-                  <tr>
-                      <td class="custom-bg-1">
-                          10001
+                  <tr *ngFor="let item of getAllFoodCategoryQueryDto">
+                      <td >
+                        {{item.categoryName}}
                       </td>
                       <td>
-                          System Administrator
-                      </td>
-                      <td>
-                          The System administrator has all the access on the system.
-                      </td>
-                      <td>
-                        August 3, 2024
+                        03.08.2024
                       </td>
                       <td>
                         <span class="badge badge-success">Active</span>
@@ -110,78 +98,6 @@
                           </a>
                       </td>
                   </tr>
-                  <tr>
-                    <td class="custom-bg-1">
-                        10002
-                    </td>
-                    <td>
-                        Owner
-                    </td>
-                    <td>
-                        The Owner has all the access on the system.
-                    </td>
-                    <td>
-                      August 3, 2024
-                    </td>
-                    <td>
-                      <span class="badge badge-success">Active</span>
-                    </td>
-                    <td class="project-actions text-right">
-                        <a class="btn btn-primary btn-sm" href="#">
-                            <i class="fas fa-folder">
-                            </i>
-                            View Details
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                  <td class="custom-bg-1">
-                      10003
-                  </td>
-                  <td>
-                      Customer
-                  </td>
-                  <td>
-                      The Customer has limited access on the system.
-                  </td>
-                  <td>
-                    August 3, 2024
-                  </td>
-                  <td>
-                    <span class="badge badge-success">Active</span>
-                  </td>
-                  <td class="project-actions text-right">
-                      <a class="btn btn-primary btn-sm" href="#">
-                          <i class="fas fa-folder">
-                          </i>
-                          View Details
-                      </a>
-                  </td>
-              </tr>
-              <tr>
-                <td class="custom-bg-1">
-                    10003
-                </td>
-                <td>
-                    Visitor/Surveyor Others
-                </td>
-                <td>
-                    The Visitor/Surveyor has limited access on the system.
-                </td>
-                <td>
-                  August 3, 2024
-                </td>
-                <td>
-                  <span class="badge badge-success">Active</span>
-                </td>
-                <td class="project-actions text-right">
-                    <a class="btn btn-primary btn-sm" href="#">
-                        <i class="fas fa-folder">
-                        </i>
-                        View Details
-                    </a>
-                </td>
-            </tr>
               </tbody>
           </table>
           <div class="card-footer custom-bg-2">
@@ -226,13 +142,9 @@
                         <form>
                             <!-- Form Group (username)-->
                             <div class="mb-3">
-                                <label class="small mb-1" for="inputUsername">Role Name</label>
-                                <input class="form-control" id="inputUsername" type="text" placeholder="Enter your username">
+                                <label class="small mb-1" for="inputUsername">Categoty Name</label>
+                                <input class="form-control" id="inputUsername" type="text" placeholder="Categoty Name">
                             </div>
-                            <div class="mb-3">
-                              <label class="small mb-1" for="inputPassword">Role Description</label>
-                              <input class="form-control" id="inputPassword" type="text" placeholder="Password">
-                          </div>
                         </form>
                     </div>
                 </div>

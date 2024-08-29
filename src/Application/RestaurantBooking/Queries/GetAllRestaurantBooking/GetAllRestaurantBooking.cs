@@ -22,6 +22,7 @@ public class GetAllRestaurantBookingQueryHandler : IRequestHandler<GetAllRestaur
     public async Task<List<GetAllRestaurantBookingQueryDto>> Handle(GetAllRestaurantBookingQuery request, CancellationToken cancellationToken)
     {
         return await (from restaurantbooking in _context.RestaurantBooking
+                      orderby restaurantbooking.Id descending
                       select new GetAllRestaurantBookingQueryDto
                       {
                             Id = restaurantbooking.Id,

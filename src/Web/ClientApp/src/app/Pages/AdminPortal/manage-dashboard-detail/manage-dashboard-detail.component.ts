@@ -3,13 +3,12 @@ import { RestaurantUserLogsClient, CreateRestaurantUserLogCommand, AuthClient, S
 import { ActivatedRoute, Router } from '@angular/router';
 declare var $: any;
 
-
 @Component({
-  selector: 'app-checkout-from-booking',
-  templateUrl: './checkout-from-booking.component.html',
-  styleUrls: ['./checkout-from-booking.component.css']
+  selector: 'app-manage-dashboard-detail',
+  templateUrl: './manage-dashboard-detail.component.html',
+  styleUrls: ['./manage-dashboard-detail.component.css']
 })
-export class CheckoutFromBookingComponent {
+export class ManageDashboardDetailComponent {
   public cartDto: GetAllDraftCartItemsQueryDtoByCode[] = [];
   hasOrder: any;
   getTotalAmount: any;
@@ -68,7 +67,7 @@ export class CheckoutFromBookingComponent {
 
   GoToCart(){
     $("html, body").animate({ scrollTop: 0 }, "fast");
-    this.router.navigate(['/my-cart/booking',this.route.snapshot.paramMap.get('key'),'detail']);
+    this.router.navigate(['/admin/my-dashboard']);
   }
 
   getBookingById(id: any): void {
@@ -124,7 +123,7 @@ export class CheckoutFromBookingComponent {
       "bookingPromoAmount": this.b_bookingPromoAmount,
       "bookingTaxAmount": this.b_bookingTaxAmount,
       "bookingPaymentSurchargeAmount": this.b_bookingPaymentSurchargeAmount,
-      "bookingTotalAmount": this.getTotalAmount,
+      "bookingTotalAmount": this.b_bookingTotalAmount,
       "bookingPaidAmount": this.b_bookingPaidAmount,
       "bookingOutstandingBalanceAmount": this.b_bookingOutstandingBalanceAmount,
       "bookingNotes": this.b_bookingNotes,
@@ -148,7 +147,6 @@ export class CheckoutFromBookingComponent {
             "fullName": this.fullname,
             "bookingLogs": "has submitted a booking for Date: "+this.b_bookingFromDate,
             "bookingStatusId": "3",
-            "bookingUniqueId": code_id,
             "isActive": true
           };
       
@@ -234,6 +232,206 @@ export class CheckoutFromBookingComponent {
     );
   }
 
+  RejectBooking(){
+    
+    var code_id = this.route.snapshot.paramMap.get('key');
+    const list = {
+      "uniqueId": this.b_uniqueId,
+      "bookingReferrenceNumber": this.b_bookingReferrenceNumber,
+      "bookingFromDate": this.b_bookingFromDate,
+      "bookingToDate": this.b_bookingToDate,
+      "bookingSource": this.b_bookingSource,
+      "bookingEstimatedArrivalTime": this.b_bookingEstimatedArrivalTime,
+      "bookingEstimatedDepartureTime": this.b_bookingEstimatedDepartureTime,
+      "bookingStatusID": 2, //Reject
+      "bookingPaymentStatusID": this.b_bookingPaymentStatusID,
+      "bookingChargesAmount": this.b_bookingChargesAmount,
+      "bookingExtrasAmount": this.b_bookingExtrasAmount,
+      "bookingPromoAmount": this.b_bookingPromoAmount,
+      "bookingTaxAmount": this.b_bookingTaxAmount,
+      "bookingPaymentSurchargeAmount": this.b_bookingPaymentSurchargeAmount,
+      "bookingTotalAmount": this.b_bookingTotalAmount,
+      "bookingPaidAmount": this.b_bookingPaidAmount,
+      "bookingOutstandingBalanceAmount": this.b_bookingOutstandingBalanceAmount,
+      "bookingNotes": this.b_bookingNotes,
+      "paymentMethod": this.b_paymentMethod,
+      "restaurantID": this.b_restaurantID,
+      "guestID": this.b_guestID,
+      "orderID": this.b_orderID,
+      "isActive": this.b_isActive,
+      "guestName": this.b_guestName,
+      "restaurantName": this.b_restaurantName,
+      "numberOfPax": this.b_numberOfPax,
+      "selectedTables": this.b_selectedTables
+    };
+
+    this.bookingClient.updateRestaurantBooking(list as UpdateRestaurantBookingCommand).subscribe(
+      result => {
+        if(result.resultType == 1){
+          this.Notification("Booking has been Rejected.", "error");
+          // this.authClient.sendEmail('thorackerrestaurant@gmail.com', 
+          //   this.emailAddress, 
+          //   'liepweijlwnyucjq',
+          //   'Hi <b>'+ this.fullname + '</b><br><br>' 
+          //   +'Thank you for sending your booking with referrence #: <b>' + this.b_bookingReferrenceNumber 
+          //   +'</b>.<br><br>We will review the booking details and get back to you ASAP. <br><br>'+
+          //   '-------Summary------<br>' + 
+          //   '<b>Selected Tables: </b>' + this.b_selectedTables + '<br>'+ 
+          //   '<b>Date of Arrival: </b>' + this.b_bookingFromDate + '<br>'+ 
+          //   '<b>Time of Arrival: </b>' + this.b_bookingEstimatedArrivalTime + '<br>'+ 
+          //   '<b>Booking Status: </b> <span style="color: red;">For Approval</span> <br>'+ 
+          //   '<br>'+ 
+          //   +'<br>Best Regards!<br><br><br> Thoracker Admin',
+          //   'smtp.gmail.com',
+          //   'Reservation (For Approval): ' + this.b_bookingReferrenceNumber, 
+          //   587
+          //   ).subscribe(
+          //   result => {
+              
+          //   },
+          //   error => {
+          //     const errors = JSON.parse(error.response).errors;
+          //     this.Notification("Something went wrong. Check the validation error/s.", "error");
+          //   }
+          // );
+
+          this.authClient.sendEmail('thorackerrestaurant@gmail.com', 
+            'thorackerrestaurant@gmail.com', 
+            'liepweijlwnyucjq',
+            'Hi <b> System Administrator</b><br><br>' 
+            +'Booking with referrence #: <b>' + this.b_bookingReferrenceNumber 
+            +'</b> has been rejected.<br><br>'+
+            +'<br>Best Regards!<br><br><br> Thoracker Admin',
+            'smtp.gmail.com',
+            'Reservation Approved: ' + this.b_bookingReferrenceNumber, 
+            587
+            ).subscribe(
+            result => {
+              
+            },
+            error => {
+              const errors = JSON.parse(error.response).errors;
+              this.Notification("Something went wrong. Check the validation error/s.", "error");
+            }
+          );
+
+          setTimeout(() => {
+            this.getBookingById(code_id);
+          }, 2000);
+          
+        }else{
+          this.Notification("Something went wrong. Check the validation error/s.", "error");
+          //this.loader.ShowToast("Something went wrong. Check the validation error/s.", "error");
+        }
+      },
+      error => {
+        const errors = JSON.parse(error.response).errors;
+        this.Notification("Something went wrong. Check the validation error/s.", "error");
+      }
+    );
+  }
+
+  ApproveBooking(){
+    
+    var code_id = this.route.snapshot.paramMap.get('key');
+    const list = {
+      "uniqueId": this.b_uniqueId,
+      "bookingReferrenceNumber": this.b_bookingReferrenceNumber,
+      "bookingFromDate": this.b_bookingFromDate,
+      "bookingToDate": this.b_bookingToDate,
+      "bookingSource": this.b_bookingSource,
+      "bookingEstimatedArrivalTime": this.b_bookingEstimatedArrivalTime,
+      "bookingEstimatedDepartureTime": this.b_bookingEstimatedDepartureTime,
+      "bookingStatusID": 1, //Approve
+      "bookingPaymentStatusID": this.b_bookingPaymentStatusID,
+      "bookingChargesAmount": this.b_bookingChargesAmount,
+      "bookingExtrasAmount": this.b_bookingExtrasAmount,
+      "bookingPromoAmount": this.b_bookingPromoAmount,
+      "bookingTaxAmount": this.b_bookingTaxAmount,
+      "bookingPaymentSurchargeAmount": this.b_bookingPaymentSurchargeAmount,
+      "bookingTotalAmount": this.b_bookingTotalAmount,
+      "bookingPaidAmount": this.b_bookingPaidAmount,
+      "bookingOutstandingBalanceAmount": this.b_bookingOutstandingBalanceAmount,
+      "bookingNotes": this.b_bookingNotes,
+      "paymentMethod": this.b_paymentMethod,
+      "restaurantID": this.b_restaurantID,
+      "guestID": this.b_guestID,
+      "orderID": this.b_orderID,
+      "isActive": this.b_isActive,
+      "guestName": this.b_guestName,
+      "restaurantName": this.b_restaurantName,
+      "numberOfPax": this.b_numberOfPax,
+      "selectedTables": this.b_selectedTables
+    };
+
+    this.bookingClient.updateRestaurantBooking(list as UpdateRestaurantBookingCommand).subscribe(
+      result => {
+        if(result.resultType == 1){
+          this.Notification("Booking has been Approved.", "success");
+          // this.authClient.sendEmail('thorackerrestaurant@gmail.com', 
+          //   this.emailAddress, 
+          //   'liepweijlwnyucjq',
+          //   'Hi <b>'+ this.fullname + '</b><br><br>' 
+          //   +'Thank you for sending your booking with referrence #: <b>' + this.b_bookingReferrenceNumber 
+          //   +'</b>.<br><br>We will review the booking details and get back to you ASAP. <br><br>'+
+          //   '-------Summary------<br>' + 
+          //   '<b>Selected Tables: </b>' + this.b_selectedTables + '<br>'+ 
+          //   '<b>Date of Arrival: </b>' + this.b_bookingFromDate + '<br>'+ 
+          //   '<b>Time of Arrival: </b>' + this.b_bookingEstimatedArrivalTime + '<br>'+ 
+          //   '<b>Booking Status: </b> <span style="color: red;">For Approval</span> <br>'+ 
+          //   '<br>'+ 
+          //   +'<br>Best Regards!<br><br><br> Thoracker Admin',
+          //   'smtp.gmail.com',
+          //   'Reservation (For Approval): ' + this.b_bookingReferrenceNumber, 
+          //   587
+          //   ).subscribe(
+          //   result => {
+              
+          //   },
+          //   error => {
+          //     const errors = JSON.parse(error.response).errors;
+          //     this.Notification("Something went wrong. Check the validation error/s.", "error");
+          //   }
+          // );
+
+          this.authClient.sendEmail('thorackerrestaurant@gmail.com', 
+            'thorackerrestaurant@gmail.com', 
+            'liepweijlwnyucjq',
+            'Hi <b> System Administrator</b><br><br>' 
+            +'Booking with referrence #: <b>' + this.b_bookingReferrenceNumber 
+            +'</b> has been approved.<br><br>Please review. <br><br>'+
+            +'<br>Best Regards!<br><br><br> Thoracker Admin',
+            'smtp.gmail.com',
+            'Reservation Approved: ' + this.b_bookingReferrenceNumber, 
+            587
+            ).subscribe(
+            result => {
+              
+            },
+            error => {
+              const errors = JSON.parse(error.response).errors;
+              this.Notification("Something went wrong. Check the validation error/s.", "error");
+            }
+          );
+
+          setTimeout(() => {
+            this.getBookingById(code_id);
+          }, 2000);
+          
+        }else{
+          this.Notification("Something went wrong. Check the validation error/s.", "error");
+          //this.loader.ShowToast("Something went wrong. Check the validation error/s.", "error");
+        }
+      },
+      error => {
+        const errors = JSON.parse(error.response).errors;
+        this.Notification("Something went wrong. Check the validation error/s.", "error");
+      }
+    );
+  }
+
+  
+
   GetInitialInfo(){
     // READ STRING FROM LOCAL STORAGE
   var retrievedObject = localStorage.getItem('loggedindetail');
@@ -293,3 +491,4 @@ export class CheckoutFromBookingComponent {
 
 
 }
+

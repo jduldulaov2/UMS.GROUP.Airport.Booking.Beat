@@ -51,6 +51,7 @@ import { ReserveATableComponent }  from './Pages/ClientPortal/reserve-atable/res
 import { AboutComponent }  from './Pages/ClientPortal/about/about.component';
 import { SpecialMenuComponent }  from './Pages/ClientPortal/special-menu/special-menu.component';
 import { ContactUsComponent }  from './Pages/ClientPortal/contact-us/contact-us.component';
+import { ManageDashboardDetailComponent } from './Pages/AdminPortal/manage-dashboard-detail/manage-dashboard-detail.component';
 
 @NgModule({
   declarations: [
@@ -96,7 +97,8 @@ import { ContactUsComponent }  from './Pages/ClientPortal/contact-us/contact-us.
     ReserveATableComponent,
     AboutComponent,
     SpecialMenuComponent,
-    ContactUsComponent
+    ContactUsComponent,
+    ManageDashboardDetailComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

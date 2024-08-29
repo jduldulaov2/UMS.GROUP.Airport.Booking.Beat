@@ -9,6 +9,8 @@ public class RestaurantUserLog : BaseAuditableEntity
 {
     public string? BookingNumber { get; set; }
 
+    public string? BookingUniqueId { get; set; }
+
     public string? FullName { get; set; }
 
     public string? BookingLogs { get; set; }

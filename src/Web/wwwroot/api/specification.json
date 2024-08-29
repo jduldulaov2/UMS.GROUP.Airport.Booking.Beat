@@ -4927,6 +4927,10 @@
             "type": "string",
             "nullable": true
           },
+          "bookingUniqueId": {
+            "type": "string",
+            "nullable": true
+          },
           "isActive": {
             "type": "boolean",
             "nullable": true
@@ -4991,6 +4995,10 @@
             "type": "string",
             "nullable": true
           },
+          "bookingUniqueId": {
+            "type": "string",
+            "nullable": true
+          },
           "isActive": {
             "type": "boolean",
             "nullable": true
@@ -5023,6 +5031,10 @@
             "nullable": true
           },
           "bookingStatusId": {
+            "type": "string",
+            "nullable": true
+          },
+          "bookingUniqueId": {
             "type": "string",
             "nullable": true
           },
@@ -5078,6 +5090,10 @@
             "nullable": true
           },
           "bookingStatusId": {
+            "type": "string",
+            "nullable": true
+          },
+          "bookingUniqueId": {
             "type": "string",
             "nullable": true
           },

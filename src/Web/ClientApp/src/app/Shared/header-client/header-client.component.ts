@@ -16,7 +16,7 @@ export class HeaderClientComponent {
 
   constructor(private authClient: AuthClient, 
     private router: Router,
-    private route: ActivatedRoute,) {}
+    private route: ActivatedRoute) {}
 
   ngOnInit(){
     this.GetLogin();

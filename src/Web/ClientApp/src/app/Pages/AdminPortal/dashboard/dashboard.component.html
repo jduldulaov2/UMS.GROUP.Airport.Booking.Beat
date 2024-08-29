@@ -1,3 +1,8 @@
+<style>
+  .todo-list>li .badge {
+    font-size: 1rem!important;
+}
+</style>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -99,7 +104,7 @@
               <!-- /.card-header -->
               <div class="card-body">
                 <ul class="todo-list" data-widget="todo-list">
-                  <li>
+                  <li *ngFor="let item of getAllRestaurantUserLogQueryDto" [routerLink]="['/admin/my-dashboard',item.bookingUniqueId,'detail']">
                     <span class="handle">
                       <i class="fas fa-ellipsis-v"></i>
                       <i class="fas fa-ellipsis-v"></i>
@@ -108,200 +113,11 @@
                       <input type="checkbox" value="" name="todo3" id="todoCheck3">
                       <label for="todoCheck3"></label>
                     </div>
-                    <span class="text">Customer <b>Jake V. Duldulao</b> reserved the table <b> 00001</b> Dated <b> August 01, 2024</b> at <b> 1:00PM</b></span>
-                    <small class="badge badge-warning"><i class="far fa-clock"></i> Payment Pending</small>
-                    <div class="tools">
-                      <i class="fas fa-edit"></i>
-                      <i class="fas fa-trash-o"></i>
-                    </div>
-                  </li>
-                  <li>
-                    <span class="handle">
-                      <i class="fas fa-ellipsis-v"></i>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </span>
-                    <div  class="icheck-primary d-inline ml-2">
-                      <input type="checkbox" value="" name="todo3" id="todoCheck3">
-                      <label for="todoCheck3"></label>
-                    </div>
-                    <span class="text">Customer <b>Jake V. Duldulao</b> reserved the table <b> 00002</b> Dated <b> August 02, 2024</b> at <b> 2:00PM</b></span>
-                    <small class="badge badge-success"><i class="far fa-clock"></i> Payment Successfull</small>
-                    <div class="tools">
-                      <i class="fas fa-edit"></i>
-                      <i class="fas fa-trash-o"></i>
-                    </div>
-                  </li>
-                  <li>
-                    <span class="handle">
-                      <i class="fas fa-ellipsis-v"></i>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </span>
-                    <div  class="icheck-primary d-inline ml-2">
-                      <input type="checkbox" value="" name="todo3" id="todoCheck3">
-                      <label for="todoCheck3"></label>
-                    </div>
-                    <span class="text">Customer <b>Jake V. Duldulao</b> ordered<b> Food1, Food2</b> Dated <b> August 03, 2024</b> at <b> 1:00PM</b></span>
-                    <small class="badge badge-success"><i class="far fa-clock"></i> Payment Successfull</small> <small class="badge badge-success"><i class="far fa-clock"></i> Delivered</small>
-                    <div class="tools">
-                      <i class="fas fa-edit"></i>
-                      <i class="fas fa-trash-o"></i>
-                    </div>
-                  </li>
-                  <li>
-                    <span class="handle">
-                      <i class="fas fa-ellipsis-v"></i>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </span>
-                    <div  class="icheck-primary d-inline ml-2">
-                      <input type="checkbox" value="" name="todo3" id="todoCheck3">
-                      <label for="todoCheck3"></label>
-                    </div>
-                    <span class="text">Customer <b>Jake V. Duldulao</b> ordered<b> Food1, Food2, Food3</b> Dated <b> August 04, 2024</b> at <b> 2:00PM</b></span>
-                    <small class="badge badge-warning"><i class="far fa-clock"></i> Payment Pending</small> <small class="badge badge-danger"><i class="far fa-clock"></i> Not Yet Delivered</small>
-                    <div class="tools">
-                      <i class="fas fa-edit"></i>
-                      <i class="fas fa-trash-o"></i>
-                    </div>
-                  </li>
-                  <li>
-                    <span class="handle">
-                      <i class="fas fa-ellipsis-v"></i>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </span>
-                    <div  class="icheck-primary d-inline ml-2">
-                      <input type="checkbox" value="" name="todo3" id="todoCheck3">
-                      <label for="todoCheck3"></label>
-                    </div>
-                    <span class="text">Customer <b>Jake V. Duldulao</b> reserved the table <b> 00002</b> Dated <b> August 02, 2024</b> at <b> 2:00PM</b></span>
-                    <small class="badge badge-success"><i class="far fa-clock"></i> Payment Successfull</small>
-                    <div class="tools">
-                      <i class="fas fa-edit"></i>
-                      <i class="fas fa-trash-o"></i>
-                    </div>
-                  </li>
-                  <li>
-                    <span class="handle">
-                      <i class="fas fa-ellipsis-v"></i>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </span>
-                    <div  class="icheck-primary d-inline ml-2">
-                      <input type="checkbox" value="" name="todo3" id="todoCheck3">
-                      <label for="todoCheck3"></label>
-                    </div>
-                    <span class="text">Customer <b>Jake V. Duldulao</b> ordered<b> Food1, Food2</b> Dated <b> August 03, 2024</b> at <b> 1:00PM</b></span>
-                    <small class="badge badge-success"><i class="far fa-clock"></i> Payment Successfull</small> <small class="badge badge-success"><i class="far fa-clock"></i> Delivered</small>
-                    <div class="tools">
-                      <i class="fas fa-edit"></i>
-                      <i class="fas fa-trash-o"></i>
-                    </div>
-                  </li>
-                  <li>
-                    <span class="handle">
-                      <i class="fas fa-ellipsis-v"></i>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </span>
-                    <div  class="icheck-primary d-inline ml-2">
-                      <input type="checkbox" value="" name="todo3" id="todoCheck3">
-                      <label for="todoCheck3"></label>
-                    </div>
-                    <span class="text">Customer <b>Jake V. Duldulao</b> ordered<b> Food1, Food2, Food3</b> Dated <b> August 04, 2024</b> at <b> 2:00PM</b></span>
-                    <small class="badge badge-warning"><i class="far fa-clock"></i> Payment Pending</small> <small class="badge badge-danger"><i class="far fa-clock"></i> Not Yet Delivered</small>
-                    <div class="tools">
-                      <i class="fas fa-edit"></i>
-                      <i class="fas fa-trash-o"></i>
-                    </div>
-                  </li>
-                  <li>
-                    <span class="handle">
-                      <i class="fas fa-ellipsis-v"></i>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </span>
-                    <div  class="icheck-primary d-inline ml-2">
-                      <input type="checkbox" value="" name="todo3" id="todoCheck3">
-                      <label for="todoCheck3"></label>
-                    </div>
-                    <span class="text">Customer <b>Jake V. Duldulao</b> reserved the table <b> 00002</b> Dated <b> August 02, 2024</b> at <b> 2:00PM</b></span>
-                    <small class="badge badge-success"><i class="far fa-clock"></i> Payment Successfull</small>
-                    <div class="tools">
-                      <i class="fas fa-edit"></i>
-                      <i class="fas fa-trash-o"></i>
-                    </div>
-                  </li>
-                  <li>
-                    <span class="handle">
-                      <i class="fas fa-ellipsis-v"></i>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </span>
-                    <div  class="icheck-primary d-inline ml-2">
-                      <input type="checkbox" value="" name="todo3" id="todoCheck3">
-                      <label for="todoCheck3"></label>
-                    </div>
-                    <span class="text">Customer <b>Jake V. Duldulao</b> ordered<b> Food1, Food2</b> Dated <b> August 03, 2024</b> at <b> 1:00PM</b></span>
-                    <small class="badge badge-success"><i class="far fa-clock"></i> Payment Successfull</small> <small class="badge badge-success"><i class="far fa-clock"></i> Delivered</small>
-                    <div class="tools">
-                      <i class="fas fa-edit"></i>
-                      <i class="fas fa-trash-o"></i>
-                    </div>
-                  </li>
-                  <li>
-                    <span class="handle">
-                      <i class="fas fa-ellipsis-v"></i>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </span>
-                    <div  class="icheck-primary d-inline ml-2">
-                      <input type="checkbox" value="" name="todo3" id="todoCheck3">
-                      <label for="todoCheck3"></label>
-                    </div>
-                    <span class="text">Customer <b>Jake V. Duldulao</b> ordered<b> Food1, Food2, Food3</b> Dated <b> August 04, 2024</b> at <b> 2:00PM</b></span>
-                    <small class="badge badge-warning"><i class="far fa-clock"></i> Payment Pending</small> <small class="badge badge-danger"><i class="far fa-clock"></i> Not Yet Delivered</small>
-                    <div class="tools">
-                      <i class="fas fa-edit"></i>
-                      <i class="fas fa-trash-o"></i>
-                    </div>
-                  </li>
-                  <li>
-                    <span class="handle">
-                      <i class="fas fa-ellipsis-v"></i>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </span>
-                    <div  class="icheck-primary d-inline ml-2">
-                      <input type="checkbox" value="" name="todo3" id="todoCheck3">
-                      <label for="todoCheck3"></label>
-                    </div>
-                    <span class="text">Customer <b>Jake V. Duldulao</b> reserved the table <b> 00002</b> Dated <b> August 02, 2024</b> at <b> 2:00PM</b></span>
-                    <small class="badge badge-success"><i class="far fa-clock"></i> Payment Successfull</small>
-                    <div class="tools">
-                      <i class="fas fa-edit"></i>
-                      <i class="fas fa-trash-o"></i>
-                    </div>
-                  </li>
-                  <li>
-                    <span class="handle">
-                      <i class="fas fa-ellipsis-v"></i>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </span>
-                    <div  class="icheck-primary d-inline ml-2">
-                      <input type="checkbox" value="" name="todo3" id="todoCheck3">
-                      <label for="todoCheck3"></label>
-                    </div>
-                    <span class="text">Customer <b>Jake V. Duldulao</b> ordered<b> Food1, Food2</b> Dated <b> August 03, 2024</b> at <b> 1:00PM</b></span>
-                    <small class="badge badge-success"><i class="far fa-clock"></i> Payment Successfull</small> <small class="badge badge-success"><i class="far fa-clock"></i> Delivered</small>
-                    <div class="tools">
-                      <i class="fas fa-edit"></i>
-                      <i class="fas fa-trash-o"></i>
-                    </div>
-                  </li>
-                  <li>
-                    <span class="handle">
-                      <i class="fas fa-ellipsis-v"></i>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </span>
-                    <div  class="icheck-primary d-inline ml-2">
-                      <input type="checkbox" value="" name="todo3" id="todoCheck3">
-                      <label for="todoCheck3"></label>
-                    </div>
-                    <span class="text">Customer <b>Jake V. Duldulao</b> ordered<b> Food1, Food2, Food3</b> Dated <b> August 04, 2024</b> at <b> 2:00PM</b></span>
-                    <small class="badge badge-warning"><i class="far fa-clock"></i> Payment Pending</small> <small class="badge badge-danger"><i class="far fa-clock"></i> Not Yet Delivered</small>
+                    <span class="text">Customer/Guest <b>{{item.fullName}}</b> {{item.bookingLogs}} with Booking Referrence #: <b>{{item.bookingNumber}}</b></span>
+                    <small *ngIf="item.bookingStatusId == '0'" class="badge badge-warning"><i class="far fa-clock"></i> Pending</small>
+                    <small *ngIf="item.bookingStatusId == '1'" class="badge badge-success"><i class="far fa-clock"></i> Booking Approved</small>
+                    <small *ngIf="item.bookingStatusId == '2'" class="badge badge-danger"><i class="far fa-clock"></i> Booking Rejected</small>
+                    <small *ngIf="item.bookingStatusId == '3'" class="badge badge-info"><i class="far fa-clock"></i> Booking Submitted (Waiting for Approval)</small>
                     <div class="tools">
                       <i class="fas fa-edit"></i>
                       <i class="fas fa-trash-o"></i>

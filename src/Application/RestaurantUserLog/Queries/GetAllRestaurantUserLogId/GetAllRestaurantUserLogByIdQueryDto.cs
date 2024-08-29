@@ -18,5 +18,7 @@ public class GetAllRestaurantUserLogByIdQueryDto
 
     public string? BookingStatusId { get; set; }
 
+    public string? BookingUniqueId { get; set; }
+
     public bool? IsActive { get; set; }
 }

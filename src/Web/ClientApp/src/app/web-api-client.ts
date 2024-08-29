@@ -9185,6 +9185,7 @@ export class CreateRestaurantUserLogCommand implements ICreateRestaurantUserLogC
     fullName?: string | undefined;
     bookingLogs?: string | undefined;
     bookingStatusId?: string | undefined;
+    bookingUniqueId?: string | undefined;
     isActive?: boolean | undefined;
 
     constructor(data?: ICreateRestaurantUserLogCommand) {
@@ -9202,6 +9203,7 @@ export class CreateRestaurantUserLogCommand implements ICreateRestaurantUserLogC
             this.fullName = _data["fullName"];
             this.bookingLogs = _data["bookingLogs"];
             this.bookingStatusId = _data["bookingStatusId"];
+            this.bookingUniqueId = _data["bookingUniqueId"];
             this.isActive = _data["isActive"];
         }
     }
@@ -9219,6 +9221,7 @@ export class CreateRestaurantUserLogCommand implements ICreateRestaurantUserLogC
         data["fullName"] = this.fullName;
         data["bookingLogs"] = this.bookingLogs;
         data["bookingStatusId"] = this.bookingStatusId;
+        data["bookingUniqueId"] = this.bookingUniqueId;
         data["isActive"] = this.isActive;
         return data;
     }
@@ -9229,6 +9232,7 @@ export interface ICreateRestaurantUserLogCommand {
     fullName?: string | undefined;
     bookingLogs?: string | undefined;
     bookingStatusId?: string | undefined;
+    bookingUniqueId?: string | undefined;
     isActive?: boolean | undefined;
 }
 
@@ -9322,6 +9326,7 @@ export class UpdateRestaurantUserLogCommand implements IUpdateRestaurantUserLogC
     fullName?: string | undefined;
     bookingLogs?: string | undefined;
     bookingStatusId?: string | undefined;
+    bookingUniqueId?: string | undefined;
     isActive?: boolean | undefined;
 
     constructor(data?: IUpdateRestaurantUserLogCommand) {
@@ -9340,6 +9345,7 @@ export class UpdateRestaurantUserLogCommand implements IUpdateRestaurantUserLogC
             this.fullName = _data["fullName"];
             this.bookingLogs = _data["bookingLogs"];
             this.bookingStatusId = _data["bookingStatusId"];
+            this.bookingUniqueId = _data["bookingUniqueId"];
             this.isActive = _data["isActive"];
         }
     }
@@ -9358,6 +9364,7 @@ export class UpdateRestaurantUserLogCommand implements IUpdateRestaurantUserLogC
         data["fullName"] = this.fullName;
         data["bookingLogs"] = this.bookingLogs;
         data["bookingStatusId"] = this.bookingStatusId;
+        data["bookingUniqueId"] = this.bookingUniqueId;
         data["isActive"] = this.isActive;
         return data;
     }
@@ -9369,6 +9376,7 @@ export interface IUpdateRestaurantUserLogCommand {
     fullName?: string | undefined;
     bookingLogs?: string | undefined;
     bookingStatusId?: string | undefined;
+    bookingUniqueId?: string | undefined;
     isActive?: boolean | undefined;
 }
 
@@ -9379,6 +9387,7 @@ export class GetAllRestaurantUserLogQueryDto implements IGetAllRestaurantUserLog
     fullName?: string | undefined;
     bookingLogs?: string | undefined;
     bookingStatusId?: string | undefined;
+    bookingUniqueId?: string | undefined;
     isActive?: boolean | undefined;
 
     constructor(data?: IGetAllRestaurantUserLogQueryDto) {
@@ -9398,6 +9407,7 @@ export class GetAllRestaurantUserLogQueryDto implements IGetAllRestaurantUserLog
             this.fullName = _data["fullName"];
             this.bookingLogs = _data["bookingLogs"];
             this.bookingStatusId = _data["bookingStatusId"];
+            this.bookingUniqueId = _data["bookingUniqueId"];
             this.isActive = _data["isActive"];
         }
     }
@@ -9417,6 +9427,7 @@ export class GetAllRestaurantUserLogQueryDto implements IGetAllRestaurantUserLog
         data["fullName"] = this.fullName;
         data["bookingLogs"] = this.bookingLogs;
         data["bookingStatusId"] = this.bookingStatusId;
+        data["bookingUniqueId"] = this.bookingUniqueId;
         data["isActive"] = this.isActive;
         return data;
     }
@@ -9429,6 +9440,7 @@ export interface IGetAllRestaurantUserLogQueryDto {
     fullName?: string | undefined;
     bookingLogs?: string | undefined;
     bookingStatusId?: string | undefined;
+    bookingUniqueId?: string | undefined;
     isActive?: boolean | undefined;
 }
 
@@ -9483,6 +9495,7 @@ export class GetAllRestaurantUserLogByIdQueryDto implements IGetAllRestaurantUse
     fullName?: string | undefined;
     bookingLogs?: string | undefined;
     bookingStatusId?: string | undefined;
+    bookingUniqueId?: string | undefined;
     isActive?: boolean | undefined;
 
     constructor(data?: IGetAllRestaurantUserLogByIdQueryDto) {
@@ -9502,6 +9515,7 @@ export class GetAllRestaurantUserLogByIdQueryDto implements IGetAllRestaurantUse
             this.fullName = _data["fullName"];
             this.bookingLogs = _data["bookingLogs"];
             this.bookingStatusId = _data["bookingStatusId"];
+            this.bookingUniqueId = _data["bookingUniqueId"];
             this.isActive = _data["isActive"];
         }
     }
@@ -9521,6 +9535,7 @@ export class GetAllRestaurantUserLogByIdQueryDto implements IGetAllRestaurantUse
         data["fullName"] = this.fullName;
         data["bookingLogs"] = this.bookingLogs;
         data["bookingStatusId"] = this.bookingStatusId;
+        data["bookingUniqueId"] = this.bookingUniqueId;
         data["isActive"] = this.isActive;
         return data;
     }
@@ -9533,6 +9548,7 @@ export interface IGetAllRestaurantUserLogByIdQueryDto {
     fullName?: string | undefined;
     bookingLogs?: string | undefined;
     bookingStatusId?: string | undefined;
+    bookingUniqueId?: string | undefined;
     isActive?: boolean | undefined;
 }
 

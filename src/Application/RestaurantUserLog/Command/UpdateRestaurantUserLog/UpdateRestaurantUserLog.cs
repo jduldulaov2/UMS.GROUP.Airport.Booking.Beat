@@ -18,6 +18,8 @@ public record UpdateRestaurantUserLogCommand : IRequest<Result<UpdateRestaurantU
 
     public string? BookingStatusId { get; init; }
 
+    public string? BookingUniqueId { get; init; }
+
     public bool? IsActive { get; init; }
 }
 
@@ -44,6 +46,8 @@ public class UpdateRestaurantUserLogCommandHandler : IRequestHandler<UpdateResta
             entity.BookingStatusId = request.BookingLogs;
 
             entity.BookingStatusId = request.BookingStatusId;
+
+            entity.BookingUniqueId = request.BookingUniqueId;
 
             entity.IsActive = request.IsActive;
 

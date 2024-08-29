@@ -18,7 +18,7 @@ import { ManagePaymentDetailComponent } from '../../Pages/AdminPortal/manage-pay
 import { ManageFoodCategoryComponent } from '../../Pages/AdminPortal/manage-food-category/manage-food-category.component';
 import { ManageCustomerDetailComponent } from '../../Pages/AdminPortal/manage-customer-detail/manage-customer-detail.component';
 import { ManageTableDetailComponent } from '../../Pages/AdminPortal/manage-table-detail/manage-table-detail.component';
-// import { AirportDetailComponent } from '../../Pages/BookingPortal/airport-detail/airport-detail.component';
+import { ManageDashboardDetailComponent } from '../../Pages/AdminPortal/manage-dashboard-detail/manage-dashboard-detail.component';
 // import { AirportDetailComponent } from '../../Pages/BookingPortal/airport-detail/airport-detail.component';
 // import { AirportDetailComponent } from '../../Pages/BookingPortal/airport-detail/airport-detail.component';
 // import { AirportDetailComponent } from '../../Pages/BookingPortal/airport-detail/airport-detail.component';
@@ -87,6 +87,10 @@ const routes: Routes = [
   {
     path: 'admin/manage-table',
     component: ManageTableDetailComponent
+  },
+  {
+    path: 'admin/my-dashboard/:key/detail',
+    component: ManageDashboardDetailComponent
   }
 
   // {

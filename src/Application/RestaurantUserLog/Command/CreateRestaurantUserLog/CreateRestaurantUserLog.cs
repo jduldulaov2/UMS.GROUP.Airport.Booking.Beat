@@ -17,6 +17,8 @@ public record CreateRestaurantUserLogCommand : IRequest<Result<CreateRestaurantU
 
     public string? BookingStatusId { get; init; }
 
+    public string? BookingUniqueId { get; init; }
+
     public bool? IsActive { get; init; }
 }
 
@@ -41,6 +43,8 @@ public class CreateRestaurantUserLogCommandHandler : IRequestHandler<CreateResta
         entity.BookingLogs = request.BookingLogs;
 
         entity.BookingStatusId = request.BookingStatusId;
+
+        entity.BookingUniqueId = request.BookingUniqueId;
 
         entity.IsActive = request.IsActive;
 
