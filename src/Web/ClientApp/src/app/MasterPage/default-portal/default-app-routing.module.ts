@@ -19,6 +19,7 @@ import { FoodMenuFromBookingComponent }  from '../../Pages/ClientPortal/food-men
 import { UserActivityComponent }  from '../../Pages/ClientPortal/user-activity/user-activity.component';
 import { CheckoutFromBookingComponent }  from '../../Pages/ClientPortal/checkout-from-booking/checkout-from-booking.component';
 import { MobileHomeComponent }  from '../../Pages/ClientPortal/mobile-home/mobile-home.component';
+import { PolicyComponent }  from '../../Pages/ClientPortal/policy/policy.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -90,6 +91,10 @@ const routes: Routes = [
   {
     path: 'home/mobile',
     component: MobileHomeComponent
+  },
+  {
+    path: 'policy',
+    component: PolicyComponent
   },
   
 ];
